@@ -4,7 +4,6 @@ import "./Project.css";
 function Project({ title, desc, skills, level })
 {
 
-    console.log(skills)
     return (
         <div className="project">
             <h3 className="title"> {title}</h3>
@@ -17,7 +16,7 @@ function Project({ title, desc, skills, level })
 
             <div className="skills">
                 {
-                    skills && skills.map(skill => (<div className="skill">{ skill} </div>))
+                    skills && skills.map((skill, ind) => (<div key={ind} className="skill">{ skill} </div>))
                 }
 
             </div>
