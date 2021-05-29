@@ -1,0 +1,15 @@
+.mt {
+    margin-top: 2rem;
+}
+
+.query {
+    padding: 1em 6.3em;
+}
+
+.projectsList {
+    padding: 2em 4em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}

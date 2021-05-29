@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Project from "../Project/Project";
 import "./Home.css";
-import client from "../../client";
 import SearchBox from "../SearchBox/SearchBox";
-
-var options = {
-  size: 3,
-  search_fields: { skills: {}, description: {}, name: {} },
-};
-
+import { useDataLayerValues } from "../../datalayer";
+import { actions } from "../../reducer";
 
 function Home()
 {
+  
+  const [{ }, dispatch] = useDataLayerValues();
 
-  client.search("javascript", options)
-    .then(results => console.log(results)).catch(error => console.log(error))
+  useEffect(() => {
+    
+    dispatch({
+      type: actions.SET_AUTH,
+      isAuthenticated: true
+    });
+
+  }, [])
 
   return (
     <div className="home">

@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
+    name: {
+        color: "#FFF",
+        textDecoration: "none"
+    }
 }));
 
 function Navbar()
@@ -25,16 +29,16 @@ function Navbar()
         <>
             <AppBar position="static" style={{ backgroundColor: '#1a2639' }}>
                 <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                        Project Zone
-                    </Typography>
-                    <Link to="/login" style={{textDecoration: "none"}}>
-                        <Button style={ { color: "#FFF" } }>Login</Button>
-                    </Link>
 
-                    <Link to="/signup" style={{textDecoration: "none"}}>
-                        <Button style={ { color: "#FFF" } }>Signup</Button>
+                    <Typography variant="h6" className={classes.title}>
+                        <Link to="/" className={ classes.name }>
+                            Project Zone
+                        </Link>
+                    </Typography>
+                    <Link to="/login" style={{ textDecoration: "none" }}>
+                        <Button style={{ color: "#FFF" }}>Login</Button>
                     </Link>
+                    
                 </Toolbar>
             </AppBar>
         </>

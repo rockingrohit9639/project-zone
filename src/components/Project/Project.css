@@ -5,6 +5,11 @@
     background-color: #FFF;
     position: relative;
     margin-top: 1rem;
+    cursor: pointer;
+}
+
+.project:hover {
+    background-color: rgba(230, 230, 230, 0.1);
 }
 
 .description {
