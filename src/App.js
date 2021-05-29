@@ -17,8 +17,6 @@ function App()
           <Route exact path="/projects" component={Showprojects} />
         </Switch>
       </Router>
-
-
     </div>
   );
 }

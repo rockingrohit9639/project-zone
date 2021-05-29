@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import Project from "../Project/Project";
 import "./Home.css";
 import SearchBox from "../SearchBox/SearchBox";
-import { useDataLayerValues } from "../../datalayer";
-import { actions } from "../../reducer";
+
 
 function Home()
 {
