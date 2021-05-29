@@ -76,25 +76,25 @@ function Home()
             <Project
               title="Movie Seat Booking App"
               desc=""
-              skills={["Python", "OpenCV"]}
+              skills={["javaScript"]}
               level="Beginner"
             />
             <Project
               title="Covid CheckUp Test"
               desc=""
-              skills={["Python"]}
+              skills={["javaScript"]}
               level="Advanced"
             />
             <Project
               title="Music App"
               desc=""
-              skills={["Python"]}
+              skills={["javaScript"]}
               level="Advanced"
             />
             <Project
               title="ID Card Generator"
               desc=""
-              skills={["Python","Django"]}
+              skills={["javaScript"]}
               level="Intermediate"
             />
           </div>

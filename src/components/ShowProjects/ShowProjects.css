@@ -22,13 +22,8 @@
     user-select: none;
 }
 
-/* .filter:hover {
-    background-color: #ff5959;
-    color: #EEE;
-} */
-
 .projectsList {
-    padding: 2em 4em;
+    padding: 2vw 4vh;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

@@ -12,7 +12,7 @@ function Showprojects()
     const [projects, setProjects] = useState();
     const [{ query }] = useDataLayerValues();
 
-    const filters = ["beginner", "advanced", "intermediate"];
+    const filters = ["beginner", "intermediate", "advanced"];
     const [appliedFilters, setAppliedFilters] = useState([]);
 
     const fetchProjects = async () =>

@@ -35,7 +35,6 @@ function Callback(props)
         });
 
         history.push("/");
-        // console.log(magicData, oauthData);
     }
 
     useEffect(() => {

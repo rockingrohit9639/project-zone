@@ -1,19 +1,16 @@
 .home {
     width: 100%;
     min-height: 90vh;
-    padding: 2vw 6vh;
+    padding: 2vw 4vh;
 }
 
 .projects {
-    margin-top: 1rem;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
-.best_project{
-    margin: 10px;
-    margin-bottom: 30px;
-    margin-top: 20px;
 
+.best_project{
+    margin-left: 0.5rem;
 }
