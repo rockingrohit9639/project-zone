@@ -1,0 +1,41 @@
+.project {
+    width: clamp(20rem, 20rem, 30rem);
+    min-height: 20rem;
+    padding: 2em;
+    background-color: #FFF;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.description {
+    margin-top: 0.5rem;
+}
+
+.skills {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1em 2em;
+    background-color: rgba(192, 188, 188, 0.219);
+    width: 100%;
+    display: flex;
+}
+
+.skill {
+    background-color: #ff5959;
+    color: #fff;
+    padding: 0.2em 0.5em;
+    border-radius: 20px;
+    margin-left: 0.5em;
+    transition: all 0.1s;
+    cursor: pointer;
+}
+
+.level {
+    display: flex;
+    margin-top: 1rem
+}
+
+.level label {  
+    font-weight: bold;
+}
