@@ -1,11 +1,16 @@
 export const initialState = {
-    email: "",
-    isAthenticated: false,
+    user: {
+        email: "",
+        fname: "",
+        lname: "",
+        picture: "",
+    },
+    isAuthenticated: false,
     query: "",
 }
 
 export const actions = {
-    SET_EMAIL: "SET_EMAIL",
+    SET_USER: "SET_USER",
     SET_AUTH: "SET_AUTH",
     SET_QUERY: "SET_QUERY"
 }
@@ -15,16 +20,16 @@ const reducer = (state, action) =>
     console.log(action);
     switch (action.type)
     {
-        case actions.SET_EMAIL:
+        case actions.SET_USER:
             return {
                 ...state,
-                email: action.email
+                user: action.user
             };
         
         case actions.SET_AUTH:
             return {
                 ...state,
-                isAthenticated: action.isAthenticated
+                isAuthenticated: action.isAuthenticated
             };
         
         case actions.SET_QUERY:

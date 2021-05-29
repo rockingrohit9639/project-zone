@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Project from "../Project/Project";
 import "./Home.css";
 import SearchBox from "../SearchBox/SearchBox";
@@ -6,17 +6,6 @@ import SearchBox from "../SearchBox/SearchBox";
 
 function Home()
 {
-  
-  const [{ }, dispatch] = useDataLayerValues();
-
-  useEffect(() => {
-    
-    dispatch({
-      type: actions.SET_AUTH,
-      isAuthenticated: true
-    });
-
-  }, [])
 
   return (
     <div className="home">

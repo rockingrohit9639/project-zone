@@ -3,6 +3,8 @@ import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Showprojects from './components/ShowProjects/Showprojects';
+import Login from './components/Login/Login';
+import Callback from './components/Callback';
 
 function App()
 {
@@ -15,6 +17,8 @@ function App()
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/projects" component={Showprojects} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/callback" component={Callback} />
         </Switch>
       </Router>
     </div>

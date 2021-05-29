@@ -7,5 +7,9 @@ export const client = ElasticAppSearch.createClient({
 });
 
 export const options = {
-    search_fields: { skills: {}, description: {}, name: {} }
+    search_fields: { skills: {}, description: {}, name: {} },
+    "page": {
+        "current": 1,
+        "size": 100,
+    },
 };
