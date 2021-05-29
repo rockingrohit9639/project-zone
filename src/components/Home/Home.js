@@ -9,38 +9,95 @@ function Home()
 
   return (
     <div className="home">
-      <div className="best_mern">
-        
-        <SearchBox />
-        
-        <h1>Best MERN projects</h1>
-
+    <SearchBox />
+      <div className="best_project">
+        <h1>Best MERN Projects</h1>
         <div className="projects">
           <Project
-            title="Pattern Variation App"
+            title="E-Commerce Website"
             desc=""
-            skills={["android", "java", "kotlin"]}
-            level="beginner"
+            skills={["MongoDB", "Express", "React", "Node"]}
+            level="Beginner"
           />
           <Project
-            title="Smart Education App"
+            title="Online Distance Education System"
             desc=""
-            skills={["android", "java", "kotlin"]}
-            level="advanced"
+            skills={["MongoDB", "Express", "React", "Node"]}
+            level="Advanced"
           />
           <Project
-            title="Fitness Tracker"
+            title="E-Learning Portal"
             desc=""
-            skills={["android", "java", "kotlin"]}
-            level="advanced"
+            skills={["MongoDB", "Express", "React", "Node"]}
+            level="Advanced"
           />
           <Project
-            title="Class Notes Sharing App"
+            title="Virtual Queue Management System"
             desc=""
-            skills={["android", "java", "kotlin"]}
-            level="advanced"
+            skills={["MongoDB", "Express", "React", "Node"]}
+            level="Advanced"
           />
         </div>
+      </div>
+
+      <div className="best_project">
+        <h1>Best Python Projects </h1>
+        <div className="projects">
+          <Project
+            title="Facial recognition using Python OpenCV library"
+            desc=""
+            skills={["Python", "OpenCV"]}
+            level="Beginner"
+          />
+          <Project
+            title="Sudoku Solver"
+            desc=""
+            skills={["Python"]}
+            level="Advanced"
+          />
+          <Project
+            title="Virtual Assistant"
+            desc=""
+            skills={["Python"]}
+            level="Advanced"
+          />
+          <Project
+            title="Automatic Birthdays Mailer"
+            desc=""
+            skills={["Python","Django"]}
+            level="Intermediate"
+          />
+        </div>
+      </div>
+
+        <div className="best_project">
+          <h1>Best JavaScript Projects </h1>
+          <div className="projects">
+            <Project
+              title="Movie Seat Booking App"
+              desc=""
+              skills={["Python", "OpenCV"]}
+              level="Beginner"
+            />
+            <Project
+              title="Covid CheckUp Test"
+              desc=""
+              skills={["Python"]}
+              level="Advanced"
+            />
+            <Project
+              title="Music App"
+              desc=""
+              skills={["Python"]}
+              level="Advanced"
+            />
+            <Project
+              title="ID Card Generator"
+              desc=""
+              skills={["Python","Django"]}
+              level="Intermediate"
+            />
+          </div>
       </div>
     </div>
   );
