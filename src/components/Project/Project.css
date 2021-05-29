@@ -6,6 +6,7 @@
     position: relative;
     margin-top: 2rem;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .project:hover {
@@ -31,7 +32,7 @@
     background-color: #ff5959;
     color: #fff;
     padding: 0.2em 0.5em;
-    border-radius: 20px;
+    border-radius: 4px;
     margin-left: 0.5em;
     transition: all 0.1s;
     cursor: pointer;
