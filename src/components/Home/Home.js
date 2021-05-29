@@ -5,7 +5,7 @@ import client from "../../client";
 import SearchBox from "../SearchBox/SearchBox";
 
 var options = {
-  size: 3,
+  // size: 3,
   search_fields: { skills: {}, description: {}, name: {} },
 };
 
