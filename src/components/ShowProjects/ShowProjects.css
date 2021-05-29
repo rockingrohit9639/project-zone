@@ -6,6 +6,27 @@
     padding: 1em 6.3em;
 }
 
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter {
+    margin: 0.5rem;
+    text-transform: capitalize;
+    background-color: #ccc;
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* .filter:hover {
+    background-color: #ff5959;
+    color: #EEE;
+} */
+
 .projectsList {
     padding: 2em 4em;
     display: flex;

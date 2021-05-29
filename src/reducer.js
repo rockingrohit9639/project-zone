@@ -6,7 +6,7 @@ export const initialState = {
         picture: "",
     },
     isAuthenticated: false,
-    query: "",
+    query: "python",
 }
 
 export const actions = {

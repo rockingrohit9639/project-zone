@@ -28,12 +28,10 @@ function Navbar()
     const classes = useStyles();
     const [{ isAuthenticated, user }] = useDataLayerValues();
 
-    console.log(isAuthenticated, user);
-
 
     return (
         <>
-            <AppBar position="static" style={{ backgroundColor: '#1a2639' }}>
+            <AppBar position="static" style={{ backgroundColor: '#ff5959' }}>
                 <Toolbar>
 
                     <Typography variant="h6" className={classes.title}>
