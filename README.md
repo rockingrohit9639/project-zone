@@ -1,5 +1,5 @@
 <center> <h1> Project Zone 🖤 </h1> </center>
-<center> <h3> Web-App suggests the user about the projects he/she can create based on the skills </h3> </center>
+<center> <h3> Our app suggests to the user the projects he/she can create based on the skills. </h3> </center>
 
 # Problem
 When we participate in Hackathons we always face one issue that is an Idea for Project or inspiration! or usually, when we learn a new skill we find it difficult in what project should we build now.
@@ -8,7 +8,9 @@ When we participate in Hackathons we always face one issue that is an Idea for P
 
  # Solution
 
-Project-Zone Web-App suggests the user about the projects he/she can create based on the skills he/she can choose Like if we learn some new tech, we always search for beginner node projects, beginner projects, and so on, and this, we have to explore a lot on google or YouTube to get the project. So, if we have all these projects in one place it will be very much easy for a developer beginner to find project ideas like we are finding difficulty in finding a project at this time and searching for projects ideas online We can have the categories from beginner to startup level project ideas we can have an option for signed-in users to add a new project if he wants and it can be further improved.
+Project-Zone web-app suggests the user about the projects he/she can create based on the skills he/she can choose. Like if we learn some new tech, we always search for beginner projects in node, intermediate projects in ReactJs, and so on. For this, we have to explore a lot on google and YouTube to get the projects. So, if we have all these projects in one place it will be very much easy for a developer beginner to find project ideas. 
+We have the categories from beginner to startup level project ideas we have an option to add a new project.
+Our app is in its initial stage, we will improve it a lot.
 <hr>
 
 ## Frameworks & Tools 
