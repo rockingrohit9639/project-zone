@@ -2,7 +2,7 @@
 <center> <h3> Web-App suggests the user about the projects he/she can create based on the skills </h3> </center>
 
 # Problem
-When we Participate in Hackathons we Face one Issue always that is an Idea for Project or inspiration!
+When we Participate in Hackathons we face one issue always that is an Idea for Project or inspiration! or usually when we learn a new skill we find difficuly in what project should we build now.
 
  >  ### So if you face the same Problem we support you from the back!
 
