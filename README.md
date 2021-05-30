@@ -15,6 +15,7 @@ Project-Zone Web-App suggests the user about the projects he/she can create base
 - React
 - Elasticsearch 
 - Magic Lab
+- Material UI
 
 # Setting up the project for running at localhost
 
