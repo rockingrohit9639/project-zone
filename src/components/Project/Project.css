@@ -42,7 +42,8 @@
 
 .level {
     display: flex;
-    margin-top: 1rem
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
 .level label {  

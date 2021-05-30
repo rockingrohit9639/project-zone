@@ -1,11 +1,11 @@
 import React from 'react';
 import "./Project.css";
 
-function Project({ title, desc, skills, level })
+function Project({ title, desc, skills, level, style })
 {
 
     return (
-        <div className="project">
+        <div className="project" style={style && style}>
             <h3 className="title"> {title}</h3>
             <p className="description">{desc}</p>
 

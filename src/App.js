@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Showprojects from './components/ShowProjects/Showprojects';
 import Login from './components/Login/Login';
 import Callback from './components/Callback';
+import AddNewProject from "./components/AddNewProject/AddNewProject";
 
 function App()
 {
@@ -19,6 +20,7 @@ function App()
           <Route exact path="/projects" component={Showprojects} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/callback" component={Callback} />
+          <Route exact path="/addnew" component={AddNewProject} />
         </Switch>
       </Router>
     </div>

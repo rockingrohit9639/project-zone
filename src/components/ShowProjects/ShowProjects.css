@@ -6,13 +6,41 @@
     padding: 1em 6.3em;
 }
 
+.filtersBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .filters {
+    display: flex;
+}
+
+.random {
+    margin-top: 1.5rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    border-bottom: 2px solid #ff5959a1;
+    transition: all 0.2s ease-in-out;
+}
+
+.random:hover {
+    color: #ff5959;
+    border-bottom: 2px solid #ff5959;
+}
+
+.randomProject {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .filter {
+    text-align: center;
     margin: 0.5rem;
     text-transform: capitalize;
     background-color: #ccc;
@@ -26,6 +54,5 @@
     padding: 2vw 4vh;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-evenly;
 }

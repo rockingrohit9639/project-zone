@@ -77,7 +77,7 @@ function Home()
               title="Movie Seat Booking App"
               desc=""
               skills={["javaScript"]}
-              level="Beginner"
+              level="intermediate"
             />
             <Project
               title="Covid CheckUp Test"

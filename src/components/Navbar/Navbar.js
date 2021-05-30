@@ -53,6 +53,10 @@ function Navbar()
                             </Link>)
                     }
 
+                    <Link to="/addnew" style={{ textDecoration: "none" }}>
+                            <Button style={{ color: "#FFF" }}>add new project</Button>
+                    </Link>
+
 
 
                 </Toolbar>
