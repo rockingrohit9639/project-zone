@@ -21,6 +21,10 @@ const useStyles = makeStyles(() => ({
     textarea: {
         padding: "1rem",
         marginTop: "1rem",
+        outline: "none",
+        border: "1px solid rgba(0, 0, 0, 0.3)",
+        background: "transparent",
+        borderRadius: "5px"
     },
     text: {
         textAlign: "center",
