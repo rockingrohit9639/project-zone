@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+<center> <h1> Project Zone 🖤 </h1> </center>
+<center> <h3> Our app suggests to the user the projects he/she can create based on the skills. </h3> </center>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Problem
+When we participate in Hackathons we always face one issue that is an Idea for Project or inspiration! or usually, when we learn a new skill we find it difficult in what project should we build now.
 
-## Available Scripts
+ >  #### So if you face the same Problem we support you from the back!
 
-In the project directory, you can run:
+ # Solution
 
-### `npm start`
+Project-Zone web-app suggests the user about the projects he/she can create based on the skills he/she can choose. Like if we learn some new tech, we always search for beginner projects in node, intermediate projects in ReactJs, and so on. For this, we have to explore a lot on google and YouTube to get the projects. So, if we have all these projects in one place it will be very much easy for a developer beginner to find project ideas. 
+We have the categories from beginner to startup level project ideas we have an option to add a new project.
+Our app is in its initial stage, we will improve it a lot.
+<hr>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Frameworks & Tools 
+- React
+- Elasticsearch 
+- Magic Lab
+- Material UI
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Setting up the project for running at localhost
 
-### `npm test`
+### 🚩 Forking repository :
+Firstly you have to make your own copy of the project. For that, you have to fork the repository. You can find the fork button on the top-right side of the browser window. (Refer to the image below )
+Kindly wait till it gets forked.
+After that copy will look like <your-user-name>/project-zone forked from rockingrohit/project-zone
+ 
+### 🚩 Clone repository :
+Now you have your own copy of the project. Here you have to start your work.
+Go to the desired location on your computer where you want to set up the project.
+Right-click there and click on git bash. A terminal window will pop up
+Type the command git clone <your-fork-url>.git and hit enter.
+Wait for few seconds till the project gets copied
+ 
+### 🚩 Setting up the environment
+To setup the environment in your system run the following commands
+```
+cd project-zone
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+After installing all the server dependencies run the server using the following command
 
-### `npm run build`
+```
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Preview
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p>
+ <img src="Project_Img/Demo1_ProjectZone.png" width=40% />&ensp;&ensp;&ensp;
+  <img src="Project_Img/Demo3_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+</p>
 
-### `npm run eject`
+ 
+# Team:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p align="center">
+<img width=20% src= "https://avatars.githubusercontent.com/u/40729749?v=4" />&ensp;&ensp;&ensp;
+<img width=20% src="https://avatars.githubusercontent.com/u/55912091?v=4">&ensp;&ensp;&ensp;
+<img width=20% src="https://avatars.githubusercontent.com/u/44832446?v=4">
+</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+<a href="https://github.com/rockingrohit9639">
+ <b>Rohit Kumar Saini</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+<a href="https://github.com/Priyanshu-official">
+ <b>Priyanshu</b></h5></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+<a href="https://github.com/raibove"><b>Shweta</b></h5></a>
+</p>
