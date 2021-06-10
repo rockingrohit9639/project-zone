@@ -1,0 +1,9 @@
+footer{
+  text-align: center;
+  padding: 2rem;
+  font-weight: bold;
+}
+
+footer a{
+  color: black;
+}
