@@ -2,7 +2,7 @@ import React from "react";
 import Project from "../Project/Project";
 import "./Home.css";
 import SearchBox from "../SearchBox/SearchBox";
-
+import StartsIcon from '@material-ui/icons/Stars';
 
 function Home()
 {
@@ -11,7 +11,7 @@ function Home()
     <div className="home">
     <SearchBox />
       <div className="best_project">
-        <h1>Best MERN Projects</h1>
+        <h1 className="best_project--title"><StartsIcon /> Best MERN Projects</h1>
         <div className="projects">
           <Project
             title="E-Commerce Website"
@@ -41,7 +41,7 @@ function Home()
       </div>
 
       <div className="best_project">
-        <h1>Best Python Projects </h1>
+        <h1 className="best_project--title"><StartsIcon /> Best Python Projects </h1>
         <div className="projects">
           <Project
             title="Facial recognition using Python OpenCV library"
@@ -71,7 +71,7 @@ function Home()
       </div>
 
         <div className="best_project">
-          <h1>Best JavaScript Projects </h1>
+          <h1 className="best_project--title"><StartsIcon /> Best JavaScript Projects </h1>
           <div className="projects">
             <Project
               title="Movie Seat Booking App"

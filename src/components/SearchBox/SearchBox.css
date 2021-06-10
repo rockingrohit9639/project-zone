@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 6%;
 
 }
 
@@ -11,16 +11,18 @@
     display: flex;
     align-items: center;
     background-color: #FFF;
-    padding: 0.1em 2em;
+    border: 1px solid black;
+    padding: 0.1em 1.2em;
     border-radius: 5px;
-    box-shadow: 0 13px 17px -16px rgb(0 0 0 / 40%);
+    /* box-shadow: 0 13px 17px -16px rgb(0 0 0 / 40%); */
 }
 
 .input input {
     outline: none;
     border: none;
-    width: 70vw;
-    font-size: 1.3em;
-    padding: 0.8em 0;
+    width: 65vw;
+    font-size: 1.2em;
+    font-family: 'QuickSand';
+    padding: 0.6rem 0;
     background: transparent;
 }

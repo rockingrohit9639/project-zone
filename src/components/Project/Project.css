@@ -1,8 +1,7 @@
 .project {
     width: clamp(20rem, 20rem, 30rem);
-    min-height: 20rem;
+    min-height: 18rem;
     padding: 2em;
-    background-color: #FFF;
     position: relative;
     margin-top: 2rem;
     cursor: pointer;
@@ -11,7 +10,7 @@
 }
 
 .project:hover {
-    background-color: rgba(230, 230, 230, 0.1);
+    background-color: rgba(221, 220, 220, 0.1);
 }
 
 .description {
@@ -23,14 +22,14 @@
     bottom: 0;
     left: 0;
     padding: 1em 2em;
-    background-color: rgba(192, 188, 188, 0.219);
+    /* background-color: rgba(192, 188, 188, 0.219); */
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
 
 .skill {
-    background-color: #ff5959;
+    background-color: #D90316;
     color: #fff;
     padding: 0.2em 0.5em;
     border-radius: 4px;
