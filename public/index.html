@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -21,6 +22,22 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
+    
+      <! --top button start -->
+      <button onclick="topBtn()" id="btn"><div class="pop"><i class="fa fa-angle-up" ></i></div></button>
+      <script>
+      window.onscroll = function(){
+         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
+         document.getElementById("btn").style.display = "block";
+         } else{
+         document.getElementById("btn").style.display = "none";
+         }};
+         function topBtn(){
+          document.body.scrollTop = 0; 
+          document.documentElement.scrollTop = 0; 
+          }
+      </script>
+      <! --top button end -->
+      
   </body>
 </html>
