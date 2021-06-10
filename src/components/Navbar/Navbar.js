@@ -18,8 +18,15 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     name: {
-        color: "#FFF",
-        textDecoration: "none"
+        color: "#000",
+        textDecoration: "none",
+        fontSize: 'calc(1.17rem + 1.25vw)',
+        fontFamily: 'QuickSand',
+        fontWeight: '700'
+    },
+    text: {
+        color: '#000',
+        fontFamily: 'QuickSand'
     }
 }));
 
@@ -31,7 +38,7 @@ function Navbar()
 
     return (
         <>
-            <AppBar position="static" style={{ backgroundColor: '#ff5959' }}>
+            <AppBar position="static" style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
                 <Toolbar>
 
                     <Typography variant="h6" className={classes.title}>
@@ -44,17 +51,17 @@ function Navbar()
                         isAuthenticated
                             ? (
                                 <Link to="/dashboard" style={{ textDecoration: "none" }}>
-                                    <Button style={{ color: "#FFF" }}> Welcome {user.fname} </Button>
+                                    <Button className={classes.text}> Welcome {user.fname} </Button>
                                 </Link>
                             )
                             :
                             (<Link to="/login" style={{ textDecoration: "none" }}>
-                                <Button style={{ color: "#FFF" }}>Login</Button>
+                                <Button className={classes.text}>Login</Button>
                             </Link>)
                     }
 
                     <Link to="/addnew" style={{ textDecoration: "none" }}>
-                            <Button style={{ color: "#FFF" }}>add new project</Button>
+                            <Button className={classes.text}>add project</Button>
                     </Link>
 
 
