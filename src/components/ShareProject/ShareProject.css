@@ -1,0 +1,13 @@
+.share-conatiner{
+    right: 0;
+    z-index: 1000;
+    margin-right: 1rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
