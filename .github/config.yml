@@ -1,15 +1,19 @@
 newIssueWelcomeComment: >
   Hello there!👋 Welcome to Project Zone!🚀⚡
   
+  Project-Zone is a web-app which suggests the user about the projects they can create based on their skills.✨
   
-  Thank you and congrats🎉 for opening your very first issue in this project.
+  Thank you and congratulations🎉 for opening your very first issue in this project.
+  Please make sure not to start working on the issue, unless you get assigned to it.😃
+  
   
 
 newPRWelcomeComment: >
   Hello there!👋 Welcome Project Zone!💖
   
+  Project-Zone is a web-app which suggests the user about the projects they can create based on their skills.✨
   
-  Thank you and congrats🎉 for opening your first pull request. We will get back to you as soon as we can 😄.
+  Thank you and congratulations🎉 for opening your first pull request. We will get back to you as soon as we can.😃
   
 
 firstPRMergeComment: >
