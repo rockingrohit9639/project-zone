@@ -8,7 +8,7 @@ I'm happy to welcome all the contributions from anyone willing to add new script
 
 ## 💻Before Contributing
 
-Welcome to [rockingrohit9639/project-zone](https://github.com/rockingrohit9639/project-zone). Before sending your pull requests, make sure that you **read the whole guidelines**. If you have any doubt on the contributing guide, please feel free to reach out.
+Welcome to [Project Zone](https://github.com/rockingrohit9639/project-zone). Before sending your pull requests, make sure that you **read the whole guidelines**. If you have any doubt on the contributing guide, please feel free to reach out.
 
 
 ## 🙌Contribution
@@ -78,7 +78,7 @@ Following are the steps to guide you:
 ### 🧲Pull Requests Review Criteria
 
 1. Please fill the **[PR Template](https://github.com/rockingrohit9639/project-zone/blob/main/.github/PULL_REQUEST_TEMPLATE.md)** properly while making a Pull Request.
-2. You must add your code .py file into the respective **folders**.
+2. You must add your code files into the respective **folders**.
 3. Your work must be original, written by you not copied from other resources.
 4. You must comment on your code where necessary.
 5. Follow the proper [style guides](https://google.github.io/styleguide/) for your work.
@@ -89,11 +89,6 @@ Following are the steps to guide you:
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Create a folder with a meaningful repository name (If Digital Clock is submitted for example, the Folder Name should be "Digital Clock" and the File Name as "digital_clock.py")
-- File extension for code should be `.py`. 
-- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
-- Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure you have created for your project. If you want to,  please contact before doing so.
-- The [README.md](https://github.com/rockingrohit9639/project-zone/blob/main/.github/readme_template.md) file should be concise and clear about what the project is about and what it does.
 - It should be documented briefly enough to let readers understand. Screenshot inclusion is must
 - If you have modified/added code work, make sure the code compiles before submitting.
 - If you have modified/added documentation work, ensure your language is concise and contains no grammar errors.

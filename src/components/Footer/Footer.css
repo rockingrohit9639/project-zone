@@ -1,7 +1,7 @@
 footer{
   text-align: center;
-  padding: 2rem;
-  font-weight: bold;
+  padding: 1rem;
+  border-top: 1px solid rgba(90, 89, 89, 0.418);
 }
 
 footer a{
