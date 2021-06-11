@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "project-zone",
   "version": "0.1.0",
   "private": true,
@@ -45,4 +46,51 @@
       "last 1 safari version"
     ]
   }
+=======
+    "name": "project-zone",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@elastic/app-search-javascript": "^7.8.0",
+        "@magic-ext/oauth": "^0.7.0",
+        "@material-ui/core": "^4.11.4",
+        "@material-ui/icons": "^4.11.2",
+        "@testing-library/jest-dom": "^5.12.0",
+        "@testing-library/react": "^11.2.7",
+        "@testing-library/user-event": "^12.8.3",
+        "chokidar": "^3.5.1",
+        "elastic-builder": "^2.15.0",
+        "magic-sdk": "^4.3.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "react-toastify": "^7.0.4",
+        "web-vitals": "^1.1.2"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+>>>>>>> 8daf50cd50ff9d49c31fcbb80a548176f850b00d
 }
