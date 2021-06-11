@@ -6,13 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
     menuButton: {
-        marginRight: theme.spacing(2),
+        // marginRight: theme.spacing(2),
     },
     title: {
         flexGrow: 1,
@@ -35,40 +34,45 @@ function Navbar()
     const classes = useStyles();
     const [{ isAuthenticated, user }] = useDataLayerValues();
 
-
     return (
-        <>
-            <AppBar position="static" style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
-                <Toolbar>
+      <div className="NavWithoutToggle">
+        <AppBar
+          position="static"
+          style={{ backgroundColor: "transparent", boxShadow: "none" }}
+        >
+          <Toolbar>
+            <div className="NavHeading">
+              <Typography variant="h6" className={classes.title}>
+                <Link to="/" className={classes.name}>
+                  Project Zone
+                </Link>
+              </Typography>
+            </div>
 
-                    <Typography variant="h6" className={classes.title}>
-                        <Link to="/" className={classes.name}>
-                            Project Zone
-                        </Link>
-                    </Typography>
-
-                    {
-                        isAuthenticated
-                            ? (
-                                <Link to="/dashboard" style={{ textDecoration: "none" }}>
-                                    <Button className={classes.text}> Welcome {user.fname} </Button>
-                                </Link>
-                            )
-                            :
-                            (<Link to="/login" style={{ textDecoration: "none" }}>
-                                <Button className={classes.text}>Login</Button>
-                            </Link>)
-                    }
-
-                    <Link to="/addnew" style={{ textDecoration: "none" }}>
-                            <Button className={classes.text}>add project</Button>
-                    </Link>
-
-
-
-                </Toolbar>
-            </AppBar>
-        </>
+            {isAuthenticated ? (
+              <div className="links">
+                <Link to="/dashboard" style={{ textDecoration: "none" }}>
+                  <Button className={classes.text}>
+                    {" "}
+                    Welcome {user.fname}{" "}
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="links">
+                <Link to="/login" style={{ textDecoration: "none" }}>
+                  <Button className={classes.text}>Login</Button>
+                </Link>
+              </div>
+            )}
+            <div className="links">
+            <Link to="/addnew" style={{ textDecoration: "none" }}>
+              <Button className={classes.text}>add project</Button>
+            </Link>
+            </div>
+          </Toolbar>
+        </AppBar>
+      </div>
     );
 }
 
