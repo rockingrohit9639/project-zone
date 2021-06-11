@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Project.css';
 import share_logo from './../../assets/share.svg';
 import ShareProject from '../ShareProject/ShareProject';
+import RatingCard from '../RatingCard/RatingCard';
 
-function Project({ title, desc, skills, level, style }) {
+function Project({ title, desc, skills, level, style, rating }) {
   const [shareopen, setshareopen] = useState(false);
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
@@ -19,7 +20,7 @@ function Project({ title, desc, skills, level, style }) {
           onClick={shareButtonHandler}
         />
       </div>
-      {shareopen ? <ShareProject title={title} description={desc} /> : null }
+      {shareopen ? <ShareProject title={title} description={desc} /> : null}
       <p className="description">{desc}</p>
       <div className="level">
         <label>Level:- </label>
@@ -32,6 +33,9 @@ function Project({ title, desc, skills, level, style }) {
               {skill}
             </div>
           ))}
+      </div>
+      <div>
+        <RatingCard rating={rating} />
       </div>
     </div>
   );
