@@ -71,15 +71,3 @@ npm start
 <a href="https://github.com/raibove"><b>Shweta</b></h5></a>
 </p>
 
-## Contributors
-### Credits goes to these people:✨
-
-<table>
-<tr>
-<td>
-<a href="https://github.com/rockingrohit9639/project-zone/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=rockingrohit9639/project-zone" />
-</a>
-</td>
-</tr>
-</table>
