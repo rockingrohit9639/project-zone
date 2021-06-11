@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import './Project.css';
-
-function Project({ title, desc, skills, level, style }) {
-  return (
-    <div className='project' style={style && style}>
-      <h3 className='title'> {title}</h3>
-      <p className='description'>{desc}</p>
-
-      <div className='level'>
-        <label>Level:- </label>
-        <p>{level}</p>
-      </div>
-
-      <div className='skills'>
-        {skills &&
-          skills.map((skill, ind) => (
-            <div key={ind} className='skill'>
-=======
 import React, { useState } from 'react';
 import './Project.css';
 import share_logo from './../../assets/share.svg';
@@ -49,8 +29,7 @@ function Project({ title, desc, skills, level, style }) {
         {skills &&
           skills.map((skill, ind) => (
             <div key={ind} className="skill">
->>>>>>> 945148c0bf68714d7a76c0aaff00ef853a6f4c90
-              {skill}{' '}
+              {skill}
             </div>
           ))}
       </div>
