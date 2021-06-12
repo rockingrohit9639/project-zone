@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Callback from './components/Callback';
 import AddNewProject from "./components/AddNewProject/AddNewProject";
+import ProjectDetails from './components/ProjectDetails/ProjectDetails';
 import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./theme.js";
@@ -25,7 +26,7 @@ function App()
   };
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
       <styledApp className="App">
         <Router>
@@ -43,6 +44,7 @@ function App()
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/callback" component={Callback} />
             <Route exact path="/addnew" component={AddNewProject} />
+            <Route exact path="/projectdetails" component={ProjectDetails}/>
           </Switch>
           <Footer />
         </Router>

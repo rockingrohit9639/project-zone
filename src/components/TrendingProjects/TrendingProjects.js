@@ -11,27 +11,20 @@ function TrendingProjects(props) {
       <div className="flex-box">
         <Project
           title="E-Commerce Website"
-          desc=""
+          desc="This is a ecommece website which has many facilities like order bucket, payemnt, product ratings any many more. Through this e-commerce we can easily purchase projects of differnt categories at reasonable price"
           skills={['MongoDB', 'Express', 'React', 'Node']}
           level="Beginner"
           rating={5}
         />
         <Project
           title="Online Distance Education System"
-          desc=""
+          desc="Online Distance Education System is amazing website idea for managing education system espicially distance based education. "
           skills={['MongoDB', 'Express', 'React', 'Node']}
           level="Advance"
           rating={5}
         />
         <Project
           title="E-Learning Portal"
-          desc=""
-          skills={['MongoDB', 'Express', 'React', 'Node']}
-          level="Advanced"
-          rating={4}
-        />
-        <Project
-          title="Virtual Queue Management System"
           desc=""
           skills={['MongoDB', 'Express', 'React', 'Node']}
           level="Advanced"

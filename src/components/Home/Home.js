@@ -5,12 +5,13 @@ import SearchBox from '../SearchBox/SearchBox';
 import StartsIcon from '@material-ui/icons/Stars';
 import TrendingProjects from '../TrendingProjects/TrendingProjects';
 
-function Home()
-{
+function Home() {
   return (
     <div className="home">
       <SearchBox />
-      <div className="trending_projects"><TrendingProjects /></div>
+      <div className="trending_projects">
+        <TrendingProjects />
+      </div>
       <div className="best_project">
         <h1 className="best_project--title">
           <StartsIcon /> Best MERN Projects
@@ -18,14 +19,14 @@ function Home()
         <div className="projects">
           <Project
             title="E-Commerce Website"
-            desc="This is a ecommece website which has many facilities like order bucket, payemnt, product ratings any many more."
+            desc="This is a ecommece website which has many facilities like order bucket, payemnt, product ratings any many more. Through this e-commerce we can easily purchase projects of differnt categories at reasonable price"
             skills={['MongoDB', 'Express', 'React', 'Node']}
             level="Beginner"
             rating={4}
           />
           <Project
             title="Online Distance Education System"
-            desc=""
+            desc="Online Distance Education System is amazing website idea for managing education system espicially distance based education. "
             skills={['MongoDB', 'Express', 'React', 'Node']}
             level="Advance"
             rating={5}
