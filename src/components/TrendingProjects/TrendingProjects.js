@@ -2,7 +2,6 @@ import React from 'react';
 import './TrendingProjects.css';
 import star from './../../assets/star.svg';
 import Project from '../Project/Project';
-import StartsIcon from '@material-ui/icons/Stars';
 
 function TrendingProjects(props) {
   return (

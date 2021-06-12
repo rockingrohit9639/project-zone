@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./SearchBox.css";
 import SearchIcon from '@material-ui/icons/Search';
 import { actions } from "../../reducer";

@@ -38,7 +38,6 @@ const useStyles = makeStyles(() => ({
 function AddNewProject() {
   const classes = useStyles();
 
-  const [data, setData] = useState('');
   const [skillInputs, setSkillInputs] = useState(['']);
 
   const [title, setTitle] = useState('');

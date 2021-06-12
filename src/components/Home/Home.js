@@ -3,10 +3,10 @@ import Project from '../Project/Project';
 import './Home.css';
 import SearchBox from '../SearchBox/SearchBox';
 import StartsIcon from '@material-ui/icons/Stars';
-import star_logo from './../../assets/star.svg';
 import TrendingProjects from '../TrendingProjects/TrendingProjects';
 
-function Home() {
+function Home()
+{
   return (
     <div className="home">
       <SearchBox />
