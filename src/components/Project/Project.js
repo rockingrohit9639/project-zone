@@ -10,26 +10,26 @@ function Project({ title, desc, skills, level, style, rating }) {
     setshareopen(!shareopen);
   };
   return (
-    <div className="project" style={style && style}>
-      <div className="title-flexbox">
-        <h3 className="title"> {title}</h3>
+    <div className='project' style={style && style}>
+      <div className='title-flexbox'>
+        <h3 className='title'> {title}</h3>
         <img
           src={share_logo}
-          className="share-img"
-          alt="share-logo"
+          className='share-img'
+          alt='share-logo'
           onClick={shareButtonHandler}
         />
       </div>
       {shareopen ? <ShareProject title={title} description={desc} /> : null}
-      <p className="description">{desc}</p>
-      <div className="level">
+      <p className='description'>{desc}</p>
+      <div className='level'>
         <label>Level:- </label>
         <p>{level}</p>
       </div>
-      <div className="skills">
+      <div className='skills'>
         {skills &&
           skills.map((skill, ind) => (
-            <div key={ind} className="skill">
+            <div key={ind} className='skill'>
               {skill}
             </div>
           ))}
