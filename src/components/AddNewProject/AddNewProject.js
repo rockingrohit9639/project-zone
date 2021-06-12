@@ -50,7 +50,7 @@ function AddNewProject() {
     'Java',
     'MongoDB',
     'Express',
-    'Next',
+    'NextJS',
     'OpenCV',
     'C++',
     'C',
