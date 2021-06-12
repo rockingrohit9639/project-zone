@@ -15,8 +15,8 @@ function ProjectDetailCard(props) {
         <div className="skills">
           {ProjectDetails.skills &&
             ProjectDetails.skills.map((skill, ind) => (
-              <div key={ind} className="skill">
-                {skill}
+              <div key={ind} style={skill.css} className="skill">
+                {skill.text}
               </div>
             ))}
         </div>

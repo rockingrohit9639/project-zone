@@ -36,7 +36,6 @@
 }
 
 .skill {
-  background-color: #d90316;
   color: #fff;
   padding: 0.2em 0.5em;
   border-radius: 4px;
@@ -45,6 +44,7 @@
   cursor: pointer;
   margin-top: 0.5em;
 }
+
 
 .level {
   display: flex;
