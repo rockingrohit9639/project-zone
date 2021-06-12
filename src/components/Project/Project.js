@@ -16,7 +16,7 @@ function Project({ title, desc, skills, level, style })
 
             <div className="skills">
                 {
-                    skills && skills.map((skill, ind) => (<div key={ind} className="skill">{ skill} </div>))
+                    skills && skills.map((skill, ind) => (<div key={ind} style={skill.css} className="skill">{ skill.text } </div>))
                 }
 
             </div>
