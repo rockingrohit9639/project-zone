@@ -1,5 +1,9 @@
 <center> <h1> Project Zone 🚀 </h1> </center>
-<center> <h3> Our app suggest users the projects they can create based on their skills. </h3> </center>
+
+![project-zone](https://socialify.git.ci/rockingrohit9639/project-zone/image?descriptionEditable=&font=Source%20Code%20Pro&language=1&owner=1&pattern=Floating%20Cogs&theme=Dark)
+
+
+ #### Project Zone suggest users the projects they can create based on their skills.
 
 # Problem 😧
 When we participate in Hackathons, We always face one issue that is an ideas for project or inspiration. When we learn a new skill we face problems in implementing it in a project. 
