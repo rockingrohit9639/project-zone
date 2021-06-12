@@ -160,31 +160,6 @@ function AddNewProject() {
                 <MenuItem value={'Advanced'}>Advanced</MenuItem>
               </Select>
             </FormControl>
-
-            {/* {skillInputs.map((field, idx) => {
-              return (
-                <Box key={idx} display='flex' alignItems='center'>
-                  <TextField
-                    className={classes.mt}
-                    label='Project Skill'
-                    variant='outlined'
-                    onChange={(e) => handleChange(idx, e)}
-                    required={true}
-                  />
-
-                  <IconButton color='inherit' onClick={handleAdd}>
-                    <AddIcon />
-                  </IconButton>
-
-                  {idx > 0 ? (
-                    <IconButton color='inherit' onClick={handleRemove}>
-                      <DeleteIcon />
-                    </IconButton>
-                  ) : null}
-                </Box>
-              );
-            })} */}
-
             <Autocomplete
               className={classes.mt}
               multiple
@@ -201,10 +176,9 @@ function AddNewProject() {
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  style={{ color: 'red' }}
                   variant='outlined'
                   label='Project Skill'
-                  placeholder='Add Project Skill'
+                  placeholder='Add Project Skills'
                   required
                 />
               )}
