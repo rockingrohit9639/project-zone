@@ -40,14 +40,27 @@ function AddNewProject() {
   const [title, setTitle] = useState('');
   const [level, setLevel] = useState('');
   const [desc, setDesc] = useState('');
-
-  const dataTech = [
-    { tech: 'Nodejs' },
-    { tech: 'Reactjs' },
-    { tech: 'JavaScript' },
-    { tech: 'python' },
+  const projectSkill = [
+    'JavaScript',
+    'Node',
+    'Python',
+    'HTML',
+    'CSS',
+    'React',
+    'Java',
+    'MongoDB',
+    'Express',
+    'Next',
+    'OpenCV',
+    'C++',
+    'C',
+    'FullStack',
+    'flutter',
+    'android',
+    'MERN',
+    'Backend',
+    'Frontend',
   ];
-  const projectSkill2 = ['Javascript', 'Node', 'Python', 'HTML', 'CSS'];
   const submitBtnStyle = {
     backgroundColor: '#ff5959',
     color: '#FFF',
@@ -176,12 +189,12 @@ function AddNewProject() {
               className={classes.mt}
               multiple
               id='tags-outlined'
-              options={projectSkill2}
+              freeSolo={true}
+              options={projectSkill}
               getOptionLabel={(option) => option}
               onChange={(event, newValue) => {
                 console.log(newValue);
                 const values = [...newValue];
-                console.log(values);
                 setSkillInputs(values);
               }}
               filterSelectedOptions
