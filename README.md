@@ -1,14 +1,14 @@
+<center> <h1> Project Zone 🚀 </h1> </center>
 <div align="center">
 
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/rockingrohit9639/project-zone)
 [![](https://img.shields.io/github/forks/rockingrohit9639/project-zone?style=social)](https://github.com/rockingrohit9639/project-zone)
 ![Stars](https://img.shields.io/github/stars/rockingrohit9639/project-zone?style=social)
 [![](https://img.shields.io/github/issues/rockingrohit9639/project-zone?style=social)](https://github.com/rockingrohit9639/project-zone)
+![Licence](https://img.shields.io/github/license/rockingrohit9639/project-zone)
 [![](https://img.shields.io/badge/Chat-Slack-brightgreen)](https://letsgrowmore.slack.com/archives/C024CFH4ATW)
 
 </div>
----
-<center> <h1> Project Zone 🚀 </h1> </center>
 <center> <h3> Our app suggest users the projects they can create based on their skills. </h3> </center>
 
 # Problem 😧
