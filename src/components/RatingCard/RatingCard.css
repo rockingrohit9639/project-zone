@@ -1,0 +1,32 @@
+.ratings-card {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.ratings-heading {
+  margin: 0;
+  font-size: 16px;
+}
+.hr {
+  margin-top: 0.2rem;
+  width: 70%;
+  height: 0.2px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.466);
+}
+.rate {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.star-img{
+    width: 22px;
+    height: 22px;
+    margin-left: 2px;
+    margin-right: 2px;
+}

@@ -3,14 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useDataLayerValues } from "../../datalayer";
 import { magic } from "../../magic";
-
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import { Link as RouterLink } from 'react-router-dom';
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -21,7 +20,7 @@ import "./Login.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "92.5vh",
+    height: "91vh",
   },
   image: {
     backgroundImage:
@@ -141,14 +140,14 @@ const Login = () => {
 
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <RouterLink to="/"  style={{ textDecoration: "none" }}>
                     Forgot password?
-                  </Link>
+                  </RouterLink>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <RouterLink to="/signup"  style={{ textDecoration: "none" }}>
                     {"Don't have an account? Sign Up"}
-                  </Link>
+                  </RouterLink>
                 </Grid>
               </Grid>
               <Box mt={5}></Box>
