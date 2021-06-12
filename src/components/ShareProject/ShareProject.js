@@ -1,28 +1,28 @@
-import React from 'react';
-import './ShareProject.css';
-import {
-  EmailIcon,
-  EmailShareButton,
-  LinkedinShareButton,
-  RedditIcon,
-  RedditShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-  WhatsappIcon,
-  WhatsappShareButton,
-  LinkedinIcon,
-  FacebookShareButton,
-  FacebookIcon,
-} from 'react-share';
+import React from "react";
+import "./ShareProject.css";
+import
+  {
+    LinkedinShareButton,
+    RedditIcon,
+    RedditShareButton,
+    TwitterIcon,
+    TwitterShareButton,
+    WhatsappIcon,
+    WhatsappShareButton,
+    LinkedinIcon,
+    FacebookShareButton,
+    FacebookIcon,
+  } from "react-share";
 
-function ShareProject(props) {
+function ShareProject(props)
+{
   const url = `https://project-zone.netlify.app/`;
   const quote = `Hello,
-I found an awesome project for you i.e ' ${props.title} '
-${props.description}
+  I found an awesome project for you i.e ' ${ props.title } '
+  ${ props.description }
 
-Have a look at it and enjoy coding.
-For more interesting project visit `;
+  Have a look at it and enjoy coding.
+  For more interesting project visit `;
 
   return (
     <div className="share-conatiner">
@@ -38,7 +38,7 @@ For more interesting project visit `;
       </div>
       <div>
         <RedditShareButton url={url} title={quote}>
-          <RedditIcon  size={35} round />
+          <RedditIcon size={35} round />
         </RedditShareButton>
       </div>
       <div>
