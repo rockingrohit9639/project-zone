@@ -54,23 +54,6 @@ npm start
 
 </p>
 
- 
-# Team ✨
-
-<p align="center">
-<img width=20% src= "https://avatars.githubusercontent.com/u/40729749?v=4" />&ensp;&ensp;&ensp;
-<img width=20% src="https://avatars.githubusercontent.com/u/55912091?v=4">&ensp;&ensp;&ensp;
-<img width=20% src="https://avatars.githubusercontent.com/u/44832446?v=4">
-</p>
-
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-<a href="https://github.com/rockingrohit9639">
- <b>Rohit Kumar Saini</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-<a href="https://github.com/Priyanshu-official">
- <b>Priyanshu</b></h5></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-<a href="https://github.com/raibove"><b>Shweta</b></h5></a>
-</p>
-
 # Our Contributors 🎇
 ### Credits goes to these people:
 
