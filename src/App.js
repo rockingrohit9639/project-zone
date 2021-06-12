@@ -8,24 +8,46 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Callback from './components/Callback';
 import AddNewProject from "./components/AddNewProject/AddNewProject";
+import { useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./theme.js";
+import { GlobalStyles } from "./theme.js";
+import { Switch as ToggleSwitch } from "antd";
 
 function App()
 {
+  //Logic for Theme toggler to get dark mode
+  const [theme, settheme] = useState("light");
+  const styledApp = styled.div;
+
+  const themeToggler = () => {
+    theme === "light" ? settheme("dark") : settheme("light");
+  };
+
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/projects" component={Showprojects} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/callback" component={Callback} />
-          <Route exact path="/addnew" component={AddNewProject} />
-        </Switch>
-        <Footer />
-      </Router>
-    </div>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <styledApp className="App">
+        <Router>
+          <div className="NavWithToggleSwitch">
+            <Navbar />
+            <ToggleSwitch
+              onClick={() => themeToggler()}
+              className="toggleBtn"
+            />
+          </div>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/projects" component={Showprojects} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/callback" component={Callback} />
+            <Route exact path="/addnew" component={AddNewProject} />
+          </Switch>
+          <Footer />
+        </Router>
+      </styledApp>
+    </ThemeProvider>
   );
 }
 
