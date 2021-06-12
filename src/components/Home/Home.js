@@ -18,7 +18,7 @@ function Home()
         <div className="projects">
           <Project
             title="E-Commerce Website"
-            desc=""
+            desc="This is a ecommece website which has many facilities like order bucket, payemnt, product ratings any many more."
             skills={['MongoDB', 'Express', 'React', 'Node']}
             level="Beginner"
             rating={4}
