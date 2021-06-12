@@ -6,8 +6,12 @@ import RatingCard from '../RatingCard/RatingCard';
 
 function Project({ title, desc, skills, level, style, rating }) {
   const [shareopen, setshareopen] = useState(false);
+  const [showdescr, setshowdesc] = useState(false);
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
+  };
+  const ReadMoreHandler = () => {
+    setshowdesc(!showdescr);
   };
   return (
     <div className="project" style={style && style}>
@@ -21,7 +25,15 @@ function Project({ title, desc, skills, level, style, rating }) {
         />
       </div>
       {shareopen ? <ShareProject title={title} description={desc} /> : null}
-      <p className="description">{desc}</p>
+      {desc.trim() == '' ? null : (
+        <div className="descr">
+          <p className="description">{showdescr ? desc : desc.slice(0,60)+"..."}</p>
+          <h5 className="read-more" onClick={ReadMoreHandler}>
+            Read more
+          </h5>
+        </div>
+      )}
+
       <div className="level">
         <label>Level:- </label>
         <p>{level}</p>

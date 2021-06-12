@@ -20,7 +20,6 @@
   height: 25px;
 }
 
-
 .project:hover {
   background-color: rgba(221, 220, 220, 0.1);
 }
@@ -55,4 +54,21 @@
 
 .level label {
   font-weight: bold;
+}
+
+.descr {
+  width: 100%;
+}
+
+.read-more {
+  text-align: right;
+  margin: 0;
+  margin-right: 0.3rem;
+  color: #343a40;
+  margin-top: 0.4rem;
+  font-size: 14px;
+}
+.read-more:hover {
+  font-size: 14.5px;
+  color: #343a40d5;
 }
