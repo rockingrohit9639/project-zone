@@ -21,7 +21,6 @@ const useStyles = makeStyles(() => ({
     marginTop: '1rem',
   },
   textarea: {
-    position: 'relative',
     padding: '1rem',
     marginTop: '1rem',
     outline: 'none',
@@ -34,13 +33,6 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
     marginBottom: '1rem',
   },
-  wordcount: {
-    margin: 0,
-    fontSize: '16px',
-    margin: '0.5rem',
-    color: '#21094e',
-    fontWeight : 'bold',
-  },
 }));
 
 function AddNewProject() {
@@ -51,7 +43,6 @@ function AddNewProject() {
   const [title, setTitle] = useState('');
   const [level, setLevel] = useState('');
   const [desc, setDesc] = useState('');
-  const [countwords, setcountwords] = useState(0);
 
   const submitBtnStyle = {
     backgroundColor: '#ff5959',
@@ -75,14 +66,6 @@ function AddNewProject() {
     values.splice(i, 1);
     setSkillInputs(values);
   }
-
-  const descreptionChangeHandler = (e) => {
-    const current = e.target.value.length;
-    if (current <= 50) {
-      setcountwords(e.target.value.length);
-      setDesc(e.target.value);
-    }    
-  };
 
   const handleSubmit = async () => {
     if (!title || !level || !desc || !skillInputs[0]) {
@@ -144,37 +127,34 @@ function AddNewProject() {
     <div>
       <ToastContainer />
       <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        minHeight="90vh"
-      >
-        <Box boxShadow={1} width="80%" padding="2rem">
-          <Typography variant="h4" className={classes.text}>
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+        minHeight='90vh'>
+        <Box boxShadow={1} width='80%' padding='2rem'>
+          <Typography variant='h4' className={classes.text}>
             Add New Project
           </Typography>
           <FormControl fullWidth>
             <TextField
-              label="Project Title"
-              variant="outlined"
+              label='Project Title'
+              variant='outlined'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required={true}
             />
 
             <FormControl
-              variant="outlined"
+              variant='outlined'
               className={classes.mt}
-              required={true}
-            >
+              required={true}>
               <InputLabel>Project Level</InputLabel>
               <Select
                 value={level}
                 onChange={(e) => {
                   setLevel(e.target.value);
                 }}
-                label="Project Level"
-              >
+                label='Project Level'>
                 <MenuItem value={'Beginner'}>Beginner </MenuItem>
                 <MenuItem value={'Intermediate'}>Intermediate</MenuItem>
                 <MenuItem value={'Advanced'}>Advanced</MenuItem>
@@ -183,21 +163,21 @@ function AddNewProject() {
 
             {skillInputs.map((field, idx) => {
               return (
-                <Box key={idx} display="flex" alignItems="center">
+                <Box key={idx} display='flex' alignItems='center'>
                   <TextField
                     className={classes.mt}
-                    label="Project Skill"
-                    variant="outlined"
+                    label='Project Skill'
+                    variant='outlined'
                     onChange={(e) => handleChange(idx, e)}
                     required={true}
                   />
 
-                  <IconButton color="inherit" onClick={handleAdd}>
+                  <IconButton color='inherit' onClick={handleAdd}>
                     <AddIcon />
                   </IconButton>
 
                   {idx > 0 ? (
-                    <IconButton color="inherit" onClick={handleRemove}>
+                    <IconButton color='inherit' onClick={handleRemove}>
                       <DeleteIcon />
                     </IconButton>
                   ) : null}
@@ -205,23 +185,21 @@ function AddNewProject() {
               );
             })}
             <TextareaAutosize
-              aria-label="minimum height"
+              aria-label='minimum height'
               className={classes.textarea}
               rowsMin={5}
-              placeholder="Description"
+              placeholder='Description'
               value={desc}
-              onChange={descreptionChangeHandler}
+              onChange={(e) => setDesc(e.target.value)}
               required={true}
-              maxLength= {50}
             />
-            <h5 className={classes.wordcount}>{countwords}/50</h5>
+
             <Button
-              variant="contained"
+              variant='contained'
               style={submitBtnStyle}
               className={classes.mt}
               startIcon={<PublishIcon />}
-              onClick={handleSubmit}
-            >
+              onClick={handleSubmit}>
               Submit
             </Button>
           </FormControl>
