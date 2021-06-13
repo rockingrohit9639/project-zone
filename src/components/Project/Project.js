@@ -25,35 +25,35 @@ function Project({ title, desc, skills, level, style, rating }) {
     });
   };
   return (
-    <div className="project" style={style && style}>
-      <div className="title-flexbox">
-        <h3 className="title"> {title}</h3>
+    <div className='project' style={style && style}>
+      <div className='title-flexbox'>
+        <h3 className='title'> {title}</h3>
         <img
           src={share_logo}
-          className="share-img"
-          alt="share-logo"
+          className='share-img'
+          alt='share-logo'
           onClick={shareButtonHandler}
         />
       </div>
       {shareopen ? <ShareProject title={title} description={desc} /> : null}
-      <div className="descr">
+      <div className='descr'>
         {desc.trim() == '' ? null : (
-          <p className="description">{desc.slice(0, 60) + '...'}</p>
+          <p className='description'>{desc.slice(0, 60) + '...'}</p>
         )}
-        <Link to="/projectdetails">
-          <h5 className="read-more" onClick={ReadMeHandler}>
+        <Link to='/projectdetails'>
+          <h5 className='read-more' onClick={ReadMeHandler}>
             Read more
           </h5>
         </Link>
       </div>
-      <div className="level">
+      <div className='level'>
         <label>Level:- </label>
         <p>{level}</p>
       </div>
-      <div className="skills">
+      <div className='skills'>
         {skills &&
           skills.map((skill, ind) => (
-            <div key={ind} style={skill.css} className="skill">
+            <div key={ind} style={skill.css} className='skill'>
               {skill.text}
             </div>
           ))}
