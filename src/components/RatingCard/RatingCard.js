@@ -21,7 +21,7 @@ function RatingCard(props) {
         <>
           <hr className="hr"></hr>
           <div className="rate">
-            {Array(props?.rating)
+            {Array(props.rating)
               .fill()
               .map((_, i) => {
                 return (

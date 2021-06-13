@@ -5,12 +5,13 @@ import SearchBox from '../SearchBox/SearchBox';
 import StartsIcon from '@material-ui/icons/Stars';
 import TrendingProjects from '../TrendingProjects/TrendingProjects';
 
-function Home()
-{
+function Home() {
   return (
     <div className="home">
       <SearchBox />
-      <div className="trending_projects"><TrendingProjects /></div>
+      <div className="trending_projects">
+        <TrendingProjects />
+      </div>
       <div className="best_project">
         <h1 className="best_project--title">
           <StartsIcon /> Best MERN Projects
