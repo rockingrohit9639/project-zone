@@ -28,3 +28,28 @@ font-weight: bold;
 .pop:hover {
 transform: scale(1.5); 
 }
+
+/* CSS to accomodate dark mode toggle swithc with navabar */
+.NavWithToggleSwitch{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.NavWithoutToggle{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-left: 0 !important;
+  overflow: hidden !important;
+}
+
+.NavHeading{
+  float: left !important;
+  margin-right: 50%;
+}
+
+.links{
+  float: right !important;
+}

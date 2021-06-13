@@ -20,7 +20,6 @@
   height: 25px;
 }
 
-
 .project:hover {
   background-color: rgba(221, 220, 220, 0.1);
 }
@@ -37,7 +36,6 @@
 }
 
 .skill {
-  background-color: #d90316;
   color: #fff;
   padding: 0.2em 0.5em;
   border-radius: 4px;
@@ -47,6 +45,7 @@
   margin-top: 0.5em;
 }
 
+
 .level {
   display: flex;
   margin-top: 1rem;
@@ -55,4 +54,22 @@
 
 .level label {
   font-weight: bold;
+}
+
+.descr {
+  width: 100%;
+}
+
+.read-more {
+  text-align: right;
+  margin: 0;
+  color: #0a1d37;
+  margin-top: 0.4rem;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.read-more:hover {
+  font-size: 14.5px;
+  color: #343a40d5;
 }
