@@ -60,6 +60,10 @@ function AddNewProject() {
     'MERN',
     'Backend',
     'Frontend',
+    'Artificial Intillegence',
+    'Machine Learning',
+    'AR',
+    'VR',
   ];
   const submitBtnStyle = {
     backgroundColor: '#ff5959',
