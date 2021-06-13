@@ -7,16 +7,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import PublishIcon from '@material-ui/icons/Publish';
 import Typography from '@material-ui/core/Typography';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   mt: {
     marginTop: '1rem',
   },
@@ -39,33 +37,38 @@ function AddNewProject() {
   const classes = useStyles();
 
   const [skillInputs, setSkillInputs] = useState(['']);
-
   const [title, setTitle] = useState('');
   const [level, setLevel] = useState('');
   const [desc, setDesc] = useState('');
-
+  const projectSkill = [
+    'JavaScript',
+    'Node',
+    'Python',
+    'HTML',
+    'CSS',
+    'React',
+    'Java',
+    'MongoDB',
+    'Express',
+    'NextJS',
+    'OpenCV',
+    'C++',
+    'C',
+    'FullStack',
+    'flutter',
+    'android',
+    'MERN',
+    'Backend',
+    'Frontend',
+    'Artificial Intillegence',
+    'Machine Learning',
+    'AR',
+    'VR',
+  ];
   const submitBtnStyle = {
     backgroundColor: '#ff5959',
     color: '#FFF',
   };
-
-  const handleChange = (i, event) => {
-    const values = [...skillInputs];
-    values[i] = event.target.value;
-    setSkillInputs(values);
-  };
-
-  function handleAdd() {
-    const values = [...skillInputs];
-    values.push('');
-    setSkillInputs(values);
-  }
-
-  function handleRemove(i) {
-    const values = [...skillInputs];
-    values.splice(i, 1);
-    setSkillInputs(values);
-  }
 
   const handleSubmit = async () => {
     if (!title || !level || !desc || !skillInputs[0]) {
@@ -77,6 +80,7 @@ function AddNewProject() {
         skills: skillInputs,
         description: desc,
       };
+      console.log(data);
 
       try {
         const res = await fetch(
@@ -160,30 +164,30 @@ function AddNewProject() {
                 <MenuItem value={'Advanced'}>Advanced</MenuItem>
               </Select>
             </FormControl>
+            <Autocomplete
+              className={classes.mt}
+              multiple
+              id='tags-outlined'
+              freeSolo={true}
+              options={projectSkill}
+              getOptionLabel={(option) => option}
+              onChange={(event, newValue) => {
+                console.log(newValue);
+                const values = [...newValue];
+                setSkillInputs(values);
+              }}
+              filterSelectedOptions
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant='outlined'
+                  label='Project Skill'
+                  placeholder='Add Project Skills'
+                  required
+                />
+              )}
+            />
 
-            {skillInputs.map((field, idx) => {
-              return (
-                <Box key={idx} display='flex' alignItems='center'>
-                  <TextField
-                    className={classes.mt}
-                    label='Project Skill'
-                    variant='outlined'
-                    onChange={(e) => handleChange(idx, e)}
-                    required={true}
-                  />
-
-                  <IconButton color='inherit' onClick={handleAdd}>
-                    <AddIcon />
-                  </IconButton>
-
-                  {idx > 0 ? (
-                    <IconButton color='inherit' onClick={handleRemove}>
-                      <DeleteIcon />
-                    </IconButton>
-                  ) : null}
-                </Box>
-              );
-            })}
             <TextareaAutosize
               aria-label='minimum height'
               className={classes.textarea}

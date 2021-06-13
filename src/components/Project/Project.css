@@ -63,10 +63,11 @@
 .read-more {
   text-align: right;
   margin: 0;
-  margin-right: 0.3rem;
-  color: #343a40;
+  color: #0a1d37;
   margin-top: 0.4rem;
   font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
 }
 .read-more:hover {
   font-size: 14.5px;
