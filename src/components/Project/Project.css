@@ -7,21 +7,25 @@
   cursor: pointer;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform .2s;
 }
 
 .title-flexbox {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .share-img {
   width: 25px;
   height: 25px;
+text-align: right;
 }
 
 .project:hover {
   background-color: rgba(221, 220, 220, 0.1);
+  border-color: #ff0000;
+  transform: scale(0.9);
+  box-shadow: 0 0 11px rgba(33,33,33,.4); 
 }
 
 .description {
@@ -32,7 +36,9 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  background-color: rgba(192,188,188,.219);
 }
 
 .skill {
