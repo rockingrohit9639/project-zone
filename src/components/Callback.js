@@ -6,7 +6,6 @@ import { actions } from '../reducer';
 
 function Callback(props)
 {
-    
     const history = useHistory();
     const [{ isAuthenticated }, dispatch] = useDataLayerValues();
 
