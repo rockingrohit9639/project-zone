@@ -1,8 +1,9 @@
 export const initialState = {
   user: {
-    email: '',
     fname: '',
     lname: '',
+    email: '',
+    password: '',
     picture: '',
   },
   ProjectDetails: {

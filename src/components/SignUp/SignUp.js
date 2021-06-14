@@ -1,4 +1,7 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import { useHistory } from "react-router-dom";
+import { useDataLayerValues } from "../../datalayer";
+import { actions } from '../../reducer';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -47,6 +50,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const history = useHistory();
+  const [{ user,isAuthenticated}, dispatch] = useDataLayerValues();
+
+  useEffect(() => {
+    isAuthenticated && history.push("/");
+  }, [isAuthenticated, history]);
 
   const [fields,setFields] = useState({
     firstName:"",
@@ -91,12 +100,15 @@ export default function SignUp() {
     } 
     else {
       const userData = {
-        firstName,lastName,email,password
+        ...user,
+        fname:firstName,
+        lname: lastName,
+        email: email,
+        password:password
       };
-      alert(JSON.stringify(userData));
-      console.log(userData);
+
       clearData();
-      
+      setUserAuth(userData);
     }
   };
 
@@ -109,6 +121,20 @@ export default function SignUp() {
     });
   };
 
+  const setUserAuth = (userData) => {
+
+    dispatch({
+      type: actions.SET_USER,
+      user: userData,
+    });
+
+    dispatch({
+      type: actions.SET_AUTH,
+      isAuthenticated: true,
+    });
+
+    history.push("/");
+  }
 
   return (
     <div className="signup">
@@ -135,7 +161,6 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                errorText= {"error"}
                 id="firstName"
                 label="First Name"
                 autoFocus
