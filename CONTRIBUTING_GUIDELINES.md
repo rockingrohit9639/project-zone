@@ -27,21 +27,29 @@ Following are the steps to guide you:
     ```
 * Step 3: Keep your cloned repo upto date by pulling from upstream (this will also avoid any merge conflicts while committing new changes)
     ```
-    git pull upstream main https://github.com/rockingrohit9639/project-zone.git
+    git pull upstream main
     ```
 * Step 4: Create your feature branch (This is a necessary step, so don't skip it)
     ```
     git checkout -b <feature-name>
     ```
-* Step 5: Commit all the changes (Write commit message as "Small Message")
+* Step 5: Track your changes:heavy_check_mark: .
+    ```
+    git add .
+    ```
+* Step 5: Check for your changes.
+    ```
+    git status
+    ```
+* Step 7: Commit all the changes (Write commit message as "Small Message")
     ```
     git commit -m "Write a meaningfull but small commit message"
     ```
-* Step 6: Push the changes for review
+* Step 8: Push the changes for review
     ```
     git push origin <branch-name>
     ```
-* Step 7: Create a PR on Github. (Don't just hit the create a pull request button, you must write a PR message to clarify why and what are you contributing)
+* Step 9: Create a PR on Github. (Don't just hit the create a pull request button, you must write a PR message to clarify why and what are you contributing)
 
 
 ## 🔨Note:
