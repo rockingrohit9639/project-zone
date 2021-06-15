@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
+import { actions } from '../../reducer';
 import { magic } from "../../magic";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -15,6 +16,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
+import { ToastContainer, toast } from 'react-toastify';
 import { makeStyles } from "@material-ui/core/styles";
 import "./Login.css";
 
@@ -57,11 +59,18 @@ const Login = () => {
 
   const history = useHistory();
   const [loading, setLoading] = useState("");
-  const [{ isAuthenticated }, dispatch] = useDataLayerValues();
+  const [{ user,ProjectDetails,isAuthenticated,query}, dispatch] = useDataLayerValues();
 
   useEffect(() => {
     isAuthenticated && history.push("/");
   }, [isAuthenticated, history]);
+
+  const [fields,setFields] = useState({
+    email:"",
+    password:""
+  })
+
+  const { email,password } = fields;
 
   const handleSocialLogin = async () => {
     try {
@@ -76,6 +85,60 @@ const Login = () => {
     }
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFields((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleSubmit = (event) => {
+    const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    event.preventDefault();
+  
+    if (email === "") {
+      toast.error('Please enter your email ');
+    } 
+    else if (!emailTest.test(email)) {
+      toast.error('Please enter a valid email');
+    }
+    else if (password === "") {
+      toast.error('Please enter a secure password');
+    }
+    else if(password.length < 6 ){
+      toast.error('Password should have at least 6 characters');
+    } 
+    else {
+      const userData = {
+        ...user,email: email,password:password
+      };
+     
+      clearData();
+      setUserAuth(userData);
+    }
+  };
+
+  const clearData = () => {
+    setFields({
+      email:"",
+      password:""
+    });
+  };
+
+  const setUserAuth = (userData) => {
+
+    dispatch({
+      type: actions.SET_USER,
+      user: userData,
+    });
+
+   // we can check if authenticated by finding user in db and can send to home page from here
+  }
+
+
   return (
     <div className="login">
       <Grid container component="main" className={classes.root}>
@@ -89,7 +152,8 @@ const Login = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <ToastContainer position="top-right" />
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -98,6 +162,8 @@ const Login = () => {
                 id="email"
                 label="Email Address"
                 name="email"
+                value={email}
+                onChange={handleChange}
                 autoComplete="email"
                 autoFocus
               />
@@ -107,6 +173,8 @@ const Login = () => {
                 required
                 fullWidth
                 name="password"
+                value={password}
+                onChange={handleChange}
                 label="Password"
                 type="password"
                 id="password"
@@ -116,7 +184,7 @@ const Login = () => {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              {/*             <Button
+              <Button
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -124,7 +192,7 @@ const Login = () => {
                 className={classes.submit}
                 >
                 Sign In
-                </Button> */}
+              </Button>
               <div className="google-btn" onClick={handleSocialLogin}>
                 <div className="google-icon-wrapper">
                   <img
