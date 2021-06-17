@@ -1,11 +1,24 @@
 .card {
   width: 60%;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  padding: 2rem;
+  border-radius: 0px;
+  box-shadow: 6px 7px 4px -6px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.062);
   display: flex;
   flex-direction: column;
 }
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.share-icon {
+  width: 25px;
+  height: 25px;
+}
+
 
 .title_ {
   text-decoration: underline;
@@ -25,15 +38,15 @@
   letter-spacing: 0.5px;
 }
 
+.skills_ {
+  display: flex;
+}
+
 .card-footer_ {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-}
-
-.skills {
-  background-color: initial;
 }
 
 .rating_div {

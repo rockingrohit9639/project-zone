@@ -1,42 +1,45 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 /* top button */
 #btn {
-position: fixed;
-background-color: #ff3333;
-text-decoration: none;
-border: none;
-border-radius: 5px;
-color: white;
-cursor: pointer;
-display: none;
-bottom: 16px;
-right: 32px;
-width: 50px;
-height: 50px;
-font-size: 40px;
-text-align: center;
-font-weight: bold;
+  position: fixed;
+  background-color: #ff3333;
+  color: #FFF;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: none;
+  bottom: 16px;
+  right: 32px;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s;
 }
-#btn:hover{
-    background-color:#ff6666;
+#btn:hover {
+  background-color: #ff6666;
 }
 .pop:hover {
-transform: scale(1.5); 
+  transform: scale(1.5);
 }
 
 /* CSS to accomodate dark mode toggle swithc with navabar */
-.NavWithToggleSwitch{
+.NavWithToggleSwitch {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.NavWithoutToggle{
+.NavWithoutToggle {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -45,11 +48,11 @@ transform: scale(1.5);
   overflow: hidden !important;
 }
 
-.NavHeading{
+.NavHeading {
   float: left !important;
   margin-right: 50%;
 }
 
-.links{
+.links {
   float: right !important;
 }
