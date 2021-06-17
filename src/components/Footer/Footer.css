@@ -1,9 +1,45 @@
 footer{
   text-align: center;
-  padding: 1rem;
+  padding: 2em 10vh;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  color: white !important;
+  background-color: rgb(28, 24, 39);
   border-top: 1px solid rgba(90, 89, 89, 0.418);
 }
 
+
 footer a{
-  color: black;
+  color: rgb(209, 209, 209)
+
+}
+
+.footerSection_ {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footerSection_title_ {
+  color: white;
+  text-align: initial;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+}
+
+.footerSection_ p {
+  color: white;
+}
+
+.footerSection_ ul {
+  list-style-type: none;
+}
+
+.footerSection_ ul li {
+  background-color: rgb(28, 24, 39);
+  text-align: initial;
+  padding-top:10px;
+  font-size: 0.95rem;
 }
