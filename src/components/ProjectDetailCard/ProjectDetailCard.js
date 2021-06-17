@@ -21,8 +21,8 @@ function ProjectDetailCard()
   return (
     <div className="card">
       <div className="titleBox">
-      <h1 className="title_">{ProjectDetails.title}</h1>
-      <img
+        <h1 className="title_">{ProjectDetails.title}</h1>
+        <img
           src={share_logo}
           className='share-icon'
           alt='share-logo'

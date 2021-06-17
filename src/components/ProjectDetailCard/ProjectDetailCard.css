@@ -6,6 +6,13 @@
   border: 1px solid rgba(0, 0, 0, 0.062);
   display: flex;
   flex-direction: column;
+  width: 80%;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .titleBox {
@@ -18,7 +25,6 @@
   width: 25px;
   height: 25px;
 }
-
 
 .title_ {
   text-decoration: underline;
