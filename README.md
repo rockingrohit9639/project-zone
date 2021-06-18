@@ -1,15 +1,24 @@
 <center> <h1> Project Zone 🚀 </h1> </center>
+ 
 <div align="center">
-
-[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/rockingrohit9639/project-zone)
-[![](https://img.shields.io/github/forks/rockingrohit9639/project-zone?style=social)](https://github.com/rockingrohit9639/project-zone)
-![Stars](https://img.shields.io/github/stars/rockingrohit9639/project-zone?style=social)
-[![](https://img.shields.io/github/issues/rockingrohit9639/project-zone?style=social)](https://github.com/rockingrohit9639/project-zone)
-![Licence](https://img.shields.io/github/license/codeforcauseorg/edu-client)
-[![](https://img.shields.io/badge/Chat-Slack-brightgreen)](https://letsgrowmore.slack.com/archives/C024CFH4ATW)
-
+ 
 <img src="https://github.com/rockingrohit9639/project-zone/blob/main/public/jpglogo.jpg?raw=true" alt="logo" width="200"/>
 
+<a href="https://github.com/rockingrohit9639/project-zone"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"></a>
+<a href="https://github.com/rockingrohit9639/project-zone"><img src="https://img.shields.io/badge/Built%20by-developers%20%3C%2F%3E-0059b3"></a>
+<a href="https://github.com/rockingrohit9639/project-zone"><img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=yellow"></a>
+<a href="https://github.com/rockingrohit9639/project-zone/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rockingrohit9639/project-zone?color=blue"></a>
+<a href="https://letsgrowmore.slack.com/archives/C024CFH4ATW"><img src="https://img.shields.io/badge/Chat-Slack-brightgreen"></a>
+
+<a href="https://github.com/rockingrohit9639/project-zone/watchers"><img src="https://img.shields.io/github/watchers/rockingrohit9639/project-zone?style=flat"></a> 
+<a href="https://github.com/rockingrohit9639/project-zone/graphs/contributors"><img src="https://img.shields.io/github/contributors/rockingrohit9639/project-zone?color=brightgreen"></a>
+<a href="https://github.com/rockingrohit9639/project-zone/stargazers"><img src="https://img.shields.io/github/stars/rockingrohit9639/project-zone?color=0059b3"></a>
+<a href="https://github.com/rockingrohit9639/project-zone/network/members"><img src="https://img.shields.io/github/forks/rockingrohit9639/project-zone?color=yellow"></a>
+<a href="https://github.com/rockingrohit9639/project-zone/issues"><img src="https://img.shields.io/github/issues/rockingrohit9639/project-zone?color=0059b3"></a>
+<a href="https://github.com/rockingrohit9639/project-zone/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed-raw/rockingrohit9639/project-zone?color=yellow"></a>
+<a href="https://github.com/rockingrohit9639/project-zone/pulls"><img src="https://img.shields.io/github/issues-pr/rockingrohit9639/project-zone?color=brightgreen"></a>
+<a href="https://github.com/rockingrohit9639/project-zone/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed-raw/rockingrohit9639/project-zone?color=0059b3"></a> 
+ 
 </div>
 
  #### Project Zone suggest users the projects they can create based on their skills.
