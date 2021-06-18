@@ -11,7 +11,7 @@ const Footer = () => {
           <h1 className="footerSection_title_">Project Zone</h1>
           <p>Made with ❤️ by OpenSource <a href="https://github.com/rockingrohit9639/project-zone/graphs/contributors" target="_blank" rel="noreferrer">Contributors</a>.</p>
         </div>
-        <div className="footerSection_">
+        <div className="footerRight">
           <ul>
           <li>
             <Link to="/">Home</Link>

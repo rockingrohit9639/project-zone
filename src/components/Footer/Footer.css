@@ -1,11 +1,10 @@
 footer{
-  text-align: center;
   padding: 2em 10vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   color: white !important;
-  background-color: rgb(28, 24, 39);
+  background-color: #2D3142;
 }
 
 
@@ -21,23 +20,24 @@ footer a{
 
 .footerSection_title_ {
   color: white;
-  text-align: initial;
   font-weight: 700;
   letter-spacing: 1px;
-
 }
 
 .footerSection_ p {
   color: white;
 }
 
-.footerSection_ ul {
+.footerRight {
+  margin-right: 5rem;
+}
+
+.footerRight ul {
   list-style-type: none;
 }
 
-.footerSection_ ul li {
-  background-color: rgb(28, 24, 39);
-  text-align: initial;
+.footerRight ul li {
+  background-color: #2D3142;
   padding-top:10px;
   font-size: 0.95rem;
 }

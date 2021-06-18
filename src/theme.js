@@ -12,11 +12,6 @@ export const darkTheme = {
 
 export const GlobalStyles = createGlobalStyle`
 
-    body,ul,li{
-        background-color: ${(props) => props.theme.body};
-        color: ${(props) => props.theme.fontColor};
-    }
-
     h1,h3,h2,h4,span,.makeStyles-name-4,.PrivateNotchedOutline-legendLabelled-15{
         color: ${(props) => props.theme.fontColor};
     }
