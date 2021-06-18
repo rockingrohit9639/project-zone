@@ -17,7 +17,6 @@ function Project({ title, desc, skills, level, style, rating })
     setshareopen(!shareopen);
   };
 
-  console.log(skills);
   const ReadMeHandler = () =>
   {
     dispatch({

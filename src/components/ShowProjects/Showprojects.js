@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import SearchBox from '../SearchBox/SearchBox';
+import React, { useState } from "react";
+import SearchBox from "../SearchBox/SearchBox";
 import "./ShowProjects.css";
 import { client, options } from "../../client";
-import { useDataLayerValues } from '../../datalayer';
-import { useEffect } from 'react';
-import Project from '../Project/Project';
+import { useDataLayerValues } from "../../datalayer";
+import { useEffect } from "react";
+import Project from "../Project/Project";
+
+import { server } from "../../axios/instance";
 
 function Showprojects()
 {
-
     const [projects, setProjects] = useState();
     const [{ query }] = useDataLayerValues();
 
-    const filters = ["beginner", "intermediate", "advanced"];
-    const [appliedFilters, setAppliedFilters] = useState([]);
+    // const filters = ["beginner", "intermediate", "advanced"];
+    // const [appliedFilters, setAppliedFilters] = useState([]);
 
     const [randomProject, setRandomProject] = useState("");
 
@@ -21,129 +22,85 @@ function Showprojects()
     {
         try
         {
-            const results = await client.search(query, options);
+            // const results = await client.search(query, options);
 
-            setProjects(results.rawResults);
-        }
-        catch (error)
+            const results = await server.get(`/getprojects?q=${query}`);
+
+            setProjects(results.data);
+        } catch (error)
         {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     useEffect(() =>
     {
         fetchProjects();
-
-    }, [query, options]);
+    }, [query]);
 
     const handleRandomProject = () =>
     {
-        setRandomProject(projects[(Math.floor(Math.random() * projects.length))]);
-    }
+        setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
+    };
 
-
-    const handleFilter = (e, filter) =>
-    {
-        var newFil = appliedFilters;
-
-        if (appliedFilters.includes(filter))
-        {
-            e.target.style.backgroundColor = "#ccc";
-            e.target.style.color = "#000";
-
-            newFil.splice(newFil.indexOf(filter), 1)
-            setAppliedFilters(newFil)
-        }
-        else
-        {
-            e.target.style.backgroundColor = "#ff5959";
-            e.target.style.color = "#FFF";
-            newFil.push(filter)
-            setAppliedFilters(newFil);
-        }
-
-        if (appliedFilters.length === 0)
-        {
-            options["filters"] = {
-                "level": filters
-            };
-        }
-        else
-        {
-            options["filters"] = {
-                "level": appliedFilters
-            };
-        }
-
-        fetchProjects();
-    }
 
     return (
         <div className="showProjects">
-
             <div className="mt">
                 <SearchBox />
             </div>
 
-            <div className="filtersBox">
-                <div className="filters">
+            <button className="random" onClick={handleRandomProject}>
+                Let us decide a project for you.
+            </button>
 
-                    {
-                        filters.map((filter, ind) =>
-                        {
-                            return (
-                                <div
-                                    className="filter"
-                                    key={ind}
-                                    onClick={(e) => handleFilter(e, filter)}
-                                >
-                                    {filter}
-                                </div>
-                            );
-                        })
-                    }
+            {randomProject ? (
+                <div className="randomProject">
+                    <Project
+                        title={randomProject.name}
+                        desc={randomProject.description}
+                        skills={randomProject.skills}
+                        level={randomProject.level}
+                        style={{ backgroundColor: "#ff5959", color: "#FFF" }}
+                    />
                 </div>
-
-                <button className="random" onClick={handleRandomProject}>Let us decide a project for you.</button>
-            </div>
-
-            
-            {
-                randomProject ?
-                    (<div className="randomProject">
-                        <Project
-                            title={randomProject.name.raw}
-                            desc={randomProject.description.raw}
-                            skills={randomProject.skills.raw}
-                            level={randomProject.level.raw}
-                            style={{ backgroundColor: "#ff5959", color: "#FFF" }}
-                        />
-                    </div>)
-                    : null
-            }
+            ) : null}
 
             <h2 className="query"> Searching projects for "{query}" </h2>
 
             <div className="projectsList">
-
-                {
-                    projects && projects.map((project, ind) =>
+                {projects &&
+                    projects.map((project, ind) =>
                     {
-                        return <Project
-                            key={ind}
-                            title={project.name.raw}
-                            desc={project.description.raw}
-                            skills={project.skills.raw}
-                            level={project.level.raw}
-                        />
-                    })
-                }
-
+                        return (
+                            <Project
+                                key={ind}
+                                title={project.name}
+                                desc={project.description}
+                                skills={project.skills}
+                                level={project.level}
+                            />
+                        );
+                    })}
             </div>
-
         </div>
-    )
+    );
 }
 
 export default Showprojects;
+
+
+// <div className="filtersBox">
+//         <div className="filters">
+//           {filters.map((filter, ind) => {
+//             return (
+//               <div
+//                 className="filter"
+//                 key={ind}
+//                 onClick={(e) => handleFilter(e, filter)}
+//               >
+//                 {filter}
+//               </div>
+//             );
+//           })}
+//         </div>

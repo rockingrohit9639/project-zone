@@ -5,16 +5,21 @@ const morgan = require('morgan');
 const colors = require('colors');
 
 dotenv.config({ path: 'config/config.env' });
+const PORT = process.env.PORT || 3001;
+
 const app = express(); // create express app
+
 app.use(morgan('tiny'));
 app.use(cors())
 app.use(express.json({ extended: false }));
 
-const PORT = process.env.PORT || 3001;
-app.get('/', (req, res) =>
-{
-  res.send('Hellow world Express Server 3001');
-});
+
+require("./db/connection");
+
+app.use(require('./routes/projectRoutes'));
+
+
+
 
 // start express server on port 3001
 app.listen(PORT, () =>
