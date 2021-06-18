@@ -8,6 +8,8 @@
 ![Licence](https://img.shields.io/github/license/codeforcauseorg/edu-client)
 [![](https://img.shields.io/badge/Chat-Slack-brightgreen)](https://letsgrowmore.slack.com/archives/C024CFH4ATW)
 
+<img src="https://github.com/rockingrohit9639/project-zone/blob/main/public/jpglogo.jpg?raw=true" alt="logo" width="200"/>
+
 </div>
 
  #### Project Zone suggest users the projects they can create based on their skills.
