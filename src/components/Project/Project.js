@@ -10,11 +10,9 @@ import { getSkillColor } from '../../utils';
 function Project({ title, desc, skills, level, style, rating }) {
   const [shareopen, setshareopen] = useState(false);
   const [{ ProjectDetails }, dispatch] = useDataLayerValues();
-
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
   };
-
   const ReadMeHandler = () => {
     dispatch({
       type: 'SET_PROJECT_DETAILS',

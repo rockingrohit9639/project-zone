@@ -5,20 +5,15 @@ import { actions } from '../../reducer';
 import { useDataLayerValues } from '../../datalayer';
 import { useHistory } from 'react-router-dom';
 
-function SearchBox() {
+function SearchBox({ setChangedata }) {
   const [{ query }, dispatch] = useDataLayerValues();
   const history = useHistory();
-  const [isChange, setChange] = useState(true);
-
   const handleChange = (e) => {
     dispatch({
       type: actions.SET_QUERY,
       query: e.target.value,
-      isQueryChange: isChange,
     });
-    console.log(isChange);
-    setChange(true);
-    console.log(isChange);
+    setChangedata();
   };
   return (
     <div className='searchBox'>

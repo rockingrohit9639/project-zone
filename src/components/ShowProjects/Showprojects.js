@@ -11,7 +11,7 @@ import { server } from '../../axios/instance';
 function Showprojects() {
   const [projects, setProjects] = useState();
   const [{ query }] = useDataLayerValues();
-
+  const [isChange, setChange] = useState(false);
   // const filters = ["beginner", "intermediate", "advanced"];
   // const [appliedFilters, setAppliedFilters] = useState([]);
 
@@ -20,15 +20,17 @@ function Showprojects() {
   const fetchProjects = async () => {
     try {
       // const results = await client.search(query, options);
-
       const results = await server.get(`/getprojects?q=${query}`);
-
       setProjects(results.data);
+      //setChange(false);
     } catch (error) {
       console.log(error);
     }
   };
-
+  const setChangedata = () => {
+    setChange(true);
+    if (isChange) setRandomProject('');
+  };
   useEffect(() => {
     fetchProjects();
   }, [query]);
@@ -40,7 +42,7 @@ function Showprojects() {
   return (
     <div className='showProjects'>
       <div className='mt'>
-        <SearchBox />
+        <SearchBox setChangedata={setChangedata} />
       </div>
 
       <button className='random' onClick={handleRandomProject}>
