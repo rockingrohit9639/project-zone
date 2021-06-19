@@ -25,7 +25,6 @@ function Showprojects() {
       console.log(error);
     }
   };
-  console.log('HH ' + isChange);
   useEffect(() => {
     fetchProjects();
   }, [query, options]);

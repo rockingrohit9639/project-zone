@@ -14,7 +14,7 @@ function SearchBox() {
     dispatch({
       type: actions.SET_QUERY,
       query: e.target.value,
-      isQueryChange:isChange,
+      isQueryChange: isChange,
     });
     console.log(isChange);
     setChange(true);
