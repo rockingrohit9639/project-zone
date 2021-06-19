@@ -19,8 +19,19 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .best_project--title {
-    margin-top: 0.5rem;
-    display: inline-block;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+.project {
+  width: auto;
+}
+
+@media screen and (max-width: 850px) {
+  .flex-box {
+    flex-direction: column;
+    align-items: center;
+  }
 }

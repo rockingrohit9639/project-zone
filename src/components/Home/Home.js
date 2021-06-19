@@ -1,14 +1,30 @@
 import React from "react";
 import Project from "../Project/Project";
 import "./Home.css";
+import landing_bg from './../../assets/landing_bg.svg';
+import avatar from './../../assets/avatar.svg';
 import SearchBox from "../SearchBox/SearchBox";
 import StartsIcon from "@material-ui/icons/Stars";
 import TrendingProjects from "../TrendingProjects/TrendingProjects";
+
+import { Link } from "react-router-dom";
 
 function Home()
 {
   return (
     <div className="home">
+      <section className="landing" id="landing" style={{background:`url(${landing_bg}) 75% 100%`}}>
+          <div className="content">
+            <h3>Having Difficulties in</h3>
+            <h1>finding projects ?</h1>
+            <p>We are here to help you.</p>
+
+          <Link to="/findprojects"> Find Projects </Link>
+          </div>
+          <div className="image">
+            <img src={avatar} alt="Welcome to ProjectZone"/>
+          </div>
+      </section>
       <SearchBox />
       <div className="trending_projects">
         <TrendingProjects />
