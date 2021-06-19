@@ -1,22 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 .section{
     position: relative;
 }
+
 .container{
     height: 580px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 160px;
 }
 .parent_div{
     background-color:rgb(248, 246, 246);
     height: 530px;
     width: 700px;
-    border-radius: 30px;
+    border-radius: 10px;
     border: silver;
     outline: none;
-    box-shadow: 15px 15px 15px hsl(0, 1%, 28%);
+    box-shadow: 10px 15px 15px -12px hsl(0, 1%, 28%);
 }
 .child_div{
     background-color:#ff3333;
@@ -29,14 +28,14 @@
     margin-top: -30px;
     margin-left: 50%;
     transform: translate(-50%);
-    box-shadow: 14px 14px 14px rgb(131, 127, 127);
+    box-shadow: 2px 14px 14px -12px rgb(131, 127, 127);
     cursor: pointer;             
 }
 .h1tag{
-    font-size: 40px;
+    font-size: 2rem;
     text-transform: capitalize;
     font-weight: bolder;
-    color: black;
+    color: #FFF;
     text-align: center;
 }
 .form{

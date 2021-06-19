@@ -14,6 +14,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./theme.js";
 import { GlobalStyles } from "./theme.js";
 import { Switch as ToggleSwitch } from "antd";
+import ContactUs from './components/ContactUs/contactus';
 
 function App()
 {
@@ -45,6 +46,7 @@ function App()
             <Route exact path="/callback" component={Callback} />
             <Route exact path="/addnew" component={AddNewProject} />
             <Route exact path="/projectdetails" component={ProjectDetails}/>
+            <Route exact path="/contact" component={ContactUs}/>
           </Switch>
           <Footer />
         </Router>
