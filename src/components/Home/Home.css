@@ -2,7 +2,6 @@
 .home {
     width: 100%;
     min-height: 90vh;
-    margin-top: 3%;
 }
 
 .landing{
@@ -10,9 +9,9 @@
     align-items: center;
     justify-content: space-around;
     background-size:cover;
-    background:#000;
+    background:#5352ED;
     background-position: center;
-    margin:2% 0;
+    margin-bottom:2%;
 }
 
 
@@ -43,7 +42,7 @@
 }
 
 .landing .image{
-    margin:7.5rem 5rem;
+    margin:9rem 5rem;
     width:35vw;
     height:35vw;
     max-width:400px;
@@ -52,7 +51,7 @@
     background-color:#FF6348;
 }
 
-.landing img{
+.landing .image img{
     width:100%;
     margin-left:-30px;
     animation: float 3s linear infinite;
@@ -115,7 +114,6 @@
     .landing .content{
         margin:0;
     }
-
 
     .landing .content h3,.landing .content h1{
         font-size: 1.8rem;
