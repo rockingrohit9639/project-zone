@@ -7,6 +7,8 @@ import SearchBox from "../SearchBox/SearchBox";
 import StartsIcon from "@material-ui/icons/Stars";
 import TrendingProjects from "../TrendingProjects/TrendingProjects";
 
+import { Link } from "react-router-dom";
+
 function Home()
 {
   return (
@@ -15,7 +17,9 @@ function Home()
           <div className="content">
             <h3>Having Difficulties in</h3>
             <h1>finding projects ?</h1>
-            <p>We are here to help you</p>
+            <p>We are here to help you.</p>
+
+          <Link to="/findprojects"> Find Projects </Link>
           </div>
           <div className="image">
             <img src={avatar} alt="Welcome to ProjectZone"/>

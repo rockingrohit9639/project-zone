@@ -19,7 +19,6 @@
     display:flex;
     flex-direction:column;
     margin-left:10%;
-    margin-top:3%;
 }
 
 .landing .content h3{
@@ -38,7 +37,22 @@
 .landing .content p{
     font-size: 1.5rem;
     color:#fff;
-    padding:1.5rem 0;
+    padding-top:1.5rem;
+}
+
+.content a {
+    display: block;
+    text-decoration: none;
+    background-color: #FFF;
+    color: #5352ED;
+    width: 7rem;
+    padding: 0.5rem 1rem;
+    transition: 0.2s all;
+}
+
+.content a:hover {
+    color: #FFF;
+    background-color: #5352ED;
 }
 
 .landing .image{
@@ -95,10 +109,12 @@
     align-items: center;
 }
 
+
+
 @media (max-width:992px){
 
     .landing{
-        flex-flow: column-reverse;
+        flex-flow: column;
     }
 
     .landing .image{
@@ -112,7 +128,7 @@
     }
 
     .landing .content{
-        margin:0;
+        margin-top: 4rem;
     }
 
     .landing .content h3,.landing .content h1{

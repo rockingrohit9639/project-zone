@@ -4,7 +4,7 @@ footer{
   flex-wrap: wrap;
   justify-content: space-between;
   color: white !important;
-  background-color: #2D3142;
+  background-color: #3a3aad;
 }
 
 
@@ -36,8 +36,12 @@ footer a{
   list-style-type: none;
 }
 
+.footerRight ul li a {
+  color: #FFF;
+}
+
 .footerRight ul li {
-  background-color: #2D3142;
+  background-color: #3a3aad;
   padding-top:10px;
   font-size: 0.95rem;
 }
