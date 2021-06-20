@@ -3,11 +3,10 @@ import Project from '../Project/Project';
 import './Home.css';
 import landing_bg from './../../assets/landing_bg.svg';
 import avatar from './../../assets/avatar.svg';
-
+import ProjectCategories from '../ProjectCategories/ProjectCategories';
 import SearchBox from '../SearchBox/SearchBox';
 import StartsIcon from '@material-ui/icons/Stars';
 import TrendingProjects from '../TrendingProjects/TrendingProjects';
-
 
 import { Link } from 'react-router-dom';
 
@@ -34,11 +33,11 @@ function Home() {
           <img src={avatar} alt='Welcome to ProjectZone' />
         </div>
       </section>
-      
-      <SearchBox setChangedata={setChangedata} />
 
-     <div className="best_project">
-        <h1 className="best_project--title">
+      <SearchBox setChangedata={setChangedata} />
+      <ProjectCategories />
+      <div className='best_project'>
+        <h1 className='best_project--title'>
           <StartsIcon /> Best MERN Projects
         </h1>
         <div className='projects'>
