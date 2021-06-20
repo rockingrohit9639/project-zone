@@ -36,6 +36,9 @@ const Footer = () => {
             <Link to="/login">Login/Signup</Link>
           </li>
           <li>
+            <Link to="/trendings">Trending Projects</Link>
+          </li>
+          <li>
             <Link to="/contact">Contact Us</Link>
           </li>
           <li>

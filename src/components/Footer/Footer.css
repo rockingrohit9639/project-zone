@@ -15,14 +15,13 @@ footer a{
 .footerSection_ {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .footerSection_title_ {
-  color: white;
+  color: #FFF;
   font-weight: 700;
   letter-spacing: 1px;
-  font-size: 40px;
+  font-size: 2rem;
   padding-top: 25px;
 }
 
@@ -45,15 +44,16 @@ footer a{
 .footerRight ul li {
   background-color: #3a3aad;
   padding-top:10px;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 
 .logo {
-  width: 90px;
-  object-fit: contain;
-  margin-left: -20px;
+  width: 4rem;
+  height: 4rem;
+  margin-left: -1rem;
 }
 
 .footer-top {
   display: flex;
+  align-items: center;
 }

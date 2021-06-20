@@ -34,11 +34,9 @@ function Home() {
           <img src={avatar} alt='Welcome to ProjectZone' />
         </div>
       </section>
+      
       <SearchBox setChangedata={setChangedata} />
-      <div className='trending_projects'>
-        <TrendingProjects />
-      </div>
-      <SearchBox />
+
      <div className="best_project">
         <h1 className="best_project--title">
           <StartsIcon /> Best MERN Projects

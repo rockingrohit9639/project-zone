@@ -48,7 +48,7 @@ function App()
             <Route exact path="/addnew" component={AddNewProject} />
             <Route exact path="/projectdetails" component={ProjectDetails}/>
             <Route exact path="/contact" component={ContactUs}/>
-            <Route exact path="/trending_projects" component={TrendingProjects}/>
+            <Route exact path="/trendings" component={TrendingProjects}/>
           </Switch>
           <Footer />
         </Router>

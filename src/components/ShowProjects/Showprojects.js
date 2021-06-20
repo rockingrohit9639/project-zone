@@ -1,41 +1,47 @@
 import React, { useState } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import './ShowProjects.css';
-import { client, options } from '../../client';
+// import { client, options } from '../../client';
 import { useDataLayerValues } from '../../datalayer';
 import { useEffect } from 'react';
 import Project from '../Project/Project';
 
 import { server } from '../../axios/instance';
 
-function Showprojects() {
+function Showprojects()
+{
   const [projects, setProjects] = useState();
   const [{ query }] = useDataLayerValues();
-  const [isChange, setChange] = useState(false);
+
   // const filters = ["beginner", "intermediate", "advanced"];
   // const [appliedFilters, setAppliedFilters] = useState([]);
 
   const [randomProject, setRandomProject] = useState('');
 
-  const fetchProjects = async () => {
-    try {
-      // const results = await client.search(query, options);
-      const results = await server.get(`/getprojects?q=${query}`);
+  const fetchProjects = async () =>
+  {
+    try
+    {
+      const results = await server.get(`/getprojects?q=${ query }`);
       setProjects(results.data);
-      //setChange(false);
-    } catch (error) {
+    } catch (error)
+    {
       console.log(error);
     }
   };
-  const setChangedata = () => {
-    setChange(true);
-    if (isChange) setRandomProject('');
+
+  const setChangedata = () =>
+  {
+    setRandomProject('');
   };
-  useEffect(() => {
+
+  useEffect(() =>
+  {
     fetchProjects();
   }, [query]);
 
-  const handleRandomProject = () => {
+  const handleRandomProject = () =>
+  {
     setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
   };
 
@@ -65,7 +71,8 @@ function Showprojects() {
 
       <div className='projectsList'>
         {projects &&
-          projects.map((project, ind) => {
+          projects.map((project, ind) =>
+          {
             return (
               <Project
                 key={ind}
