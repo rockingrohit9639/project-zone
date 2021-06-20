@@ -2,4 +2,6 @@
 
 # dependencies
 /node_modules
-/config
+
+# Config
+config/config.env
