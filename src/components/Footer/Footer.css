@@ -22,6 +22,8 @@ footer a{
   color: white;
   font-weight: 700;
   letter-spacing: 1px;
+  font-size: 40px;
+  padding-top: 25px;
 }
 
 .footerSection_ p {
@@ -44,4 +46,14 @@ footer a{
   background-color: #3a3aad;
   padding-top:10px;
   font-size: 0.95rem;
+}
+
+.logo {
+  width: 90px;
+  object-fit: contain;
+  margin-left: -20px;
+}
+
+.footer-top {
+  display: flex;
 }
