@@ -7,18 +7,13 @@ import { Link } from 'react-router-dom';
 import { useDataLayerValues } from '../../datalayer';
 import { getSkillColor } from '../../utils';
 
-function Project({ title, desc, skills, level, style, rating })
-{
+function Project({ title, desc, skills, level, style, rating }) {
   const [shareopen, setshareopen] = useState(false);
   const [{ ProjectDetails }, dispatch] = useDataLayerValues();
-
-  const shareButtonHandler = () =>
-  {
+  const shareButtonHandler = () => {
     setshareopen(!shareopen);
   };
-
-  const ReadMeHandler = () =>
-  {
+  const ReadMeHandler = () => {
     dispatch({
       type: 'SET_PROJECT_DETAILS',
       ProjectDetails: {
@@ -46,8 +41,10 @@ function Project({ title, desc, skills, level, style, rating })
         {desc.trim() == '' ? null : (
           <p className='description'>{desc.slice(0, 60) + '...'}</p>
         )}
-        <Link to="/projectdetails">
-          <h5 className="read-more" onClick={ReadMeHandler}>Read more</h5>
+        <Link to='/projectdetails'>
+          <h5 className='read-more' onClick={ReadMeHandler}>
+            Read more
+          </h5>
         </Link>
       </div>
       <div className='level'>
@@ -55,10 +52,10 @@ function Project({ title, desc, skills, level, style, rating })
         <p>{level}</p>
       </div>
 
-      <div className="skills">
+      <div className='skills'>
         {skills &&
           skills.map((skill, ind) => (
-            <div key={ind} style={getSkillColor(skill)} className="skill">
+            <div key={ind} style={getSkillColor(skill)} className='skill'>
               {skill}
             </div>
           ))}
