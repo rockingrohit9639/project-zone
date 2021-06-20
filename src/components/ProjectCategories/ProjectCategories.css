@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+.warpper {
+    margin-left: .5rem;
+}
+
+.title_categories {
+    margin-left: 3%;
+}
+
+.categories-card {
+    margin-left: 3%;
+    margin-top: 3%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    height: 19rem;
+}
+
+.React-card {
+    background-color: #4d686c;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.allcard {
+    text-align: center;
+    color: white;
+    width: 80%;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.allcard .img {
+    position: relative;
+    top: 4.09rem;
+    left: 49px;
+    width: 130px;
+    height: 133px;
+}
+
+.android {
+    position: relative;
+    top: 5.4rem;
+    left: 49px;
+    width: 130px;
+    height: 133px;
+}
+
+.expbtn {
+    background-color: white;
+    border: none;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 15px;
+    color: #4D686C;
+    border-radius: 5px;
+    font-size: large;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    position: relative;
+    width: fit-content;
+    height: 30px;
+    top: 250px;
+    left: -35px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.allcard-title {
+    color: white;
+    font-size: large;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    font-size: x-large;
+    text-align: left;
+    margin-left: 30px;
+}
+
+.allcard-title span {
+    color: white;
+    font-weight: 600;
+}
+
+.App-dev-card {
+    grid-area: 1 / 2 / 2 / 3;
+    background-color: #748621;
+}
+
+.Python-card {
+    grid-area: 1 / 3 / 2 / 4;
+    background-color: #003662;
+}
+
+.JavaScript-card {
+    grid-area: 1 / 4 / 2 / 5;
+    background-color: #423d11;
+}
+
+.Webdev-card {
+    grid-area: 1 / 5 / 2 / 6;
+    background-color: #321487;
+}
