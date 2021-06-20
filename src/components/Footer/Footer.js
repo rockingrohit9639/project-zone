@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from "../Footer/icon.png";
 // Style Sheet
 import "./Footer.css";
 
@@ -8,7 +8,10 @@ const Footer = () => {
   return (
     <footer>
       <div className="footerSection_">
-        <h1 className="footerSection_title_">Project Zone</h1>
+        <div className="footer-top">
+          <img src={logo} alt="logo" className="logo" />
+          <h1 className="footerSection_title_">Project Zone</h1>
+        </div>
         <p>
           Made with ❤️ by OpenSource{" "}
           <a

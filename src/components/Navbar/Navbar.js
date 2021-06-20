@@ -67,6 +67,11 @@ function Navbar() {
               <Button className={classes.text}>add project</Button>
             </Link>
           </div>
+          <div className="links">
+          <Link to="/trending_projects" style={{ textDecoration: "none" }}>
+            <Button className={classes.text}>Trending Projects</Button>
+          </Link>
+        </div>
         </Toolbar>
       </AppBar>
     </div>
