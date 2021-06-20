@@ -5,7 +5,6 @@ import landing_bg from './../../assets/landing_bg.svg';
 import avatar from './../../assets/avatar.svg';
 import SearchBox from "../SearchBox/SearchBox";
 import StartsIcon from "@material-ui/icons/Stars";
-import TrendingProjects from "../TrendingProjects/TrendingProjects";
 
 import { Link } from "react-router-dom";
 
@@ -26,10 +25,7 @@ function Home()
           </div>
       </section>
       <SearchBox />
-      <div className="trending_projects">
-        <TrendingProjects />
-      </div>
-      <div className="best_project">
+     <div className="best_project">
         <h1 className="best_project--title">
           <StartsIcon /> Best MERN Projects
         </h1>
