@@ -50,17 +50,18 @@
     background-color: white;
     border: none;
     text-align: left;
-    padding-left: 15px;
+    padding-left: 10px;
     padding-right: 15px;
     color: #4D686C;
     border-radius: 5px;
+    font-size: large;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     position: relative;
     width: fit-content;
     height: 30px;
     top: 250px;
-    left: -33px;
+    left: -35px;
     z-index: 1;
     cursor: pointer;
 }
