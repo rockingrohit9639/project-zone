@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#000",
     textDecoration: "none",
     fontSize: "calc(1.17rem + 1.25vw)",
-    fontFamily: "QuickSand",
     fontWeight: "700",
   },
   text: {

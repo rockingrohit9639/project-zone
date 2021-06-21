@@ -4,7 +4,7 @@ footer{
   flex-wrap: wrap;
   justify-content: space-between;
   color: white !important;
-  background-color: #2D3142;
+  background-color: #3a3aad;
 }
 
 
@@ -15,13 +15,14 @@ footer a{
 .footerSection_ {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .footerSection_title_ {
-  color: white;
+  color: #FFF;
   font-weight: 700;
   letter-spacing: 1px;
+  font-size: 2rem;
+  padding-top: 25px;
 }
 
 .footerSection_ p {
@@ -36,8 +37,23 @@ footer a{
   list-style-type: none;
 }
 
+.footerRight ul li a {
+  color: #FFF;
+}
+
 .footerRight ul li {
-  background-color: #2D3142;
+  background-color: #3a3aad;
   padding-top:10px;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+  margin-left: -1rem;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
 }

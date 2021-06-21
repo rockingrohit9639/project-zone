@@ -1,3 +1,4 @@
+
 <center> <h1> Project Zone 🚀 </h1> </center>
  
 <div align="center">
@@ -21,7 +22,7 @@
  
 </div>
 
- #### Project Zone suggest users the projects they can create based on their skills.
+ #### Project Zone suggest users the projects they can create based on their skills
  
 ![project-zone](https://socialify.git.ci/rockingrohit9639/project-zone/image?descriptionEditable=&font=Source%20Code%20Pro&language=1&owner=1&pattern=Floating%20Cogs&theme=Dark)
 
@@ -52,6 +53,7 @@ Our app is in its initial stage, We will improve it a lot. 🔥
 - Firstly you have to make your own copy of the project. For that, You have to fork the repository. You can find the fork button on the top-right side of the browser window. (Refer to the image below )
 - Kindly wait till it gets forked.
 - After that copy will look like <your-user-name>/project-zone forked from rockingrohit/project-zone
+ ![step1](https://user-images.githubusercontent.com/72425181/122670266-be43ee80-d1de-11eb-9330-8d07ce2bd7ab.png)
  
 ### 🚩 Clone repository :
 - Now you have your own copy of the project. Here you have to start your work.
@@ -60,12 +62,24 @@ Our app is in its initial stage, We will improve it a lot. 🔥
 - Type the command git clone <your-fork-url>.git and hit enter.
 - Wait for few seconds till the project gets copied.
  
+ ![step2](https://user-images.githubusercontent.com/72425181/122670298-e9c6d900-d1de-11eb-8650-2dd1e206a2e6.png)
+
+ 
 
 ## Follow the Contribution Guidelines
 
 Following are the steps to guide you:
 
-* Step 1: Fork the repo and Go to your Git terminal and  clone it on your machine.
+ * Step 1: Fork <a href="https://github.com/rockingrohit9639/project-zone" target="_blank">this</a> repository.
+
+ ![step1](https://user-images.githubusercontent.com/72425181/122670349-45916200-d1df-11eb-9538-8738de17dcdb.png)
+
+ Then go to your Git terminal and  clone it on your machine.
+ <br>
+ <br>
+ ![step2](https://user-images.githubusercontent.com/72425181/122670352-4a561600-d1df-11eb-9092-ec76fecc7f94.png)
+ <br>
+
 * Step 2: Add a upstream link to main branch in your cloned repo
     ```
     git remote add upstream https://github.com/rockingrohit9639/project-zone.git
@@ -114,9 +128,14 @@ npm start
 # Preview 👀
 
 <p>
- <img src="Project_Img/Demo1_ProjectZone.png" width=40% />&ensp;&ensp;&ensp;
+ <img src="Project_Img/Demo1_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <img src="Project_Img/Demo2_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <br />
   <img src="Project_Img/Demo3_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
-
+  <img src="Project_Img/Demo4_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <br />
+  <img src="Project_Img/Demo5_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <img src="Project_Img/Demo6_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
 </p>
 
 ## 📌 Opensource Programs

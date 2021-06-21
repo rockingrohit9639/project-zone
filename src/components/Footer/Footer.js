@@ -1,34 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from "../Footer/icon.png";
 // Style Sheet
-import "./Footer.css"
+import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer>
-        <div className="footerSection_">
+      <div className="footerSection_">
+        <div className="footer-top">
+          <img src={logo} alt="logo" className="logo" />
           <h1 className="footerSection_title_">Project Zone</h1>
-          <p>Made with ❤️ by OpenSource <a href="https://github.com/rockingrohit9639/project-zone/graphs/contributors" target="_blank" rel="noreferrer">Contributors</a>.</p>
         </div>
-        <div className="footerRight">
-          <ul>
+        <p>
+          Made with ❤️ by OpenSource{" "}
+          <a
+            href="https://github.com/rockingrohit9639/project-zone/graphs/contributors"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Contributors
+          </a>
+          .
+        </p>
+      </div>
+      <div className="footerRight">
+        <ul>
           <li>
             <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/">Find Projects</Link>
-            </li>
-            <li>
-              <Link to="/login">Login/Signup</Link>
-            </li>
-            <li>
-              <Link to="/">About</Link>
-            </li>
-          </ul>
-        </div>
+          </li>
+          <li>
+            <Link to="/">Find Projects</Link>
+          </li>
+          <li>
+            <Link to="/login">Login/Signup</Link>
+          </li>
+          <li>
+            <Link to="/trendings">Trending Projects</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/">About</Link>
+          </li>
+        </ul>
+      </div>
     </footer>
   );
-}
+};
 
 export default Footer;
