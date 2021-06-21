@@ -7,7 +7,6 @@ import ProjectCategories from '../ProjectCategories/ProjectCategories';
 import SearchBox from '../SearchBox/SearchBox';
 import StartsIcon from '@material-ui/icons/Stars';
 import TrendingProjects from '../TrendingProjects/TrendingProjects';
-
 import { Link } from 'react-router-dom';
 
 function Home() {

@@ -1,10 +1,20 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+import React, { useState } from "react";
+import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
+import {
+  AppBar,
+  Toolbar,
+  Menu,
+  MenuItem,
+  Typography,
+  useMediaQuery,
+  ListItemText,
+  Button
+}
+from "@material-ui/core";
+import logo from "../Footer/icon.png";
+import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
+import { Switch as ToggleSwitch } from "antd";
 import { useDataLayerValues } from "../../datalayer";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,57 +24,204 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
-    flexGrow: 1,
-  },
   name: {
-    color: "#000",
+    color: "#fff",
     textDecoration: "none",
-    fontSize: "calc(1.17rem + 1.25vw)",
+    marginTop:3,
+    fontSize: "calc(1rem + 1vw)",
     fontWeight: "700",
+    "&:hover":{
+      color:"#fff"
+    }
   },
-  text: {
-    color: "#000",
+  text:{
+    color:"#fff",
+    textTransform:"capitalize",
+    "&:hover":{
+      color:"#6c6be8", 
+    }
+  },
+  button: {
+    color: "#fff",
+    margin:"0 5px",
+    fontWeight:'700',
+    textDecoration: "none",
     fontFamily: "QuickSand",
-  },
+    "&:hover":{
+      color:"#6c6be8", 
+      backgroundColor:"#fff",
+    }
+  }
 }));
 
-function Navbar() {
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+  <Menu
+    elevation={3}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
+  />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: '#6c6be8',
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+    '&:hover': {
+      backgroundColor: '#6c6be8',
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
+
+function Navbar({themeToggler}) {
   const classes = useStyles();
   const [{ isAuthenticated, user }] = useDataLayerValues();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Login for Menu Handling
+  const muitheme = useTheme();
+  const isMobile = useMediaQuery(muitheme.breakpoints.down("sm"));
 
   return (
-    <div className="NavWithoutToggle">
+    <div >
       <AppBar
-        position="static"
-        style={{ backgroundColor: "transparent", boxShadow: "none" }}
+        position="fixed"
+        style={{ backgroundColor: "#6c6be8", boxShadow: "none"}}
       >
-        <Toolbar>
+        <Toolbar className="NavWithToggleSwitch">
           <div className="NavHeading">
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h4" >
               <Link to="/" className={classes.name}>
+                <img src={logo} alt="logo" className="logo" />
                 Project Zone
               </Link>
             </Typography>
           </div>
-
-          {isAuthenticated ? (
-            <div className="links">
-              <Link to="/dashboard" style={{ textDecoration: "none" }}>
-                <Button className={classes.text}> Welcome {user.fname} </Button>
-              </Link>
-            </div>
-          ) : (
-            <div className="links">
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                <Button className={classes.text}>Login</Button>
-              </Link>
-            </div>
-          )}
           <div className="links">
-            <Link to="/addnew" style={{ textDecoration: "none" }}>
-              <Button className={classes.text}>add project</Button>
-            </Link>
+            {isMobile ? (
+                <>
+                <Button onClick={handleClick}>
+                   <MenuIcon/>
+                </Button>
+                <StyledMenu
+                  id="customized-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  {(isAuthenticated) ? 
+                    <Link to="/dashboard" onClick={handleClose}>
+                    <StyledMenuItem>
+                       <ListItemText primary={`Welcome ${user.fname} to Dashboard`}></ListItemText>
+                    </StyledMenuItem>
+                    </Link>
+                  : null}
+                  <Link to="/" onClick={handleClose}>
+                    <StyledMenuItem>
+                      <ListItemText primary="Home"></ListItemText>
+                    </StyledMenuItem>
+                  </Link>
+                  <Link to="/projects" onClick={handleClose}>
+                    <StyledMenuItem>
+                      <ListItemText primary="Find Projects"></ListItemText>
+                    </StyledMenuItem>
+                  </Link>
+                  {(!isAuthenticated) ? 
+                    <Link to="/login" onClick={handleClose}>
+                      <StyledMenuItem>
+                        <ListItemText primary="Login/Sign up"></ListItemText>
+                      </StyledMenuItem>
+                    </Link>
+                  : null}
+                  <Link to="/about" onClick={handleClose}>
+                    <StyledMenuItem>
+                      <ListItemText primary="About"></ListItemText>
+                    </StyledMenuItem>
+                  </Link>
+                  <Link to="/addnew" onClick={handleClose}>
+                    <StyledMenuItem>
+                      <ListItemText primary="Add New Project"></ListItemText>
+                    </StyledMenuItem>
+                  </Link>
+                  <Link to="/contact" onClick={handleClose}>
+                    <StyledMenuItem>
+                      <ListItemText primary="Contact Us"></ListItemText>
+                    </StyledMenuItem>
+                  </Link>
+                </StyledMenu>
+                </>
+            ) : (
+          <>
+          {(isAuthenticated) ? (
+             <Button className={classes.button}> 
+                 <Link to="/dashboard"  >Welcome {user.fname}  to Dashboard</Link>
+            </Button>
+          ) : null
+          }
+          <div>
+              <Button className={classes.button}> 
+                 <Link to="/" className={classes.text}>Home</Link>
+              </Button>
+          </div>
+          <div>
+              <Button className={classes.button}> 
+                 <Link to="/projects" className={classes.text}>Find Projects</Link>
+              </Button>
+          </div>
+          {(!isAuthenticated) ? (
+             <Button className={classes.button}> 
+                 <Link to="/login" className={classes.text}>Login</Link>
+            </Button>
+          ) : null
+          }
+          <div>
+              <Button className={classes.button}> 
+                 <Link to="/addnew" className={classes.text}>Add New Project</Link>
+              </Button>
+          </div>
+          <div>
+              <Button className={classes.button} > 
+                 <Link to="/about" className={classes.text}>About</Link>
+              </Button>
+          </div>
+          <div>
+              <Button className={classes.button} > 
+                 <Link to="/contact" className={classes.text}>Contact Us</Link>
+              </Button>
+          </div>
+          </>
+          )}
+          <div style={{marginRight:'5px',marginTop:'5px'}}>
+            <ToggleSwitch
+                onClick={() => themeToggler()}
+                className="toggleBtn"
+            />
+          </div>
           </div>
         </Toolbar>
       </AppBar>

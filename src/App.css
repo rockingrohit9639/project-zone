@@ -37,22 +37,21 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.NavWithoutToggle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  justify-content:space-between;
   width: 100%;
   margin-left: 0 !important;
   overflow: hidden !important;
+   
 }
 
-.NavHeading {
-  float: left !important;
-  margin-right: 50%;
+.navlinks{
+  display: flex;
+  flex-direction: row;
 }
 
 .links {
-  float: right !important;
+  display: flex;
+  flex-direction: row;
 }
+
+

@@ -32,13 +32,7 @@ function App()
       <GlobalStyles />
       <styledApp className="App">
         <Router>
-          <div className="NavWithToggleSwitch">
-            <Navbar />
-            <ToggleSwitch
-              onClick={() => themeToggler()}
-              className="toggleBtn"
-            />
-          </div>
+          <Navbar themeToggler={themeToggler}/>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/projects" component={Showprojects} />

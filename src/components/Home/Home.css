@@ -8,8 +8,9 @@
     align-items: center;
     justify-content: space-around;
     background-size:cover;
-    background:#5352ED;
+    background:#6c6be8;
     background-position: center;
+    margin-top:40px;
     margin-bottom:2%;
 }
 
@@ -42,16 +43,19 @@
 .content a {
     display: block;
     text-decoration: none;
-    background-color: #FFF;
-    color: #5352ED;
-    width: 7rem;
-    padding: 0.5rem 1rem;
+    background-color: #6c6be8;
+    color: #FFF;
+    border:1px solid #FFF;
+    border-radius:5px;
+    width: 9.5rem;
+    padding: 0.5rem 2rem;
     transition: 0.2s all;
+    font-weight: bold;
 }
 
 .content a:hover {
-    color: #FFF;
-    background-color: #5352ED;
+    color: #6c6be8;
+    background-color: #FFF;
 }
 
 .landing .image{
