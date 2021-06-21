@@ -1,95 +1,115 @@
-.section{
-    position: relative;
-}
-
-.container{
-    height: 580px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.parent_div{
-    background-color:rgb(248, 246, 246);
-    height: 530px;
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+.section {
+    background-color: #9796F0;
+    background-image: url("Illustration.svg");
+    background-repeat: no-repeat;
+    position: absolute;
     width: 700px;
-    border-radius: 10px;
-    border: silver;
-    outline: none;
-    box-shadow: 10px 15px 15px -12px hsl(0, 1%, 28%);
-}
-.child_div{
-    background-color:#ff3333;
-    width: 500px;
-    height: 60px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    text-align: center;
-    margin-top: -30px;
-    margin-left: 50%;
-    transform: translate(-50%);
-    box-shadow: 2px 14px 14px -12px rgb(131, 127, 127);
-    cursor: pointer;             
-}
-.h1tag{
-    font-size: 2rem;
-    text-transform: capitalize;
-    font-weight: bolder;
-    color: #FFF;
-    text-align: center;
-}
-.form{
-    margin-top: 20px;
-    padding: 60px;
-}
-.labels{
-    color: black;
-    font-size: 22px;
-    font-weight: bold;
-    text-transform: capitalize;
-    letter-spacing: 0.2rem;
-}
-.form-control{
-    border: none;
-    outline: none;
-}
-.btn{
-    float: right;
-    width: 140px;
-    padding: 10px;
-    background-color: #ff3333;
-}
-.btn span{
-    font-size: 20px;
-    font-weight: bolder;
-    text-align: center;
-    padding: 10px;
+    height: 100%;
+    left: 0px;
+    top: 0px;
 }
 
-/* Responsive Contact-Us*/
-@media (max-width:520px){
-    .parent_div{
-        height: 530px;
-        width: 500px;
-    }
-    .child_div{
-        width: 300px;
-        height: 60px;
-    }
+.labels {
+    font-size: 30px;
+    top: 40px;
+    position: absolute;
+    left: 750px;
+    width: 100px;
+    white-space: nowrap;
+    color: #9796F0;
 }
-@media (max-width:320px){
-    .h1tag{
-        font-size: 25px;
-    }
-    .form-control{
-        width: 350px;
-    }
-    .child_div{
-        padding: 15px;
-        width: 200px;
-        height: 60px;
-    }
-    .btn{
-        margin-right: 15px;
-    }
+
+.box {
+    position: absolute;
+    width: 500px;
+    height: 40px;
+    padding-left: 15px;
+    left: 770px;
+    top: 90px;
+    background: #9796F0;
+    border-color: inherit;
+    border-radius: 15px;
+}
+
+.labels1 {
+    font-size: 30px;
+    top: 165px;
+    position: absolute;
+    left: 750px;
+    width: 100px;
+    white-space: nowrap;
+    color: #9796F0;
+}
+
+.box1 {
+    position: absolute;
+    width: 500px;
+    height: 40px;
+    padding-left: 15px;
+    left: 770px;
+    top: 220px;
+    background: #9796F0;
+    border-color: inherit;
+    border-radius: 15px;
+}
+
+.labels2 {
+    font-size: 30px;
+    top: 285px;
+    position: absolute;
+    left: 750px;
+    width: 100px;
+    white-space: nowrap;
+    color: #9796F0;
+}
+
+.box2 {
+    position: absolute;
+    width: 500px;
+    padding-left: 15px;
+    padding-top: 10px;
+    height: 150px;
+    left: 770px;
+    top: 335px;
+    background: #9796F0;
+    border-color: #9796F0;
+    border-radius: 15px;
+}
+
+input[type=text], select, textarea {
+    margin-top: 6px;
+    margin-bottom: 16px;
+    border-color: inherit;
+    border-radius: 15px;
+    resize: vertical;
+}
+
+button[type=submit] {
+    background-color: #9796F0;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type=submit]:hover {
+    background-color: #47e2e7;
+}
+
+.btn {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+    letter-spacing: 0.04em;
+    color: #F3F7FF;
+    position: absolute;
+    width: 201px;
+    height: 77px;
+    left: 910px;
+    top: 550px;
+    border-radius: 20px;
+    border-color: inherit;
 }
