@@ -1,28 +1,30 @@
 import React from 'react';
 import './contactus.css';
 
-export default function ContactUs() {
+export default function ContactUs()
+{
     return (
-        <section className="section">
-            <div className="container">
-                    <form className="form">
-                        <div className="form-group-name">
-                            <label className="labels">Full Name</label>
-                            <input type="text" className="box" placeholder="Project Zone" />
-                        </div>
-                        
-                        <div className="form-group">
-                            <label className="labels1">Email</label>
-                            <input type="email" className="box1" id="exampleFormControlInput1" placeholder="name@example.com" />
-                        </div>
+        <section className="contact_section">
+            <div className="contact__left">
 
-                        <div className="form-group">
-                            <label className="labels2">Message </label>
-                            <textarea className="box2" id="exampleFormControlTextarea1"  placeholder="Message" rows="3"></textarea>
-                        </div>
+            </div>
+            <div className="contact__right">
+                <div className="inputBox">
+                    <label className="label">Full Name</label>
+                    <input type="text" className="contact__input" placeholder="E.g. Rohit Saini" />
+                </div>
 
-                        <button type="submit" className="btn"><span>Send</span></button>
-                    </form>
+                <div className="inputBox">
+                    <label className="label">Email</label>
+                    <input type="email" className="contact__input"  placeholder="e.g name@example.com" />
+                </div>
+
+                <div className="inputBox">
+                    <label className="label">Message </label>
+                    <textarea className="contact__textarea" placeholder="Message" rows="3"></textarea>
+                </div>
+
+                <button className="submitBtn"><span>Send</span></button>
             </div>
         </section>
     )
