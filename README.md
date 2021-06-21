@@ -128,9 +128,14 @@ npm start
 # Preview 👀
 
 <p>
- <img src="Project_Img/Demo1_ProjectZone.png" width=40% />&ensp;&ensp;&ensp;
+ <img src="Project_Img/Demo1_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <img src="Project_Img/Demo2_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <br />
   <img src="Project_Img/Demo3_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
-
+  <img src="Project_Img/Demo4_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <br />
+  <img src="Project_Img/Demo5_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <img src="Project_Img/Demo6_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
 </p>
 
 ## 📌 Opensource Programs
