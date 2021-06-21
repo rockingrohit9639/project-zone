@@ -2,6 +2,3 @@
 
 # dependencies
 /node_modules
-
-# Config
-config/config.env
