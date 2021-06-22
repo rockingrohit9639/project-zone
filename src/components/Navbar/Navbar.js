@@ -188,45 +188,45 @@ function Navbar({ themeToggler }) {
                 <div>
                   <Button className={classes.button}>
                     <Link to="/" className={classes.text}>
-                      Home
+                      <i class="fa fa-home"></i>Home
+                    </Link>
+                  </Button>
+                </div>
+                  <div>
+                  <Button className={classes.button}>
+                    <Link to="/about" className={classes.text}>
+                      <i class="fa fa-user"></i>About
                     </Link>
                   </Button>
                 </div>
                 <div>
                   <Button className={classes.button}>
                     <Link to="/projects" className={classes.text}>
-                      Find Projects
+                      <i class="fa fa-file"></i>Find Projects
                     </Link>
                   </Button>
                 </div>
-                {!isAuthenticated ? (
-                  <Button className={classes.button}>
-                    <Link to="/login" className={classes.text}>
-                      Login
-                    </Link>
-                  </Button>
-                ) : null}
                 <div>
                   <Button className={classes.button}>
                     <Link to="/addnew" className={classes.text}>
-                      Add New Project
-                    </Link>
-                  </Button>
-                </div>
-                <div>
-                  <Button className={classes.button}>
-                    <Link to="/about" className={classes.text}>
-                      About
+                      <i class="fa fa-plus"></i>Add New Project
                     </Link>
                   </Button>
                 </div>
                 <div>
                   <Button className={classes.button}>
                     <Link to="/contact" className={classes.text}>
-                      Contact Us
+                      <i class="fa fa-id-badge"></i>Contact Us
                     </Link>
                   </Button>
                 </div>
+                  {!isAuthenticated ? (
+                  <Link to="/login" className="lobut">
+                    
+                      <i class="fa fa-sign-in"></i>Login
+                     
+                    </Link>
+                ) : null}
               </>
             )}
             <div style={{ marginRight: "5px", marginTop: "5px" }}>
