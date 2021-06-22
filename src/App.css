@@ -53,5 +53,25 @@
   display: flex;
   flex-direction: row;
 }
+.fa-home,.fa-user,.fa-file,.fa-plus,.fa-id-badge,.fa-sign-in{
+    padding-right: 4px;
+    font-size: 20px;
+}
+.lobut{
+  color: white; 
+  font-family: QuickSand;
+  font-weight: 700;
+  letter-spacing: 0.02857em;
+  background-color: #ff8080;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 8px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.lobut:hover {
+  background-color: transparent;
+  color: #fff;
+}
 
 
