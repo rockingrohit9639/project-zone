@@ -8,9 +8,8 @@ import {
   Typography,
   useMediaQuery,
   ListItemText,
-  Button
-}
-from "@material-ui/core";
+  Button,
+} from "@material-ui/core";
 import logo from "../Footer/icon.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
@@ -27,48 +26,48 @@ const useStyles = makeStyles((theme) => ({
   name: {
     color: "#fff",
     textDecoration: "none",
-    marginTop:3,
+    marginTop: 3,
     fontSize: "calc(1rem + 1vw)",
     fontWeight: "700",
-    "&:hover":{
-      color:"#fff"
-    }
+    "&:hover": {
+      color: "#fff",
+    },
   },
-  text:{
-    color:"#fff",
-    textTransform:"capitalize",
-    "&:hover":{
-      color:"#6c6be8", 
-    }
+  text: {
+    color: "#fff",
+    textTransform: "capitalize",
+    "&:hover": {
+      color: "#6c6be8",
+    },
   },
   button: {
     color: "#fff",
-    margin:"0 5px",
-    fontWeight:'700',
+    margin: "0 5px",
+    fontWeight: "700",
     textDecoration: "none",
     fontFamily: "QuickSand",
-    "&:hover":{
-      color:"#6c6be8", 
-      backgroundColor:"#fff",
-    }
-  }
+    "&:hover": {
+      color: "#6c6be8",
+      backgroundColor: "#fff",
+    },
+  },
 }));
 
 const StyledMenu = withStyles({
   paper: {
-    border: '1px solid #d3d4d5',
+    border: "1px solid #d3d4d5",
   },
 })((props) => (
   <Menu
     elevation={3}
     getContentAnchorEl={null}
     anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'center',
+      vertical: "bottom",
+      horizontal: "center",
     }}
     transformOrigin={{
-      vertical: 'top',
-      horizontal: 'center',
+      vertical: "top",
+      horizontal: "center",
     }}
     {...props}
   />
@@ -76,22 +75,22 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
-    '&:focus': {
-      backgroundColor: '#6c6be8',
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+    "&:focus": {
+      backgroundColor: "#6c6be8",
+      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         color: theme.palette.common.white,
       },
     },
-    '&:hover': {
-      backgroundColor: '#6c6be8',
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+    "&:hover": {
+      backgroundColor: "#6c6be8",
+      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         color: theme.palette.common.white,
       },
     },
   },
 }))(MenuItem);
 
-function Navbar({themeToggler}) {
+function Navbar({ themeToggler }) {
   const classes = useStyles();
   const [{ isAuthenticated, user }] = useDataLayerValues();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -107,14 +106,14 @@ function Navbar({themeToggler}) {
   const isMobile = useMediaQuery(muitheme.breakpoints.down("sm"));
 
   return (
-    <div >
+    <div>
       <AppBar
         position="fixed"
-        style={{ backgroundColor: "#6c6be8", boxShadow: "none"}}
+        style={{ backgroundColor: "#6f6ee1", boxShadow: "none" }}
       >
         <Toolbar className="NavWithToggleSwitch">
           <div className="NavHeading">
-            <Typography variant="h4" >
+            <Typography variant="h4">
               <Link to="/" className={classes.name}>
                 <img src={logo} alt="logo" className="logo" />
                 Project Zone
@@ -123,9 +122,9 @@ function Navbar({themeToggler}) {
           </div>
           <div className="links">
             {isMobile ? (
-                <>
+              <>
                 <Button onClick={handleClick}>
-                   <MenuIcon/>
+                  <MenuIcon />
                 </Button>
                 <StyledMenu
                   id="customized-menu"
@@ -134,13 +133,15 @@ function Navbar({themeToggler}) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {(isAuthenticated) ? 
+                  {isAuthenticated ? (
                     <Link to="/dashboard" onClick={handleClose}>
-                    <StyledMenuItem>
-                       <ListItemText primary={`Welcome ${user.fname} to Dashboard`}></ListItemText>
-                    </StyledMenuItem>
+                      <StyledMenuItem>
+                        <ListItemText
+                          primary={`Welcome ${user.fname} to Dashboard`}
+                        ></ListItemText>
+                      </StyledMenuItem>
                     </Link>
-                  : null}
+                  ) : null}
                   <Link to="/" onClick={handleClose}>
                     <StyledMenuItem>
                       <ListItemText primary="Home"></ListItemText>
@@ -151,13 +152,13 @@ function Navbar({themeToggler}) {
                       <ListItemText primary="Find Projects"></ListItemText>
                     </StyledMenuItem>
                   </Link>
-                  {(!isAuthenticated) ? 
+                  {!isAuthenticated ? (
                     <Link to="/login" onClick={handleClose}>
                       <StyledMenuItem>
                         <ListItemText primary="Login/Sign up"></ListItemText>
                       </StyledMenuItem>
                     </Link>
-                  : null}
+                  ) : null}
                   <Link to="/about" onClick={handleClose}>
                     <StyledMenuItem>
                       <ListItemText primary="About"></ListItemText>
@@ -174,54 +175,66 @@ function Navbar({themeToggler}) {
                     </StyledMenuItem>
                   </Link>
                 </StyledMenu>
-                </>
+              </>
             ) : (
-          <>
-          {(isAuthenticated) ? (
-             <Button className={classes.button}> 
-                 <Link to="/dashboard"  >Welcome {user.fname}  to Dashboard</Link>
-            </Button>
-          ) : null
-          }
-          <div>
-              <Button className={classes.button}> 
-                 <Link to="/" className={classes.text}>Home</Link>
-              </Button>
-          </div>
-          <div>
-              <Button className={classes.button}> 
-                 <Link to="/projects" className={classes.text}>Find Projects</Link>
-              </Button>
-          </div>
-          {(!isAuthenticated) ? (
-             <Button className={classes.button}> 
-                 <Link to="/login" className={classes.text}>Login</Link>
-            </Button>
-          ) : null
-          }
-          <div>
-              <Button className={classes.button}> 
-                 <Link to="/addnew" className={classes.text}>Add New Project</Link>
-              </Button>
-          </div>
-          <div>
-              <Button className={classes.button} > 
-                 <Link to="/about" className={classes.text}>About</Link>
-              </Button>
-          </div>
-          <div>
-              <Button className={classes.button} > 
-                 <Link to="/contact" className={classes.text}>Contact Us</Link>
-              </Button>
-          </div>
-          </>
-          )}
-          <div style={{marginRight:'5px',marginTop:'5px'}}>
-            <ToggleSwitch
+              <>
+                {isAuthenticated ? (
+                  <Button className={classes.button}>
+                    <Link to="/dashboard">
+                      Welcome {user.fname} to Dashboard
+                    </Link>
+                  </Button>
+                ) : null}
+                <div>
+                  <Button className={classes.button}>
+                    <Link to="/" className={classes.text}>
+                      Home
+                    </Link>
+                  </Button>
+                </div>
+                <div>
+                  <Button className={classes.button}>
+                    <Link to="/projects" className={classes.text}>
+                      Find Projects
+                    </Link>
+                  </Button>
+                </div>
+                {!isAuthenticated ? (
+                  <Button className={classes.button}>
+                    <Link to="/login" className={classes.text}>
+                      Login
+                    </Link>
+                  </Button>
+                ) : null}
+                <div>
+                  <Button className={classes.button}>
+                    <Link to="/addnew" className={classes.text}>
+                      Add New Project
+                    </Link>
+                  </Button>
+                </div>
+                <div>
+                  <Button className={classes.button}>
+                    <Link to="/about" className={classes.text}>
+                      About
+                    </Link>
+                  </Button>
+                </div>
+                <div>
+                  <Button className={classes.button}>
+                    <Link to="/contact" className={classes.text}>
+                      Contact Us
+                    </Link>
+                  </Button>
+                </div>
+              </>
+            )}
+            <div style={{ marginRight: "5px", marginTop: "5px" }}>
+              <ToggleSwitch
                 onClick={() => themeToggler()}
                 className="toggleBtn"
-            />
-          </div>
+              />
+            </div>
           </div>
         </Toolbar>
       </AppBar>

@@ -1,6 +1,5 @@
 .home {
     width: 100%;
-    min-height: 90vh;
 }
 
 .landing{
@@ -10,7 +9,7 @@
     background-size:cover;
     background:#6c6be8;
     background-position: center;
-    margin-top:40px;
+    margin-top:20px;
     margin-bottom:2%;
 }
 
