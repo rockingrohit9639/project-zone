@@ -1,7 +1,7 @@
 .contact__left {
   width: 40%;
   height: 100vh;
-  background-color: #9796f0;
+  background-color: #6f6ee1;
   background-image: url("Illustration.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -31,7 +31,7 @@
 
 .contact__input {
   margin-top: 1rem;
-  padding: 0.5rem;
+  padding: 0.7rem;
   border: none;
   outline: none;
   background-color: #9796f0;

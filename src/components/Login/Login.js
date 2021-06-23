@@ -106,13 +106,13 @@ const NewLogin = () => {
             <div className="forminput">
                 <label htmlFor="email">Email Address</label>
                 <input type="email" id="email"  placeholder="Enter your email address"
-                    name="email" value={email} onChange={handleChange}
+                    name="email" value={email} className="login__input" onChange={handleChange}
                 />
             </div>
             <div className="forminput">
                 <label htmlFor="password">Password</label>
                 <input type={passwordShown ? "text" : "password"} id="password"  placeholder="Enter password"
-                    name="password" value={password} onChange={handleChange}
+                    name="password" value={password} className="login__input" onChange={handleChange}
                 />
                 <i className="fa fa-eye" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
             </div>
