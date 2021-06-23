@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import loginavatar from './../../assets/loginavatar.svg';
 import "./Login.css";
 
-const NewLogin = () => {
+const Login = () => {
 
   const history = useHistory();
   const [loading, setLoading] = useState("");
@@ -149,4 +149,4 @@ const NewLogin = () => {
   );
 };
 
-export default NewLogin;
+export default Login;
