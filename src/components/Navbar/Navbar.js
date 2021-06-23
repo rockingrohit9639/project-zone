@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   name: {
+    fontFamily: "Poppins",
     color: "#fff",
     textDecoration: "none",
     marginTop: 3,
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   text: {
+    fontFamily: "Poppins",
     color: "#fff",
     textTransform: "capitalize",
     "&:hover": {
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 5px",
     fontWeight: "700",
     textDecoration: "none",
-    fontFamily: "QuickSand",
+    fontFamily: "Poppins",
     "&:hover": {
       color: "#6c6be8",
       backgroundColor: "#fff",
@@ -188,43 +190,41 @@ function Navbar({ themeToggler }) {
                 <div>
                   <Button className={classes.button}>
                     <Link to="/" className={classes.text}>
-                      <i class="fa fa-home"></i>Home
+                      <i className="fa fa-home"></i>Home
                     </Link>
                   </Button>
                 </div>
                   <div>
                   <Button className={classes.button}>
                     <Link to="/about" className={classes.text}>
-                      <i class="fa fa-user"></i>About
+                      <i className="fa fa-user"></i>About
                     </Link>
                   </Button>
                 </div>
                 <div>
                   <Button className={classes.button}>
                     <Link to="/projects" className={classes.text}>
-                      <i class="fa fa-file"></i>Find Projects
+                      <i className="fa fa-file"></i>Find Projects
                     </Link>
                   </Button>
                 </div>
                 <div>
                   <Button className={classes.button}>
                     <Link to="/addnew" className={classes.text}>
-                      <i class="fa fa-plus"></i>Add New Project
+                      <i className="fa fa-plus"></i>Add New Project
                     </Link>
                   </Button>
                 </div>
                 <div>
                   <Button className={classes.button}>
                     <Link to="/contact" className={classes.text}>
-                      <i class="fa fa-id-badge"></i>Contact Us
+                      <i className="fa fa-id-badge"></i>Contact Us
                     </Link>
                   </Button>
                 </div>
                   {!isAuthenticated ? (
                   <Link to="/login" className="lobut">
-                    
-                      <i class="fa fa-sign-in"></i>Login
-                     
+                      <i className="fa fa-sign-in"></i>Login
                     </Link>
                 ) : null}
               </>
