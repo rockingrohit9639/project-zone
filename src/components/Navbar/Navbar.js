@@ -8,6 +8,7 @@ import {
   Typography,
   useMediaQuery,
   ListItemText,
+  ListItemIcon,
   Button,
 } from "@material-ui/core";
 import logo from "../Footer/icon.png";
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     color: "#fff",
-    margin: "0 5px",
+    margin: "0 3px",
     fontWeight: "700",
     textDecoration: "none",
     fontFamily: "Poppins",
@@ -77,6 +78,12 @@ const StyledMenu = withStyles({
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
+    "& .MuiListItemIcon-root":{
+      minWidth:'30px'
+    },
+    "& .MuiListItemIcon-root, & .MuiListItemText-primary":{
+      color:"#5352ed"
+    },
     "&:focus": {
       backgroundColor: "#6c6be8",
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
@@ -135,44 +142,67 @@ function Navbar({ themeToggler }) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {isAuthenticated ? (
-                    <Link to="/dashboard" onClick={handleClose}>
-                      <StyledMenuItem>
-                        <ListItemText
-                          primary={`Welcome ${user.fname} to Dashboard`}
-                        ></ListItemText>
-                      </StyledMenuItem>
-                    </Link>
-                  ) : null}
                   <Link to="/" onClick={handleClose}>
                     <StyledMenuItem>
+                      <ListItemIcon>
+                         <i className="fa fa-home"></i>
+                      </ListItemIcon>
                       <ListItemText primary="Home"></ListItemText>
                     </StyledMenuItem>
                   </Link>
+                  {isAuthenticated ? 
+                    <Link to="/dashboard" onClick={handleClose}>
+                      <StyledMenuItem>
+                        <ListItemIcon>
+                          <i className="fa fa-user-circle-o"></i>
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={`Dashboard`}
+                        ></ListItemText>
+                      </StyledMenuItem>
+                    </Link>
+                   : null}
                   <Link to="/projects" onClick={handleClose}>
                     <StyledMenuItem>
+                      <ListItemIcon>
+                         <i className="fa fa-file"></i>
+                      </ListItemIcon>
                       <ListItemText primary="Find Projects"></ListItemText>
                     </StyledMenuItem>
                   </Link>
-                  {!isAuthenticated ? (
+                  {!isAuthenticated ? 
                     <Link to="/login" onClick={handleClose}>
                       <StyledMenuItem>
+                        <ListItemIcon>
+                          <i className="fa fa-sign-in"></i>
+                        </ListItemIcon>
                         <ListItemText primary="Login/Sign up"></ListItemText>
                       </StyledMenuItem>
                     </Link>
-                  ) : null}
+                   : null}
                   <Link to="/about" onClick={handleClose}>
                     <StyledMenuItem>
+                      <ListItemIcon>
+                         <i className="fa fa-users"></i>
+                      </ListItemIcon>
                       <ListItemText primary="About"></ListItemText>
                     </StyledMenuItem>
                   </Link>
+                  {isAuthenticated ?
                   <Link to="/addnew" onClick={handleClose}>
                     <StyledMenuItem>
+                      <ListItemIcon>
+                         <i className="fa fa-plus"></i>
+                      </ListItemIcon>
                       <ListItemText primary="Add New Project"></ListItemText>
                     </StyledMenuItem>
                   </Link>
+                  : null}
                   <Link to="/contact" onClick={handleClose}>
                     <StyledMenuItem>
+                      <ListItemIcon>
+                         <i className="fa fa-id-badge"></i>
+                      </ListItemIcon>
                       <ListItemText primary="Contact Us"></ListItemText>
                     </StyledMenuItem>
                   </Link>
@@ -180,13 +210,6 @@ function Navbar({ themeToggler }) {
               </>
             ) : (
               <>
-                {isAuthenticated ? (
-                  <Button className={classes.button}>
-                    <Link to="/dashboard">
-                      Welcome {user.fname} to Dashboard
-                    </Link>
-                  </Button>
-                ) : null}
                 <div>
                   <Button className={classes.button}>
                     <Link to="/" className={classes.text}>
@@ -194,10 +217,17 @@ function Navbar({ themeToggler }) {
                     </Link>
                   </Button>
                 </div>
-                  <div>
+                {isAuthenticated ? (
+                  <Button className={classes.button}>
+                    <Link to="/dashboard" className={classes.text}>
+                    <i className="fa fa-user-circle-o"></i> Dashboard
+                    </Link>
+                  </Button>
+                ) : null}
+                <div>
                   <Button className={classes.button}>
                     <Link to="/about" className={classes.text}>
-                      <i className="fa fa-user"></i>About
+                      <i className="fa fa-users"></i> About
                     </Link>
                   </Button>
                 </div>
@@ -208,6 +238,7 @@ function Navbar({ themeToggler }) {
                     </Link>
                   </Button>
                 </div>
+                {isAuthenticated ?
                 <div>
                   <Button className={classes.button}>
                     <Link to="/addnew" className={classes.text}>
@@ -215,6 +246,7 @@ function Navbar({ themeToggler }) {
                     </Link>
                   </Button>
                 </div>
+                : null}
                 <div>
                   <Button className={classes.button}>
                     <Link to="/contact" className={classes.text}>
@@ -225,11 +257,11 @@ function Navbar({ themeToggler }) {
                   {!isAuthenticated ? (
                   <Link to="/login" className="lobut">
                       <i className="fa fa-sign-in"></i>Login
-                    </Link>
+                  </Link>
                 ) : null}
               </>
             )}
-            <div style={{ marginRight: "5px", marginTop: "5px" }}>
+            <div style={{ marginTop: "5px" }}>
               <ToggleSwitch
                 onClick={() => themeToggler()}
                 className="toggleBtn"
