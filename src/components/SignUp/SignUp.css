@@ -1,0 +1,75 @@
+.signin{
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    max-height:98vh;
+    font-family: 'Poppins';
+    margin-top: 25px;
+}
+.signinform {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    align-items: left;
+    justify-content: center;
+    margin: 0 auto;
+    width: 50%;
+    max-width: 50vw;
+    max-height: 98vh;
+    margin-top: 50px;
+  }
+  .signinform h2 {
+    font-weight: bold;
+    color:  #5352ED;
+  }
+ .signinform {
+    width: fit-content;
+  }
+ 
+.btns{
+    margin-top:30px;
+  }
+  .signup{
+border:2px solid #5352ED;
+background-color:#5352ED;
+cursor:pointer;
+color:#fff;
+margin-right:20px;
+padding:10px 16px;
+box-shadow:-1px 3px 3px rgba(0,0,0,0.4)
+}
+
+.Login{
+padding:10px 16px;
+border:2px solid #5352ED;
+background-color:#fff;
+}
+
+.social_signin{
+display:flex;
+margin-top:30px;
+}
+ .google{
+margin-left:10px;
+ font-weight:bold;
+  }
+@media screen and (max-width:960px){
+ .signup,.Login{
+   padding:6px 12px;
+ }
+ .btns,.social_signin{
+   margin-top:10px;
+    }
+           
+  }
+ .signupimage{
+    max-width:50vw;
+    padding:7%;
+    max-height:98vh;
+    align-items:center;
+  }
+  .signupimage img {
+    height: 100%;
+    width: 100%;
+  }
