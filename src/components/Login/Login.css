@@ -3,7 +3,7 @@
   flex-direction:row;
   align-items:center;
   justify-content:center;
-  max-height:98vh;
+  height:100vh;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -45,6 +45,7 @@
   position: absolute;
   left:20px;
   top:0;
+  font-size: 0.7rem;
 }
 
 .forminput input{
@@ -53,6 +54,10 @@
   outline:none;
   border:none;
   color:#5352ED;
+}
+
+.forminput input::placeholder {
+  color: #CCC;
 }
 
 .forminput input:focus{

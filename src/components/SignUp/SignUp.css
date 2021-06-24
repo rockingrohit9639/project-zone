@@ -3,10 +3,17 @@
     flex-direction:row;
     align-items:center;
     justify-content:center;
-    max-height:98vh;
+    min-height: 100vh;
     font-family: 'Poppins';
     margin-top: 25px;
 }
+
+.span_welcome {
+  font-size: 0.8rem;
+  color: #0e0e0ec9;
+  font-weight: 100;
+}
+
 .signinform {
     display: flex;
     flex-direction: column;
@@ -66,7 +73,8 @@ margin-left:10px;
  .signupimage{
     max-width:50vw;
     padding:7%;
-    max-height:98vh;
+    max-height:100vh;
+    background-color:#EAF2FD;
     align-items:center;
   }
   .signupimage img {
