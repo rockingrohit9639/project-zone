@@ -34,15 +34,22 @@ function App()
         <Router>
           <Navbar themeToggler={themeToggler}/>
           <Switch>
+            {/* Project realted routes */}
             <Route exact path="/" component={Home} />
             <Route exact path="/projects" component={Showprojects} />
+            <Route exact path="/trendings" component={TrendingProjects}/>
+            <Route exact path="/projectdetails" component={ProjectDetails}/>
+
+            {/* Auth related routes  */}
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/callback" component={Callback} />
+
+            {/* Add new project route */}
             <Route exact path="/addnew" component={AddNewProject} />
-            <Route exact path="/projectdetails" component={ProjectDetails}/>
+
+            {/* Other routes  */}
             <Route exact path="/contact" component={ContactUs}/>
-            <Route exact path="/trendings" component={TrendingProjects}/>
           </Switch>
           <Footer />
         </Router>
