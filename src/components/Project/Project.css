@@ -1,13 +1,23 @@
 .project {
-  width: clamp(20rem, 20rem, 30rem);
-  min-height: 18rem;
-  padding: 2em;
+  margin-right:1rem;
+  max-width:21rem;
+  height:auto;
   position: relative;
   margin-top: 2rem;
+  align-items:flex-start;
   cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: transform .2s;
+  box-shadow: 0 3px 5px 0px rgba(50, 50, 50, 0.75);
+  background-color:#fff;
+  transition: transform .3s;
+}
+
+.cardimg{
+  width:100%;
+  height:auto;
+}
+
+.card-content{
+  padding:1rem;
 }
 
 .title-flexbox {
@@ -15,67 +25,76 @@
   justify-content: space-between;
 }
 
+.title{
+  width:90%;
+  min-height:50px;
+  margin:0;
+}
+
 .share-img {
-  width: 25px;
-  height: 25px;
-text-align: right;
+  width:25px;
+  height:25px;
 }
 
 .project:hover {
-  background-color: rgba(221, 220, 220, 0.1);
-  border-color: #ff0000;
-  transform: scale(0.9);
-  box-shadow: 0 0 11px rgba(33,33,33,.4); 
+  transform: scale(1.025);
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+.descr{
+  margin:0;
+  width:100%;
+  margin:0.5rem 0;
+  min-height:90px;
+  position:relative;
 }
 
 .description {
-  margin-top: 0.5rem;
+  margin:0;
+  max-height:65px;
 }
 
-.skills {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-  padding: 1rem;
-  background-color: rgba(192,188,188,.219);
+.read-more {
+  text-align: right;
+  margin: 0;
+  position:absolute;
+  bottom:0;
+  right:0;
+  font-size: 14px;
+  font-weight: 700;
 }
 
-.skill {
-  color: #fff;
-  padding: 0.2em 0.5em;
-  border-radius: 4px;
-  margin-left: 0.5em;
-  transition: all 0.1s;
-  cursor: pointer;
-  margin-top: 0.5em;
+.read-more:hover {
+  text-decoration: underline;
 }
-
 
 .level {
   display: flex;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
+  margin:0;
 }
 
 .level label {
   font-weight: bold;
 }
 
-.descr {
+.skills {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
 }
 
-.read-more {
-  text-align: right;
-  margin: 0;
-  color: #0a1d37;
-  margin-top: 0.4rem;
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: underline;
+.skill {
+  color: #fff;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  margin-right: 0.5em;
+  transition: all 0.1s;
+  cursor: pointer;
 }
-.read-more:hover {
-  font-size: 14.5px;
-  color: #343a40d5;
-}
+
+
+
+
