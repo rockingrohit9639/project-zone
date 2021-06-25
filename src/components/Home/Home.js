@@ -62,13 +62,6 @@ function Home() {
             level='Advanced'
             rating={3}
           />
-          <Project
-            title='Virtual Queue Management System'
-            desc=''
-            skills={['mongodb', 'express', 'react', 'node']}
-            level='Advanced'
-            rating={2}
-          />
         </div>
       </div>
 
@@ -98,13 +91,7 @@ function Home() {
             level='Advanced'
             rating={5}
           />
-          <Project
-            title='Automatic Birthdays Mailer'
-            desc=''
-            skills={['python', 'django']}
-            level='Intermediate'
-            rating={4}
-          />
+
         </div>
       </div>
 
@@ -134,13 +121,7 @@ function Home() {
             level='Advanced'
             rating={4}
           />
-          <Project
-            title='ID Card Generator'
-            desc=''
-            skills={['javascript']}
-            level='Intermediate'
-            rating={4}
-          />
+
          </div>
        </div>
       </div>
