@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { magic } from "../../magic";
 import "./SignUp.css";
 import signupavatar from './../../assets/signupavatar.svg';
+import { signup } from '../../axios/instance';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -103,16 +104,8 @@ export default function SignUp()
     }
     else
     {
-      const userData = {
-        ...user,
-        fname: firstName,
-        lname: lastName,
-        email: email,
-        password: password
-      };
-
       clearData();
-      setUserAuth(userData);
+      setUserAuth(firstName , lastName , email , password);
     }
   };
 
@@ -127,21 +120,40 @@ export default function SignUp()
   };
   const [passwordShown] = useState(false);
 
-  const setUserAuth = (userData) =>
-  {
-
-    dispatch({
-      type: actions.SET_USER,
-      user: userData,
-    });
-
-    dispatch({
-      type: actions.SET_AUTH,
-      isAuthenticated: true,
-    });
-
-    history.push("/");
-  }
+const setUserAuth = async (firstName, lastName, email, password) => {
+    const userData = {
+      ...user,
+      fname: firstName,
+      lname: lastName,
+      email: email,
+      password: password,
+    };
+    const body = {
+      firstname: firstName,
+      lastname: lastName,
+      email: email,
+      password: password,
+    };
+    try {
+      const res = await signup(body);
+      if (!res.data.error) {
+        localStorage.setItem('tokken', res.data.accesstoken);
+        dispatch({
+          type: 'SET_AUTH',
+          isAuthenticated: true,
+        });
+        dispatch({
+          type: 'SET_USER',
+          user: userData,
+        });
+        console.log(userData);
+      }
+    } catch (err) {
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
+      }
+    }
+  };
 
   return (
     <div className="signin">
@@ -189,9 +201,6 @@ export default function SignUp()
           <p className="blue google" onClick={handleSocialLogin}>Google</p>
         </div>
       </form>
-
-
-
     </div>
   );
 }

@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
-import
-  {
-    AppBar,
-    Toolbar,
-    Menu,
-    MenuItem,
-    Typography,
-    useMediaQuery,
-    ListItemText,
-    ListItemIcon,
-    Button,
-  } from "@material-ui/core";
-import logo from "../Footer/icon.png";
-import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
-import { Switch as ToggleSwitch } from "antd";
-import { useDataLayerValues } from "../../datalayer";
+import React, { useState } from 'react';
+import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import {
+  AppBar,
+  Toolbar,
+  Menu,
+  MenuItem,
+  Typography,
+  useMediaQuery,
+   ListItemIcon,
+  ListItemText,
+  Button,
+} from '@material-ui/core';
+import logo from '../Footer/icon.png';
+import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
+import { Switch as ToggleSwitch } from 'antd';
+import { useDataLayerValues } from '../../datalayer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,22 +25,22 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   name: {
-    fontFamily: "Poppins",
-    color: "#fff",
-    textDecoration: "none",
+    fontFamily: 'Poppins',
+    color: '#fff',
+    textDecoration: 'none',
     marginTop: 3,
-    fontSize: "calc(1rem + 1vw)",
-    fontWeight: "700",
-    "&:hover": {
-      color: "#fff",
+    fontSize: 'calc(1rem + 1vw)',
+    fontWeight: '700',
+    '&:hover': {
+      color: '#fff',
     },
   },
   text: {
-    fontFamily: "Poppins",
-    color: "#fff",
-    textTransform: "capitalize",
-    "&:hover": {
-      color: "#6c6be8",
+    fontFamily: 'Poppins',
+    color: '#fff',
+    textTransform: 'capitalize',
+    '&:hover': {
+      color: '#6c6be8',
     },
   },
   button: {
@@ -59,19 +58,19 @@ const useStyles = makeStyles((theme) => ({
 
 const StyledMenu = withStyles({
   paper: {
-    border: "1px solid #d3d4d5",
+    border: '1px solid #d3d4d5',
   },
 })((props) => (
   <Menu
     elevation={3}
     getContentAnchorEl={null}
     anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
+      vertical: 'bottom',
+      horizontal: 'center',
     }}
     transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
+      vertical: 'top',
+      horizontal: 'center',
     }}
     {...props}
   />
@@ -91,9 +90,9 @@ const StyledMenuItem = withStyles((theme) => ({
         color: theme.palette.common.white,
       },
     },
-    "&:hover": {
-      backgroundColor: "#6c6be8",
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+    '&:hover': {
+      backgroundColor: '#6c6be8',
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
         color: theme.palette.common.white,
       },
     },
@@ -103,7 +102,7 @@ const StyledMenuItem = withStyles((theme) => ({
 function Navbar({ themeToggler })
 {
   const classes = useStyles();
-  const [{ isAuthenticated, user }] = useDataLayerValues();
+  const [{ isAuthenticated, user }, dispatch] = useDataLayerValues();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) =>
   {
@@ -116,13 +115,30 @@ function Navbar({ themeToggler })
 
   // Login for Menu Handling
   const muitheme = useTheme();
-  const isMobile = useMediaQuery(muitheme.breakpoints.down("sm"));
-
+  const isMobile = useMediaQuery(muitheme.breakpoints.down('sm'));
+  const logoutHandler = async () => {
+    localStorage.removeItem('tokken');
+    const userData = {
+      ...user,
+      fname: '',
+      lname: '',
+      email: '',
+      password: 'password',
+    };
+    dispatch({
+      type: 'SET_AUTH',
+      isAuthenticated: false,
+    });
+    dispatch({
+      type: 'SET_USER',
+      user: userData,
+    });
+  };
   return (
     <div>
       <AppBar
         position="fixed"
-        style={{ backgroundColor: "#6f6ee1", boxShadow: "none" }}
+        style={{ backgroundColor: '#6f6ee1', boxShadow: 'none' }}
       >
         <Toolbar className="NavWithToggleSwitch">
           <div className="NavHeading">
@@ -262,10 +278,16 @@ function Navbar({ themeToggler })
                   <Link to="/login" className="lobut">
                     <i className="fa fa-sign-in"></i>Login
                   </Link>
-                ) : null}
+                ) : (
+                  <>
+                    <h4 className="lobut" onClick={logoutHandler}>
+                      Logout
+                    </h4>
+                  </>
+                )}
               </>
             )}
-            <div style={{ marginTop: "5px" }}>
+            <div style={{ marginRight: '5px', marginTop: '5px' }}>
               <ToggleSwitch
                 onClick={() => themeToggler()}
                 className="toggleBtn"

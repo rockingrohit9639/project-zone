@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useDataLayerValues } from "../../datalayer";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDataLayerValues } from '../../datalayer';
 import { actions } from '../../reducer';
-import { magic } from "../../magic";
+import { magic } from '../../magic';
 import { Link as RouterLink } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import loginavatar from './../../assets/loginavatar.svg';
-import "./Login.css";
+import './Login.css';
+import { login } from './../../axios/instance';
 
-const Login = () =>
-{
-
+const NewLogin = () => {
   const history = useHistory();
-  const [loading, setLoading] = useState("");
-  const [{ user, isAuthenticated }, dispatch] = useDataLayerValues();
+  const [loading, setLoading] = useState('');
+  const [{ user, ProjectDetails, isAuthenticated, query }, dispatch] =
+    useDataLayerValues();
 
-  useEffect(() =>
-  {
-    isAuthenticated && history.push("/");
+  useEffect(() => {
+    isAuthenticated && history.push('/');
   }, [isAuthenticated, history]);
 
   const [fields, setFields] = useState({
-    email: "",
-    password: ""
-  })
-
+    email: '',
+    password: '',
+  });
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () =>
@@ -34,15 +32,13 @@ const Login = () =>
 
   const { email, password } = fields;
 
-  const handleSocialLogin = async () =>
-  {
-    try
-    {
-      setLoading("Loading...");
+  const handleSocialLogin = async () => {
+    try {
+      setLoading('Loading...');
 
       await magic.oauth.loginWithRedirect({
-        provider: "google",
-        redirectURI: new URL("/callback", window.location.origin).href,
+        provider: 'google',
+        redirectURI: new URL('/callback', window.location.origin).href,
       });
     } catch (err)
     {
@@ -62,56 +58,62 @@ const Login = () =>
     });
   };
 
-  const handleSubmit = (event) =>
-  {
+  const handleSubmit = async (event) => {
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     event.preventDefault();
 
-    if (email === "")
-    {
+    if (email === '') {
       toast.error('Please enter your email ');
-    }
-    else if (!emailTest.test(email))
-    {
+    } else if (!emailTest.test(email)) {
       toast.error('Please enter a valid email');
-    }
-    else if (password === "")
-    {
+    } else if (password === '') {
       toast.error('Please enter a secure password');
-    }
-    else if (password.length < 6)
-    {
+    } else if (password.length < 6) {
       toast.error('Password should have at least 6 characters');
-    }
-    else
-    {
-      const userData = {
-        ...user, email: email, password: password
-      };
-
+    } else {
       clearData();
-      setUserAuth(userData);
+      setUserAuth(email, password);
     }
   };
 
   const clearData = () =>
   {
     setFields({
-      email: "",
-      password: ""
+      email: '',
+      password: '',
     });
   };
 
-  const setUserAuth = (userData) =>
-  {
+  const setUserAuth = async (email, password) => {
+    const userData = {
+      ...user,
+      email: email,
+      password: password,
+    };
+    const body = {
+      email: email,
+      password: password,
+    };
+    try {
+      const res = await login(body);
+      if (!res.data.error) {
+        localStorage.setItem('tokken', res.data.accesstoken);
+        dispatch({
+          type: 'SET_AUTH',
+          isAuthenticated: true,
+        });
+        dispatch({
+          type: 'SET_USER',
+          user: userData,
+        });
+      }
+    } catch (err) {
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
+      }
+    }
+  };
 
-    dispatch({
-      type: actions.SET_USER,
-      user: userData,
-    });
-
-    // we can check if authenticated by finding user in db and can send to home page from here
-  }
 
   return (
     <div className="login">
@@ -121,20 +123,37 @@ const Login = () =>
         <p>Welcome back! Please login to your account</p>
         <div className="forminput">
           <label htmlFor="email">Email Address</label>
-          <input type="email" id="email" placeholder="Enter your email address"
-            name="email" value={email} className="login__input" onChange={handleChange}
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email address"
+            name="email"
+            value={email}
+            className="login__input"
+            onChange={handleChange}
           />
         </div>
         <div className="forminput">
           <label htmlFor="password">Password</label>
-          <input type={passwordShown ? "text" : "password"} id="password" placeholder="Enter password"
-            name="password" value={password} className="login__input" onChange={handleChange}
+          <input
+            type={passwordShown ? 'text' : 'password'}
+            id="password"
+            placeholder="Enter password"
+            name="password"
+            value={password}
+            className="login__input"
+            onChange={handleChange}
           />
-          <i className="fa fa-eye" aria-hidden="true" onClick={togglePasswordVisiblity}></i>
+          <i
+            className="fa fa-eye"
+            aria-hidden="true"
+            onClick={togglePasswordVisiblity}
+          ></i>
         </div>
         <div className="remember_forgotpass">
           <div>
-            <label className="container">Remember Me
+            <label className="container">
+              Remember Me
               <input type="checkbox" />
               <span className="checkmark"></span>
             </label>
@@ -146,16 +165,18 @@ const Login = () =>
           </div>
         </div>
         <div className="btns">
-          <button type="submit" className="loginbtn">Login</button>
-          <RouterLink to="/signup" className="signuplink" >
-            <button className="signupbtn">
-              Sign Up
-            </button>
+          <button type="submit" className="loginbtn">
+            Login
+          </button>
+          <RouterLink to="/signup" className="signuplink">
+            <button className="signupbtn">Sign Up</button>
           </RouterLink>
         </div>
         <div className="social_signin">
           <p>or login with</p>
-          <p className="blue google" onClick={handleSocialLogin}>Google</p>
+          <p className="blue google" onClick={handleSocialLogin}>
+            Google
+          </p>
         </div>
       </form>
       <div className="loginimage">
@@ -165,4 +186,4 @@ const Login = () =>
   );
 };
 
-export default Login;
+export default NewLogin;
