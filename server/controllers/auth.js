@@ -4,50 +4,40 @@ const moment = require('moment');
 const jwt = require('jsonwebtoken');
 
 const maxage = 3 * 24 * 60 * 60;
-const createwebToken = (id) =>
-{
+const createwebToken = (id) => {
   return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: maxage,
   });
 };
 
-exports.signIn = async (req, res) =>
-{
+exports.signIn = async (req, res) => {
   const { email, password } = req.body;
-  try
-  {
+  try {
     const user = await UserModel.findOne({ email: email });
-    if (user)
-    {
+    if (user) {
       const validPassword = await bcrypt.compare(password, user.password);
-      if (validPassword)
-      {
+      if (validPassword) {
         const token = createwebToken(user._id);
         return res.status(200).json({ accesstoken: token });
-      } else
-      {
+      } else {
         return res.status(400).json({ error: 'Invalid Credentials' });
       }
-    } else
-    {
-      return res.status(401).send('NO USER FOUND');
+    } else {
+      return res.status(401).json({ error: 'No user found' });
     }
-  } catch (err)
-  {
+  } catch (err) {
     console.log(err);
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).json({ error: '500 Internal Error' });
   }
 };
 
-exports.signUp = async (req, res) =>
-{
+exports.signUp = async (req, res) => {
   let { firstname, lastname, email, password } = req.body;
-  try
-  {
+  try {
     const salt = await bcrypt.genSalt();
     password = await bcrypt.hash(password, salt);
     const created_at = moment().format('MMMM Do YYYY, h:mm:ss a');
-    
+
     const user = await UserModel.create({
       firstname,
       lastname,
@@ -59,19 +49,23 @@ exports.signUp = async (req, res) =>
     const token = createwebToken(user._id);
 
     return res.status(200).json({ accesstoken: token });
-  } catch (err)
-  {
+  } catch (err) {
     console.log(err);
-    return res.status(500).send('Internal Server Error');
+    if (err.code === 11000) {
+      return res.status(500).json({ error: 'Email already registered' });
+    }
+    return res.status(500).json({ error: '500 Internal Error' });
   }
 };
 
-exports.profile = (req, res) =>
-{
-  /* ATTACHED USERID FROM AUTH MIDDLEWARE IS RETRIEVED HERE */
+exports.profile = async (req, res) => {
   const { userid } = req;
-  /*
-      DATA OF USER PROFILE CAN BE RETRIEVED & CAN BE SEND AS RESPONSE
-  */
+  try {
+    const user = await UserModel.findById(userid);
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: '500 Internal Error' });
+  }
   res.status(200).json({ userid: userid });
 };

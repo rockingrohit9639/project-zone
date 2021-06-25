@@ -5,7 +5,6 @@ import landing_bg from './../../assets/landing_bg.svg';
 import avatar from './../../assets/avatar.svg';
 import ProjectCategories from '../ProjectCategories/ProjectCategories';
 import SearchBox from '../SearchBox/SearchBox';
-import StartsIcon from '@material-ui/icons/Stars';
 import TrendingProjects from '../TrendingProjects/TrendingProjects';
 import { Link } from 'react-router-dom';
 
@@ -35,14 +34,16 @@ function Home() {
 
       <SearchBox setChangedata={setChangedata} />
       <ProjectCategories />
+      <div className="home_projects">
+
       <div className='best_project'>
         <h1 className='best_project--title'>
-          <StartsIcon /> Best MERN Projects
+           Best MERN Projects
         </h1>
         <div className='projects'>
           <Project
-            title='E-Commerce Website'
-            desc='This is a ecommece website which has many facilities like order bucket, payemnt, product ratings any many more.'
+            title='E-Commerce Website like amazon'
+            desc='This is a ecommerce website which has many facilities like order bucket, payment, product ratings any many more. so its a complete full stack project.'
             skills={['mongodb', 'express', 'react', 'node']}
             level='Beginner'
             rating={4}
@@ -61,19 +62,12 @@ function Home() {
             level='Advanced'
             rating={3}
           />
-          <Project
-            title='Virtual Queue Management System'
-            desc=''
-            skills={['mongodb', 'express', 'react', 'node']}
-            level='Advanced'
-            rating={2}
-          />
         </div>
       </div>
 
       <div className='best_project'>
         <h1 className='best_project--title'>
-          <StartsIcon /> Best Python Projects{' '}
+           Best Python Projects
         </h1>
         <div className='projects'>
           <Project
@@ -97,19 +91,13 @@ function Home() {
             level='Advanced'
             rating={5}
           />
-          <Project
-            title='Automatic Birthdays Mailer'
-            desc=''
-            skills={['python', 'django']}
-            level='Intermediate'
-            rating={4}
-          />
+
         </div>
       </div>
 
       <div className='best_project'>
         <h1 className='best_project--title'>
-          <StartsIcon /> Best JavaScript Projects{' '}
+           Best JavaScript Projects
         </h1>
         <div className='projects'>
           <Project
@@ -133,14 +121,9 @@ function Home() {
             level='Advanced'
             rating={4}
           />
-          <Project
-            title='ID Card Generator'
-            desc=''
-            skills={['javascript']}
-            level='Intermediate'
-            rating={4}
-          />
-        </div>
+
+         </div>
+       </div>
       </div>
     </div>
   );
