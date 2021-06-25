@@ -201,9 +201,6 @@ const setUserAuth = async (firstName, lastName, email, password) => {
           <p className="blue google" onClick={handleSocialLogin}>Google</p>
         </div>
       </form>
-
-
-
     </div>
   );
 }

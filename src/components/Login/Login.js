@@ -25,7 +25,8 @@ const NewLogin = () => {
   });
 
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisiblity = () =>
+  {
     setPasswordShown(!passwordShown);
   };
 
@@ -39,14 +40,17 @@ const NewLogin = () => {
         provider: 'google',
         redirectURI: new URL('/callback', window.location.origin).href,
       });
-    } catch (err) {
+    } catch (err)
+    {
       console.log(err);
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
+  {
     const { name, value } = e.target;
-    setFields((prevState) => {
+    setFields((prevState) =>
+    {
       return {
         ...prevState,
         [name]: value,
@@ -72,7 +76,8 @@ const NewLogin = () => {
     }
   };
 
-  const clearData = () => {
+  const clearData = () =>
+  {
     setFields({
       email: '',
       password: '',
