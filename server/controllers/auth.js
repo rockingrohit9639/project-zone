@@ -51,7 +51,7 @@ exports.signUp = async (req, res) => {
     return res.status(200).json({ accesstoken: token });
   } 
   catch (err) {
-    // console.log(err);
+    console.log(err);
     if (err.code === 11000) {
       return res.status(500).json({ error: 'Email already registered' });
     }
@@ -59,14 +59,3 @@ exports.signUp = async (req, res) => {
   }
 };
 
-exports.profile = async (req, res) => {
-  const { userid } = req;
-  try {
-    const user = await UserModel.findById(userid);
-    res.status(200).json(user);
-  } catch (err) {
-    // console.log(err);
-    res.status(500).json({ error: '500 Internal Error' });
-  }
-  res.status(200).json({ userid: userid });
-};
