@@ -171,7 +171,7 @@ function Navbar({ themeToggler })
                     </StyledMenuItem>
                   </Link>
                   {isAuthenticated ?
-                    <Link to="/" onClick={handleClose}>
+                    <Link to="/profile" onClick={handleClose}>
                       <StyledMenuItem>
                         <ListItemIcon>
                           <i className="fa fa-user-circle-o"></i>
@@ -239,7 +239,7 @@ function Navbar({ themeToggler })
                 </div>
                 {isAuthenticated ? (
                   <Button className={classes.button}>
-                    <Link to="/" className={classes.text}>
+                    <Link to="/profile" className={classes.text}>
                       <i className="fa fa-user-circle-o"></i> Welcome {user.fname}
                     </Link>
                   </Button>
