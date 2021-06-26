@@ -17,12 +17,16 @@ import
 function ShareProject(props)
 {
   const url = `https://project-zone.netlify.app/`;
-  const quote = `Hello,
-  I found an awesome project for you i.e ' ${ props.title } '
-  ${ props.description }
 
-  Have a look at it and enjoy coding.
-  For more interesting project visit `;
+  const quote = `
+Hello everyone,
+I found an awesome project for you i.e 
+-->"${ props.title }"
+${ props.description }
+
+Have a look at it and enjoy coding.
+For more interesting project visit
+`;
 
   return (
     <div className="share-conatiner">

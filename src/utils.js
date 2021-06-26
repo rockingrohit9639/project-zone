@@ -1,10 +1,15 @@
 import axios from 'axios';
 import { server } from './axios/instance';
 
-export const getSkillColor = (skill) => {
-  switch (skill.toLowerCase()) {
+export const getSkillColor = (skill) =>
+{
+  switch (skill.toLowerCase())
+  {
     case 'mongodb':
-      return { backgroundColor: '#02475e' };
+      return { backgroundColor: '#3FA037' };
+
+    case 'mongo':
+      return { backgroundColor: '#3FA037' };
 
     case 'express':
       return { backgroundColor: 'red' };
@@ -50,16 +55,33 @@ export const getSkillColor = (skill) => {
 
     case 'java':
       return { backgroundColor: '#FB9820' };
+    case 'android':
+      return { backgroundColor: '#3DDC84' };
+
+    case 'kotlin':
+      return { backgroundColor: '#B75EA4' };
+    case 'backend':
+      return { backgroundColor: '#008190' };
+
+    case 'blockchain':
+      return { backgroundColor: '#11a7a8' };
+    case 'cpp':
+      return { backgroundColor: '#5e8dbd' };
+    case 'flutter':
+      return { backgroundColor: '#07489C' };
 
     default:
       return { backgroundColor: 'skyblue' };
   }
 };
 
-export const setAuthToken = (token) => {
-  if (token) {
+export const setAuthToken = (token) =>
+{
+  if (token)
+  {
     server.defaults.headers.common['authorization'] = 'Bearer' + ' ' + token;
-  } else {
+  } else
+  {
     delete server.defaults.headers.common['authorization'];
   }
 };

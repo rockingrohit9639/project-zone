@@ -48,7 +48,7 @@ function Project({ title, desc, skills, level, style, rating }) {
         </div>
         <div className='descr'>
           {desc.trim() == '' ? null : (
-            <p className='description'>{desc.slice(0, 120) + '...'}</p>
+            <p className='description'>{desc.slice(0, 100) + '...'}</p>
           )}
           <Link to='/projectdetails'>
             <h5 className='read-more' onClick={ReadMeHandler}>
