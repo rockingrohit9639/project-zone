@@ -26,7 +26,7 @@ exports.signIn = async (req, res) => {
       return res.status(401).json({ error: 'No user found' });
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res.status(500).json({ error: '500 Internal Error' });
   }
 };
@@ -49,8 +49,9 @@ exports.signUp = async (req, res) => {
     const token = createwebToken(user._id);
 
     return res.status(200).json({ accesstoken: token });
-  } catch (err) {
-    console.log(err);
+  } 
+  catch (err) {
+    // console.log(err);
     if (err.code === 11000) {
       return res.status(500).json({ error: 'Email already registered' });
     }
@@ -64,7 +65,7 @@ exports.profile = async (req, res) => {
     const user = await UserModel.findById(userid);
     res.status(200).json(user);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json({ error: '500 Internal Error' });
   }
   res.status(200).json({ userid: userid });
