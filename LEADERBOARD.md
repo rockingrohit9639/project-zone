@@ -5,7 +5,7 @@
 
 | S.No. | Username           | Score |
 | ----  | -----------        |-------|
-| 1.    | naveen8801         | 220   |
+| 1.    | naveen8801         | 265   |
 | 2.    | ShwetKhatri2001    | 210   |
 | 3.    | Veeresh-Rex        | 75    |
 | 4.    | mayankmohak        | 70    |
