@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Callback from './components/Callback';
 import AddNewProject from './components/AddNewProject/AddNewProject';
+import Profile from './components/Profile/Profile';
 import ProjectDetails from './components/ProjectDetails/ProjectDetails';
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
@@ -81,9 +82,12 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/callback" component={Callback} />
+            <Route exact path="/profile" component={Profile} />
 
             {/* Add new project route */}
             <Route exact path="/addnew" component={AddNewProject} />
+
+
 
             {/* Other routes  */}
             <Route exact path="/contact" component={ContactUs}/>

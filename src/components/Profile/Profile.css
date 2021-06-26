@@ -1,0 +1,219 @@
+.profile_wrapper{
+    margin:0;
+    min-height:100vh;
+    width:100%;
+    padding:6% 5%;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    font-family: 'Poppins', sans-serif;
+    background-color:#EAF2FD;
+}
+
+
+.person_card{
+    max-width:300px;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    margin: 0 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:0 0 10px 10px;
+}
+
+.card_top{
+    height:200px;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #CCC;
+    background-color:#CCC;
+    padding:10%;
+}
+
+.card_top img{
+    width:100%;
+    height:auto;
+    border-radius:50%;
+    transform:translateY(25px);
+}
+
+.card_content{
+    height:75%;
+    padding:8% 3%;
+    padding-top:40%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background-color:#FFF;
+    border-radius:0 0 10px 10px;
+}
+
+.card_content h1{
+    font-weight:bold;
+    margin:0;
+}
+
+.card_content h3,.content_right h3{
+    color:#CCC;
+}
+
+.social_icons a{
+    font-size:25px;
+    margin:5px 10px;
+}
+
+.facebooklink,.facebooklink:hover{
+    color:#1877F2;
+}
+.linkedinlink,.linkedinlink:hover{
+    color:#0A66C2;
+}
+.githublink,.githublink:hover{
+    color:#333;
+}
+
+.social_icons .fab{
+    transition: transform .15s ease-out;
+}
+
+.social_icons .fab:hover{
+   transform:scale(1.15);
+}
+
+.editbtn{
+    width:75%;
+    margin-top:5%;
+    padding:10px 20px;
+    border:2px solid #5352ED;
+    background-color:#fff;
+    color:#5352ED;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.addnewlink,.addnewlink:hover{
+    width:75%;
+    margin-top:5%;
+    color:#5352ED;
+ }
+
+.addnewbtn{
+    width:100%;
+    border:2px solid #5352ED;
+    background-color:#5352ED;
+    padding:10px 20px;
+    cursor:pointer;
+    color:#fff;
+    font-size:20px;
+    box-shadow:-1px 3px 3px rgba(0,0,0,0.4);
+}
+
+.content_right{
+    width:60%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.content_right h2{
+    margin:10px 0;
+}
+
+.email_descr{
+    width:100%;
+    height:auto;
+    padding:3% 4%;
+    background-color: #FFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:10px;
+    top:0; 
+}
+
+.projects_badges{
+    width:100%;
+    height:80%;
+    height:auto;
+    padding:3% 4%;
+    margin-top:2%;
+    background-color:#FFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:10px;
+}
+
+.projects_list{
+    list-style: none;
+    margin:0;
+}
+
+.projects_list li{
+    margin:3px 0;
+}
+
+.fa-circle{
+    color:#5352ED;
+    font-size:10px;
+    margin-right:10px;
+}
+
+.badges_list{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.badge_container{
+    min-width:225px;
+    min-height:225px;
+    width:30%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+    border:1px solid #CCC;
+    border-radius:10px;
+    margin:10px;
+    margin-left:0;
+    padding:3%;
+}
+
+.fa-medal{
+    font-size:40px;
+    color:#5352ED;
+    margin-bottom:10px;
+}
+
+.badge_container h2,.badge_container p{
+    margin:5px 0;
+}
+
+
+@media screen and (max-width:960px){
+    .profile_wrapper{
+        flex-direction:column;
+        align-items:center;
+        padding:8%;
+    }
+    .person_card{
+        min-width:250px;
+        max-width:400px;
+        width:100%;
+        margin-top:12%;
+        margin-bottom:5%;
+    }
+    .content_right{
+        width:100%;
+    }
+    .card_content{
+        padding-top:45%;
+    }
+    .editbtn,.addnewbtn{
+        font-size:15px;
+    }
+    .projects_badges{
+        margin-top:5%;
+        padding:5% 8%;
+    }
+      
+}
