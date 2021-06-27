@@ -16,6 +16,7 @@
         "chokidar": "^3.5.1",
         "elastic-builder": "^2.15.0",
         "magic-sdk": "^4.3.0",
+        "particles-bg": "^2.5.5",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-palette": "^1.0.2",
