@@ -4,9 +4,10 @@
 
 .section1 {
     display: flex;
-    max-width: 1140px;
-    margin: 0 auto;
-    /* padding-top: -50px; */
+    justify-content: space-around;
+    align-items: center;
+    margin: -30px auto;
+    padding: 90px;
 }
 
 .about-img {
@@ -16,7 +17,6 @@
 
 .section1 p {
     margin: auto;
-    max-width: 550px;
 }
 
 .about-para {
@@ -42,6 +42,7 @@
 .about-img {
     -webkit-animation: mover 1s infinite  alternate;
     animation: mover 1s infinite  alternate;
+    margin-right: 30px;
 }
 .about-img {
     -webkit-animation: mover 1s infinite  alternate;
@@ -58,7 +59,7 @@
 
 
 .contributors-list {
-    max-width: 1000px;
+    max-width: 1250px;
     margin: 50px auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -73,6 +74,11 @@
     width: 300px;
     object-fit: contain;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.7);
+    transition: transform 0.2s;
+}
+
+.contributor:hover {
+    transform: scale(1.05);
 }
 
 .contributorImage img {
@@ -92,3 +98,4 @@
 .username h3 {
     text-transform: uppercase;
 }
+
