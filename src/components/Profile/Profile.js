@@ -26,7 +26,7 @@ const badges = [
 const Profile = () =>
 {
 
-    const { data, loading, error } = usePalette(profileavatar);
+    const { data } = usePalette(profileavatar);
 
 
     return (

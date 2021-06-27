@@ -7,21 +7,16 @@
     justify-content: space-around;
     align-items: center;
     margin: -30px auto;
-    padding: 90px;
+}
+
+.about-text {
+    padding-right: 6rem;
+    font-size: 0.9rem;
 }
 
 .about-img {
     width: 370px;
     object-fit: contain;
-}
-
-.section1 p {
-    margin: auto;
-}
-
-.about-para {
-    align-items: center;
-    justify-items: center;
 }
 
 .text-center {
@@ -42,7 +37,7 @@
 .about-img {
     -webkit-animation: mover 1s infinite  alternate;
     animation: mover 1s infinite  alternate;
-    margin-right: 30px;
+    margin-left: 2rem;
 }
 .about-img {
     -webkit-animation: mover 1s infinite  alternate;
@@ -73,7 +68,7 @@
     align-items: center;
     width: 300px;
     object-fit: contain;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.7);
+    box-shadow: 5px 5px 15px -10px rgba(0, 0, 0, 0.7);
     transition: transform 0.2s;
 }
 

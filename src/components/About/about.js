@@ -13,8 +13,8 @@ const AboutUs = () => {
     const fetchData = async () => {
       const response = await axios.get(apiURL);
       console.log(response.data);
-
       setUsers(response.data);
+
     };
     fetchData();
   }, []);
@@ -49,7 +49,7 @@ const AboutUs = () => {
                 <img src={user.avatar_url} alt="contributor-image" />
               </div>
               <div className="username">
-                <h3>{user.login}</h3>
+                <a href={user.html_url} target="_blank"><h3>{user.login}</h3></a>
               </div>
             </div>
             )

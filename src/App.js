@@ -36,6 +36,8 @@ function App() {
       });
     }
   }, [localStorage.getItem('tokken')]);
+
+
   const getUser = async () => {
     try {
       const user = await profile();
@@ -58,6 +60,8 @@ function App() {
       console.log(err);
     }
   };
+
+  
   //Logic for Theme toggler to get dark mode
   const [theme, settheme] = useState('light');
   const styledApp = styled.div;
@@ -68,7 +72,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <GlobalStyles />
+      {/* <GlobalStyles /> */}
       <styledApp className="App">
         <Router>
           <Navbar themeToggler={themeToggler} />
