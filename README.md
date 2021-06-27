@@ -112,17 +112,45 @@ Following are the steps to guide you:
 
 
 ### 🚩 Setting up the environment
+#### Client-Side
 - To setup the environment in your system run the following commands
-```
-cd project-zone
-npm install
-```
-
+  ```
+  cd project-zone
+  npm install
+  ```
 - After installing all the server dependencies run the server using the following command
 
-```
-npm start
-```
+  ```
+  npm start
+  ```
+
+#### Server
+- To setup server in your system run the following commands
+  ```
+  cd project-zone
+  cd server
+  npm install
+  ```
+- After installing all the dependencies go through the following commands to make a directory named config inside server directory & add a fille config.env in config directory.
+  ```
+  mkdir config
+  touch config.env
+  ```
+- Edit config.env as follow :-
+  ```
+  PORT=8000
+  MONGO_URI=<YOUR-MONGO-URI>
+  ACCESS_TOKEN_SECRET=<YOUR-ACCESS-TOKEN-SECRET>
+  ```
+- After following all above steps, run the following command to start server
+  ```
+  nodemon index.js
+  ```
+- Expected Output in terminal
+
+<p align="center">
+<img src="Project_Img/Server.png" width=50% />&ensp;&ensp;&ensp;
+</p>
 
 
 # Preview 👀
@@ -136,6 +164,8 @@ npm start
   <br />
   <img src="Project_Img/Demo5_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
   <img src="Project_Img/Demo6_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
+  <br />
+  <img src="Project_Img/Demo7_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
 </p>
 
 ## 📌 Opensource Programs
