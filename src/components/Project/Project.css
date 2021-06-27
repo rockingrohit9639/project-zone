@@ -38,8 +38,8 @@
 
 .project:hover {
   transform: scale(1.015);
-  -webkit-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
   box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
 }
 
