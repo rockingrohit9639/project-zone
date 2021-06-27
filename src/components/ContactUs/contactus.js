@@ -1,9 +1,16 @@
 import React from 'react';
 import './contactus.css';
+import ParticlesBg from 'particles-bg';
 
 export default function ContactUs() {
     return ( <
         section className = "contact_section" >
+
+        <
+        ParticlesBg type = "coweb"
+        bg = { true }
+        />
+
         <
         div className = "contact__left" >
 
@@ -46,14 +53,14 @@ export default function ContactUs() {
         className = "contact__textarea"
         placeholder = "Message"
         rows = "3"
-        required > < /textarea> <
-        /div>
+        required > < /textarea> < /
+        div >
 
         <
         button className = "submitBtn" > < span > Send < /span></button >
         <
-        /form> <
-        /div> <
+        /form> < /
+        div > <
         /section>
     )
 }

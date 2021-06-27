@@ -6,86 +6,91 @@ import { useDataLayerValues } from '../../datalayer';
 import { useEffect } from 'react';
 import Project from '../Project/Project';
 
+
 import { server } from '../../axios/instance';
 
-function Showprojects()
-{
-  const [projects, setProjects] = useState();
-  const [{ query }] = useDataLayerValues();
+function Showprojects() {
+    const [projects, setProjects] = useState();
+    const [{ query }] = useDataLayerValues();
 
-  // const filters = ["beginner", "intermediate", "advanced"];
-  // const [appliedFilters, setAppliedFilters] = useState([]);
+    // const filters = ["beginner", "intermediate", "advanced"];
+    // const [appliedFilters, setAppliedFilters] = useState([]);
 
-  const [randomProject, setRandomProject] = useState('');
+    const [randomProject, setRandomProject] = useState('');
 
-  const fetchProjects = async () =>
-  {
-    try
-    {
-      const results = await server.get(`/getprojects?q=${ query }`);
-      setProjects(results.data);
-    } catch (error)
-    {
-      console.log(error);
-    }
-  };
+    const fetchProjects = async() => {
+        try {
+            const results = await server.get(`/getprojects?q=${ query }`);
+            setProjects(results.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-  const setChangedata = () =>
-  {
-    setRandomProject('');
-  };
+    const setChangedata = () => {
+        setRandomProject('');
+    };
 
-  useEffect(() =>
-  {
-    fetchProjects();
-  }, [query]);
+    useEffect(() => {
+        fetchProjects();
+    }, [query]);
 
-  const handleRandomProject = () =>
-  {
-    setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
-  };
+    const handleRandomProject = () => {
+        setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
+    };
 
-  return (
-    <div className='showProjects'>
-      <div className='mt'>
-        <SearchBox setChangedata={setChangedata} />
-      </div>
+    return ( <
+        div className = 'showProjects' >
+        <
+        div className = 'mt' >
+        <
+        SearchBox setChangedata = { setChangedata }
+        /> <
+        /div>
 
-      <button className='random' onClick={handleRandomProject}>
-        Let us decide a project for you.
-      </button>
+        <
+        button className = 'random'
+        onClick = { handleRandomProject } >
+        Let us decide a project
+        for you. <
+        /button>
 
-      {randomProject ? (
-        <div className='randomProject'>
-          <Project
-            title={randomProject.name}
-            desc={randomProject.description}
-            skills={randomProject.skills}
-            level={randomProject.level}
-            style={{ backgroundColor: '#ff5959', color: '#FFF' }}
-          />
-        </div>
-      ) : null}
+        {
+            randomProject ? ( <
+                div className = 'randomProject' >
+                <
+                Project title = { randomProject.name }
+                desc = { randomProject.description }
+                skills = { randomProject.skills }
+                level = { randomProject.level }
+                style = {
+                    { backgroundColor: '#ff5959', color: '#FFF' } }
+                /> <
+                /div>
+            ) : null
+        }
 
-      <h2 className='query'> Searching projects for "{query}" </h2>
+        <
+        h2 className = 'query' > Searching projects
+        for "{query}" < /h2>
 
-      <div className='projectsList'>
-        {projects &&
-          projects.map((project, ind) =>
-          {
-            return (
-              <Project
-                key={ind}
-                title={project.name}
-                desc={project.description}
-                skills={project.skills}
-                level={project.level}
-              />
-            );
-          })}
-      </div>
-    </div>
-  );
+        <
+        div className = 'projectsList' > {
+            projects &&
+            projects.map((project, ind) => {
+                return ( <
+                    Project key = { ind }
+                    title = { project.name }
+                    desc = { project.description }
+                    skills = { project.skills }
+                    level = { project.level }
+                    />
+                );
+            })
+        } <
+        /div> <
+        /div>
+    );
 }
 
 export default Showprojects;
