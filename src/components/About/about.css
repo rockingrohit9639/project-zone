@@ -1,0 +1,94 @@
+.about {
+    font-family: 'Poppins', sans-serif;
+}
+
+.section1 {
+    display: flex;
+    max-width: 1140px;
+    margin: 0 auto;
+    /* padding-top: -50px; */
+}
+
+.about-img {
+    width: 370px;
+    object-fit: contain;
+}
+
+.section1 p {
+    margin: auto;
+    max-width: 550px;
+}
+
+.about-para {
+    align-items: center;
+    justify-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.heading {
+    margin-top: 110px;
+    font-size: 35px;
+}
+
+.section2 h1{ 
+    font-size: 35px;
+}
+
+/* Animation */
+
+.about-img {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+.about-img {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-15px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-15px); }
+}
+
+
+.contributors-list {
+    max-width: 1000px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.contributor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    object-fit: contain;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.7);
+}
+
+.contributorImage img {
+    height: 100%;
+    width: 100%;
+}
+
+.username {
+    height: 100px;
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.username h3 {
+    text-transform: uppercase;
+}
