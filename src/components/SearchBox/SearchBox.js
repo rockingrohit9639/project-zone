@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 function SearchBox({ setChangedata }) {
   const [{ query }, dispatch] = useDataLayerValues();
+  const [searchTerm, setSearchterm] = useState(' ');
   const history = useHistory();
   const handleChange = (e) => {
     dispatch({
@@ -21,7 +22,7 @@ function SearchBox({ setChangedata }) {
         <input
           type='text'
           value={query}
-          onChange={handleChange}
+          onChange={event => {setSearchterm(event.target.value)}}
           placeholder='e.g. reactjs'
         />
         <SearchIcon
@@ -29,6 +30,24 @@ function SearchBox({ setChangedata }) {
           style={{ cursor: 'pointer' }}
         />
       </div>
+      ======>
+      <dl className="dictionary">
+                {emojipedia.filter((val) => {
+                    if(searchTerm === "") {
+                        return val
+                    }else if (val.mane.toLowerCase().includes(searchTerm.toLowerCase())){
+                        return val
+                    }
+                }).map((val) => {
+                    return (
+                        <div className="user">
+                            <p>{val.mane}</p>
+                            <p>{val.meaning}</p>
+                        </div>
+                    )
+                })}
+          </dl>
+          <======= 
     </div>
   );
 }
