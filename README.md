@@ -155,7 +155,7 @@ Following are the steps to guide you:
 
 # Preview 👀
 
-<p>
+<p align="center">
  <img src="Project_Img/Demo1_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
   <img src="Project_Img/Demo2_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
   <br />
