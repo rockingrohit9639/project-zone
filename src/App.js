@@ -17,6 +17,7 @@ import { lightTheme, darkTheme } from './theme.js';
 import { GlobalStyles } from './theme.js';
 import { Switch as ToggleSwitch } from 'antd';
 import ContactUs from './components/ContactUs/contactus';
+import AboutUs from './components/About/about';
 import TrendingProjects from './components/TrendingProjects/TrendingProjects';
 import { profile } from './axios/instance';
 import { setAuthToken } from './utils';
@@ -90,6 +91,7 @@ function App() {
 
 
             {/* Other routes  */}
+            <Route exact path="/about" component={AboutUs}/>
             <Route exact path="/contact" component={ContactUs}/>
           </Switch>
           <Footer />
