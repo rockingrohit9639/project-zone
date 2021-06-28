@@ -7,8 +7,8 @@
 | ----  | -----------        |-------|
 | 1.    | naveen8801         | 265   |
 | 2.    | ShwetKhatri2001    | 210   |
+| 4.    | mayankmohak        | 80    |
 | 3.    | Veeresh-Rex        | 75    |
-| 4.    | mayankmohak        | 70    |
 | 5.    | Shaishav0507       | 65    |
 | 8.    | anushruti11        | 60    |
 | 6.    | Aayushpatil77      | 50    |
