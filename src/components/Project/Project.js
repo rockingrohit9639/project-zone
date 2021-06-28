@@ -7,6 +7,7 @@ import RatingCard from '../RatingCard/RatingCard';
 import { Link } from 'react-router-dom';
 import { useDataLayerValues } from '../../datalayer';
 import { getSkillColor } from '../../utils';
+import 'font-awesome/css/font-awesome.min.css';
 
 function Project({ title, desc, skills, level, style, rating }) {
   const [shareopen, setshareopen] = useState(false);
@@ -60,8 +61,10 @@ function Project({ title, desc, skills, level, style, rating }) {
           <label>Level - </label>
           <p>{level}</p>
         </div>
-
-        <div className='skills'>
+        <p>
+        <i className="far fa-heart" aria-hidden="true" > <strong>35 Likes </strong></i>
+        </p>
+       <div className='skills'>
           {skills &&
             skills.map((skill, ind) => (
               <div key={ind} style={getSkillColor(skill)} className='skill'>
