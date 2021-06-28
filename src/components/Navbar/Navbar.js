@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
-import {
-  AppBar,
-  Toolbar,
-  Menu,
-  MenuItem,
-  Typography,
-  useMediaQuery,
-   ListItemIcon,
-  ListItemText,
-  Button,
-} from '@material-ui/core';
+import
+  {
+    AppBar,
+    Toolbar,
+    Menu,
+    MenuItem,
+    Typography,
+    useMediaQuery,
+    ListItemIcon,
+    ListItemText,
+    Button,
+  } from '@material-ui/core';
 import logo from '../Footer/icon.png';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
@@ -81,6 +82,9 @@ const StyledMenuItem = withStyles((theme) => ({
     "& .MuiListItemIcon-root": {
       minWidth: '30px'
     },
+    "& .MuiButton-root": {
+      color: '#FFF !important'
+    },
     "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
       color: "#5352ed"
     },
@@ -116,7 +120,8 @@ function Navbar({ themeToggler })
   // Login for Menu Handling
   const muitheme = useTheme();
   const isMobile = useMediaQuery(muitheme.breakpoints.down('sm'));
-  const logoutHandler = async () => {
+  const logoutHandler = async () =>
+  {
     localStorage.removeItem('tokken');
     const userData = {
       ...user,
@@ -152,7 +157,7 @@ function Navbar({ themeToggler })
           <div className="links">
             {isMobile ? (
               <>
-                <Button onClick={handleClick}>
+                <Button onClick={handleClick} color="#FFF">
                   <MenuIcon />
                 </Button>
                 <StyledMenu
@@ -177,7 +182,7 @@ function Navbar({ themeToggler })
                           <i className="fa fa-user-circle-o"></i>
                         </ListItemIcon>
                         <ListItemText
-                          primary={`Welcome ${user.fname}`}
+                          primary={`Welcome ${ user.fname }`}
                         ></ListItemText>
                       </StyledMenuItem>
                     </Link>
