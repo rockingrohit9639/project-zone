@@ -26,6 +26,10 @@ import { useDataLayerValues } from './datalayer';
 function App() {
   const [{ user, isAuthenticated }, dispatch] = useDataLayerValues();
   useEffect(() => {
+
+    const loader = document.getElementById('pre-loader');
+    loader.remove();
+
     if (localStorage.getItem('tokken')) {
       setAuthToken(localStorage.getItem('tokken'));
       const userdata = getUser();
