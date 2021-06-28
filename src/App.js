@@ -22,6 +22,7 @@ import TrendingProjects from './components/TrendingProjects/TrendingProjects';
 import { profile } from './axios/instance';
 import { setAuthToken } from './utils';
 import { useDataLayerValues } from './datalayer';
+import ForgetPassword from "./components/ForgetPassword/Forget";
 
 function App() {
   const [{ user, isAuthenticated }, dispatch] = useDataLayerValues();
@@ -92,6 +93,7 @@ function App() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/callback" component={Callback} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/forgetpassword" component={ForgetPassword} />
 
             {/* Add new project route */}
             <Route exact path="/addnew" component={AddNewProject} />
