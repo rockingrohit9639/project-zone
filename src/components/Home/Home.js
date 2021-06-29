@@ -20,7 +20,7 @@ function Home() {
         className='landing'
         id='landing'
         style={{ background: `url(${landing_bg}) 75% 100%` }}>
-        <div className='content'>
+        <div className='home_content'>
           <h3>Having Difficulties in</h3>
           <h1>finding projects ?</h1>
           <p>We are here to help you.</p>

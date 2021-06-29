@@ -21,7 +21,7 @@ const AboutUs = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="about_container">
         <div className="title">
           <h1>ABOUT US</h1>
         </div>

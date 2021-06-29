@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   font-family: "Poppins";
   margin-top: 25px;
 }
@@ -74,7 +74,7 @@
 .signupimage {
   max-width: 50vw;
   padding: 7%;
-  max-height: 100vh;
+  height: 100vh;
   background-color: #eaf2fd;
   align-items: center;
 }
