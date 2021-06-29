@@ -5,7 +5,6 @@
   position: relative;
   margin-top: 2rem;
   align-items:flex-start;
-  cursor: pointer;
   box-shadow: 0 3px 5px -5px rgba(50, 50, 50, 0.75);
   background-color:#fff;
   transition: transform .3s;
@@ -76,6 +75,16 @@
 
 .level label {
   font-weight: bold;
+}
+
+.likebox i{
+  font-size: 1rem;
+  padding: 0.8rem 0;
+  cursor: pointer;
+}
+
+.likebox i span {
+  font-family: "Poppins";
 }
 
 .skills {

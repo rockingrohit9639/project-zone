@@ -23,7 +23,7 @@
   text-align: center;
   font-weight: bold;
   transition: all 0.2s;
-  box-shadow: 0 10px 5px rgb(175, 175, 236);
+  box-shadow: 0 10px 25px rgb(175, 175, 236);
 }
 #btn:hover {
   background-color: #040668;

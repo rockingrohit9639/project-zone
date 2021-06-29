@@ -24,17 +24,26 @@ import { setAuthToken } from './utils';
 import { useDataLayerValues } from './datalayer';
 import ForgetPassword from "./components/ForgetPassword/Forget";
 
-function App() {
+function App()
+{
   const [{ user, isAuthenticated }, dispatch] = useDataLayerValues();
-  useEffect(() => {
+  useEffect(() =>
+  {
 
     const loader = document.getElementById('pre-loader');
-    loader.remove();
 
-    if (localStorage.getItem('tokken')) {
+    if (loader)
+    {
+      loader.remove();
+    }
+
+
+    if (localStorage.getItem('tokken'))
+    {
       setAuthToken(localStorage.getItem('tokken'));
       const userdata = getUser();
-    } else {
+    } else
+    {
       dispatch({
         type: 'SET_AUTH',
         isAuthenticated: false,
@@ -43,8 +52,10 @@ function App() {
   }, [localStorage.getItem('tokken')]);
 
 
-  const getUser = async () => {
-    try {
+  const getUser = async () =>
+  {
+    try
+    {
       const user = await profile();
       console.log(user);
       const data = {
@@ -61,17 +72,19 @@ function App() {
         type: 'SET_USER',
         user: data,
       });
-    } catch (err) {
+    } catch (err)
+    {
       console.log(err);
     }
   };
 
-  
+
   //Logic for Theme toggler to get dark mode
   const [theme, settheme] = useState('light');
   const styledApp = styled.div;
 
-  const themeToggler = () => {
+  const themeToggler = () =>
+  {
     theme === 'light' ? settheme('dark') : settheme('light');
   };
 
@@ -85,8 +98,8 @@ function App() {
             {/* Project realted routes */}
             <Route exact path="/" component={Home} />
             <Route exact path="/projects" component={Showprojects} />
-            <Route exact path="/trendings" component={TrendingProjects}/>
-            <Route exact path="/projectdetails" component={ProjectDetails}/>
+            <Route exact path="/trendings" component={TrendingProjects} />
+            <Route exact path="/projectdetails" component={ProjectDetails} />
 
             {/* Auth related routes  */}
             <Route exact path="/login" component={Login} />
@@ -101,8 +114,8 @@ function App() {
 
 
             {/* Other routes  */}
-            <Route exact path="/about" component={AboutUs}/>
-            <Route exact path="/contact" component={ContactUs}/>
+            <Route exact path="/about" component={AboutUs} />
+            <Route exact path="/contact" component={ContactUs} />
           </Switch>
           <Footer />
         </Router>
