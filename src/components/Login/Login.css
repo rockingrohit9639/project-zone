@@ -20,7 +20,7 @@
   width:50%;
   max-width:50vw;
   max-height:98vh;
-  margin-top:50px;
+
 }
 
 .loginform h1{
@@ -149,9 +149,11 @@ color:#5352ED;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  margin-bottom: 130px;
  } 
  .loginform h1{
     font-size:20px;
+    margin-top: 50%;
  }
  .loginform,.loginimage{
      font-size:14px;

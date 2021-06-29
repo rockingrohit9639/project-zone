@@ -21,7 +21,7 @@
     align-items: left;
     justify-content: center;
     margin: 0 auto;
-    width: 50%;
+    width: 70%;
     max-width: 50vw;
     max-height: 98vh;
     margin-top: 50px;
@@ -80,4 +80,10 @@ margin-left:10px;
   .signupimage img {
     height: 100%;
     width: 100%;
+  }
+
+  @media screen and (max-width:768px) {
+    .signupimage{
+      display: none;
+    }
   }
