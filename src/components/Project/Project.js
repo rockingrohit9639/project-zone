@@ -7,7 +7,6 @@ import RatingCard from '../RatingCard/RatingCard';
 import { Link } from 'react-router-dom';
 import { useDataLayerValues } from '../../datalayer';
 import { getSkillColor } from '../../utils';
-import 'font-awesome/css/font-awesome.min.css';
 
 function Project({ title, desc, skills, level, style, rating }) {
   const [shareopen, setshareopen] = useState(false);

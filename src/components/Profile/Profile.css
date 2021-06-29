@@ -62,13 +62,13 @@
     margin:5px 10px;
 }
 
-.facebooklink,.facebooklink:hover{
+.facebooklink,.facebooklink:hover,.fa-facebook{
     color:#1877F2;
 }
-.linkedinlink,.linkedinlink:hover{
+.linkedinlink,.linkedinlink:hover,.fa-linkedin{
     color:#0A66C2;
 }
-.githublink,.githublink:hover{
+.githublink,.githublink:hover,.fa-github{
     color:#333;
 }
 
@@ -103,7 +103,7 @@
     background-color:#5352ED;
     padding:10px 20px;
     cursor:pointer;
-    color:#fff;
+    color:#FFF;
     font-size:20px;
     box-shadow:-1px 3px 3px rgba(0,0,0,0.4);
 }
@@ -187,6 +187,154 @@
     margin:5px 0;
 }
 
+.overlay {
+    background-color: rgba(83, 82, 237,0.5);
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay_hidden {
+    display: none;
+}
+
+.editmodal {
+    position: fixed;
+    width:70%;
+    height:80%;
+    padding:2% 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#FFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:10px;
+}
+
+.editmodal_hidden {
+    display: none;
+}
+
+.editmodal_left, .editmodal_right{
+    display:flex;
+    flex-direction:column;
+}
+
+.editmodal_left{
+   width:40%;
+   margin:0 2%;
+}
+
+.editmodal_right{
+  width:60%;
+  margin:0 2%;
+  margin-bottom:5%;
+}
+
+.img_container{
+    position:relative;
+}
+
+.img_container img{
+    width:70%;
+    max-width:400px;
+    height:auto;
+    border-radius:50%;
+    margin:10px auto;
+}
+
+.img_overlay{
+  width:70%;
+  height:92%;
+  margin:10px auto;
+  position: absolute;
+  top:0;
+  left:15%;
+  font-size:20px;
+  text-align: center;
+  background-color:rgba(83, 82, 237,0.5);
+  color:#5352ED;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:3;
+}
+
+.fa-edit{
+    padding:10px;
+    background-color:#FFF;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.social_info input{
+    border:1px solid #CCC;
+    outline:none;
+    margin:10px 0;
+    padding:5px;
+    width:70%;
+    color:#5352ED;
+}
+
+.social_info .fab{
+   font-size:25px;
+   margin:5px;
+   margin-right:15px;
+}
+
+.social_info .fa-linkedin{
+    margin-right:17px;
+}
+
+.left_submit,.right_submit{
+    width:fit-content;
+    border:2px solid #5352ED;
+    background-color:#5352ED;
+    margin:10%;
+    padding:5px 20px;
+    cursor:pointer;
+    color:#FFF;
+    font-size:16px;
+    box-shadow:-1px 3px 3px rgba(0,0,0,0.4);
+}
+
+.right_submit{
+    display:none;
+}
+
+.forminput label{
+    font-size:14px;
+}
+
+.forminput span{
+    color:red;
+    margin-left:3px;
+}
+
+.forminput textarea,.forminput textarea:focus{
+    outline:none;
+    border:none;
+    width:30vw;
+    padding:22px 10px 10px 22px;
+}
+
+.forminput textarea::placeholder {
+    color: #CCC;
+  }
+
+
+.editmodal_closebar {
+    width:10%;
+    font-size:35px;
+    cursor: pointer;
+    position:absolute;
+    top:4%;
+    right:2%;
+}
+
 
 @media screen and (max-width:960px){
     .profile_wrapper{
@@ -213,6 +361,77 @@
     .projects_badges{
         margin-top:5%;
         padding:5% 8%;
+    }
+
+    .editmodal{
+        width:80%;
+        height:auto;
+        padding:0.5%;
+        top:10%;
+        flex-direction:column;
+    }
+
+    .editmodal_left, .editmodal_right{
+        margin:0;
+        width:100%;
+        align-items:center;
+    }
+
+    .editmodal_left{
+        display:flex;
+    }
+
+    .img_container img{
+        width:50%;
+        height:auto;
+    }
+    
+    .img_overlay{
+      width:50%;
+      height:90%;
+      left:25%;
+    }
+
+    .fa-edit{
+        padding:8px;
+        font-size:18px;
+    }
+
+    .social_info{
+        width:100%;
+    }
+
+    .social_info input{
+        margin:3px;
+        width:50%;
+    }
+    .forminput{
+      margin:3px;
+    }
+
+    .forminput input{
+        max-width:0;
+    }
+
+    .edit_input,.forminput textarea{
+        margin:0;
+        min-width:60vw;
+    }
+    .forminput textarea,.forminput textarea:focus{
+       height:5em;
+       margin-top:1.5em;
+    }
+
+    .left_submit{
+        display:none;
+    }
+    .right_submit{
+        display:block;
+        margin:0;
+        margin:5px;
+    }
+    .editmodal_closebar{
+        font-size:25px;
     }
       
 }
