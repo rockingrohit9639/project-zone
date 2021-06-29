@@ -5,6 +5,6 @@ const {profile , UserDashboard , UpdateUserDashbaord} = require('./../controller
 
 ProtectedRouter.get('/profile', authenticate, profile);
 ProtectedRouter.get('/user-dashboard', authenticate, UserDashboard);
-ProtectedRouter.put('/update-user-dashboard', authenticate , UpdateUserDashbaord)
+ProtectedRouter.patch('/update-user-dashboard', authenticate , UpdateUserDashbaord)
 
 module.exports = ProtectedRouter;
