@@ -248,3 +248,14 @@ color:#5352ED;
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+@media screen and (max-width:960px) {
+  .loginform{
+    margin-top: 40%;
+    
+  }
+  .login{
+    margin-bottom: 76%;
+  }
+  
+}
