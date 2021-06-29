@@ -12,8 +12,12 @@ export const initialState = {
     profile_pic: "",
     project_stones: "",
     projects_added: "",
-    badges: "",
-    social_links: "",
+    badges: [],
+    social_links: {
+      github: "",
+      linkdin: "",
+      facebook: "",
+    },
     created_at: "",
   },
   ProjectDetails: {
@@ -30,7 +34,7 @@ export const initialState = {
 export const actions = {
   SET_USER: "SET_USER",
   LOAD_USER: "LOAD_USER",
-  SET_USER_DASHBOARD_DATA : "SET_USER_DASHBOARD_DATA",
+  SET_USER_DASHBOARD_DATA: "SET_USER_DASHBOARD_DATA",
   SET_AUTH: "SET_AUTH",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
   LOGIN_SUCCESS: "LOGIN_SUCCESS",

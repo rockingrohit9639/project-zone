@@ -46,7 +46,7 @@ input[type="file"] {
   height: auto;
   border-radius: 50%;
   transform: translateY(25px);
-  height: 200px;
+  height: 240px;
 }
 
 .card_content {
@@ -276,7 +276,7 @@ input[type="file"] {
   margin: 10px auto;
   position: absolute;
   top: 0;
-  left: 24.1%;
+  /* left: 24.1%; */
   font-size: 20px;
   text-align: center;
   background-color: rgba(83, 82, 237, 0.5);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import profileavatar from "./../../assets/user.png";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { usePalette } from "react-palette";
 import "./Profile.css";
@@ -9,6 +9,7 @@ import { UpdateUserData } from "../../axios/instance";
 import { setAuthToken } from "../../utils";
 
 const Profile = () => {
+  const history = useHistory();
   const [{ dashboard, user }, dispatch] = useDataLayerValues();
   console.log(dashboard);
   const { data } = usePalette(profileavatar);
@@ -56,7 +57,7 @@ const Profile = () => {
       toast.error("Please enter your bio   ");
     } else if (descr === "") {
       toast.error("Please enter description");
-    }  else if (fname === "") {
+    } else if (fname === "") {
       toast.error("Please enter valid firstname");
     } else if (lname === "") {
       toast.error("Please enter valid lastname");
@@ -72,15 +73,15 @@ const Profile = () => {
           project_stones: dashboard.project_stones,
           projects_added: dashboard.projects_added,
           badges: dashboard.badges,
-          social_links: [
-            { github: fields.githublink },
-            { linkdin: fields.linkedinlink },
-            { facebook: fields.fblink },
-          ],
+          social_links: {
+            github: fields.githublink,
+            linkdin: fields.linkedinlink,
+            facebook: fields.fblink,
+          },
         },
         created_at: dashboard.created_at,
       };
-      // clearFields();
+      clearFields();
       updatedata(data);
     }
   };
@@ -119,10 +120,10 @@ const Profile = () => {
     };
     const dashboarddata = {
       ...dashboard,
-      bio: data.bio,
-      description: data.descr,
-      profile_pic: data.profile_pic,
-      social_links: data.social_links,
+      bio: data.profile.bio,
+      description: data.profile.description,
+      profile_pic: data.profile.profile_pic,
+      social_links: data.profile.social_links,
     };
 
     const maindata = {
@@ -130,15 +131,18 @@ const Profile = () => {
     };
     try {
       const user = await UpdateUserData(maindata);
-      console.log("USER  ", user);
+      console.log("1st");
       dispatch({
         type: "SET_USER",
         user: userdata,
       });
+      console.log("2st");
       dispatch({
         type: "SET_USER_DASHBOARD_DATA",
         dashboard: dashboarddata,
       });
+      console.log("end");
+      toggleModalVisibility();
     } catch (err) {
       if (err.response) {
         toast.error(`${err.response.data.error}`);
@@ -146,7 +150,7 @@ const Profile = () => {
     }
   };
 
-  console.log(fields.profileimg);
+  console.log(dashboard.social_links);
 
   return (
     <div className="profile_wrapper">
@@ -162,39 +166,38 @@ const Profile = () => {
           <h1>{user.fname + " " + user.lname}</h1>
           <h3>{dashboard.bio === "" ? <i>No bio set</i> : dashboard.bio}</h3>
           <div className="social_icons">
-            {dashboard.social_links.length > 0 ? (
+            {dashboard.social_links ? (
               <>
-                {dashboard.social_links[0] ? (
+                {" "}
+                {!dashboard.social_links.github == "" ? (
                   <a
-                    href={dashboard.social_links[0].github}
+                    href={dashboard.social_links.github}
                     target="_blank"
                     className="githublink"
                   >
                     <i className="fab fa-github"></i>
                   </a>
                 ) : null}
-                {dashboard.social_links[1] ? (
+                {!dashboard.social_links.linkdin == "" ? (
                   <a
-                    href={dashboard.social_links[1].linkdin}
+                    href={dashboard.social_links.linkdin}
                     target="_blank"
                     className="linkedinlink"
                   >
                     <i className="fab fa-linkedin"></i>
                   </a>
                 ) : null}
-                {dashboard.social_links[2] ? (
+                {!dashboard.social_links.facebook == "" ? (
                   <a
-                    href={dashboard.social_links[2].facebook}
+                    href={dashboard.social_links.facebook}
                     target="_blank"
                     className="facebooklink"
                   >
                     <i className="fab fa-facebook"></i>
                   </a>
-                ) : null}{" "}
+                ) : null}
               </>
-            ) : (
-              <i>No Social Links Added</i>
-            )}
+            ) : null}
           </div>
           <h2>{dashboard.project_stones}</h2>
           <button

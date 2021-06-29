@@ -24,26 +24,19 @@ import { setAuthToken } from "./utils";
 import { useDataLayerValues } from "./datalayer";
 import ForgetPassword from "./components/ForgetPassword/Forget";
 
-function App()
-{
-  const [{ user, isAuthenticated }, dispatch] = useDataLayerValues();
-  useEffect(() =>
-  {
+function App() {
+  const [{ user, isAuthenticated, dashboard }, dispatch] = useDataLayerValues();
+  useEffect(() => {
+    const loader = document.getElementById("pre-loader");
 
-    const loader = document.getElementById('pre-loader');
-
-    if (loader)
-    {
+    if (loader) {
       loader.remove();
     }
 
-
-    if (localStorage.getItem('tokken'))
-    {
-      setAuthToken(localStorage.getItem('tokken'));
+    if (localStorage.getItem("tokken")) {
+      setAuthToken(localStorage.getItem("tokken"));
       const userdata = getUser();
-    } else
-    {
+    } else {
       dispatch({
         type: "SET_AUTH",
         isAuthenticated: false,
@@ -51,10 +44,8 @@ function App()
     }
   }, [localStorage.getItem("tokken")]);
 
-  const getUser = async () =>
-  {
-    try
-    {
+  const getUser = async () => {
+    try {
       const user = await profile();
       console.log(user);
       const data = {
@@ -63,7 +54,8 @@ function App()
         lname: user.data.lastname,
         email: user.data.email,
       };
-      const dashboard = {
+      const dashboard_ = {
+        ...dashboard,
         bio: user.data.profile.bio ? user.data.profile.bio : "",
         description: user.data.profile.description
           ? user.data.profile.description
@@ -87,7 +79,7 @@ function App()
       });
       dispatch({
         type: "SET_USER_DASHBOARD_DATA",
-        dashboard: dashboard,
+        dashboard: dashboard_,
       });
     } catch (err) {
       console.log(err);
@@ -98,9 +90,8 @@ function App()
   const [theme, settheme] = useState("light");
   const styledApp = styled.div;
 
-  const themeToggler = () =>
-  {
-    theme === 'light' ? settheme('dark') : settheme('light');
+  const themeToggler = () => {
+    theme === "light" ? settheme("dark") : settheme("light");
   };
 
   return (
