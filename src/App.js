@@ -24,16 +24,26 @@ import { setAuthToken } from "./utils";
 import { useDataLayerValues } from "./datalayer";
 import ForgetPassword from "./components/ForgetPassword/Forget";
 
-function App() {
+function App()
+{
   const [{ user, isAuthenticated }, dispatch] = useDataLayerValues();
-  useEffect(() => {
-    const loader = document.getElementById("pre-loader");
-    loader.remove();
+  useEffect(() =>
+  {
 
-    if (localStorage.getItem("tokken")) {
-      setAuthToken(localStorage.getItem("tokken"));
+    const loader = document.getElementById('pre-loader');
+
+    if (loader)
+    {
+      loader.remove();
+    }
+
+
+    if (localStorage.getItem('tokken'))
+    {
+      setAuthToken(localStorage.getItem('tokken'));
       const userdata = getUser();
-    } else {
+    } else
+    {
       dispatch({
         type: "SET_AUTH",
         isAuthenticated: false,
@@ -41,8 +51,10 @@ function App() {
     }
   }, [localStorage.getItem("tokken")]);
 
-  const getUser = async () => {
-    try {
+  const getUser = async () =>
+  {
+    try
+    {
       const user = await profile();
       console.log(user);
       const data = {
@@ -86,8 +98,9 @@ function App() {
   const [theme, settheme] = useState("light");
   const styledApp = styled.div;
 
-  const themeToggler = () => {
-    theme === "light" ? settheme("dark") : settheme("light");
+  const themeToggler = () =>
+  {
+    theme === 'light' ? settheme('dark') : settheme('light');
   };
 
   return (
