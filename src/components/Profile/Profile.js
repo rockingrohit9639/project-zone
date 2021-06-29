@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import profileavatar from './../../assets/profileavatar.jpg';
 import { Link as RouterLink } from 'react-router-dom';
-import "./Profile.css";
+import { ToastContainer, toast } from 'react-toastify';
 import { usePalette } from "react-palette";
-
+import "./Profile.css";
 
 const projects = [
     'Whatsapp Clone',
@@ -23,34 +23,84 @@ const badges = [
     }
 ];
 
-const Profile = () =>
-{
-
+const Profile = () => {
+    
     const { data } = usePalette(profileavatar);
+    const [modalVisibility,setModalVisibility] = useState("false");
+    const [fields,setFields] = useState({
+        githublink:'',
+        linkedinlink:'',
+        fblink:'',
+        name:'',
+        profession:'',
+        bio:''
+    })
+    const { githublink,linkedinlink,fblink,name,profession,bio } = fields;
+
+    const toggleModalVisibility  = () => {
+        setModalVisibility(!modalVisibility);
+    }
+
+    const handleChange = (e) =>
+    {
+        const { name, value } = e.target;
+        setFields((prevState) =>
+        {
+            return {
+                ...prevState,
+                [name]: value,
+            };
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (name === '') {
+            toast.error('Please enter your Name ');
+          } else if (profession === '') {
+            toast.error('Please enter your Profession ');
+          } else if (bio === '') {
+            toast.error('Please enter bio');
+          } else {
+            console.log(fields);
+            clearFields();
+          }
+    }
+
+    const clearFields = () => {
+        setFields({
+            githublink:'',
+            linkedinlink:'',
+            fblink:'',
+            name:'',
+            profession:'',
+            bio:''
+        });
+    }
 
 
     return (
         <div className="profile_wrapper">
             <div className="person_card">
                 <div className="card_top" style={{ backgroundColor: data?.vibrant }}>
-                    <img src={profileavatar} alt="Your Profile Photo" />
+                    <img src={profileavatar} alt="Your Profile Avatar" />
                 </div>
                 <div className="card_content">
                     <h1>Shwet Khatri</h1>
                     <h3>Software Engineer</h3>
                     <div className="social_icons">
-                        <a href="https://github.com/" target="_blank" className="githublink">
+                        <a href="https://github.com/" target="_blank" rel="noreferrer" className="githublink">
                             <i className="fab fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com/" target="_blank" className="linkedinlink">
+                        <a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="linkedinlink">
                             <i className="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://facebook.com/" target="_blank" className="facebooklink">
+                        <a href="https://facebook.com/" target="_blank" rel="noreferrer" className="facebooklink">
                             <i className="fab fa-facebook"></i>
                         </a>
                     </div>
                     <h2>Projectones : 800</h2>
-                    <button className="editbtn">
+                    <button className="editbtn" onClick={() => {toggleModalVisibility()}}>
                         Edit Profile
                     </button>
                     <RouterLink to="/addnew" className="addnewlink">
@@ -88,7 +138,76 @@ const Profile = () =>
                     </div>
                 </div>
             </div>
-        </div>
+            <div className={`overlay ${modalVisibility && 'overlay_hidden'}`} onClick={()=> toggleModalVisibility()}>
+            </div>
+            <form className={`editmodal ${modalVisibility && 'editmodal_hidden'}`} onSubmit={handleSubmit}>
+                <ToastContainer position="bottom-center" />
+                <div className="editmodal_left ">
+                   <div className="img_container">
+                    <img src={profileavatar} alt="Your Profile Avatar" />
+                    <div className="img_overlay"><i className="fas fa-edit"></i></div>
+                   </div>
+
+                    <div className="social_info ">
+                       <i className="fab fa-github"></i>
+                       <input className="social_input" name="githublink" value={githublink} onChange={handleChange}></input>
+                    </div>
+                    <div className="social_info">
+                       <i className="fab fa-linkedin"></i>
+                       <input className="social_input" name="linkedinlink" value={linkedinlink} onChange={handleChange}></input>
+                    </div>
+                    <div className="social_info">
+                       <i className="fab fa-facebook"></i>
+                       <input className="social_input" name="fblink" value={fblink} onChange={handleChange}></input>
+                    </div>
+
+                    <button type="submit" className="left_submit">Submit</button>
+                </div>
+                  <div className="editmodal_right">
+                    <div className="forminput">
+                        <label htmlFor="email">Name<span>*</span></label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your Name"
+                            name="name"
+                            value={name}
+                            className="edit_input"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="forminput">
+                        <label htmlFor="email">Profession<span>*</span></label>
+                        <input
+                            type="text"
+                            id="profession"
+                            placeholder="Enter your Profession"
+                            name="profession"
+                            value={profession}
+                            className="edit_input"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="forminput">
+                        <label htmlFor="email">Bio<span>*</span></label>
+                        <textarea
+                            id="bio"
+                            placeholder="Tell us something about yourself"
+                            name="bio"
+                            value={bio}
+                            rows="6"
+                            className="edit_input"
+                            onChange={handleChange}
+                        />
+                    </div>
+                     
+                    <button type="submit" className="right_submit">Submit</button>
+                  </div>
+                  <div className="editmodal_closebar" onClick={() => toggleModalVisibility()}>
+                     <i className="fa fa-times"></i>
+                 </div>
+                </form>
+            </div>
     )
 
 }
