@@ -8,13 +8,16 @@ import { Link } from 'react-router-dom';
 import { useDataLayerValues } from '../../datalayer';
 import { getSkillColor } from '../../utils';
 
-function Project({ title, desc, skills, level, style, rating }) {
+function Project({ title, desc, skills, level, style, rating })
+{
   const [shareopen, setshareopen] = useState(false);
   const [{ ProjectDetails }, dispatch] = useDataLayerValues();
-  const shareButtonHandler = () => {
+  const shareButtonHandler = () =>
+  {
     setshareopen(!shareopen);
   };
-  const ReadMeHandler = () => {
+  const ReadMeHandler = () =>
+  {
     dispatch({
       type: 'SET_PROJECT_DETAILS',
       ProjectDetails: {
@@ -29,11 +32,11 @@ function Project({ title, desc, skills, level, style, rating }) {
   return (
     <div className='project' style={style && style}>
       <div className="cardimg-box">
-        <img 
-            src={cardimg}
-            className="cardimg"
-            alt="card-image"
-          />
+        <img
+          src={cardimg}
+          className="cardimg"
+          alt="card-image"
+        />
       </div>
       <div className="card-content">
         <div className='title-flexbox'>
@@ -56,11 +59,15 @@ function Project({ title, desc, skills, level, style, rating }) {
             </h5>
           </Link>
         </div>
+
         <div className='level'>
           <label>Level - </label>
           <p>{level}</p>
         </div>
 
+        <div className="likebox">
+          <i className="far fa-heart" aria-hidden="true" > <span>35 Likes</span></i>
+        </div>
         <div className='skills'>
           {skills &&
             skills.map((skill, ind) => (

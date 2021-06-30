@@ -8,15 +8,14 @@
 /* top button */
 #btn {
   position: fixed;
-  background-color: #ff3333;
-  color: #FFF;
+  background-color: #051b79;
   text-decoration: none;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   color: white;
   cursor: pointer;
   display: none;
-  bottom: 16px;
+  bottom: 9%;
   right: 32px;
   width: 50px;
   height: 50px;
@@ -24,12 +23,14 @@
   text-align: center;
   font-weight: bold;
   transition: all 0.2s;
+  box-shadow: 0 10px 25px rgb(175, 175, 236);
 }
 #btn:hover {
-  background-color: #ff6666;
+  background-color: #040668;
 }
-.pop:hover {
-  transform: scale(1.5);
+.pop {
+  margin-top: -17px;
+  font-size: 50px;
 }
 
 /* CSS to accomodate dark mode toggle swithc with navabar */

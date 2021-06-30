@@ -159,7 +159,7 @@ const NewLogin = () => {
             </label>
           </div>
           <div>
-            <RouterLink to="/forgotpassword" className="forgotpass">
+            <RouterLink to="/forgetpassword" className="forgotpass">
               Forgot Password?
             </RouterLink>
           </div>

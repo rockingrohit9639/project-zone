@@ -5,7 +5,6 @@
   position: relative;
   margin-top: 2rem;
   align-items:flex-start;
-  cursor: pointer;
   box-shadow: 0 3px 5px -5px rgba(50, 50, 50, 0.75);
   background-color:#fff;
   transition: transform .3s;
@@ -38,8 +37,8 @@
 
 .project:hover {
   transform: scale(1.015);
-  -webkit-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow: 3px 3px 10px 0px rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
   box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
 }
 
@@ -78,6 +77,16 @@
   font-weight: bold;
 }
 
+.likebox i{
+  font-size: 1rem;
+  padding: 0.8rem 0;
+  cursor: pointer;
+}
+
+.likebox i span {
+  font-family: "Poppins";
+}
+
 .skills {
   width: 100%;
   display: flex;
@@ -95,5 +104,7 @@
 }
 
 
-
+.far-fa-heart {
+  cursor: pointer;
+}
 
