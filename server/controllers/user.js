@@ -2,6 +2,7 @@ const UserModel = require("./../db/schema/User");
 const bcrypt = require("bcrypt");
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
+const { sendEmail } = require("../utills/sendMail");
 
 const maxage = 3 * 24 * 60 * 60;
 const createwebToken = (id) => {
@@ -54,4 +55,15 @@ exports.UpdateUserDashbaord = async (req, res) => {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
   }
+};
+
+exports.sendemail = async (req, res) => {
+  const { email } = req.body;
+  const content = `<h1>Checking mailing service</h1>`;
+  try {
+    await sendEmail(email, "first mail", content);
+    res.status(200).json({ msg: "success" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 internal error" });
 };
