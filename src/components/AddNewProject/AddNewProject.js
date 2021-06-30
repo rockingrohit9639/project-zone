@@ -2,17 +2,12 @@ import React, { useState } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-import PublishIcon from '@material-ui/icons/Publish';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles} from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { ToastContainer, toast } from 'react-toastify';
+import addprojectimg from './../../assets/addprojectimg.png';
 import 'react-toastify/dist/ReactToastify.css';
+import './AddNewProject.css';
 
 const useStyles = makeStyles((theme) => ({
   mt: {
@@ -31,7 +26,50 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     marginBottom: '1rem',
   },
+  skillinput:{
+    padding: '22px 10px 0px 20px',
+    width: '30vw',
+    color: '#5352ed',
+    [theme.breakpoints.down('sm')]:{
+      width:'60vw'
+    },
+    
+   
+  },
+  option:{
+    color:'#000',
+    backgroundColor:'#FFF',
+    marginTop:0,
+    '&[data-focus="true"]': {
+      backgroundColor:'#5253ED',
+      color:'#FFF'
+    }
+  },
+  tag: {
+    backgroundColor: "#5253ED",
+    color:'#FFF',
+    height: 30,
+    position: "relative",
+    zIndex: 0,
+    "& .MuiChip-label": {
+      color: "#FFF"
+    },
+    "& .MuiChip-deleteIcon": {
+      color:"#FFF",
+    },
+    "&:after": {
+      content: '""',
+      right: 10,
+      top: 6,
+      position: "absolute",
+      nackgroundColor:"#FFF",
+      borderRadius:"50%",
+      zIndex: -1
+    }
+  }
 }));
+
+
 
 function AddNewProject() {
   const classes = useStyles();
@@ -40,6 +78,11 @@ function AddNewProject() {
   const [title, setTitle] = useState('');
   const [level, setLevel] = useState('');
   const [desc, setDesc] = useState('');
+  const projectLevel = [
+    'Beginner',
+    'Intermediate',
+    'Advanced'
+  ]
   const projectSkill = [
     'JavaScript',
     'Node',
@@ -65,14 +108,18 @@ function AddNewProject() {
     'AR',
     'VR',
   ];
-  const submitBtnStyle = {
-    backgroundColor: '#ff5959',
-    color: '#FFF',
-  };
 
-  const handleSubmit = async () => {
-    if (!title || !level || !desc || !skillInputs[0]) {
-      window.alert('Please fill the form completely.');
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    if (!title) {
+      toast.error("Please enter project's title");
+    } else if (!level) {
+      toast.error("Please enter project's level");
+    } else if (!skillInputs) {
+      toast.error("Please enter skills for project");
+    } else if (!desc) {
+      toast.error("Please enter description");
     } else {
       const data = {
         name: title,
@@ -129,86 +176,90 @@ function AddNewProject() {
 
   return (
     <div>
-      <ToastContainer />
-      <Box
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        minHeight='90vh'>
-        <Box boxShadow={1} width='80%' padding='2rem'>
-          <Typography variant='h4' className={classes.text}>
-            Add New Project
-          </Typography>
-          <FormControl fullWidth>
-            <TextField
-              label='Project Title'
-              variant='outlined'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required={true}
-            />
-
-            <FormControl
-              variant='outlined'
-              className={classes.mt}
-              required={true}>
-              <InputLabel>Project Level</InputLabel>
-              <Select
-                value={level}
-                onChange={(e) => {
-                  setLevel(e.target.value);
-                }}
-                label='Project Level'>
-                <MenuItem value={'Beginner'}>Beginner </MenuItem>
-                <MenuItem value={'Intermediate'}>Intermediate</MenuItem>
-                <MenuItem value={'Advanced'}>Advanced</MenuItem>
-              </Select>
-            </FormControl>
-            <Autocomplete
-              className={classes.mt}
-              multiple
-              id='tags-outlined'
-              freeSolo={true}
-              options={projectSkill}
-              getOptionLabel={(option) => option}
-              onChange={(event, newValue) => {
-                console.log(newValue);
-                const values = [...newValue];
-                setSkillInputs(values);
-              }}
-              filterSelectedOptions
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant='outlined'
-                  label='Project Skill'
-                  placeholder='Add Project Skills'
+      <ToastContainer position="bottom-right"/>
+      <div className="addproject_wrapper">
+          <div  className="quotesection">
+            <div  className="quotebox">
+              <i className="fa fa-quote-left"></i>
+              <h4>A long descriptive name is better than a short enigmatic name. 
+                A long descriptive name is better than a long descriptive comment.
+              </h4>
+              <h4><span className="dash">-</span>Robert C.martin</h4>
+              <img src={addprojectimg} alt="addprojectimg" className="addprojectimg"/>
+            </div>
+            </div>
+            <form onSubmit={handleSubmit} className="addprojectform">
+              <h1>Add New Project</h1>
+              <FormControl fullWidth>
+              <div className="forminput">
+                <label htmlFor="title">Project title<span>*</span></label>
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Enter Project Title"
+                  name="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   required
                 />
-              )}
-            />
-
-            <TextareaAutosize
-              aria-label='minimum height'
-              className={classes.textarea}
-              rowsMin={5}
-              placeholder='Description'
-              value={desc}
-              onChange={(e) => setDesc(e.target.value)}
-              required={true}
-            />
-
-            <Button
-              variant='contained'
-              style={submitBtnStyle}
-              className={classes.mt}
-              startIcon={<PublishIcon />}
-              onClick={handleSubmit}>
-              Submit
-            </Button>
-          </FormControl>
-        </Box>
-      </Box>
+              </div>
+              <div className="forminput">
+                <label htmlFor="title">Project Level<span>*</span></label>
+                <Autocomplete
+                  id="project-level"
+                  options={projectLevel}
+                  onChange={(event,value) => setLevel(value)}
+                  classes={{ option: classes.option}}
+                  renderInput={(params) => (
+                    <div ref={params.InputProps.ref}>
+                      <input type="text" placeholder="Enter Project Level" 
+                           {...params.inputProps} />
+                    </div>
+                  )}
+                />
+              </div>
+              <div className="skillsinput">
+              <label htmlFor="skills">Skills<span>*</span></label>
+              <Autocomplete
+                multiple={true}
+                id='skills'
+                freeSolo={true}
+                classes={{ option: classes.option, tag: classes.tag}}
+                options={projectSkill}
+                getOptionLabel={(option) => option}
+                onChange={(event, newValue) => {
+                  console.log(newValue);
+                  const values = [...newValue];
+                  setSkillInputs(values);
+                }}
+                filterSelectedOptions
+                renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Enter Skills"
+                      className={classes.skillinput}
+                      fullWidth
+                    />
+                )}
+              />
+              </div>
+            </FormControl>
+            <div className="forminput">
+                <label htmlFor="desc">Description<span>*</span></label>
+                <textarea
+                  id="desc"
+                  placeholder="Write something about this project"
+                  name="desc"
+                  value={desc}
+                  rows="5"
+                  onChange={(e) => setDesc(e.target.value)}
+                />
+            </div>
+            <button type="submit" className="submitbtn">
+              Submit<i className="fa fa-upload"></i>
+            </button>
+          </form>
+        </div>
     </div>
   );
 }
