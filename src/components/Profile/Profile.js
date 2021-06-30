@@ -12,7 +12,7 @@ const Profile = () => {
   const history = useHistory();
   const [{ dashboard, user }, dispatch] = useDataLayerValues();
   console.log(dashboard);
-  const { data } = usePalette(profileavatar);
+  
   const [modalVisibility, setModalVisibility] = useState("false");
   const [fields, setFields] = useState({
     fname: user.fname,
@@ -25,6 +25,9 @@ const Profile = () => {
     descr: "",
   });
   const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
+  const { data } = usePalette(dashboard.profile_pic);
+
+  console.log(data)
 
   const toggleModalVisibility = () => {
     setModalVisibility(!modalVisibility);
@@ -150,12 +153,10 @@ const Profile = () => {
     }
   };
 
-  console.log(dashboard.social_links);
-
   return (
     <div className="profile_wrapper">
       <div className="person_card">
-        <div className="card_top">
+        <div className="card_top" style={{ backgroundColor: data?.vibrant }}>
           {dashboard.profile_pic === "" ? (
             <img src={profileavatar} alt="user_profile_img" />
           ) : (
@@ -199,7 +200,7 @@ const Profile = () => {
               </>
             ) : null}
           </div>
-          <h2>{dashboard.project_stones}</h2>
+          <h3>Projectones : {dashboard.project_stones}</h3>
           <button
             className="editbtn"
             onClick={() => {

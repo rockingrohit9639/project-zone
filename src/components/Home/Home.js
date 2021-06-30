@@ -14,6 +14,7 @@ function Home() {
   const setChangedata = () => {
     setChange(true);
   };
+  
   return (
     <div className='home'>
       <section
@@ -32,8 +33,8 @@ function Home() {
         </div>
       </section>
 
-      <SearchBox setChangedata={setChangedata} />
       <ProjectCategories />
+
       <div className="home_projects">
 
       <div className='best_project'>
