@@ -42,7 +42,7 @@ footer a {
 
 .footerRight ul li :hover {
     text-decoration: underline;
-    color: darkorange;
+    color: #ccc;
 }
 
 .footerRight ul li {
