@@ -1,10 +1,24 @@
 export const initialState = {
   user: {
-    fname: '',
-    lname: '',
-    email: '',
-    password: '',
-    picture: '',
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    picture: "",
+  },
+  dashboard: {
+    bio: "",
+    description: "",
+    profile_pic: "",
+    project_stones: "",
+    projects_added: "",
+    badges: [],
+    social_links: {
+      github: "",
+      linkdin: "",
+      facebook: "",
+    },
+    created_at: "",
   },
   ProjectDetails: {
     title: null,
@@ -14,17 +28,18 @@ export const initialState = {
     rating: 0,
   },
   isAuthenticated: false,
-  query: '',
+  query: "",
 };
 
 export const actions = {
-  SET_USER: 'SET_USER',
-  LOAD_USER: 'LOAD_USER',
-  SET_AUTH: 'SET_AUTH',
-  REGISTER_SUCCESS: 'REGISTER_SUCCESS',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  SET_QUERY: 'SET_QUERY',
-  SET_PROJECT_DETAILS: 'SET_PROJECT_DETAILS',
+  SET_USER: "SET_USER",
+  LOAD_USER: "LOAD_USER",
+  SET_USER_DASHBOARD_DATA: "SET_USER_DASHBOARD_DATA",
+  SET_AUTH: "SET_AUTH",
+  REGISTER_SUCCESS: "REGISTER_SUCCESS",
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  SET_QUERY: "SET_QUERY",
+  SET_PROJECT_DETAILS: "SET_PROJECT_DETAILS",
 };
 
 const reducer = (state, action) => {
@@ -41,6 +56,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         isAuthenticated: action.isAuthenticated,
+      };
+
+    case actions.SET_USER_DASHBOARD_DATA:
+      return {
+        ...state,
+        dashboard: action.dashboard,
       };
 
     case actions.SET_QUERY:
