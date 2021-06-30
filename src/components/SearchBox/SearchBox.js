@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import './SearchBox.css';
 import SearchIcon from '@material-ui/icons/Search';
-import { actions } from '../../reducer';
-import { useDataLayerValues } from '../../datalayer';
-import { useHistory } from 'react-router-dom';
+import { useDataLayerValues } from "../../datalayer";
 
-function SearchBox({ setChangedata }) {
-  const [{ query }, dispatch] = useDataLayerValues();
-  const history = useHistory();
-  const handleChange = (e) => {
+function SearchBox({ fetchProjects })
+{
+
+  const [ {query}, dispatch ] = useDataLayerValues();
+
+  const setQuery = (e) => {
     dispatch({
-      type: actions.SET_QUERY,
+      type: "SET_QUERY",
       query: e.target.value,
     });
-    setChangedata();
-  };
+  }
+
   return (
     <div className='searchBox'>
       <div className='input'>
         <input
           type='text'
           value={query}
-          onChange={handleChange}
+          onChange={setQuery}
           placeholder='e.g. reactjs'
         />
         <SearchIcon
-          onClick={() => history.push('/projects')}
+          onClick={fetchProjects}
           style={{ cursor: 'pointer' }}
         />
       </div>

@@ -24,7 +24,6 @@ const Profile = () => {
     descr: dashboard.description,
   });
   const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
-  console.log(fields);
 
   const toggleModalVisibility = () => {
     setModalVisibility(!modalVisibility);
@@ -148,12 +147,10 @@ const Profile = () => {
     }
   };
 
-  console.log(dashboard.social_links);
-
   return (
     <div className="profile_wrapper">
       <div className="person_card">
-        <div className="card_top">
+        <div className="card_top" style={{ backgroundColor: data?.vibrant }}>
           {dashboard.profile_pic === "" ? (
             <img src={profileavatar} alt="user_profile_img" />
           ) : (
@@ -197,7 +194,7 @@ const Profile = () => {
               </>
             ) : null}
           </div>
-          <h2>{dashboard.project_stones}</h2>
+          <h3>Projectones : {dashboard.project_stones}</h3>
           <button
             className="editbtn"
             onClick={() => {
