@@ -12,7 +12,7 @@ function Showprojects()
 {
   const [projects, setProjects] = useState();
   const [{ query }] = useDataLayerValues();
-
+  
   // const filters = ["beginner", "intermediate", "advanced"];
   // const [appliedFilters, setAppliedFilters] = useState([]);
 
@@ -22,23 +22,19 @@ function Showprojects()
   {
     try
     {
-      const results = await server.get(`/getprojects?q=${ query }`);
-      setProjects(results.data);
+      setRandomProject('');
+
+      if (query !== "")
+      {
+        const results = await server.get(`/getprojects?q=${ query }`);
+        setProjects(results.data);
+      }
     } catch (error)
     {
       console.log(error);
     }
-  };
 
-  const setChangedata = () =>
-  {
-    setRandomProject('');
   };
-
-  useEffect(() =>
-  {
-    fetchProjects();
-  }, [query]);
 
   const handleRandomProject = () =>
   {
@@ -48,7 +44,7 @@ function Showprojects()
   return (
     <div className='showProjects'>
       <div className='mt'>
-        <SearchBox setChangedata={setChangedata} />
+        <SearchBox fetchProjects={fetchProjects} />
       </div>
 
       <button className='random' onClick={handleRandomProject}>
@@ -62,12 +58,19 @@ function Showprojects()
             desc={randomProject.description}
             skills={randomProject.skills}
             level={randomProject.level}
-            style={{ backgroundColor: '#ff5959', color: '#FFF' }}
+            style={{ backgroundColor: '#6f6ee1', color: '#FFF' }}
           />
         </div>
       ) : null}
 
-      <h2 className='query'> Searching projects for "{query}" </h2>
+      {
+        query ? 
+          <h2 className='query'> Searching projects for "{query}" </h2> 
+          : 
+          <h2 className='query'> Entery query to search for projects. </h2>
+      }
+
+
 
       <div className='projectsList'>
         {projects &&
@@ -89,18 +92,3 @@ function Showprojects()
 }
 
 export default Showprojects;
-
-// <div className="filtersBox">
-//         <div className="filters">
-//           {filters.map((filter, ind) => {
-//             return (
-//               <div
-//                 className="filter"
-//                 key={ind}
-//                 onClick={(e) => handleFilter(e, filter)}
-//               >
-//                 {filter}
-//               </div>
-//             );
-//           })}
-//         </div>

@@ -14,6 +14,7 @@ function Home() {
   const setChangedata = () => {
     setChange(true);
   };
+  
   return (
     <div className='home'>
       <section
@@ -25,15 +26,15 @@ function Home() {
           <h1>finding projects ?</h1>
           <p>We are here to help you.</p>
 
-          <Link to='/findprojects'> Find Projects </Link>
+          <Link to='/projects'> Find Projects </Link>
         </div>
         <div className='image'>
           <img src={avatar} alt='Welcome to ProjectZone' />
         </div>
       </section>
 
-      <SearchBox setChangedata={setChangedata} />
       <ProjectCategories />
+
       <div className="home_projects">
 
       <div className='best_project'>

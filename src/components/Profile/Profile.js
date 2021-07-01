@@ -11,18 +11,17 @@ import { setAuthToken } from "../../utils";
 const Profile = () => {
   const history = useHistory();
   const [{ dashboard, user }, dispatch] = useDataLayerValues();
-  console.log(dashboard);
   const { data } = usePalette(profileavatar);
   const [modalVisibility, setModalVisibility] = useState("false");
   const [fields, setFields] = useState({
     fname: user.fname,
     lname: user.lname,
     profileimg: "",
-    githublink: "",
-    linkedinlink: "",
-    fblink: "",
-    bio: "",
-    descr: "",
+    githublink: dashboard.social_links.github,
+    linkedinlink: dashboard.social_links.linkdin,
+    fblink: dashboard.social_links.facebook,
+    bio: dashboard.bio,
+    descr: dashboard.description,
   });
   const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
 
@@ -83,6 +82,7 @@ const Profile = () => {
       };
       clearFields();
       updatedata(data);
+      toast.success("Profile updated");
     }
   };
 
@@ -131,17 +131,14 @@ const Profile = () => {
     };
     try {
       const user = await UpdateUserData(maindata);
-      console.log("1st");
       dispatch({
         type: "SET_USER",
         user: userdata,
       });
-      console.log("2st");
       dispatch({
         type: "SET_USER_DASHBOARD_DATA",
         dashboard: dashboarddata,
       });
-      console.log("end");
       toggleModalVisibility();
     } catch (err) {
       if (err.response) {
@@ -150,12 +147,10 @@ const Profile = () => {
     }
   };
 
-  console.log(dashboard.social_links);
-
   return (
     <div className="profile_wrapper">
       <div className="person_card">
-        <div className="card_top">
+        <div className="card_top" style={{ backgroundColor: data?.vibrant }}>
           {dashboard.profile_pic === "" ? (
             <img src={profileavatar} alt="user_profile_img" />
           ) : (
@@ -199,7 +194,7 @@ const Profile = () => {
               </>
             ) : null}
           </div>
-          <h2>{dashboard.project_stones}</h2>
+          <h3>Projectones : {dashboard.project_stones}</h3>
           <button
             className="editbtn"
             onClick={() => {
