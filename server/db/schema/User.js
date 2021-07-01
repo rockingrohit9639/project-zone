@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
       github: {
         type: String,
       },
-      linkdin:  {
+      linkdin: {
         type: String,
       },
       facebook: {
@@ -54,6 +54,9 @@ const userSchema = new mongoose.Schema({
     profile_pic: {
       type: String,
     },
+  },
+  password_reset_token: {
+    type: String,
   },
   created_at: {
     type: String,

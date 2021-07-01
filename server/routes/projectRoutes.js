@@ -44,6 +44,6 @@ projectsRouter.post("/addproject", async (req, res) => {
   }
 });
 
-projectsRouter.post("/send-email", sendemail);
+projectsRouter.post("/send-forgetpassword-email", sendemail);
 
 module.exports = projectsRouter;
