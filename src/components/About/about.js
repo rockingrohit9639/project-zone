@@ -50,9 +50,9 @@ const AboutUs = () => {
           <h1>OUR CONTRIBUTORS</h1>
         </div>
         <div className="contributors_list">
-          {users.map((user) => {
+          {users.map((user, idx) => {
             return(
-            <div className="contributor">
+            <div className="contributor" key={idx}>
               <div className="contributorImage">
                 <img src={user.avatar_url} alt="contributor-image" />
               </div>

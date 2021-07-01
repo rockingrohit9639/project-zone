@@ -26,7 +26,7 @@ function Home() {
           <h1>finding projects ?</h1>
           <p>We are here to help you.</p>
 
-          <Link to='/findprojects'> Find Projects </Link>
+          <Link to='/projects'> Find Projects </Link>
         </div>
         <div className='image'>
           <img src={avatar} alt='Welcome to ProjectZone' />
