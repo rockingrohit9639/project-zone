@@ -5,6 +5,7 @@ import { SetNewPassword } from "../../axios/instance";
 import { Link as RouterLink, useParams } from "react-router-dom";
 
 function SetPasword() {
+  const [done, setdone] = useState(false);
   const { token } = useParams();
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
@@ -46,6 +47,7 @@ function SetPasword() {
     try {
       const res = await SetNewPassword(data);
       if (!res.data.err) {
+        setdone(!done);
         toast.success(`${res.data.msg}`);
       }
     } catch (err) {
@@ -93,7 +95,7 @@ function SetPasword() {
           ></i>
         </div>
         <div className="btns">
-          <button type="submit" className="btn">
+          <button disabled={done} type="submit" className="btn">
             Done
           </button>
         </div>

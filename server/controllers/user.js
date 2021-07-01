@@ -114,7 +114,6 @@ exports.sendemail = async (req, res) => {
 exports.ResetPassword = async (req, res) => {
   const { token, password, confirm_password } = req.body;
   try {
-    console.log(token, password, confirm_password);
     jwt.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET_FOREGTPASS,
