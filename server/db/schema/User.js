@@ -39,12 +39,15 @@ const userSchema = new mongoose.Schema({
     social_links: {
       github: {
         type: String,
+        default: "",
       },
       linkdin: {
         type: String,
+        default: "",
       },
       facebook: {
         type: String,
+        default: "",
       },
     },
     project_stone: {
@@ -57,6 +60,7 @@ const userSchema = new mongoose.Schema({
   },
   password_reset_token: {
     type: String,
+    default: "",
   },
   created_at: {
     type: String,

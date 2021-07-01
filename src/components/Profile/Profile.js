@@ -9,10 +9,10 @@ import { UpdateUserData } from "../../axios/instance";
 import { setAuthToken } from "../../utils";
 
 const Profile = () => {
-  const history = useHistory();
   const [{ dashboard, user }, dispatch] = useDataLayerValues();
   const { data } = usePalette(profileavatar);
   const [modalVisibility, setModalVisibility] = useState("false");
+  console.log(dashboard.social_links);
   const [fields, setFields] = useState({
     fname: user.fname,
     lname: user.lname,

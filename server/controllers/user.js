@@ -59,8 +59,6 @@ exports.UpdateUserDashbaord = async (req, res) => {
 
 exports.sendemail = async (req, res) => {
   const { email } = req.body;
-  console.log(email);
-  const my = "naveensharma10d@gmail.com";
   try {
     const user = await UserModel.findOne({ email: email });
     if (user) {
@@ -71,11 +69,12 @@ exports.sendemail = async (req, res) => {
         { expiresIn: "10m" }
       );
       // const link_prod = `${req.protocol}://${req.hostname}/project-zone/forget-password/${token}`;
+
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
+
       const link = `${req.protocol}://${req.hostname}:3000/project-zone/forget-password/${token}`;
-      console.log(link);
-      console.log(id);
+
       const content = `<h2 style={{textAlign ="center"}}>Project-zone account Forget password link</h2>
       
       Dear ${user.firstname}, please click on following link to reset your password
@@ -89,11 +88,58 @@ exports.sendemail = async (req, res) => {
         "Projetzone account forget passsword link",
         content
       );
-      
+
+      UserModel.findByIdAndUpdate(
+        id,
+        { password_reset_token: token },
+        { new: true },
+        function (err, doc) {
+          if (err) {
+            console.log(err);
+            res.status(500).json({ error: "NO user with such id" });
+          }
+        }
+      );
+
       res.status(200).send({ msg: "Email sent successfully" });
     } else {
       return res.status(401).json({ error: "Email not registered" });
     }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 internal error" });
+  }
+};
+
+exports.ResetPassword = async (req, res) => {
+  const { token, password, confirm_password } = req.body;
+  try {
+    console.log(token, password, confirm_password);
+    jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET_FOREGTPASS,
+      async (err, user) => {
+        if (err) {
+          return res.status(401).json({ error: "TOKEN EXPIERED" });
+        }
+        const { id } = user;
+        const salt = await bcrypt.genSalt();
+        const password_ = await bcrypt.hash(password, salt);
+        UserModel.findByIdAndUpdate(
+          id,
+          { password_reset_token: "", password: password_ },
+          { new: true },
+          function (err, doc) {
+            if (err) {
+              console.log(err);
+              res.status(500).json({ error: "NO user with such id" });
+            } else {
+              res.status(200).json({ msg: "Password reset successfull" });
+            }
+          }
+        );
+      }
+    );
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 internal error" });

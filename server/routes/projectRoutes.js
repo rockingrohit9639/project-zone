@@ -1,7 +1,7 @@
 const express = require("express");
 const projectsRouter = express.Router();
 const Project = require("../db/schema/projectSchema");
-const { sendemail } = require("./../controllers/user");
+const { sendemail, ResetPassword } = require("./../controllers/user");
 
 projectsRouter.get("/getprojects", async (req, res) => {
   const query = req.query.q;
@@ -45,5 +45,6 @@ projectsRouter.post("/addproject", async (req, res) => {
 });
 
 projectsRouter.post("/send-forgetpassword-email", sendemail);
+projectsRouter.post("/reset-password" , ResetPassword);
 
 module.exports = projectsRouter;
