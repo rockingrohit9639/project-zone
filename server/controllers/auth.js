@@ -26,7 +26,6 @@ exports.signIn = async (req, res) => {
       return res.status(401).json({ error: 'No user found' });
     }
   } catch (err) {
-    // console.log(err);
     return res.status(500).json({ error: '500 Internal Error' });
   }
 };

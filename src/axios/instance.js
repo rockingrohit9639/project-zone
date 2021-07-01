@@ -15,3 +15,7 @@ export const signup = (data) => server.post(`${url}/signup`, data);
 export const profile = () => server.get(`${url}/profile`);
 export const UpdateUserData = (data) =>
   server.patch(`${url}/update-user-dashboard`, data);
+export const forgetpassword = (data) =>
+  server.post(`${url}/send-forgetpassword-email`, data);
+export const SetNewPassword = (data) =>
+  server.post(`${url}/reset-password`, data);
