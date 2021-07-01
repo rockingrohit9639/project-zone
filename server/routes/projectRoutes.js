@@ -24,26 +24,6 @@ projectsRouter.get("/getprojects", async (req, res) => {
   return res.staus(500).json({ message: "Internal server error" });
 });
 
-projectsRouter.post("/addproject", async (req, res) => {
-  const { name, description, level, skills } = req.body;
-
-  try {
-    const newProject = Project({
-      name,
-      description,
-      level,
-      skills,
-    });
-
-    const resp = await newProject.save();
-    console.log(resp);
-
-    return res.send("done");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 projectsRouter.post("/send-forgetpassword-email", sendemail);
 projectsRouter.post("/reset-password" , ResetPassword);
 

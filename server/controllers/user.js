@@ -1,4 +1,5 @@
 const UserModel = require("./../db/schema/User");
+const Project = require('../db/schema/projectSchema');
 const bcrypt = require("bcrypt");
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
@@ -144,3 +145,39 @@ exports.ResetPassword = async (req, res) => {
     res.status(500).json({ error: "500 internal error" });
   }
 };
+exports.AddNewProject = async (req, res) => {
+
+  const { userid } = req;
+  const { name, description, level, skills } = req.body;
+
+  try {
+    const newProject = Project({
+      name,
+      description,
+      level,
+      skills,
+    });
+
+  const resp = await newProject.save();
+  console.log(resp);
+
+  UserModel.findByIdAndUpdate(
+    userid,
+    { "$push": { "profile.projects_added" : name} },
+    { new: true, "upsert": true },
+    function (err, doc) {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ error: "NO user with such id" });
+      } else {
+        console.log(doc);
+      }
+    }
+  );
+
+    return res.status(200).json({success: "Project is Added"})
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+}
