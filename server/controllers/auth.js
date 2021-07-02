@@ -50,7 +50,7 @@ exports.signUp = async (req, res) => {
     return res.status(200).json({ accesstoken: token });
   } 
   catch (err) {
-    console.log(err);
+    // console.log(err);
     if (err.code === 11000) {
       return res.status(500).json({ error: 'Email already registered' });
     }

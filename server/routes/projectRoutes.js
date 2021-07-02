@@ -36,7 +36,7 @@ projectsRouter.post("/addproject", async (req, res) => {
     });
 
     const resp = await newProject.save();
-    console.log(resp);
+    // console.log(resp);
 
     return res.send("done");
   } catch (err) {

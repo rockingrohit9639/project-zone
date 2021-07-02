@@ -10,7 +10,6 @@ import { setAuthToken } from "../../utils";
 
 const Profile = () => {
   const [{ dashboard, user }, dispatch] = useDataLayerValues();
-  const { data } = usePalette(profileavatar);
   const [modalVisibility, setModalVisibility] = useState("false");
   console.log(dashboard.social_links);
   const [fields, setFields] = useState({
@@ -24,6 +23,7 @@ const Profile = () => {
     descr: dashboard.description,
   });
   const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
+  const { data } = usePalette(dashboard.profile_pic);
 
   const toggleModalVisibility = () => {
     setModalVisibility(!modalVisibility);
