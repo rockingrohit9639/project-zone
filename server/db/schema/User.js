@@ -62,6 +62,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  messages_sent:[
+    {
+      type: String,
+      required: true
+    }
+  ],
   created_at: {
     type: String,
     required: true,
