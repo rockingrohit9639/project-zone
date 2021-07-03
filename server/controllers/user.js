@@ -169,8 +169,6 @@ exports.AddNewProject = async (req, res) => {
       if (err) {
         console.log(err);
         res.status(500).json({ error: "NO user with such id" });
-      } else {
-        console.log(doc);
       }
     }
   );
@@ -181,3 +179,78 @@ exports.AddNewProject = async (req, res) => {
     res.status(500).json({ error: "500 Internal Error" });
   }
 }
+
+exports.SendContactEmail = async (req, res) => {
+
+  const { fullname, email, message } = req.body;
+
+  try{
+
+    const user = await UserModel.findOne({ email: email });
+    if (user) {
+      const id = user._id;
+
+      const link = `${req.protocol}://${req.hostname}:3000/`;
+
+      const usercontent = `<h3 style="text-align:center">Thanks for contacting us !</h3>
+      
+      <p>Dear ${user.firstname}, We have sent your message/feedback successfully.</p> 
+      <p>We appreciate you contacting us .Thanks for showing much interest.</p>
+      <p>Keep contacting for any queries/ feedback related to project-zone.</p>
+      <hr/>
+      <h3 style="text-align:center"><a href=${link}>Visit project-zone again !</a></h3>
+      <hr/>
+      
+      Thanks again ! Have a great day!`;
+
+      await sendEmail(
+        email,
+        "Thanks for getting in touch with project-zone ",
+        usercontent
+      );
+
+      const admincontent = `<h3 style="text-align:center"> Hey Rohit ! You have got a contact message from project-zone !</h3>
+      
+      <p>${user.firstname} has contacted on project-zone. We have sent him a thank you mail. </p>
+      <p>These are the ${user.firstname}'s contact details.</p>
+      <hr/>
+      <h3>Full Name: ${fullname}</h3>
+      <hr/>
+      <h3>Email: ${email}</h3>
+      <hr/>
+      <h3>Message : ${message}</h3>
+      <hr/>
+
+      `;
+
+      await sendEmail(
+        process.env.SENDGRID_VERIFIED_MAIL,
+        "Got Contact from project-zone",
+        admincontent
+      );
+
+      UserModel.findByIdAndUpdate(
+        id,
+        { "$push": { "messages_sent" : message} },
+        { new: true, "upsert": true },
+        function (err, doc) {
+          if (err) {
+            console.log(err);
+            res.status(500).json({ error: "NO user with such id" });
+          } 
+        }
+      );
+
+      res.status(200).send({ success: "Message saved, Email sent" });
+    } else {
+      return res.status(401).json({ error: "Email not registered" });
+    }
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+
+}
+
+
