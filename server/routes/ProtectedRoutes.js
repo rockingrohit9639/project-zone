@@ -25,7 +25,7 @@ const {
  *      '500':
  *        description: Internal server error
  */
-ProtectedRouter.get('/profile', authenticate, profile);
+ProtectedRouter.get("/profile", authenticate, profile);
 
 // Routes
 /**
@@ -41,7 +41,7 @@ ProtectedRouter.get('/profile', authenticate, profile);
  *      '500':
  *        description: Internal server error
  */
-ProtectedRouter.get('/user-dashboard', authenticate, UserDashboard);
+ProtectedRouter.get("/user-dashboard", authenticate, UserDashboard);
 
 // Routes
 /**
@@ -57,7 +57,11 @@ ProtectedRouter.get('/user-dashboard', authenticate, UserDashboard);
  *      '500':
  *        description: Internal server error/ No user with such id
  */
-ProtectedRouter.patch('/update-user-dashboard', authenticate , UpdateUserDashbaord);
+ProtectedRouter.patch(
+  "/update-user-dashboard",
+  authenticate,
+  UpdateUserDashbaord
+);
 
 // Routes
 /**
@@ -71,14 +75,14 @@ ProtectedRouter.patch('/update-user-dashboard', authenticate , UpdateUserDashbao
  *      '400':
  *        description: Could not add your project.
  */
-ProtectedRouter.post('/addproject',authenticate, AddNewProject);
+ProtectedRouter.post("/addproject", authenticate, AddNewProject);
 
 // Routes
 /**
  * @swagger
  * /send-contact-email:
  *  post:
- *    description: Send a contact email 
+ *    description: Send a contact email
  *    responses:
  *      '200':
  *        description: Response Successful
@@ -87,7 +91,7 @@ ProtectedRouter.post('/addproject',authenticate, AddNewProject);
  *      '500':
  *        description: Internal server error/ No user with such id
  */
-ProtectedRouter.post('/send-contact-email',authenticate, SendContactEmail);
+ProtectedRouter.post("/send-contact-email", authenticate, SendContactEmail);
 
 // Routes
 /**
@@ -110,14 +114,16 @@ ProtectedRouter.get("/send-verify-email", authenticate, VerifyEmailSend);
 // Routes
 /**
  * @swagger
- * /send-verify-email:
- *  get:
- *    description: send email with verification link
+ * /verify-email:
+ *  post:
+ *    description: Verifies email with help of access token
  *    responses:
  *      '200':
  *        description: Response Successful
  *      '500':
  *        description: Internal server error/ No user with such id
+ *      '401':
+ *        description: Not a valid token
  */
 ProtectedRouter.post("/verify-email", VerifyEmail);
 
