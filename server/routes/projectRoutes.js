@@ -38,30 +38,6 @@ projectsRouter.get("/getprojects", async (req, res) => {
   return res.staus(500).json({ message: "Internal server error" });
 });
 
-projectsRouter.post("/addproject", async (req, res) => {
-  const { name, description, level, skills } = req.body;
-
-  try {
-    const newProject = Project({
-      name,
-      description,
-      level,
-      skills,
-    });
-
-    const resp = await newProject.save();
-
-    if (resp) {
-      return res
-        .status(200)
-        .json({ message: "Successully added your project." });
-    } else {
-      return res.status(400).json({ error: "Could not add your project." });
-    }
-  } catch (err) {
-    return res.status(400).json({ error: "Could not add your project." });
-  }
-});
 
 // Routes
 /**

@@ -72,6 +72,10 @@ const userSchema = new mongoose.Schema({
       default: false,
     },
   },
+  google_signin: {
+    type: Boolean,
+    default: false,
+  },
   messages_sent:[
     {
       type: String,

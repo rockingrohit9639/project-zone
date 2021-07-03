@@ -173,6 +173,7 @@ exports.ResetPassword = async (req, res) =>
     return res.status(500).json({ error: "500 internal error" });
   }
 };
+
 exports.AddNewProject = async (req, res) => {
   const { userid } = req;
   const { name, description, level, skills } = req.body;
@@ -186,7 +187,9 @@ exports.AddNewProject = async (req, res) => {
     });
 
     const resp = await newProject.save();
-    console.log(resp);
+    if(!resp) {
+      res.status(500).json({ error: "Could not add your project." });
+    }
 
     UserModel.findByIdAndUpdate(
       userid,
@@ -200,10 +203,10 @@ exports.AddNewProject = async (req, res) => {
       }
     );
 
-    return res.status(200).json({ success: "Project is Added" });
+    return res.status(200).json({ message: "Successully added your project." });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "500 Internal Error" });
+    res.status(500).json({ error: "Could not add your project." });
   }
 };
 exports.SendContactEmail = async (req, res) => {

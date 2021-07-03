@@ -11,6 +11,7 @@ export const server = axios.create({
 });
 
 export const login = (data) => server.post(`${url}/signin`, data);
+export const googlelogin = (data) => server.post(`${url}/google-signin`,data);
 export const signup = (data) => server.post(`${url}/signup`, data);
 export const profile = () => server.get(`${url}/profile`);
 export const UpdateUserData = (data) =>
