@@ -19,7 +19,7 @@ function ProjectDetailCard()
   };
 
   return (
-    <div className="card">
+    <div className="details_card">
       <div className="titleBox">
         <h1 className="title_">{ProjectDetails.title}</h1>
         <img

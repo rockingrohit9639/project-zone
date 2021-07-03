@@ -6,6 +6,7 @@ const {
   UserDashboard,
   UpdateUserDashbaord,
   AddNewProject,
+  SendContactEmail,
   VerifyEmailSend,
   VerifyEmail,
 } = require("./../controllers/user");
@@ -18,6 +19,7 @@ ProtectedRouter.patch(
   UpdateUserDashbaord
 );
 ProtectedRouter.post("/addproject", authenticate, AddNewProject);
+ProtectedRouter.post("/send-contact-email", authenticate, SendContactEmail);
 ProtectedRouter.get("/send-verify-email", authenticate, VerifyEmailSend);
 ProtectedRouter.post("/verify-email", VerifyEmail);
 

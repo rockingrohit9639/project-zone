@@ -11,13 +11,11 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 const Profile = () => {
   const [{ dashboard, user, isemailverified }, dispatch] = useDataLayerValues();
-  const { data } = usePalette(profileavatar);
   const [modalVisibility, setModalVisibility] = useState("false");
-  console.log(dashboard.social_links);
   const [fields, setFields] = useState({
     fname: user.fname,
     lname: user.lname,
-    profileimg: "",
+    profileimg: dashboard.profile_pic ? dashboard.profile_pic : "",
     githublink: dashboard.social_links ? dashboard.social_links.github : "",
     linkedinlink: dashboard.social_links ? dashboard.social_links.linkdin : "",
     fblink: dashboard.social_links ? dashboard.social_links.facebook : "",
@@ -25,6 +23,7 @@ const Profile = () => {
     descr: dashboard.description,
   });
   const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
+  const { data } = usePalette(dashboard.profile_pic);
 
   const toggleModalVisibility = () => {
     setModalVisibility(!modalVisibility);
@@ -163,7 +162,6 @@ const Profile = () => {
 
   return (
     <div className="profile_wrapper">
-      <ToastContainer position="  " />
       <div className="person_card">
         <div className="card_top" style={{ backgroundColor: data?.vibrant }}>
           {dashboard.profile_pic === "" ? (

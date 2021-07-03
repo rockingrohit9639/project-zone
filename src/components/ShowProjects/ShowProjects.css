@@ -23,8 +23,14 @@
     display: flex;
 }
 
+.random_btn-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .random {
-    margin-top: 1.5rem;
     outline: none;
     border: none;
     background-color: transparent;

@@ -9,7 +9,7 @@ exports.sendEmail = (receiver, subject, content) => {
       subject,
       html: content,
     };
-    console.log(data);
+    // console.log(data);
     return sgMail.send(data);
   } catch (e) {
     console.log(e);
