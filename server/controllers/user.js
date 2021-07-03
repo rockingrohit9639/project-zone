@@ -222,14 +222,15 @@ exports.SendContactEmail = async (req, res) => {
 
       const usercontent = `<h3 style="text-align:center">Thanks for contacting us !</h3>
       
-      <p>Dear ${user.firstname}, We have sent your message/feedback successfully.</p> 
-      <p>We appreciate you contacting us .Thanks for showing much interest.</p>
-      <p>Keep contacting for any queries/ feedback related to project-zone.</p>
+      <p>Dear ${user.firstname}, We have received your message/feedback successfully.</p> 
+      <p>We appreciate you contacting us. </p>
+      <p>Feel free to send us your suggestions anytime. We will definitely consider it. Have any query related to Project Zone, Do contact us. </p>
+      <p> Found any bug in Project Zone. Please, notify us about it. </p>
       <hr/>
       <h3 style="text-align:center"><a href=${link}>Visit project-zone again !</a></h3>
       <hr/>
       
-      Thanks again ! Have a great day!`;
+      Thanks You. ! Have a great day!`;
 
       await sendEmail(
         email,
@@ -248,7 +249,6 @@ exports.SendContactEmail = async (req, res) => {
       <hr/>
       <h3>Message : ${message}</h3>
       <hr/>
-
       `;
 
       await sendEmail(

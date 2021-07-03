@@ -66,8 +66,6 @@ export default function ContactUs() {
 
   const clearFields = () => {
     setFields({
-      fullname:" ",
-      email:" ",
       message:" "
     });
   };
