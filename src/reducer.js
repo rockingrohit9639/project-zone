@@ -27,6 +27,7 @@ export const initialState = {
     skills: null,
     rating: 0,
   },
+  isemailverified: false,
   isAuthenticated: false,
   query: "",
 };
@@ -40,6 +41,7 @@ export const actions = {
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
   SET_QUERY: "SET_QUERY",
   SET_PROJECT_DETAILS: "SET_PROJECT_DETAILS",
+  SET_EMAIL_VERIFIED: "SET_EMAIL_VERIFIED",
 };
 
 const reducer = (state, action) => {
@@ -73,6 +75,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         ProjectDetails: action.ProjectDetails,
+      };
+
+    case actions.SET_EMAIL_VERIFIED:
+      return {
+        ...state,
+        isemailverified: action.isemailverified,
       };
 
     default:

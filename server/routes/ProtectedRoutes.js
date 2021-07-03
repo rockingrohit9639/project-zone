@@ -1,7 +1,15 @@
-const express = require('express');
+const express = require("express");
 const ProtectedRouter = express.Router();
-const { authenticate } = require('./../middlewares/auth');
-const {profile , UserDashboard , UpdateUserDashbaord, AddNewProject, SendContactEmail} = require('./../controllers/user')
+const { authenticate } = require("./../middlewares/auth");
+const {
+  profile,
+  UserDashboard,
+  UpdateUserDashbaord,
+  AddNewProject,
+  SendContactEmail,
+  VerifyEmailSend,
+  VerifyEmail,
+} = require("./../controllers/user");
 
 // Routes
 /**
@@ -80,5 +88,37 @@ ProtectedRouter.post('/addproject',authenticate, AddNewProject);
  *        description: Internal server error/ No user with such id
  */
 ProtectedRouter.post('/send-contact-email',authenticate, SendContactEmail);
+
+// Routes
+/**
+ * @swagger
+ * /send-verify-email:
+ *  get:
+ *    description: send email with verification link
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '401':
+ *        description: Not a valid Token / No Auth Header.
+ *      '500':
+ *        description: Internal server error/ No user with such id
+ *      '400':
+ *        description: No user with this id
+ */
+ProtectedRouter.get("/send-verify-email", authenticate, VerifyEmailSend);
+
+// Routes
+/**
+ * @swagger
+ * /send-verify-email:
+ *  get:
+ *    description: send email with verification link
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error/ No user with such id
+ */
+ProtectedRouter.post("/verify-email", VerifyEmail);
 
 module.exports = ProtectedRouter;

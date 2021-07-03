@@ -5,20 +5,20 @@ import { ToastContainer, toast } from "react-toastify";
 import { usePalette } from "react-palette";
 import "./Profile.css";
 import { useDataLayerValues } from "../../datalayer";
-import { UpdateUserData } from "../../axios/instance";
+import { UpdateUserData, sendverifyemail } from "../../axios/instance";
 import { setAuthToken } from "../../utils";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 const Profile = () => {
-  const [{ dashboard, user }, dispatch] = useDataLayerValues();
+  const [{ dashboard, user, isemailverified }, dispatch] = useDataLayerValues();
   const [modalVisibility, setModalVisibility] = useState("false");
-  console.log(dashboard.social_links);
   const [fields, setFields] = useState({
     fname: user.fname,
     lname: user.lname,
-    profileimg: "",
-    githublink: (dashboard.social_links) ? dashboard.social_links.github : "",
-    linkedinlink:  (dashboard.social_links) ? dashboard.social_links.linkdin : "",
-    fblink: (dashboard.social_links) ? dashboard.social_links.facebook : "",
+    profileimg: dashboard.profile_pic ? dashboard.profile_pic : "",
+    githublink: dashboard.social_links ? dashboard.social_links.github : "",
+    linkedinlink: dashboard.social_links ? dashboard.social_links.linkdin : "",
+    fblink: dashboard.social_links ? dashboard.social_links.facebook : "",
     bio: dashboard.bio,
     descr: dashboard.description,
   });
@@ -96,7 +96,6 @@ const Profile = () => {
       descr: "",
     });
   };
-
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -141,6 +140,21 @@ const Profile = () => {
       });
       toggleModalVisibility();
     } catch (err) {
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
+      }
+    }
+  };
+
+  const emailVerifyBtn = async () => {
+    try {
+      const res = await sendverifyemail();
+      if (res.status === 200) {
+        window.alert(res.data.msg);
+        toast.success(res.data.msg);
+      }
+    } catch (err) {
+      console.log(err);
       if (err.response) {
         toast.error(`${err.response.data.error}`);
       }
@@ -206,6 +220,22 @@ const Profile = () => {
           <RouterLink to="/addnew" className="addnewlink">
             <button className="addnewbtn">Add New Project</button>
           </RouterLink>
+          {isemailverified ? (
+            <div
+              style={{
+                marginTop: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <strong>Email Verified</strong> <CheckCircleIcon />
+            </div>
+          ) : (
+            <button className="btn" onClick={emailVerifyBtn}>
+              Verify Email
+            </button>
+          )}
         </div>
       </div>
       <div className="content_right">
@@ -273,7 +303,7 @@ const Profile = () => {
               <i className="fas fa-edit">
                 <input
                   name="profileimg"
-                  class="image-upload"
+                  className="image-upload"
                   type="file"
                   onChange={handlechnageInput}
                 />
