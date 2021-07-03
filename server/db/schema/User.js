@@ -62,6 +62,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  email_acctivation: {
+    email_acctivation_token: {
+      type: String,
+      default: "",
+    },
+    email_activated: {
+      type: Boolean,
+      default: false,
+    },
+  },
   messages_sent:[
     {
       type: String,
