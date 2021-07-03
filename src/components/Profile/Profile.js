@@ -16,9 +16,9 @@ const Profile = () => {
     fname: user.fname,
     lname: user.lname,
     profileimg: "",
-    githublink: dashboard.social_links.github,
-    linkedinlink: dashboard.social_links.linkdin,
-    fblink: dashboard.social_links.facebook,
+    githublink: (dashboard.social_links) ? dashboard.social_links.github : "",
+    linkedinlink:  (dashboard.social_links) ? dashboard.social_links.linkdin : "",
+    fblink: (dashboard.social_links) ? dashboard.social_links.facebook : "",
     bio: dashboard.bio,
     descr: dashboard.description,
   });

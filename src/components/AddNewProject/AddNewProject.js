@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { ToastContainer, toast } from 'react-toastify';
 import addprojectimg from './../../assets/addprojectimg.png';
+import { useDataLayerValues } from "../../datalayer";
+import { addproject } from './../../axios/instance';
 import 'react-toastify/dist/ReactToastify.css';
 import './AddNewProject.css';
 
@@ -74,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
 function AddNewProject()
 {
   const classes = useStyles();
+  const [{ ProjectDetails }, dispatch] = useDataLayerValues();
 
   const [skillInputs, setSkillInputs] = useState(['']);
   const [title, setTitle] = useState('');
@@ -113,65 +116,57 @@ function AddNewProject()
 
   const handleSubmit = async (e) =>
   {
-
     e.preventDefault();
-    if (!title)
-    {
+    if (!title){
       toast.error("Please enter project's title");
-    } else if (!level)
-    {
+    } else if (!level){
       toast.error("Please enter project's level");
-    } else if (!skillInputs)
-    {
+    } else if (!skillInputs){
       toast.error("Please enter skills for project");
-    } else if (!desc)
-    {
+    } else if (!desc){
       toast.error("Please enter description");
-    } else
-    {
-      const data = {
-        name: title,
-        level: level,
-        skills: skillInputs,
-        description: desc,
-      };
-      console.log(data);
+    } else{
+      addNewProject(title, level, skillInputs,desc);
+      clearData();
+    }
+  };
 
-      try
-      {
-        // code for adding new project to database
-
-        // if (res.status === 200) {
-        //   toast.success('Project added successfully.', {
-        //     position: 'top-right',
-        //     autoClose: 3000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //   });
-        // } else {
-        //   toast.error('Sorry!! Your project could not be added.', {
-        //     position: 'top-right',
-        //     autoClose: 3000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //   });
-        // }
-
-        setTitle('');
-        setLevel('');
-        setDesc('');
-        setSkillInputs(['']);
-      } catch (err)
-      {
-        console.log(err);
+  const addNewProject = async (title, level, skillInputs, desc) => {
+    const body = {
+      name: title,
+      level: level,
+      skills: skillInputs,
+      description: desc,
+    };
+    try {
+      const res = await addproject(body);
+      if (!res.data.error && res.data.success) {
+        dispatch({
+          type: 'SET_PROJECT_DETAILS',
+          ProjectDetails: {
+            title: title,
+            descr: desc,
+            level: level,
+            skills: skillInputs,
+            rating: 0,
+          },
+        });
+        toast.success(`${res.data.success}`);
+      }
+    } catch (err) {
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
       }
     }
+
+  }
+
+  const clearData = () =>
+  {
+    setTitle('');
+    setLevel('');
+    setDesc('');
+    setSkillInputs(['']);
   };
 
   return (
