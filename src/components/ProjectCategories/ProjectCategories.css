@@ -12,14 +12,24 @@
     padding:1% 0;
     display: flex;
     overflow-y:hidden;
-    overflow-x:scroll;
+    overflow-x:auto;
     min-width:100%;
-    -ms-overflow-style: none;
 }
 
+
 .categories-card::-webkit-scrollbar {
-  display: none;
+    height: 8px;
 }
+  
+.categories-card::-webkit-scrollbar-track {
+    background-color: #efefef;
+    border-radius: 10px;
+  }
+  
+.categories-card::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+  }
 
 .allcard {
     text-align: center;

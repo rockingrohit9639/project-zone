@@ -148,11 +148,11 @@
   }
 }
 
-::-webkit-scrollbar {
-  width: 0.8rem;
+body::-webkit-scrollbar {
+  width: 0.4rem;
 }
 
-::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background: linear-gradient(
     0deg,
     rgba(231, 248, 47, 1) 0%,
@@ -162,7 +162,7 @@
   border-radius: 20px;
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background: transparent;
   box-shadow: 0px 0px 0px 100000vh #edeff0;
   border-radius: 20px;
