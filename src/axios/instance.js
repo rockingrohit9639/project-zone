@@ -20,3 +20,5 @@ export const forgetpassword = (data) =>
 export const SetNewPassword = (data) =>
   server.post(`${url}/reset-password`, data);
 export const addproject = (data) => server.post(`${url}/addproject`, data);
+export const sendverifyemail = () => server.get(`${url}/send-verify-email`);
+export const verifyemail = (data) => server.post(`${url}/verify-email`, data);

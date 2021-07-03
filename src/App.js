@@ -24,9 +24,11 @@ import { setAuthToken } from "./utils";
 import { useDataLayerValues } from "./datalayer";
 import ForgetPassword from "./components/ForgetPassword/Forget";
 import SetPasword from "./components/SetPasswordPage/SetPasword";
+import VerifyEmailPage from "./components/VerifyEmailPage/VerifyEmailPage";
 
 function App() {
-  const [{ user, isAuthenticated, dashboard }, dispatch] = useDataLayerValues();
+  const [{ user, isAuthenticated, dashboard, isemailverified }, dispatch] =
+    useDataLayerValues();
   useEffect(() => {
     const loader = document.getElementById("pre-loader");
 
@@ -70,6 +72,7 @@ function App() {
         social_links: user.data.profile.social_links,
         created_at: user.data.created_at,
       };
+      const email = user.data.email_acctivation.email_activated;
       dispatch({
         type: "SET_AUTH",
         isAuthenticated: true,
@@ -81,6 +84,10 @@ function App() {
       dispatch({
         type: "SET_USER_DASHBOARD_DATA",
         dashboard: dashboard_,
+      });
+      dispatch({
+        type: "SET_EMAIL_VERIFIED",
+        isemailverified: email,
       });
     } catch (err) {
       console.log(err);
@@ -127,6 +134,12 @@ function App() {
               exact
               path="/project-zone/forget-password/:token"
               component={SetPasword}
+            />
+            {/* Verify Email Route */}
+            <Route
+              exact
+              path="/project-zone/verify-email/:tokenemail"
+              component={VerifyEmailPage}
             />
           </Switch>
           <Footer />
