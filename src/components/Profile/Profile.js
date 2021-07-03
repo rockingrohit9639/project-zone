@@ -149,8 +149,9 @@ const Profile = () => {
   const emailVerifyBtn = async () => {
     try {
       const res = await sendverifyemail();
-      if (!res.data.error) {
-        toast.success(`${res.data.msg}`);
+      if (res.status === 200) {
+        window.alert(res.data.msg);
+        toast.success(res.data.msg);
       }
     } catch (err) {
       console.log(err);
@@ -302,7 +303,7 @@ const Profile = () => {
               <i className="fas fa-edit">
                 <input
                   name="profileimg"
-                  class="image-upload"
+                  className="image-upload"
                   type="file"
                   onChange={handlechnageInput}
                 />
