@@ -1,60 +1,57 @@
-import React, { useState } from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { ToastContainer, toast } from 'react-toastify';
-import addprojectimg from './../../assets/addprojectimg.png';
+import React, { useState } from "react";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { ToastContainer, toast } from "react-toastify";
+import addprojectimg from "./../../assets/addprojectimg.png";
 import { useDataLayerValues } from "../../datalayer";
-import { addproject } from './../../axios/instance';
-import 'react-toastify/dist/ReactToastify.css';
-import './AddNewProject.css';
+import { addproject } from "./../../axios/instance";
+import "react-toastify/dist/ReactToastify.css";
+import "./AddNewProject.css";
 
 const useStyles = makeStyles((theme) => ({
   mt: {
-    marginTop: '1rem',
+    marginTop: "1rem",
   },
   textarea: {
-    padding: '1rem',
-    marginTop: '1rem',
-    outline: 'none',
-    border: '1px solid rgba(0, 0, 0, 0.3)',
-    background: 'transparent',
-    borderRadius: '5px',
+    padding: "1rem",
+    marginTop: "1rem",
+    outline: "none",
+    border: "1px solid rgba(0, 0, 0, 0.3)",
+    background: "transparent",
+    borderRadius: "5px",
   },
   text: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: '1rem',
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: "1rem",
   },
   skillinput: {
-    padding: '22px 10px 0px 20px',
-    width: '30vw',
-    color: '#5352ed',
-    [theme.breakpoints.down('sm')]: {
-      width: '60vw'
+    padding: "22px 10px 0px 20px",
+    width: "30vw",
+    color: "#5352ed",
+    [theme.breakpoints.down("sm")]: {
+      width: "60vw",
     },
-
-
   },
   option: {
-    color: '#000',
-    backgroundColor: '#FFF',
+    color: "#000",
+    backgroundColor: "#FFF",
     marginTop: 0,
     '&[data-focus="true"]': {
-      backgroundColor: '#5253ED',
-      color: '#FFF'
-    }
+      backgroundColor: "#5253ED",
+      color: "#FFF",
+    },
   },
   tag: {
     backgroundColor: "#5253ED",
-    color: '#FFF',
+    color: "#FFF",
     height: 30,
     position: "relative",
     zIndex: 0,
     "& .MuiChip-label": {
-      color: "#FFF"
+      color: "#FFF",
     },
     "& .MuiChip-deleteIcon": {
       color: "#FFF",
@@ -66,67 +63,59 @@ const useStyles = makeStyles((theme) => ({
       position: "absolute",
       nackgroundColor: "#FFF",
       borderRadius: "50%",
-      zIndex: -1
-    }
-  }
+      zIndex: -1,
+    },
+  },
 }));
 
-
-
-function AddNewProject()
-{
+function AddNewProject() {
   const classes = useStyles();
   const [{ ProjectDetails }, dispatch] = useDataLayerValues();
 
-  const [skillInputs, setSkillInputs] = useState(['']);
-  const [title, setTitle] = useState('');
-  const [level, setLevel] = useState('');
-  const [desc, setDesc] = useState('');
+  const [skillInputs, setSkillInputs] = useState([""]);
+  const [title, setTitle] = useState("");
+  const [level, setLevel] = useState("");
+  const [desc, setDesc] = useState("");
 
-  const projectLevel = [
-    'Beginner',
-    'Intermediate',
-    'Advanced'
-  ]
+  const projectLevel = ["Beginner", "Intermediate", "Advanced"];
   const projectSkill = [
-    'JavaScript',
-    'Node',
-    'Python',
-    'HTML',
-    'CSS',
-    'React',
-    'Java',
-    'MongoDB',
-    'Express',
-    'NextJS',
-    'OpenCV',
-    'C++',
-    'C',
-    'FullStack',
-    'flutter',
-    'android',
-    'MERN',
-    'Backend',
-    'Frontend',
-    'Artificial Intillegence',
-    'Machine Learning',
-    'AR',
-    'VR',
+    "JavaScript",
+    "Node",
+    "Python",
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
+    "MongoDB",
+    "Express",
+    "NextJS",
+    "OpenCV",
+    "C++",
+    "C",
+    "FullStack",
+    "flutter",
+    "android",
+    "MERN",
+    "Backend",
+    "Frontend",
+    "Artificial Intillegence",
+    "Machine Learning",
+    "AR",
+    "VR",
   ];
 
-  const handleSubmit = async (e) =>
-  {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title){
+    if (!title) {
       toast.error("Please enter project's title");
-    } else if (!level){
+    } else if (!level) {
       toast.error("Please enter project's level");
-    } else if (!skillInputs){
+    } else if (!skillInputs) {
       toast.error("Please enter skills for project");
-    } else if (!desc){
+    } else if (!desc) {
       toast.error("Please enter description");
-    } else{
-      addNewProject(title, level, skillInputs,desc);
+    } else {
+      addNewProject(title, level, skillInputs, desc);
       clearData();
     }
   };
@@ -138,11 +127,12 @@ function AddNewProject()
       skills: skillInputs,
       description: desc,
     };
+
     try {
       const res = await addproject(body);
-      if (!res.data.error && res.data.success) {
+      if (!res.data.error && res.data.message) {
         dispatch({
-          type: 'SET_PROJECT_DETAILS',
+          type: "SET_PROJECT_DETAILS",
           ProjectDetails: {
             title: title,
             descr: desc,
@@ -151,22 +141,22 @@ function AddNewProject()
             rating: 0,
           },
         });
-        toast.success(`${res.data.success}`);
+
+        toast.success(res.data.message);
       }
     } catch (err) {
+      console.log(err)
       if (err.response) {
         toast.error(`${err.response.data.error}`);
       }
     }
+  };
 
-  }
-
-  const clearData = () =>
-  {
-    setTitle('');
-    setLevel('');
-    setDesc('');
-    setSkillInputs(['']);
+  const clearData = () => {
+    setTitle("");
+    setLevel("");
+    setDesc("");
+    setSkillInputs([""]);
   };
 
   return (
@@ -176,18 +166,27 @@ function AddNewProject()
         <div className="quotesection">
           <div className="quotebox">
             <i className="fa fa-quote-left"></i>
-            <h4>A long descriptive name is better than a short enigmatic name.
-              A long descriptive name is better than a long descriptive comment.
+            <h4>
+              A long descriptive name is better than a short enigmatic name. A
+              long descriptive name is better than a long descriptive comment.
             </h4>
-            <h4><span className="dash">-</span>Robert C.martin</h4>
-            <img src={addprojectimg} alt="addprojectimg" className="addprojectimg" />
+            <h4>
+              <span className="dash">-</span>Robert C.martin
+            </h4>
+            <img
+              src={addprojectimg}
+              alt="addprojectimg"
+              className="addprojectimg"
+            />
           </div>
         </div>
         <form onSubmit={handleSubmit} className="addprojectform">
           <h1>Add New Project</h1>
           <FormControl fullWidth>
             <div className="forminput">
-              <label htmlFor="title">Project title<span>*</span></label>
+              <label htmlFor="title">
+                Project title<span>*</span>
+              </label>
               <input
                 type="text"
                 id="title"
@@ -199,7 +198,9 @@ function AddNewProject()
               />
             </div>
             <div className="forminput">
-              <label htmlFor="title">Project Level<span>*</span></label>
+              <label htmlFor="title">
+                Project Level<span>*</span>
+              </label>
               <Autocomplete
                 id="project-level"
                 options={projectLevel}
@@ -207,23 +208,28 @@ function AddNewProject()
                 classes={{ option: classes.option }}
                 renderInput={(params) => (
                   <div ref={params.InputProps.ref}>
-                    <input type="text" placeholder="Enter Project Level"
-                      {...params.inputProps} />
+                    <input
+                      type="text"
+                      value={level}
+                      placeholder="Enter Project Level"
+                      {...params.inputProps}
+                    />
                   </div>
                 )}
               />
             </div>
             <div className="skillsinput">
-              <label htmlFor="skills">Skills<span>*</span></label>
+              <label htmlFor="skills">
+                Skills<span>*</span>
+              </label>
               <Autocomplete
                 multiple={true}
-                id='skills'
+                id="skills"
                 freeSolo={true}
                 classes={{ option: classes.option, tag: classes.tag }}
                 options={projectSkill}
                 getOptionLabel={(option) => option}
-                onChange={(event, newValue) =>
-                {
+                onChange={(event, newValue) => {
                   console.log(newValue);
                   const values = [...newValue];
                   setSkillInputs(values);
@@ -233,6 +239,7 @@ function AddNewProject()
                   <TextField
                     {...params}
                     placeholder="Enter Skills"
+                    value={skillInputs}
                     className={classes.skillinput}
                     fullWidth
                   />
@@ -241,7 +248,9 @@ function AddNewProject()
             </div>
           </FormControl>
           <div className="forminput">
-            <label htmlFor="desc">Description<span>*</span></label>
+            <label htmlFor="desc">
+              Description<span>*</span>
+            </label>
             <textarea
               id="desc"
               placeholder="Write something about this project"

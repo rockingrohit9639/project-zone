@@ -8,7 +8,7 @@ function ProjectDetails(props)
 {
     return (
         <div className="project_details_container">
-            <ParticlesBg type="color" bg={true} className="particles" />
+            <ParticlesBg type="coweb" bg={true} />
 
             <ProjectDetailCard
                 title={props.title}

@@ -154,7 +154,7 @@ function Navbar({ themeToggler }) {
           <div className="links">
             {isMobile ? (
               <>
-                <Button onClick={handleClick} color="#FFF">
+                <Button onClick={handleClick}>
                   <MenuIcon />
                 </Button>
                 <StyledMenu

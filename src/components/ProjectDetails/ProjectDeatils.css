@@ -8,6 +8,10 @@
   justify-content: center;
 }
 
+.project_details_container canvas {
+  opacity: 0.1;
+}
+
 .comment_section {
   width: 80%;
   margin-top: 1rem;
