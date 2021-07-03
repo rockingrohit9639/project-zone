@@ -12,7 +12,7 @@ function Showprojects()
 {
   const [projects, setProjects] = useState();
   const [{ query }] = useDataLayerValues();
-  
+
   // const filters = ["beginner", "intermediate", "advanced"];
   // const [appliedFilters, setAppliedFilters] = useState([]);
 
@@ -47,9 +47,18 @@ function Showprojects()
         <SearchBox fetchProjects={fetchProjects} />
       </div>
 
-      <button className='random' onClick={handleRandomProject}>
-        Let us decide a project for you.
-      </button>
+      <div className="random_btn-box">
+
+        {
+          projects ?
+            <button className='random' onClick={handleRandomProject}>
+              Let us decide a project for you.
+            </button>
+            :
+            null
+        }
+
+      </div>
 
       {randomProject ? (
         <div className='randomProject'>
@@ -64,9 +73,9 @@ function Showprojects()
       ) : null}
 
       {
-        query ? 
-          <h2 className='query'> Searching projects for "{query}" </h2> 
-          : 
+        query ?
+          <h2 className='query'> Searching projects for "{query}" </h2>
+          :
           <h2 className='query'> Entery query to search for projects. </h2>
       }
 
