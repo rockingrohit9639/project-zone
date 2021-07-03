@@ -22,7 +22,9 @@
     "moment": "^2.29.1",
     "mongoose": "^5.12.14",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.6.2"
+    "nodemailer": "^6.6.2",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
