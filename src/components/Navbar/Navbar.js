@@ -220,6 +220,7 @@ function Navbar({ themeToggler }) {
                       </StyledMenuItem>
                     </Link>
                   ) : null}
+                  {isAuthenticated ? (
                   <Link to="/contact" onClick={handleClose}>
                     <StyledMenuItem>
                       <ListItemIcon>
@@ -228,6 +229,7 @@ function Navbar({ themeToggler }) {
                       <ListItemText primary="Contact Us"></ListItemText>
                     </StyledMenuItem>
                   </Link>
+                  ) : null}
                 </StyledMenu>
               </>
             ) : (
@@ -270,6 +272,7 @@ function Navbar({ themeToggler }) {
                     </Button>
                   </div>
                 ) : null}
+                {isAuthenticated ? (
                 <div>
                   <Button className={classes.button}>
                     <Link to="/contact" className={classes.text}>
@@ -277,6 +280,7 @@ function Navbar({ themeToggler }) {
                     </Link>
                   </Button>
                 </div>
+                ) : null}
                 {!isAuthenticated ? (
                   <Link to="/login" className="lobut">
                     <i className="fa fa-sign-in"></i>Login
