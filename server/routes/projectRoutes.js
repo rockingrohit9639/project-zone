@@ -3,6 +3,20 @@ const projectsRouter = express.Router();
 const Project = require("../db/schema/projectSchema");
 const { sendemail, ResetPassword } = require("./../controllers/user");
 
+// Routes
+/**
+ * @swagger
+ * /getprojects:
+ *  get:
+ *    description: Get projects according to queries
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '404':
+ *        description: Not found.
+ *      '500':
+ *        description: Internal Error
+ */
 projectsRouter.get("/getprojects", async (req, res) => {
   const query = req.query.q;
 
@@ -37,20 +51,48 @@ projectsRouter.post("/addproject", async (req, res) => {
 
     const resp = await newProject.save();
 
-    if(resp) {
-      return res.status(200).json({ "message": "Successully added your project." });
+    if (resp) {
+      return res
+        .status(200)
+        .json({ message: "Successully added your project." });
+    } else {
+      return res.status(400).json({ error: "Could not add your project." });
     }
-    else {
-      return res.status(400).json({ "error": "Could not add your project." });
-
-    }
-
   } catch (err) {
-    return res.status(400).json({ "error": "Could not add your project." });
+    return res.status(400).json({ error: "Could not add your project." });
   }
 });
 
+// Routes
+/**
+ * @swagger
+ * /send-forgetpassword-email:
+ *  post:
+ *    description: Send a email containing reset password link
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '401':
+ *        description: Email not registered.
+ *      '500':
+ *        description: Internal server error/ No user with such email
+ */
 projectsRouter.post("/send-forgetpassword-email", sendemail);
-projectsRouter.post("/reset-password" , ResetPassword);
+
+// Routes
+/**
+ * @swagger
+ * /reset-password:
+ *  post:
+ *    description: Resets and save password in db
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '401':
+ *        description: Token Expired.
+ *      '500':
+ *        description: Internal server error/ No user with such id
+ */
+projectsRouter.post("/reset-password", ResetPassword);
 
 module.exports = projectsRouter;
