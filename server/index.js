@@ -10,9 +10,9 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Project-zone API",
+      title: "Project Zone API",
       version: "1.0.0",
-      description: "Project-zone api made with nodeJS & expressJS",
+      description: "Project Zone API created with NodeJs & ExpressJs",
     },
     servers: [
       {

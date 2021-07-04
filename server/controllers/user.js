@@ -195,12 +195,12 @@ exports.AddNewProject = async (req, res) => {
       function (err, doc) {
         if (err) {
           console.log(err);
-          res.status(500).json({ error: "NO user with such id" });
+          res.status(404).json({ error: "NO user with such id" });
         }
       }
     );
 
-    return res.status(200).json({ success: "Project is Added" });
+    return res.status(200).json({ message : "Project is Added" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
