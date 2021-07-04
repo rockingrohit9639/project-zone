@@ -1,0 +1,49 @@
+.main_div {
+  width: 100%;
+  height: 100vh;
+}
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.four_zero_four_bg h1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 80px;
+  font-family: "Poppins";
+  text-align: center;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+  font-family: "Poppins";
+  text-align: center;
+}
+
+.link_404 {
+  font-family: "Poppins";
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #6c6be8;
+  margin: 20px 0;
+  display: inline-block;
+}
+.contant_box_404 {
+  font-family: "Poppins";
+  text-align: center;
+  margin-top: -50px;
+}
