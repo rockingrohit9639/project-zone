@@ -25,6 +25,7 @@ import { useDataLayerValues } from "./datalayer";
 import ForgetPassword from "./components/ForgetPassword/Forget";
 import SetPasword from "./components/SetPasswordPage/SetPasword";
 import VerifyEmailPage from "./components/VerifyEmailPage/VerifyEmailPage";
+import PageNotFound from "./components/PageNotFound/PageNotFound"
 
 function App() {
   const [{ user, isAuthenticated, dashboard, isemailverified }, dispatch] =
@@ -141,6 +142,7 @@ function App() {
               path="/project-zone/verify-email/:tokenemail"
               component={VerifyEmailPage}
             />
+            <Route component={PageNotFound} />
           </Switch>
           <Footer />
         </Router>
