@@ -11,7 +11,7 @@ export const server = axios.create({
 });
 
 export const login = (data) => server.post(`${url}/signin`, data);
-export const googlelogin = (data) => server.post(`${url}/google-signin`,data);
+export const googlelogin = (data) => server.post(`${url}/google-signin`, data);
 export const signup = (data) => server.post(`${url}/signup`, data);
 export const profile = () => server.get(`${url}/profile`);
 export const UpdateUserData = (data) =>
@@ -25,3 +25,4 @@ export const sendmessage = (data) =>
   server.post(`${url}/send-contact-email`, data);
 export const sendverifyemail = () => server.get(`${url}/send-verify-email`);
 export const verifyemail = (data) => server.post(`${url}/verify-email`, data);
+export const GetHomeProjects = () => server.get(`${url}/projects-home`);
