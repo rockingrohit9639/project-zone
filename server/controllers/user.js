@@ -198,12 +198,13 @@ exports.AddNewProject = async (req, res) => {
       function (err, doc) {
         if (err) {
           console.log(err);
-          res.status(500).json({ error: "NO user with such id" });
+          res.status(404).json({ error: "NO user with such id" });
         }
       }
     );
 
     return res.status(200).json({ message: "Successully added your project." });
+
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Could not add your project." });

@@ -8,14 +8,14 @@ const { sendemail, ResetPassword } = require("./../controllers/user");
  * @swagger
  * /getprojects:
  *  get:
- *    description: Get projects according to queries
+ *    description: Get a list of projects on the basis of query
  *    responses:
  *      '200':
  *        description: Response Successful
  *      '404':
  *        description: Not found.
  *      '500':
- *        description: Internal Error
+ *        description: Internal server error
  */
 projectsRouter.get("/getprojects", async (req, res) => {
   const query = req.query.q;
@@ -29,13 +29,13 @@ projectsRouter.get("/getprojects", async (req, res) => {
     if (result) {
       return res.status(200).json(result);
     } else {
-      return res.status(404).json({ message: "not found" });
+      return res.status(404).json({ message: "Projects Not found" });
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
+    return res.staus(500).json({ message: "Internal server error" });
   }
 
-  return res.staus(500).json({ message: "Internal server error" });
 });
 
 
