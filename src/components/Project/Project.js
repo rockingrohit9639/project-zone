@@ -24,20 +24,7 @@ function Project({
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
   };
-  const ReadMeHandler = () => {
-    dispatch({
-      type: "SET_PROJECT_DETAILS",
-      ProjectDetails: {
-        id: id,
-        title: title,
-        descr: desc,
-        level: level,
-        skills: skills,
-        rating: rating,
-        comments: comments,
-      },
-    });
-  };
+
   return (
     <div className="project" style={style && style}>
       <div className="cardimg-box">
@@ -58,10 +45,8 @@ function Project({
           {desc.trim() == "" ? null : (
             <p className="description">{desc.slice(0, 100) + "..."}</p>
           )}
-          <Link to="/projectdetails">
-            <h5 className="read-more" onClick={ReadMeHandler}>
-              Read more
-            </h5>
+          <Link to={`/projectdetails/${id}`}>
+            <h5 className="read-more">Read more</h5>
           </Link>
         </div>
 

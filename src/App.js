@@ -132,7 +132,11 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/projects" component={Showprojects} />
             <Route exact path="/trendings" component={TrendingProjects} />
-            <Route exact path="/projectdetails" component={ProjectDetails} />
+            <Route
+              exact
+              path="/projectdetails/:projectid"
+              component={ProjectDetails}
+            />
 
             {/* Auth related routes  */}
             <Route exact path="/login" component={Login} />

@@ -27,3 +27,5 @@ export const sendverifyemail = () => server.get(`${url}/send-verify-email`);
 export const verifyemail = (data) => server.post(`${url}/verify-email`, data);
 export const GetHomeProjects = () => server.get(`${url}/projects-home`);
 export const AddComment = (data) => server.patch(`${url}/add-comment`, data);
+export const GetSingleProject = (data) =>
+  server.post(`${url}/project-by-id`, data);
