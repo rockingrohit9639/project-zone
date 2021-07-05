@@ -59,3 +59,15 @@ exports.HomePageProjects = async (req, res) => {
   }
   Project.find({});
 };
+
+exports.GetProjectByID = async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+  try {
+    const project = await Project.findById(id);
+    res.status(200).json(project);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+};

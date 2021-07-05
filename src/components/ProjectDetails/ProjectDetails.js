@@ -1,23 +1,56 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ProjectDetailCard from "../ProjectDetailCard/ProjectDetailCard";
 import "./ProjectDeatils.css";
 import ParticlesBg from "particles-bg";
 import userImg from "../../assets/user.png";
 import moment from "moment";
 import { useDataLayerValues } from "./../../datalayer";
-import { AddComment } from "./../../axios/instance";
+import { AddComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
+import { Link as RouterLink, useParams } from "react-router-dom";
 
 function ProjectDetails(props) {
-  const [{ user, ProjectDetails, dashboard }, dispatch] = useDataLayerValues();
+  const [{ user, ProjectDetails, dashboard, isAuthenticated }, dispatch] =
+    useDataLayerValues();
   const [comment, setcomment] = useState("");
+  const { projectid } = useParams();
 
-    useEffect(() => {
-        window.scroll(0, 0);
-    }, []);
+  useEffect(() => {
+    window.scroll(0, 0);
+    fetchProject(projectid);
+  }, []);
 
+  const fetchProject = async (id) => {
+    const body = {
+      id: id,
+    };
+    const project = await GetSingleProject(body);
+    console.log(project.data);
+    dispatch({
+      type: "SET_PROJECT_DETAILS",
+      ProjectDetails: {
+        id: project.data._id,
+        title: project.data.name,
+        descr: project.data.description,
+        level: project.data.level,
+        skills: project.data.skills,
+        rating: project.data.ratings,
+        comments: project.data.comments,
+      },
+    });
+    try {
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const CommentBtnHandler = async () => {
+    if (!isAuthenticated) {
+      return toast.error(`You have to login first`);
+    }
+    if (comment.trim() === "") {
+      return toast.error(`Type a valid comment`);
+    }
     const data = {
       project_id: ProjectDetails.id,
       fname: user.fname,
