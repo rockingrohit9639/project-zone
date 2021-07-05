@@ -38,7 +38,7 @@ function ProjectDetailCard()
         <div className="skills_">
           {ProjectDetails.skills &&
             ProjectDetails.skills.map((skill, ind) => (
-              <div key={ind} style={{backgroundColor : getSkillColor(skill)}} className="skill">
+              <div key={ind} style={{ backgroundColor: getSkillColor(skill) }} className="skill">
                 {skill}
               </div>
             ))}

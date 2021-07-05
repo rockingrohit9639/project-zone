@@ -5,42 +5,42 @@ exports.HomePageProjects = async (req, res) => {
     const ai_ml_projects = await Project.find({
       skills: { $in: ["ml", "ai", "Machine Learning"] },
     })
-      .limit(5)
+      .limit(3)
       .sort("likes : 1")
       .sort("ratings : 1");
 
     const android_projects = await Project.find({
       skills: { $all: ["java", "kotlin", "android"] },
     })
-      .limit(5)
+      .limit(3)
       .sort("likes : 1")
       .sort("ratings : 1");
 
     const blockchain_projects = await Project.find({
       skills: { $in: ["blockchain"] },
     })
-      .limit(5)
+      .limit(3)
       .sort("likes : 1")
       .sort("ratings : 1");
 
     const python_projects = await Project.find({
       skills: { $in: ["python"] },
     })
-      .limit(5)
+      .limit(3)
       .sort("likes : 1")
       .sort("ratings : 1");
 
     const html_css_projects = await Project.find({
       skills: { $in: ["css", "html"] },
     })
-      .limit(5)
+      .limit(3)
       .sort("likes : 1")
       .sort("ratings : 1");
 
     const javascript_projects = await Project.find({
       skills: { $in: ["javascript", "reactjs", "nodejs", "expressjs"] },
     })
-      .limit(5)
+      .limit(3)
       .sort("likes : 1")
       .sort("ratings : 1");
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import ProjectDetailCard from "../ProjectDetailCard/ProjectDetailCard";
 import "./ProjectDeatils.css";
 import ParticlesBg from "particles-bg";
@@ -11,6 +11,11 @@ import { ToastContainer, toast } from "react-toastify";
 function ProjectDetails(props) {
   const [{ user, ProjectDetails, dashboard }, dispatch] = useDataLayerValues();
   const [comment, setcomment] = useState("");
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
 
   const CommentBtnHandler = async () => {
     const data = {
