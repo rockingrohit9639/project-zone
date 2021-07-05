@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProjectDetailCard from "../ProjectDetailCard/ProjectDetailCard";
 import "./ProjectDeatils.css";
 import ParticlesBg from "particles-bg";
@@ -6,6 +6,10 @@ import userImg from "../../assets/user.png";
 
 function ProjectDetails(props)
 {
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <div className="project_details_container">
             <ParticlesBg type="coweb" bg={true} />
@@ -27,7 +31,7 @@ function ProjectDetails(props)
                     </div>
 
                     <div className="comment_inputbox">
-                        <textarea placeholder="Enter your comment"> </textarea>
+                        <textarea placeholder="Enter your comment"></textarea>
                     </div>
                 </div>
 

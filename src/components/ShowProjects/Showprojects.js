@@ -12,13 +12,13 @@ import { getSkillColor } from '../../utils';
 const Option = styled.button`
   color: ${props => props.optionColor ? props.optionColor : "#FFF"};
   min-width:${props => props.option ? `${(props.option.split(' ').length * 90)}px`  : "100px"};
-
+  font-family: "Poppins";
   background-color: #FFF;
   border: 2px solid #000;
   border-color: ${props => props.optionColor ? props.optionColor : "#FFF"};
   border-radius:20px;
   margin:0 10px;
-  padding:10px;
+  padding: 5px 10px;
   white-space: nowrap;
   cursor:pointer;
   transition: all 0.3s ease-out;
@@ -43,13 +43,12 @@ function Showprojects()
     "CSS",
     "React",
     "Java",
-    "MongoDB",
     "Express",
-    "NextJS",
     "C++",
-    "C"
   ];
 
+  // nextjs
+  // C
   const defaultOptionsRow2 = [
     "FullStack",
     "Flutter",
@@ -58,12 +57,12 @@ function Showprojects()
     "Backend",
     "Frontend",
     "OpenCV",
-    "Artificial Intillegence",
-    "Machine Learning",
-    "AR",
-    "VR"
+    "ML",
   ];
 
+  
+  // "AR",
+  // "VR"
   const [randomProject, setRandomProject] = useState('');
 
   const fetchProjects = async () =>
@@ -169,6 +168,9 @@ function Showprojects()
                 desc={project.description}
                 skills={project.skills}
                 level={project.level}
+                likes={project.likes}
+                rating={project.rating}
+                comments={project.comments}
               />
             );
           })}
