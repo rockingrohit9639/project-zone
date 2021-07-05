@@ -11,7 +11,8 @@ import { getSkillColor } from '../../utils';
 
 const Option = styled.button`
   color: ${props => props.optionColor ? props.optionColor : "#FFF"};
-  min-width:100px;
+  min-width:${props => props.option ? `${(props.option.split(' ').length * 90)}px`  : "100px"};
+
   background-color: #FFF;
   border: 2px solid #000;
   border-color: ${props => props.optionColor ? props.optionColor : "#FFF"};
@@ -105,7 +106,9 @@ function Showprojects()
            {
              defaultOptionsRow1.map((option,index) => {
                return(
-                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index}  optionColor={getSkillColor(option)}>{option}</Option>
+                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option}  optionColor={getSkillColor(option)}>
+                   {option}
+                 </Option>
                )
              })
            }
@@ -114,7 +117,9 @@ function Showprojects()
            {
              defaultOptionsRow2.map((option,index) => {
                return(
-                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index} optionColor={getSkillColor(option)}>{option}</Option>
+                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option} optionColor={getSkillColor(option)}>
+                  {option}
+                </Option>
                )
              })
            }
