@@ -14,7 +14,7 @@ const createwebToken = (id) => {
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await UserModel.findOne({ email: email, google_signin: false });
+    const user = await UserModel.findOne({ email: email });
     if (user) {
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
