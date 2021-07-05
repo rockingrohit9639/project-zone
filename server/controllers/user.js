@@ -376,3 +376,25 @@ exports.AddComment = async (req, res) => {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
+
+exports.AddLike = async (req, res) => {
+
+  const { project_id, likes } = req.body;
+  try {
+    Project.findOneAndUpdate(
+      { _id: project_id },
+      { likes: likes },
+      { new: true },
+      function (error) {
+        if (error) {
+          res.status(500).json({ error: "Not Successful" });
+        } else {
+          res.status(200).json({ msg: "Thanks for liking our project ❤️" });
+        }
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+};

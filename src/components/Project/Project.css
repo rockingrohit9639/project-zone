@@ -77,13 +77,29 @@
   font-weight: bold;
 }
 
+.like-box{
+  width:fit-content;
+}
+
 .likebox i{
   font-size: 1rem;
   padding: 0.8rem 0;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
-.likebox i span {
+.likebox i:hover{
+  padding:0.5rem 0;
+  color:red;
+  font-size:1.6rem;
+}
+
+
+.liked-project{
+  color:red;
+}
+
+.likebox span {
   font-family: "Poppins";
 }
 

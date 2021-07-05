@@ -6,6 +6,7 @@ import avatar from "./../../assets/avatar.svg";
 import ProjectCategories from "../ProjectCategories/ProjectCategories";
 import SearchBox from "../SearchBox/SearchBox";
 import TrendingProjects from "../TrendingProjects/TrendingProjects";
+import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useDataLayerValues } from "./../../datalayer";
 
@@ -35,6 +36,7 @@ function Home() {
           <img src={avatar} alt="Welcome to ProjectZone" />
         </div>
       </section>
+      <ToastContainer position="bottom-left" />
 
       <ProjectCategories />
 
