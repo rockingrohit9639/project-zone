@@ -6,72 +6,76 @@ export const getSkillColor = (skill) =>
   switch (skill.toLowerCase())
   {
     case 'mongodb':
-      return { backgroundColor: '#3FA037' };
+      return '#3FA037' ;
 
     case 'mongo':
-      return { backgroundColor: '#3FA037' };
+      return '#3FA037' ;
 
     case 'express':
-      return { backgroundColor: 'red' };
+      return 'red' ;
 
     case 'express js':
-      return { backgroundColor: 'red' };
+      return 'red' ;
 
     case 'react':
-      return { backgroundColor: 'blue' };
+      return 'blue';
 
     case 'reactjs':
-      return { backgroundColor: 'blue' };
+      return 'blue';
 
     case 'react js':
-      return { backgroundColor: 'blue' };
+      return 'blue';
 
     case 'node':
-      return { backgroundColor: 'green' };
+      return 'green';
 
     case 'node js':
-      return { backgroundColor: 'green' };
+      return 'green';
 
     case 'python':
-      return { backgroundColor: '#FFD43B' };
+      return '#FFD43B';
 
     case 'opencv':
-      return { backgroundColor: 'brown' };
+      return 'brown';
 
     case 'django':
-      return { backgroundColor: '#1eae98' };
+      return '#1eae98';
 
     case 'javascript':
-      return { backgroundColor: '#f0db4f' };
+      return '#f0db4f';
 
     case 'js':
-      return { backgroundColor: '#206a5d' };
+      return '#206a5d';
 
     case 'html':
-      return { backgroundColor: '#E44D26' };
+      return '#E44D26';
 
     case 'css':
-      return { backgroundColor: '#2565AE' };
+      return '#2565AE';
 
     case 'java':
-      return { backgroundColor: '#FB9820' };
+      return '#FB9820';
+
     case 'android':
-      return { backgroundColor: '#3DDC84' };
+      return  '#3DDC84';
 
     case 'kotlin':
-      return { backgroundColor: '#B75EA4' };
+      return '#B75EA4';
+
     case 'backend':
-      return { backgroundColor: '#008190' };
+      return '#008190';
 
     case 'blockchain':
-      return { backgroundColor: '#11a7a8' };
+      return '#11a7a8';
+
     case 'cpp':
-      return { backgroundColor: '#5e8dbd' };
+      return '#5e8dbd';
+
     case 'flutter':
-      return { backgroundColor: '#07489C' };
+      return '#07489C';
 
     default:
-      return { backgroundColor: 'skyblue' };
+      return 'skyblue';
   }
 };
 
