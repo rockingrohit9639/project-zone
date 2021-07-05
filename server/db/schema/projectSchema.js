@@ -1,24 +1,48 @@
 const mongoose = require("mongoose");
 
 const projectSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  level: {
+    type: String,
+    required: true,
+  },
+  skills: [
+    {
+      type: String,
+      required: true,
     },
-    description: {
+  ],
+  likes: {
+    type: Number,
+    default: 0,
+  },
+  ratings: {
+    type: Number,
+    default: 0,
+  },
+  comments: [
+    {
+      fname: {
         type: String,
-        required: true
-    },
-    level: {
+      },
+      userimg: {
         type: String,
-        required: true
+      },
+      data: {
+        type: String,
+      },
+      createdat: {
+        type: String,
+      },
     },
-    skills: [
-        {
-            type: String,
-            required: true
-        }
-    ]
+  ],
 });
 
 const Project = mongoose.model("projects-data", projectSchema);

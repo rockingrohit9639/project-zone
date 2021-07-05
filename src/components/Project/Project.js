@@ -8,7 +8,17 @@ import { Link } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
 import { getSkillColor } from "../../utils";
 
-function Project({ title, desc, skills, level, style, rating, likes }) {
+function Project({
+  title,
+  desc,
+  skills,
+  level,
+  style,
+  rating,
+  likes,
+  id,
+  comments,
+}) {
   const [shareopen, setshareopen] = useState(false);
   const [{ ProjectDetails }, dispatch] = useDataLayerValues();
   const shareButtonHandler = () => {
@@ -18,11 +28,13 @@ function Project({ title, desc, skills, level, style, rating, likes }) {
     dispatch({
       type: "SET_PROJECT_DETAILS",
       ProjectDetails: {
+        id: id,
         title: title,
         descr: desc,
         level: level,
         skills: skills,
         rating: rating,
+        comments: comments,
       },
     });
   };
@@ -67,7 +79,11 @@ function Project({ title, desc, skills, level, style, rating, likes }) {
         <div className="skills">
           {skills &&
             skills.map((skill, ind) => (
-              <div key={ind} style={{backgroundColor: getSkillColor(skill)}} className='skill'>
+              <div
+                key={ind}
+                style={{ backgroundColor: getSkillColor(skill) }}
+                className="skill"
+              >
                 {skill}
               </div>
             ))}

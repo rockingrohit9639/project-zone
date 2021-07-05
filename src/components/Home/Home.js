@@ -45,12 +45,14 @@ function Home() {
             {HomePageProjects.AI_ML_Projects.map((item) => (
               <Project
                 key={item._id}
+                id={item._id}
                 title={item.name}
                 desc={item.description}
                 skills={item.skills}
                 level={item.level}
                 rating={item.ratings}
                 likes={item.likes}
+                comments={item.comments}
               />
             ))}
           </div>
@@ -62,12 +64,14 @@ function Home() {
             {HomePageProjects.Javascript_Projects.map((item) => (
               <Project
                 key={item._id}
+                id={item._id}
                 title={item.name}
                 desc={item.description}
                 skills={item.skills}
                 level={item.level}
                 rating={item.ratings}
                 likes={item.likes}
+                comments={item.comments}
               />
             ))}
           </div>
@@ -78,12 +82,14 @@ function Home() {
             {HomePageProjects.HTML_CSS_Projects.map((item) => (
               <Project
                 key={item._id}
+                id={item._id}
                 title={item.name}
                 desc={item.description}
                 skills={item.skills}
                 level={item.level}
                 rating={item.ratings}
                 likes={item.likes}
+                comments={item.comments}
               />
             ))}
           </div>
@@ -94,12 +100,14 @@ function Home() {
             {HomePageProjects.Blockchain_Projects.map((item) => (
               <Project
                 key={item._id}
+                id={item._id}
                 title={item.name}
                 desc={item.description}
                 skills={item.skills}
                 level={item.level}
                 rating={item.ratings}
                 likes={item.likes}
+                comments={item.comments}
               />
             ))}
           </div>
@@ -110,12 +118,14 @@ function Home() {
             {HomePageProjects.Android_Projects.map((item) => (
               <Project
                 key={item._id}
+                id={item._id}
                 title={item.name}
                 desc={item.description}
                 skills={item.skills}
                 level={item.level}
                 rating={item.ratings}
                 likes={item.likes}
+                comments={item.comments}
               />
             ))}
           </div>

@@ -9,6 +9,7 @@ const {
   SendContactEmail,
   VerifyEmailSend,
   VerifyEmail,
+  AddComment,
 } = require("./../controllers/user");
 
 // Routes
@@ -47,7 +48,7 @@ ProtectedRouter.get("/user-dashboard", authenticate, UserDashboard);
 /**
  * @swagger
  * /update-user-dashboard:
- *  post:
+ *  patch:
  *    description: Update user dashboard data
  *    responses:
  *      '200':
@@ -126,5 +127,21 @@ ProtectedRouter.get("/send-verify-email", authenticate, VerifyEmailSend);
  *        description: Not a valid token
  */
 ProtectedRouter.post("/verify-email", VerifyEmail);
+
+// Routes
+/**
+ * @swagger
+ * /add-comment:
+ *  patch:
+ *    description: Add user comments on a particular project.
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error/ Not a successfull response
+ *      '401':
+ *        description: Not a valid token
+ */
+ProtectedRouter.patch("/add-comment", authenticate, AddComment);
 
 module.exports = ProtectedRouter;
