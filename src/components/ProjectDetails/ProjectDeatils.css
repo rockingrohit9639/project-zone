@@ -12,6 +12,19 @@
   opacity: 0.1;
 }
 
+.comment_btn {
+  font-family: "Poppins";
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #6c6be8;
+  margin: 20px 0;
+  display: inline-block;
+}
+
+.comment_btn:hover {
+  cursor: pointer;
+}
+
 .comment_section {
   width: 80%;
   margin-top: 1rem;
@@ -40,9 +53,12 @@
 
 .comment_info {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .comment_timestamp {
+  margin: 0;
   color: #ccc;
   margin-bottom: 0 !important;
   margin-left: 0.5rem;

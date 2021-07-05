@@ -21,11 +21,13 @@ export const initialState = {
     created_at: "",
   },
   ProjectDetails: {
+    id: null,
     title: null,
     descr: null,
     level: null,
     skills: null,
     rating: 0,
+    comments: [],
   },
   isemailverified: false,
   isAuthenticated: false,
