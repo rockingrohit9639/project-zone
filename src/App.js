@@ -19,24 +19,26 @@ import { Switch as ToggleSwitch } from "antd";
 import ContactUs from "./components/ContactUs/contactus";
 import AboutUs from "./components/About/about";
 import TrendingProjects from "./components/TrendingProjects/TrendingProjects";
-import { profile } from "./axios/instance";
+import { profile, GetHomeProjects } from "./axios/instance";
 import { setAuthToken } from "./utils";
 import { useDataLayerValues } from "./datalayer";
 import ForgetPassword from "./components/ForgetPassword/Forget";
 import SetPasword from "./components/SetPasswordPage/SetPasword";
 import VerifyEmailPage from "./components/VerifyEmailPage/VerifyEmailPage";
-import PageNotFound from "./components/PageNotFound/PageNotFound"
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
-  const [{ user, isAuthenticated, dashboard, isemailverified }, dispatch] =
-    useDataLayerValues();
+  const [
+    { user, isAuthenticated, dashboard, isemailverified, HomePageProjects },
+    dispatch,
+  ] = useDataLayerValues();
   useEffect(() => {
     const loader = document.getElementById("pre-loader");
 
     if (loader) {
       loader.remove();
     }
-
+    HomePageProjectsData();
     if (localStorage.getItem("tokken")) {
       setAuthToken(localStorage.getItem("tokken"));
       const userdata = getUser();
@@ -74,6 +76,7 @@ function App() {
         created_at: user.data.created_at,
       };
       const email = user.data.email_acctivation.email_activated;
+
       dispatch({
         type: "SET_AUTH",
         isAuthenticated: true,
@@ -94,6 +97,21 @@ function App() {
       console.log(err);
     }
   };
+
+  const HomePageProjectsData = async () => {
+    try {
+      const Homepageprojects = await GetHomeProjects();
+      console.log(Homepageprojects.data);
+      dispatch({
+        type: "SET_HOMEPAGE_PROJECTS",
+        HomePageProjects: Homepageprojects.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log(HomePageProjects);
 
   //Logic for Theme toggler to get dark mode
   const [theme, settheme] = useState("light");

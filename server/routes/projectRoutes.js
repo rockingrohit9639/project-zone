@@ -2,6 +2,21 @@ const express = require("express");
 const projectsRouter = express.Router();
 const Project = require("../db/schema/projectSchema");
 const { sendemail, ResetPassword } = require("./../controllers/user");
+const {HomePageProjects} = require("./../controllers/public");
+
+// Routes
+/**
+ * @swagger
+ * /getprojects:
+ *  get:
+ *    description: Get a list of 5 each projects according to different categories 
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error
+ */
+projectsRouter.get("/projects-home", HomePageProjects);
 
 // Routes
 /**
@@ -34,32 +49,6 @@ projectsRouter.get("/getprojects", async (req, res) => {
   } catch (err) {
     // console.log(err);
     return res.staus(500).json({ message: "Internal server error" });
-  }
-
-});
-
-projectsRouter.post("/addproject", async (req, res) => {
-  const { name, description, level, skills } = req.body;
-
-  try {
-    const newProject = Project({
-      name,
-      description,
-      level,
-      skills,
-    });
-
-    const resp = await newProject.save();
-
-    if (resp) {
-      return res
-        .status(200)
-        .json({ message: "Successully added your project." });
-    } else {
-      return res.status(400).json({ error: "Could not add your project." });
-    }
-  } catch (err) {
-    return res.status(400).json({ error: "Could not add your project." });
   }
 });
 

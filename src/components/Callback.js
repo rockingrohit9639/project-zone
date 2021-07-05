@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useDataLayerValues } from '../datalayer';
 import { magic } from '../magic';
 import { actions } from '../reducer';
+import { toast } from 'react-toastify';
+import { googlelogin } from "../axios/instance";
 
 function Callback(props)
 {
@@ -15,25 +17,49 @@ function Callback(props)
         
         const magicData = await data.magic;
         const oauthData = await data.oauth;
+        console.log(oauthData);
 
         const user = {
-            email: oauthData.userInfo.email,
             fname: oauthData.userInfo.givenName,
             lname: oauthData.userInfo.familyName,
+            email: oauthData.userInfo.email,
             picture: oauthData.userInfo.picture,
         }
 
-        dispatch({
-            type: actions.SET_USER,
-            user: user,
-        });
+        const dbuser = {
+            firstname: oauthData.userInfo.givenName,
+            lastname : oauthData.userInfo.familyName,
+            email: oauthData.userInfo.email,
+            profile: {
+                profile_pic: oauthData.userInfo.picture,
+            },
+            email_acctivation: {
+                email_acctivation_token: "",
+                email_activated: oauthData.userInfo.emailVerified,
+            },
+        }
+        
+        try {
+            const res = await googlelogin(dbuser);
+            if (!res.data.error) {
+              localStorage.setItem('tokken', res.data.accesstoken);
+              dispatch({
+                type: 'SET_AUTH',
+                isAuthenticated: true,
+              });
+              dispatch({
+                type: 'SET_USER',
+                user: user,
+              });
 
-        dispatch({
-            type: actions.SET_AUTH,
-            isAuthenticated: true,
-        });
-
-        history.push("/");
+              history.push('/');
+            }
+          } catch (err) {
+            if (err.response) {
+                history.push('/login');
+                toast.error(`${err.response.data.error}`);
+            }
+          }
     }
 
     useEffect(() => {
