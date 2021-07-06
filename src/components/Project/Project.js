@@ -22,9 +22,9 @@ function Project({
   comments,
 }) {
   const [shareopen, setshareopen] = useState(false);
-  const [likescount,setLikesCount] = useState(likes);
-  const [liked,setLiked] = useState(false);
-  const [{ ProjectDetails , isAuthenticated}, dispatch] = useDataLayerValues();
+  const [likescount, setLikesCount] = useState(likes);
+  const [liked, setLiked] = useState(false);
+  const [{ ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
   };
@@ -33,9 +33,10 @@ function Project({
     if (!isAuthenticated) {
       return toast.error(`You have to login first`);
     }
-    
-    if(!liked) {
-      setLiked(true);setLikesCount(likescount + 1);
+
+    if (!liked) {
+      setLiked(true);
+      setLikesCount(likescount + 1);
 
       try {
         const data = {
@@ -44,8 +45,7 @@ function Project({
         };
 
         const res = await AddLike(data);
-        if(!res.data.error)
-        {
+        if (!res.data.error) {
           toast.success(`${res.data.msg}`);
         }
       } catch (err) {
@@ -56,9 +56,13 @@ function Project({
       }
     }
   };
-  
+
   return (
-    <div className="project" style={style && style} onDoubleClick={LikeBtnHandler}>
+    <div
+      className="project"
+      style={style && style}
+      onDoubleClick={LikeBtnHandler}
+    >
       <div className="cardimg-box">
         <img src={cardimg} className="cardimg" alt="card-image" />
       </div>
@@ -71,7 +75,9 @@ function Project({
             alt="share-logo"
             onClick={shareButtonHandler}
           />
-          {shareopen ? <ShareProject title={title} description={desc} /> : null}
+          {shareopen ? (
+            <ShareProject id={id} title={title} description={desc} />
+          ) : null}
         </div>
         <div className="descr">
           {desc.trim() == "" ? null : (
@@ -88,9 +94,12 @@ function Project({
         </div>
 
         <div className="likebox">
-          <i className={(!liked) ? `far fa-heart` : `fas fa-heart`} aria-hidden="true" onClick={LikeBtnHandler}></i>
-            {" "}
-          <span className={(!liked) ?  `` :`liked-project`}>{likescount}</span>
+          <i
+            className={!liked ? `far fa-heart` : `fas fa-heart`}
+            aria-hidden="true"
+            onClick={LikeBtnHandler}
+          ></i>{" "}
+          <span className={!liked ? `` : `liked-project`}>{likescount}</span>
         </div>
         <div className="skills">
           {skills &&
