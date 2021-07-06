@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import profileavatar from "./../../assets/user.png";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,8 +19,8 @@ const Profile = () => {
     githublink: dashboard.social_links ? dashboard.social_links.github : "",
     linkedinlink: dashboard.social_links ? dashboard.social_links.linkdin : "",
     fblink: dashboard.social_links ? dashboard.social_links.facebook : "",
-    bio: dashboard.bio,
-    descr: dashboard.description,
+    bio: dashboard.bio ? dashboard.bio : "",
+    descr: dashboard.description ? dashboard.description : "",
   });
   const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
   const { data } = usePalette(dashboard.profile_pic);
@@ -80,7 +80,6 @@ const Profile = () => {
         },
         created_at: dashboard.created_at,
       };
-      clearFields();
       updatedata(data);
       toast.success("Profile updated");
     }
