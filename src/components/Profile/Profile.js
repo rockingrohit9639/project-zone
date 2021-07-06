@@ -6,12 +6,12 @@ import { usePalette } from "react-palette";
 import "./Profile.css";
 import { useDataLayerValues } from "../../datalayer";
 import { UpdateUserData, sendverifyemail } from "../../axios/instance";
-import { setAuthToken } from "../../utils";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 const Profile = () => {
   const [{ dashboard, user, isemailverified }, dispatch] = useDataLayerValues();
   const [modalVisibility, setModalVisibility] = useState("false");
+
   const [fields, setFields] = useState({
     fname: user.fname,
     lname: user.lname,

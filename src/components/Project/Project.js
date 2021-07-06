@@ -88,7 +88,7 @@ function Project({
         </div>
 
         <div className="likebox">
-          <i className={(!liked) ? `far fa-heart` : `far fa-heart liked-project`} aria-hidden="true" onClick={LikeBtnHandler}></i>
+          <i className={(!liked) ? `far fa-heart` : `fas fa-heart`} aria-hidden="true" onClick={LikeBtnHandler}></i>
             {" "}
           <span className={(!liked) ?  `` :`liked-project`}>{likescount}</span>
         </div>

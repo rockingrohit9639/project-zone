@@ -27,48 +27,58 @@ import SetPasword from "./components/SetPasswordPage/SetPasword";
 import VerifyEmailPage from "./components/VerifyEmailPage/VerifyEmailPage";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 
-function App() {
+function App()
+{
   const [
     { user, isAuthenticated, dashboard, isemailverified, HomePageProjects },
     dispatch,
   ] = useDataLayerValues();
-  useEffect(() => {
+
+  useEffect(() =>
+  {
     const loader = document.getElementById("pre-loader");
 
-    if (loader) {
-      loader.remove();
-    }
     HomePageProjectsData();
-    if (localStorage.getItem("tokken")) {
+
+    if (localStorage.getItem("tokken"))
+    {
       setAuthToken(localStorage.getItem("tokken"));
-      const userdata = getUser();
-    } else {
+      getUser();
+    }
+    else
+    {
       dispatch({
         type: "SET_AUTH",
         isAuthenticated: false,
       });
     }
+
+    if (loader)
+    {
+      loader.remove();
+    }
   }, [localStorage.getItem("tokken")]);
 
-  const getUser = async () => {
-    try {
+  const getUser = async () =>
+  {
+    try
+    {
       const user = await profile();
+
       console.log(user);
+
       const data = {
         ...user,
         fname: user.data.firstname,
         lname: user.data.lastname,
         email: user.data.email,
       };
+
       const dashboard_ = {
         ...dashboard,
-        bio: user.data.profile.bio ? user.data.profile.bio : "",
-        description: user.data.profile.description
-          ? user.data.profile.description
-          : "",
-        profile_pic: user.data.profile.profile_pic
-          ? user.data.profile.profile_pic
-          : "",
+        bio: user?.data?.profile?.bio && user.data.profile.bio,
+        description: user?.data?.profile?.description && user.data.profile.description,
+        profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
         project_stones: user.data.profile.project_stone,
         projects_added: user.data.profile.projects_added,
         badges: user.data.profile.badges,
@@ -93,31 +103,34 @@ function App() {
         type: "SET_EMAIL_VERIFIED",
         isemailverified: email,
       });
-    } catch (err) {
+    } catch (err)
+    {
       console.log(err);
     }
   };
 
-  const HomePageProjectsData = async () => {
-    try {
+  const HomePageProjectsData = async () =>
+  {
+    try
+    {
       const Homepageprojects = await GetHomeProjects();
-      console.log(Homepageprojects.data);
+
       dispatch({
         type: "SET_HOMEPAGE_PROJECTS",
         HomePageProjects: Homepageprojects.data,
       });
-    } catch (err) {
+    } catch (err)
+    {
       console.log(err);
     }
   };
-
-  console.log(HomePageProjects);
 
   //Logic for Theme toggler to get dark mode
   const [theme, settheme] = useState("light");
   const styledApp = styled.div;
 
-  const themeToggler = () => {
+  const themeToggler = () =>
+  {
     theme === "light" ? settheme("dark") : settheme("light");
   };
 
