@@ -43,6 +43,11 @@ export default function SignUp()
     password: ""
   })
 
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(!passwordShown);
+  };
+
   const handleSocialLogin = async () =>
   {
     try
@@ -118,7 +123,6 @@ export default function SignUp()
       password: ""
     });
   };
-  const [passwordShown] = useState(false);
 
 const setUserAuth = async (firstName, lastName, email, password) => {
     const userData = {
@@ -156,13 +160,13 @@ const setUserAuth = async (firstName, lastName, email, password) => {
   };
 
   return (
-    <div className="signin">
+    <div className="signup">
       <div className="signupimage">
         <img src={signupavatar} alt="signupavatar" />
       </div>
       <ToastContainer position="top-right" />
-      <form className="signinform" onSubmit={handleSubmit}>
-        <h2> <span className="span_welcome"> Welcome to </span> Project Zone </h2>
+      <form className="signupform" onSubmit={handleSubmit}>
+        <h2> <span className="welcome"> Welcome to </span> Project Zone </h2>
         <div className="forminput">
           <label htmlFor="name">First Name</label>
           <input type="name" id="firstname" placeholder="Enter your First Name"
@@ -183,14 +187,24 @@ const setUserAuth = async (firstName, lastName, email, password) => {
         </div>
         <div className="forminput">
           <label htmlFor="password">Password</label>
-          <input type={passwordShown ? "text" : "password"} id="password" placeholder="Enter password"
-            name="password" value={password} onChange={handleChange} />
-
+          <input
+            type={passwordShown ? 'text' : 'password'}
+            id="password"
+            placeholder="Enter password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+          <i
+            className="fa fa-eye"
+            aria-hidden="true"
+            onClick={togglePasswordVisiblity}
+          ></i>
         </div>
         <div className="btns">
-          <button type="submit" className="signup">Sign Up</button>
-          <button className="Login">
-            <RouterLink to="/login" className="signuplink" >
+          <button type="submit" className="signup-btn">Sign Up</button>
+          <button className="login-btn">
+            <RouterLink to="/login" className="loginlink" >
               Login
             </RouterLink>
           </button>

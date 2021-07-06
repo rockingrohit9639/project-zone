@@ -14,9 +14,16 @@
   display: none;
 }
 
+.email_verified_msg{
+  margin-top: "1rem";
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
+
 .btn {
+  width:50%;
   margin-top: 1rem;
-  border-radius: 10px;
 }
 
 input[type="file"] {

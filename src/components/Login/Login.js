@@ -25,8 +25,7 @@ const NewLogin = () => {
   });
 
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () =>
-  {
+  const togglePasswordVisiblity = () => {
     setPasswordShown(!passwordShown);
   };
 
