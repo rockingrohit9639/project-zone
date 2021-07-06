@@ -166,12 +166,7 @@ Then go to your Git terminal and clone it on your machine.
   <img src="Project_Img/Demo2_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
   <br />
   <img src="Project_Img/Demo3_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
-  <img src="Project_Img/Demo4_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
   <br />
-  <img src="Project_Img/Demo5_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
-  <img src="Project_Img/Demo6_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
-  <br />
-  <img src="Project_Img/Demo7_ProjectZone.png" width=50% />&ensp;&ensp;&ensp;
 </p>
 
 ## 📌 Opensource Programs
