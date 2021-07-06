@@ -14,11 +14,11 @@ const Footer = () =>
                     <h1 className="footerSection_title_" > Project Zone </h1>
                 </div>
                 <p>
-                    Made with❤️ by OpenSource
+                    
                     <a href="https://github.com/rockingrohit9639/project-zone/graphs/contributors"
                         target="_blank"
                         rel="noreferrer">
-                        Contributors
+                         Made with❤️ by OpenSource Contributors
                     </a>
                 </p>
             </div>
