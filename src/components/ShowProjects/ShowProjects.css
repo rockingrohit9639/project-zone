@@ -12,16 +12,29 @@
     padding: 1em 6.3em;
 }
 
-.filtersBox {
+.default_options{
     display: flex;
+    margin:10px 0;
+    padding:10px 0;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    overflow-y:hidden;
+    overflow-x:auto;
 }
 
-.filters {
-    display: flex;
+.default_options::-webkit-scrollbar {
+    height: 8px;
 }
+  
+.default_options::-webkit-scrollbar-track {
+    background-color: #efefef;
+    border-radius: 10px;
+  }
+  
+.default_options::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+  }
 
 .random_btn-box {
     width: 100%;

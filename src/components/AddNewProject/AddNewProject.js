@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,8 +71,11 @@ const useStyles = makeStyles((theme) => ({
 
 function AddNewProject() {
   const classes = useStyles();
-  const [{ ProjectDetails }, dispatch] = useDataLayerValues();
-
+  const history = useHistory()
+  const [{ ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
+  useEffect(() => {
+    !isAuthenticated && history.replace("/login");
+  }, [isAuthenticated, history]);
   const [skillInputs, setSkillInputs] = useState([""]);
   const [title, setTitle] = useState("");
   const [level, setLevel] = useState("");

@@ -5,17 +5,64 @@ import './ShowProjects.css';
 import { useDataLayerValues } from '../../datalayer';
 import { useEffect } from 'react';
 import Project from '../Project/Project';
-
+import  styled  from "styled-components";
 import { server } from '../../axios/instance';
+import { getSkillColor } from '../../utils';
+
+const Option = styled.button`
+  color: ${props => props.optionColor ? props.optionColor : "#FFF"};
+  min-width:${props => props.option ? `${(props.option.split(' ').length * 90)}px`  : "100px"};
+  font-family: "Poppins";
+  background-color: #FFF;
+  border: 2px solid #000;
+  border-color: ${props => props.optionColor ? props.optionColor : "#FFF"};
+  border-radius:20px;
+  margin:0 10px;
+  padding: 5px 10px;
+  white-space: nowrap;
+  cursor:pointer;
+  transition: all 0.3s ease-out;
+  &:hover{
+    color: #FFF;
+    background-color:${props => props.optionColor ? props.optionColor : "#FFF"};
+    transform: scale(0.95);
+  }
+  
+`;
 
 function Showprojects()
 {
   const [projects, setProjects] = useState();
-  const [{ query }] = useDataLayerValues();
+  const [{ query }, dispatch] = useDataLayerValues();
 
-  // const filters = ["beginner", "intermediate", "advanced"];
-  // const [appliedFilters, setAppliedFilters] = useState([]);
+  const defaultOptionsRow1 = [
+    "JavaScript",
+    "Node",
+    "Python",
+    "HTML",
+    "CSS",
+    "React",
+    "Java",
+    "Express",
+    "C++",
+  ];
 
+  // nextjs
+  // C
+  const defaultOptionsRow2 = [
+    "FullStack",
+    "Flutter",
+    "Android",
+    "MERN",
+    "Backend",
+    "Frontend",
+    "OpenCV",
+    "ML",
+  ];
+
+  
+  // "AR",
+  // "VR"
   const [randomProject, setRandomProject] = useState('');
 
   const fetchProjects = async () =>
@@ -36,6 +83,15 @@ function Showprojects()
 
   };
 
+  const setDefaultQuery = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: "SET_QUERY",
+      query: e.target.innerText,
+    });
+    fetchProjects();
+  }
+
   const handleRandomProject = () =>
   {
     setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
@@ -45,10 +101,31 @@ function Showprojects()
     <div className='showProjects'>
       <div className='mt'>
         <SearchBox fetchProjects={fetchProjects} />
+        <div className="default_options">
+           {
+             defaultOptionsRow1.map((option,index) => {
+               return(
+                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option}  optionColor={getSkillColor(option)}>
+                   {option}
+                 </Option>
+               )
+             })
+           }
+        </div>
+        <div className="default_options">
+           {
+             defaultOptionsRow2.map((option,index) => {
+               return(
+                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option} optionColor={getSkillColor(option)}>
+                  {option}
+                </Option>
+               )
+             })
+           }
+        </div>
       </div>
 
       <div className="random_btn-box">
-
         {
           projects ?
             <button className='random' onClick={handleRandomProject}>
@@ -57,7 +134,6 @@ function Showprojects()
             :
             null
         }
-
       </div>
 
       {randomProject ? (
@@ -92,6 +168,9 @@ function Showprojects()
                 desc={project.description}
                 skills={project.skills}
                 level={project.level}
+                likes={project.likes}
+                rating={project.rating}
+                comments={project.comments}
               />
             );
           })}

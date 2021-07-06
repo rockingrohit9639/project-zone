@@ -21,14 +21,25 @@ export const initialState = {
     created_at: "",
   },
   ProjectDetails: {
+    id: null,
     title: null,
     descr: null,
     level: null,
     skills: null,
     rating: 0,
+    likes:0,
+    comments: [],
   },
   isemailverified: false,
   isAuthenticated: false,
+  HomePageProjects: {
+    AI_ML_Projects: [],
+    Javascript_Projects: [],
+    Python_Projects: [],
+    HTML_CSS_Projects: [],
+    Android_Projects: [],
+    Blockchain_Projects: [],
+  },
   query: "",
 };
 
@@ -42,6 +53,7 @@ export const actions = {
   SET_QUERY: "SET_QUERY",
   SET_PROJECT_DETAILS: "SET_PROJECT_DETAILS",
   SET_EMAIL_VERIFIED: "SET_EMAIL_VERIFIED",
+  SET_HOMEPAGE_PROJECTS: "SET_HOMEPAGE_PROJECTS",
 };
 
 const reducer = (state, action) => {
@@ -81,6 +93,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         isemailverified: action.isemailverified,
+      };
+
+    case actions.SET_HOMEPAGE_PROJECTS:
+      return {
+        ...state,
+        HomePageProjects: action.HomePageProjects,
       };
 
     default:

@@ -2,6 +2,21 @@ const express = require("express");
 const projectsRouter = express.Router();
 const Project = require("../db/schema/projectSchema");
 const { sendemail, ResetPassword } = require("./../controllers/user");
+const { HomePageProjects, GetProjectByID } = require("./../controllers/public");
+
+// Routes
+/**
+ * @swagger
+ * /getprojects:
+ *  get:
+ *    description: Get a list of 5 each projects according to different categories
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error
+ */
+projectsRouter.get("/projects-home", HomePageProjects);
 
 // Routes
 /**
@@ -35,9 +50,7 @@ projectsRouter.get("/getprojects", async (req, res) => {
     // console.log(err);
     return res.staus(500).json({ message: "Internal server error" });
   }
-
 });
-
 
 // Routes
 /**
@@ -70,5 +83,19 @@ projectsRouter.post("/send-forgetpassword-email", sendemail);
  *        description: Internal server error/ No user with such id
  */
 projectsRouter.post("/reset-password", ResetPassword);
+
+// Routes
+/**
+ * @swagger
+ * /project-by-id:
+ *  post:
+ *    description: Get a single project using project id
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error
+ */
+projectsRouter.post("/project-by-id", GetProjectByID);
 
 module.exports = projectsRouter;

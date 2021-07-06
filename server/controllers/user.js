@@ -6,79 +6,63 @@ const jwt = require("jsonwebtoken");
 const { sendEmail } = require("../utills/sendMail");
 
 const maxage = 3 * 24 * 60 * 60;
-const createwebToken = (id) =>
-{
+const createwebToken = (id) => {
   return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: maxage,
   });
 };
 
-exports.profile = async (req, res) =>
-{
+exports.profile = async (req, res) => {
   const { userid } = req;
-  try
-  {
+  try {
     const user = await UserModel.findById(userid);
     return res.status(200).json(user);
-  } catch (err)
-  {
+  } catch (err) {
     // console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.UserDashboard = async (req, res) =>
-{
+exports.UserDashboard = async (req, res) => {
   const { userid } = req;
-  try
-  {
+  try {
     const user = await UserModel.findById(userid);
     return res.status(200).json(user.profile);
-  } catch (err)
-  {
+  } catch (err) {
     // console.log(err);
     return res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.UpdateUserDashbaord = async (req, res) =>
-{
+exports.UpdateUserDashbaord = async (req, res) => {
   const { userid } = req;
   const { data } = req.body;
-  try
-  {
+  try {
     UserModel.findByIdAndUpdate(
       userid,
       data,
       { new: true },
-      function (err, doc)
-      {
-        if (err)
-        {
+      function (err, doc) {
+        if (err) {
           // console.log(err);
           return res.status(500).json({ error: "NO user with such id" });
-        } else
-        {
+        } else {
           // console.log(doc);
           return res.status(200).json(doc.profile);
         }
       }
     );
-  } catch (err)
-  {
+  } catch (err) {
     // console.log(err);
     return res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.sendemail = async (req, res) =>
-{
+exports.sendemail = async (req, res) => {
   const { email } = req.body;
-  try
-  {
+  try {
     const user = await UserModel.findOne({ email: email });
-    if (user)
-    {
+    if (user) {
       const id = user._id;
       const token = jwt.sign(
         { id },
@@ -90,13 +74,13 @@ exports.sendemail = async (req, res) =>
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
 
-      const link = `${ req.protocol }://${ req.hostname }:3000/project-zone/forget-password/${ token }`;
+      const link = `${req.protocol}://${req.hostname}:3000/project-zone/forget-password/${token}`;
 
       const content = `<h2 style={{textAlign ="center"}}>Project-zone account Forget password link</h2>
       
-      Dear ${ user.firstname }, please click on following link to reset your password
+      Dear ${user.firstname}, please click on following link to reset your password
 
-      <p style={{textAlign ="center"}}><a href=${ link }>${ link }</a></p>
+      <p style={{textAlign ="center"}}><a href=${link}>${link}</a></p>
       
       Thank you`;
 
@@ -110,10 +94,8 @@ exports.sendemail = async (req, res) =>
         id,
         { password_reset_token: token },
         { new: true },
-        function (err, doc)
-        {
-          if (err)
-          {
+        function (err, doc) {
+          if (err) {
             // console.log(err);
             return res.status(500).json({ error: "NO user with such id" });
           }
@@ -121,29 +103,23 @@ exports.sendemail = async (req, res) =>
       );
 
       return res.status(200).send({ msg: "Email sent successfully" });
-    } else
-    {
+    } else {
       return res.status(401).json({ error: "Email not registered" });
     }
-  } catch (err)
-  {
+  } catch (err) {
     // console.log(err);
     return res.status(500).json({ error: "500 internal error" });
   }
 };
 
-exports.ResetPassword = async (req, res) =>
-{
+exports.ResetPassword = async (req, res) => {
   const { token, password } = req.body;
-  try
-  {
+  try {
     jwt.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET_FOREGTPASS,
-      async (err, user) =>
-      {
-        if (err)
-        {
+      async (err, user) => {
+        if (err) {
           return res.status(401).json({ error: "TOKEN EXPIERED" });
         }
         const { id } = user;
@@ -153,22 +129,20 @@ exports.ResetPassword = async (req, res) =>
           id,
           { password_reset_token: "", password: password_ },
           { new: true },
-          function (err, doc)
-          {
-            if (err)
-            {
+          function (err, doc) {
+            if (err) {
               // console.log(err);
               return res.status(500).json({ error: "NO user with such id" });
-            } else
-            {
-              return res.status(200).json({ msg: "Password reset successfull" });
+            } else {
+              return res
+                .status(200)
+                .json({ msg: "Password reset successfull" });
             }
           }
         );
       }
     );
-  } catch (err)
-  {
+  } catch (err) {
     // console.log(err);
     return res.status(500).json({ error: "500 internal error" });
   }
@@ -187,7 +161,7 @@ exports.AddNewProject = async (req, res) => {
     });
 
     const resp = await newProject.save();
-    if(!resp) {
+    if (!resp) {
       res.status(500).json({ error: "Could not add your project." });
     }
 
@@ -204,18 +178,15 @@ exports.AddNewProject = async (req, res) => {
     );
 
     return res.status(200).json({ message: "Successully added your project." });
-
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Could not add your project." });
   }
 };
 exports.SendContactEmail = async (req, res) => {
-
   const { fullname, email, message } = req.body;
 
-  try{
-
+  try {
     const user = await UserModel.findOne({ email: email });
     if (user) {
       const id = user._id;
@@ -261,13 +232,13 @@ exports.SendContactEmail = async (req, res) => {
 
       UserModel.findByIdAndUpdate(
         id,
-        { "$push": { "messages_sent" : message} },
-        { new: true, "upsert": true },
+        { $push: { messages_sent: message } },
+        { new: true, upsert: true },
         function (err, doc) {
           if (err) {
             console.log(err);
             res.status(500).json({ error: "NO user with such id" });
-          } 
+          }
         }
       );
 
@@ -275,7 +246,6 @@ exports.SendContactEmail = async (req, res) => {
     } else {
       return res.status(401).json({ error: "Email not registered" });
     }
-
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
@@ -372,5 +342,59 @@ exports.VerifyEmail = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 internal Error" });
+  }
+};
+
+exports.AddComment = async (req, res) => {
+  const { userid } = req;
+  const { project_id, fname, userimg, data } = req.body;
+  const createdat = moment().format("MMMM Do YYYY, h:mm:ss a");
+  try {
+    Project.findOneAndUpdate(
+      { _id: project_id },
+      {
+        $push: {
+          comments: {
+            fname: fname,
+            userimg: userimg,
+            data: data,
+            createdat: createdat,
+          },
+        },
+      },
+      { new: true },
+      function (error, doc) {
+        if (error) {
+          res.status(500).json({ error: "Not Successful" });
+        } else {
+          res.status(200).json({ msg: "Comment added", data: doc.comments });
+        }
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+};
+
+exports.AddLike = async (req, res) => {
+
+  const { project_id, likes } = req.body;
+  try {
+    Project.findOneAndUpdate(
+      { _id: project_id },
+      { likes: likes },
+      { new: true },
+      function (error) {
+        if (error) {
+          res.status(500).json({ error: "Not Successful" });
+        } else {
+          res.status(200).json({ msg: "Thanks for liking our project ❤️" });
+        }
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
   }
 };
