@@ -27,6 +27,7 @@ export const initialState = {
     level: null,
     skills: null,
     rating: 0,
+    likes:0,
     comments: [],
   },
   isemailverified: false,

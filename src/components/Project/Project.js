@@ -6,7 +6,9 @@ import ShareProject from "../ShareProject/ShareProject";
 import RatingCard from "../RatingCard/RatingCard";
 import { Link } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
+import { AddLike } from "./../../axios/instance";
 import { getSkillColor } from "../../utils";
+import { toast } from "react-toastify";
 
 function Project({
   title,
@@ -20,13 +22,43 @@ function Project({
   comments,
 }) {
   const [shareopen, setshareopen] = useState(false);
-  const [{ ProjectDetails }, dispatch] = useDataLayerValues();
+  const [likescount,setLikesCount] = useState(likes);
+  const [liked,setLiked] = useState(false);
+  const [{ ProjectDetails , isAuthenticated}, dispatch] = useDataLayerValues();
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
   };
 
+  const LikeBtnHandler = async () => {
+    if (!isAuthenticated) {
+      return toast.error(`You have to login first`);
+    }
+    
+    if(!liked) {
+      setLiked(true);setLikesCount(likescount + 1);
+
+      try {
+        const data = {
+          project_id: id,
+          likes: likescount + 1,
+        };
+
+        const res = await AddLike(data);
+        if(!res.data.error)
+        {
+          toast.success(`${res.data.msg}`);
+        }
+      } catch (err) {
+        if (err.response) {
+          toast.error(`${err.response.data.error}`);
+          console.log(err.response.data.error);
+        }
+      }
+    }
+  };
+  
   return (
-    <div className="project" style={style && style}>
+    <div className="project" style={style && style} onDoubleClick={LikeBtnHandler}>
       <div className="cardimg-box">
         <img src={cardimg} className="cardimg" alt="card-image" />
       </div>
@@ -56,10 +88,9 @@ function Project({
         </div>
 
         <div className="likebox">
-          <i className="far fa-heart" aria-hidden="true">
+          <i className={(!liked) ? `far fa-heart` : `far fa-heart liked-project`} aria-hidden="true" onClick={LikeBtnHandler}></i>
             {" "}
-            <span>{likes}</span>
-          </i>
+          <span className={(!liked) ?  `` :`liked-project`}>{likescount}</span>
         </div>
         <div className="skills">
           {skills &&

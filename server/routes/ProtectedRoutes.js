@@ -10,6 +10,7 @@ const {
   VerifyEmailSend,
   VerifyEmail,
   AddComment,
+  AddLike
 } = require("./../controllers/user");
 
 // Routes
@@ -143,5 +144,21 @@ ProtectedRouter.post("/verify-email", VerifyEmail);
  *        description: Not a valid token
  */
 ProtectedRouter.patch("/add-comment", authenticate, AddComment);
+
+// Routes
+/**
+ * @swagger
+ * /add-like:
+ *  patch:
+ *    description: Increment like on a particular project.
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error/ Not a successfull response
+ *      '401':
+ *        description: Not a valid token
+ */
+ ProtectedRouter.patch("/add-like", authenticate, AddLike);
 
 module.exports = ProtectedRouter;

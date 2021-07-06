@@ -18,9 +18,31 @@
   justify-content: space-between;
 }
 
+
+.like-share i, .like-share span{
+  padding:1rem 0;
+  font-size:25px;
+  transition: all 0.3s;
+}
+
+.like-share i:hover{
+  cursor:pointer;
+  padding:0.6rem 0;
+  color:red;
+  font-size:30px;
+}
+
+
+.liked-projectdetails{
+  color:red;
+}
+
+
+
 .share-icon {
   width: 25px;
   height: 25px;
+  margin-left:25px;
 }
 
 .title_ {
