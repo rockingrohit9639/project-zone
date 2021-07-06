@@ -24,8 +24,9 @@ function ProjectDetails(props) {
     const body = {
       id: id,
     };
+    try {
     const project = await GetSingleProject(body);
-    console.log(project.data);
+
     dispatch({
       type: "SET_PROJECT_DETAILS",
       ProjectDetails: {
@@ -36,9 +37,10 @@ function ProjectDetails(props) {
         skills: project.data.skills,
         rating: project.data.ratings,
         comments: project.data.comments,
-      },
+      }
     });
-    try {
+
+    
     } catch (err) {
       console.log(err);
     }
@@ -48,15 +50,18 @@ function ProjectDetails(props) {
     if (!isAuthenticated) {
       return toast.error(`You have to login first`);
     }
+
     if (comment.trim() === "") {
       return toast.error(`Type a valid comment`);
     }
+
     const data = {
       project_id: ProjectDetails.id,
       fname: user.fname,
       userimg: dashboard.profile_pic,
       data: comment,
     };
+
     try {
       const comment_add = await AddComment(data);
       const comments_new = comment_add.data.data;
@@ -64,10 +69,13 @@ function ProjectDetails(props) {
         ...ProjectDetails,
         comments: comments_new,
       };
+
+      setcomment("");
       dispatch({
         type: "SET_PROJECT_DETAILS",
         ProjectDetails: projectdata,
       });
+
       toast.success(`${comment_add.data.msg}`);
     } catch (err) {
       console.log(err);
