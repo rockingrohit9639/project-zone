@@ -220,18 +220,11 @@ const Profile = () => {
             <button className="addnewbtn">Add New Project</button>
           </RouterLink>
           {isemailverified ? (
-            <div
-              style={{
-                marginTop: "1rem",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            <div className="email_verified_msg">
               <strong>Email Verified</strong> <CheckCircleIcon />
             </div>
           ) : (
-            <button className="btn" onClick={emailVerifyBtn}>
+            <button className="editbtn" onClick={emailVerifyBtn}>
               Verify Email
             </button>
           )}

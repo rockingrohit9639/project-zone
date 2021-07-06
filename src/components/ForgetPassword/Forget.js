@@ -57,7 +57,7 @@ export default function Forget_page() {
             </RouterLink>
           </div>
           <div className="btns">
-            <button className="loginbtn" onClick={submitHandler}>
+            <button className="forgetbtn" onClick={submitHandler}>
               Submit
             </button>
           </div>
