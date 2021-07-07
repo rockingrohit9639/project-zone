@@ -38,8 +38,6 @@ function App()
   {
     const loader = document.getElementById("pre-loader");
 
-    HomePageProjectsData();
-
     if (localStorage.getItem("tokken"))
     {
       setAuthToken(localStorage.getItem("tokken"));
@@ -109,21 +107,6 @@ function App()
     }
   };
 
-  const HomePageProjectsData = async () =>
-  {
-    try
-    {
-      const Homepageprojects = await GetHomeProjects();
-
-      dispatch({
-        type: "SET_HOMEPAGE_PROJECTS",
-        HomePageProjects: Homepageprojects.data,
-      });
-    } catch (err)
-    {
-      console.log(err);
-    }
-  };
 
   //Logic for Theme toggler to get dark mode
   const [theme, settheme] = useState("light");

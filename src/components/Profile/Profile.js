@@ -9,10 +9,11 @@ import { UpdateUserData, sendverifyemail } from "../../axios/instance";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { Puff } from "react-loading-icons";
 
-const Profile = () => {
+const Profile = () =>
+{
   const [{ dashboard, user, isemailverified }, dispatch] = useDataLayerValues();
   const [modalVisibility, setModalVisibility] = useState("false");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [fields, setFields] = useState({
     fname: user.fname,
@@ -27,13 +28,16 @@ const Profile = () => {
   const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
   const { data } = usePalette(dashboard.profile_pic);
 
-  const toggleModalVisibility = () => {
+  const toggleModalVisibility = () =>
+  {
     setModalVisibility(!modalVisibility);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
+  {
     const { name, value } = e.target;
-    setFields((prevState) => {
+    setFields((prevState) =>
+    {
       return {
         ...prevState,
         [name]: value,
@@ -41,10 +45,12 @@ const Profile = () => {
     });
   };
 
-  const handlechnageInput = async (e) => {
+  const handlechnageInput = async (e) =>
+  {
     console.log(e.target.files);
     const basse64 = await convertBase64(e.target.files[0]);
-    setFields((prevState) => {
+    setFields((prevState) =>
+    {
       return {
         ...prevState,
         profileimg: basse64,
@@ -52,17 +58,30 @@ const Profile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) =>
+  {
+
+    setIsLoading(true);
+
     e.preventDefault();
-    if (bio === "") {
+    if (bio === "")
+    {
       toast.error("Please enter your bio   ");
-    } else if (descr === "") {
+      setIsLoading(false);
+    } else if (descr === "")
+    {
       toast.error("Please enter description");
-    } else if (fname === "") {
+      setIsLoading(false);
+    } else if (fname === "")
+    {
       toast.error("Please enter valid firstname");
-    } else if (lname === "") {
+      setIsLoading(false);
+    } else if (lname === "")
+    {
       toast.error("Please enter valid lastname");
-    } else {
+      setIsLoading(false);
+    } else
+    {
       const data = {
         firstname: fields.fname,
         lastname: fields.lname,
@@ -82,12 +101,15 @@ const Profile = () => {
         },
         created_at: dashboard.created_at,
       };
+
       updatedata(data);
       toast.success("Profile updated");
+      setIsLoading(false);
     }
   };
 
-  const clearFields = () => {
+  const clearFields = () =>
+  {
     setFields({
       profileimg: "",
       githublink: "",
@@ -97,22 +119,28 @@ const Profile = () => {
       descr: "",
     });
   };
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
+
+  const convertBase64 = (file) =>
+  {
+    return new Promise((resolve, reject) =>
+    {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
+      fileReader.onload = () =>
+      {
         resolve(fileReader.result);
       };
 
-      fileReader.onerror = (error) => {
+      fileReader.onerror = (error) =>
+      {
         reject(error);
       };
     });
   };
 
-  const updatedata = async (data) => {
+  const updatedata = async (data) =>
+  {
     const userdata = {
       ...user,
       fname: data.firstname,
@@ -129,8 +157,11 @@ const Profile = () => {
     const maindata = {
       data: data,
     };
-    try {
-      const user = await UpdateUserData(maindata);
+    
+    try
+    {
+      await UpdateUserData(maindata);
+
       dispatch({
         type: "SET_USER",
         user: userdata,
@@ -139,25 +170,35 @@ const Profile = () => {
         type: "SET_USER_DASHBOARD_DATA",
         dashboard: dashboarddata,
       });
+
       toggleModalVisibility();
-    } catch (err) {
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
+
+    } catch (err)
+    {
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
+        setIsLoading(false);
       }
     }
   };
 
-  const emailVerifyBtn = async () => {
-    try {
+  const emailVerifyBtn = async () =>
+  {
+    try
+    {
       const res = await sendverifyemail();
-      if (res.status === 200) {
+      if (res.status === 200)
+      {
         window.alert(res.data.msg);
         toast.success(res.data.msg);
       }
-    } catch (err) {
+    } catch (err)
+    {
       console.log(err);
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
       }
     }
   };
@@ -212,7 +253,8 @@ const Profile = () => {
           <h3>Projectones : {dashboard.project_stones}</h3>
           <button
             className="editbtn"
-            onClick={() => {
+            onClick={() =>
+            {
               toggleModalVisibility();
             }}
           >
@@ -247,7 +289,8 @@ const Profile = () => {
           <h2>Projects Added</h2>
           {dashboard.projects_added.length > 0 ? (
             <ul className="projects_list">
-              {dashboard.projects_added.map((project, i) => {
+              {dashboard.projects_added.map((project, i) =>
+              {
                 return (
                   <li key={i}>
                     <i className="fa fa-circle"></i>
@@ -262,7 +305,8 @@ const Profile = () => {
           <h2>Badges</h2>
           {dashboard.badges.length > 0 ? (
             <div className="badges_list">
-              {dashboard.badges.map((badge, i) => {
+              {dashboard.badges.map((badge, i) =>
+              {
                 return (
                   <div className="badge_container" key={i}>
                     <i className="fa fa-medal"></i>
@@ -278,11 +322,11 @@ const Profile = () => {
         </div>
       </div>
       <div
-        className={`overlay ${modalVisibility && "overlay_hidden"}`}
+        className={`overlay ${ modalVisibility && "overlay_hidden" }`}
         onClick={() => toggleModalVisibility()}
       ></div>
       <form
-        className={`editmodal ${modalVisibility && "editmodal_hidden"}`}
+        className={`editmodal ${ modalVisibility && "editmodal_hidden" }`}
         onSubmit={handleSubmit}
       >
         <ToastContainer position="bottom-center" />
@@ -341,7 +385,7 @@ const Profile = () => {
               Submit
             </button>
 
-            <Puff stroke="#6f6ee1" fill="#6f6ee1" width="30" height="90"/>
+            {isLoading ? <Puff stroke="#6f6ee1" fill="#6f6ee1" width="30" height="90" /> : null}
           </div>
 
         </div>
