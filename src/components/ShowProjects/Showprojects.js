@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import './ShowProjects.css';
-// import { client, options } from '../../client';
 import { useDataLayerValues } from '../../datalayer';
 import { useEffect } from 'react';
 import Project from '../Project/Project';
 import  styled  from "styled-components";
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useMediaQuery } from '@material-ui/core';
+import Pagination from "@material-ui/lab/Pagination";
 import { server } from '../../axios/instance';
 import { getSkillColor } from '../../utils';
 
@@ -27,11 +29,30 @@ const Option = styled.button`
     background-color:${props => props.optionColor ? props.optionColor : "#FFF"};
     transform: scale(0.95);
   }
-  
 `;
+
+const useStyles = makeStyles(theme => ({
+  paginator: {
+    justifyContent: "center",
+    marginTop: theme.spacing(5),
+    marginBottom:theme.spacing(3)
+  }
+}));
 
 function Showprojects()
 {
+  const muitheme = useTheme();
+  const isMobile = useMediaQuery(muitheme.breakpoints.down("sm"));
+  const itemsPerPage = isMobile ? 6 : 12 ;
+  const [page, setPage] = useState(1);
+  const [totalPages,setTotalPages] = useState(1);
+  const classes = useStyles();
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+    window.scroll(0,420);
+  };
+
   const [projects, setProjects] = useState();
   const [{ query }, dispatch] = useDataLayerValues();
 
@@ -75,6 +96,7 @@ function Showprojects()
       {
         const results = await server.get(`/getprojects?q=${ query }`);
         setProjects(results.data);
+        setTotalPages(Math.ceil(results.data.length / itemsPerPage));
       }
     } catch (error)
     {
@@ -128,9 +150,9 @@ function Showprojects()
       <div className="random_btn-box">
         {
           projects ?
-            <button className='random' onClick={handleRandomProject}>
+            <Option onClick={handleRandomProject} optionColor={'#6f6ee1'} option={'Let decide project'}>
               Let us decide a project for you.
-            </button>
+            </Option>
             :
             null
         }
@@ -152,14 +174,12 @@ function Showprojects()
         query ?
           <h2 className='query'> Searching projects for "{query}" </h2>
           :
-          <h2 className='query'> Entery query to search for projects. </h2>
+          <h2 className='query'> Enter query to search for projects. </h2>
       }
-
-
 
       <div className='projectsList'>
         {projects &&
-          projects.map((project, ind) =>
+          projects.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((project, ind) =>
           {
             return (
               <Project
@@ -173,8 +193,23 @@ function Showprojects()
                 comments={project.comments}
               />
             );
-          })}
+          })
+         }
       </div>
+      {
+        projects &&
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+          defaultPage={1}
+          color='primary'
+          size={(isMobile) ? "small" : "large"}
+          showFirstButton={!isMobile}
+          showLastButton={!isMobile}
+          classes={{ ul: classes.paginator }}
+        />
+        }
     </div>
   );
 }
