@@ -69,7 +69,7 @@ exports.sendemail = async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET_FOREGTPASS,
         { expiresIn: "10m" }
       );
-      // const link_prod = `${req.protocol}://${req.hostname}/project-zone/forget-password/${token}`;
+      // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/project-zone/forget-password/${token}`;
 
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
@@ -191,6 +191,11 @@ exports.SendContactEmail = async (req, res) => {
     if (user) {
       const id = user._id;
 
+      // const link = "https://60e5a4164df29368b0329a4b--project-zone.netlify.app";
+
+      /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
+      then link below will be sent as email */
+
       const link = `${req.protocol}://${req.hostname}:3000/`;
 
       const usercontent = `<h3 style="text-align:center">Thanks for contacting us !</h3>
@@ -265,7 +270,8 @@ exports.VerifyEmailSend = async (req, res) => {
           expiresIn: "10m",
         }
       );
-      // const link_prod = `${req.protocol}://${req.hostname}/project-zone/verify-email/${token}`;
+
+      // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/project-zone/verify-email/${token}`;
 
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */

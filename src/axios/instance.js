@@ -3,7 +3,7 @@ import axios from "axios";
 const url = "http://localhost:8000";
 
 export const server = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: url,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
