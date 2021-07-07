@@ -1,101 +1,119 @@
 .showProjects {
-    background-color: #F3F7FF;
-    margin-top: 3rem;
-    padding: 3rem;
-    font-family: "Poppins", "sans-serif";
+  background-color: #f3f7ff;
+  margin-top: 3rem;
+  padding: 3rem;
+  font-family: "Poppins", "sans-serif";
 }
 
 .mt {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .query {
-    text-align:center;
-    margin-top:1rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
-.default_options{
-    display: flex;
-    margin:10px 0;
-    padding:10px 0;
-    align-items: center;
-    justify-content: center;
-    overflow-y:hidden;
-    overflow-x:auto;
+.default_options {
+  display: flex;
+  margin: 10px 0;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.filtre-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filtre-div h2 {
+  margin: 0;
+}
+
+.filtre-div label {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 16px;
 }
 
 .default_options::-webkit-scrollbar {
-    height: 8px;
+  height: 8px;
 }
-  
+
 .default_options::-webkit-scrollbar-track {
-    background-color: #efefef;
-    border-radius: 10px;
-  }
-  
+  background-color: #efefef;
+  border-radius: 10px;
+}
+
 .default_options::-webkit-scrollbar-thumb {
-    background: #cccccc;
-    border-radius: 10px;
-  }
+  background: #cccccc;
+  border-radius: 10px;
+}
 
 .random_btn-box {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .random {
-    outline: none;
-    border: none;
-    background-color: transparent;
-    border-radius:20px;
-    margin:0 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    border: 2px solid #ff5959;
-    color: #ff5959;
-    background-color:#FFF;
-    transition: all 0.3s ease-in-out;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 20px;
+  margin: 0 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  border: 2px solid #ff5959;
+  color: #ff5959;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
 }
 
 .random:hover {
-    background-color: #ff5959;
-    color:#FFF;
+  background-color: #ff5959;
+  color: #fff;
 }
 
 .randomProject {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .filter {
-    text-align: center;
-    margin: 0.5rem;
-    text-transform: capitalize;
-    background-color: #ccc;
-    padding: 0.3rem 1rem;
-    border-radius: 15px;
-    cursor: pointer;
-    user-select: none;
+  text-align: center;
+  margin: 0.5rem;
+  text-transform: capitalize;
+  background-color: #ccc;
+  padding: 0.3rem 1rem;
+  border-radius: 15px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .projectsList {
-    padding: 2vw 4vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  padding: 2vw 4vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-@media screen and (max-width:960px){
-  .showProjects{
+@media screen and (max-width: 960px) {
+  .showProjects {
     padding: 1rem;
   }
 
-  .default_options{
-      align-items:stretch;
-      justify-content:flex-start;
+  .default_options {
+    align-items: stretch;
+    justify-content: flex-start;
   }
 }
