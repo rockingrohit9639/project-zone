@@ -66,7 +66,7 @@ function ProjectDetails(props)
       return toast.error(`You have to login first`);
     }
 
-    if (comment.trim() === "")
+    if (comment?.trim() === "")
     {
       return toast.error(`Type a valid comment`);
     }

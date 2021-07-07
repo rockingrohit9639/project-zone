@@ -99,8 +99,6 @@ function Showprojects() {
     try {
       setRandomProject("");
 
-      console.log(query);
-
       if (query !== "") {
         console.log("came here fine");
         const results = await server.get(`/getprojects?q=${query}`);
@@ -114,7 +112,6 @@ function Showprojects() {
       }
     } catch (error) {
       setIsLoading(false);
-      // console.log(error);
     }
   };
 
@@ -131,6 +128,7 @@ function Showprojects() {
 
   const handleRandomProject = () => {
     setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
+    console.log(randomProject);
   };
 
   const checkboxHandler = (e) => {
@@ -231,6 +229,9 @@ function Showprojects() {
             desc={randomProject.description}
             skills={randomProject.skills}
             level={randomProject.level}
+            likes={randomProject.likes}
+            comments={randomProject.comments}
+            id={randomProject._id}
             style={{ backgroundColor: "#6f6ee1", color: "#FFF" }}
           />
         </div>
