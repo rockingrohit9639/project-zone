@@ -7,10 +7,12 @@ import "./Profile.css";
 import { useDataLayerValues } from "../../datalayer";
 import { UpdateUserData, sendverifyemail } from "../../axios/instance";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import { Puff } from "react-loading-icons";
 
 const Profile = () => {
   const [{ dashboard, user, isemailverified }, dispatch] = useDataLayerValues();
   const [modalVisibility, setModalVisibility] = useState("false");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [fields, setFields] = useState({
     fname: user.fname,
@@ -333,9 +335,15 @@ const Profile = () => {
               placeholder="facebook link"
             ></input>
           </div>
-          <button type="submit" className="left_submit">
-            Submit
-          </button>
+
+          <div className="btn_loader">
+            <button type="submit" className="left_submit">
+              Submit
+            </button>
+
+            <Puff stroke="#6f6ee1" fill="#6f6ee1" width="30" height="90"/>
+          </div>
+
         </div>
         <div className="editmodal_right">
           <div className="forminput">

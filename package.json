@@ -22,6 +22,7 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-file-base64": "^1.0.3",
+        "react-loading-icons": "^1.0.4",
         "react-palette": "^1.0.2",
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.3",

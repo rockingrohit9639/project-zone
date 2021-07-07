@@ -8,14 +8,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import loginavatar from './../../assets/loginavatar.svg';
 import './Login.css';
 import { login } from './../../axios/instance';
+import { Oval } from "react-loading-icons";
 
-const NewLogin = () => {
+const NewLogin = () =>
+{
   const history = useHistory();
-  const [loading, setLoading] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [{ user, ProjectDetails, isAuthenticated, query }, dispatch] =
     useDataLayerValues();
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     isAuthenticated && history.push('/');
   }, [isAuthenticated, history]);
 
@@ -25,15 +28,17 @@ const NewLogin = () => {
   });
 
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisiblity = () =>
+  {
     setPasswordShown(!passwordShown);
   };
 
   const { email, password } = fields;
 
-  const handleSocialLogin = async () => {
-    try {
-      setLoading('Loading...');
+  const handleSocialLogin = async () =>
+  {
+    try
+    {
 
       await magic.oauth.loginWithRedirect({
         provider: 'google',
@@ -57,19 +62,30 @@ const NewLogin = () => {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) =>
+  {
+    setIsLoading(true);
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     event.preventDefault();
 
-    if (email === '') {
+    if (email === '')
+    {
       toast.error('Please enter your email ');
-    } else if (!emailTest.test(email)) {
+      setIsLoading(false);
+    } else if (!emailTest.test(email))
+    {
       toast.error('Please enter a valid email');
-    } else if (password === '') {
+      setIsLoading(false);
+    } else if (password === '')
+    {
       toast.error('Please enter a secure password');
-    } else if (password.length < 6) {
+      setIsLoading(false);
+    } else if (password.length < 6)
+    {
       toast.error('Password should have at least 6 characters');
-    } else {
+      setIsLoading(false);
+    } else
+    {
       clearData();
       setUserAuth(email, password);
     }
@@ -83,20 +99,29 @@ const NewLogin = () => {
     });
   };
 
-  const setUserAuth = async (email, password) => {
+  const setUserAuth = async (email, password) =>
+  {
     const userData = {
       ...user,
       email: email,
       password: password,
     };
+
     const body = {
       email: email,
       password: password,
     };
-    try {
+
+    try
+    {
       const res = await login(body);
-      if (!res.data.error) {
+      
+      if (!res.data.error)
+      {
         localStorage.setItem('tokken', res.data.accesstoken);
+
+        setIsLoading(false);
+
         dispatch({
           type: 'SET_AUTH',
           isAuthenticated: true,
@@ -105,10 +130,14 @@ const NewLogin = () => {
           type: 'SET_USER',
           user: userData,
         });
+
       }
-    } catch (err) {
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
+    } catch (err)
+    {
+      if (err.response)
+      {
+        setIsLoading(false);
+        toast.error(`${ err.response.data.error }`);
       }
     }
   };
@@ -163,6 +192,11 @@ const NewLogin = () => {
             </RouterLink>
           </div>
         </div>
+
+        {isLoading ? <div className="loading_indicator">
+          <Oval stroke={"#6f6ee1"} />
+        </div> : null}
+
         <div className="btns">
           <button type="submit" className="loginbtn">
             Login

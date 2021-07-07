@@ -23,7 +23,7 @@ I found an awesome project for you i.e
 ${props.description}
 
 Have a look at it and enjoy coding.
-For more interesting project visit
+To know more about the project or to find other similar projects visit - 
 `;
 
   return (

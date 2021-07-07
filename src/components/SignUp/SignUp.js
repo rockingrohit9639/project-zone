@@ -9,7 +9,7 @@ import { magic } from "../../magic";
 import "./SignUp.css";
 import signupavatar from './../../assets/signupavatar.svg';
 import { signup } from '../../axios/instance';
-
+import { Oval } from "react-loading-icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,8 +28,8 @@ export default function SignUp()
 {
   const classes = useStyles();
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
   const [{ user, isAuthenticated }, dispatch] = useDataLayerValues();
-  const [loading, setLoading] = useState("");
 
   useEffect(() =>
   {
@@ -52,7 +52,6 @@ export default function SignUp()
   {
     try
     {
-      setLoading("Loading...");
 
       await magic.oauth.loginWithRedirect({
         provider: "google",
@@ -80,31 +79,38 @@ export default function SignUp()
 
   const handleSubmit = (event) =>
   {
+    setIsLoading(true);
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     event.preventDefault();
 
     if (firstName === "")
     {
+      setIsLoading(false);
       toast.error('Please enter your First Name');
     }
     else if (lastName === "")
     {
+      setIsLoading(false);
       toast.error('Please enter your Last Name');
     }
     else if (email === "")
     {
+      setIsLoading(false);
       toast.error('Please enter your email ');
     }
     else if (!emailTest.test(email))
     {
+      setIsLoading(false);
       toast.error('Please enter a valid email');
     }
     else if (password === "")
     {
+      setIsLoading(false);
       toast.error('Please enter a secure password');
     }
     else if (password.length < 6)
     {
+      setIsLoading(false);
       toast.error('Password should have at least 6 characters');
     }
     else
@@ -142,6 +148,8 @@ const setUserAuth = async (firstName, lastName, email, password) => {
       const res = await signup(body);
       if (!res.data.error) {
         localStorage.setItem('tokken', res.data.accesstoken);
+        
+        setIsLoading(false);
         dispatch({
           type: 'SET_AUTH',
           isAuthenticated: true,
@@ -150,10 +158,11 @@ const setUserAuth = async (firstName, lastName, email, password) => {
           type: 'SET_USER',
           user: userData,
         });
-        console.log(userData);
+
       }
     } catch (err) {
       if (err.response) {
+        setIsLoading(false);
         toast.error(`${err.response.data.error}`);
       }
     }

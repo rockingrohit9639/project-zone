@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import './ShowProjects.css';
-// import { client, options } from '../../client';
 import { useDataLayerValues } from '../../datalayer';
-import { useEffect } from 'react';
 import Project from '../Project/Project';
-import  styled  from "styled-components";
+import styled from "styled-components";
 import { server } from '../../axios/instance';
 import { getSkillColor } from '../../utils';
+import { Bars } from "react-loading-icons";
+import { toast, ToastContainer } from 'react-toastify';
 
 const Option = styled.button`
-  color: ${props => props.optionColor ? props.optionColor : "#FFF"};
-  min-width:${props => props.option ? `${(props.option.split(' ').length * 90)}px`  : "100px"};
+  color: ${ props => props.optionColor ? props.optionColor : "#FFF" };
+  min-width:${ props => props.option ? `${ (props.option.split(' ').length * 90) }px` : "100px" };
   font-family: "Poppins";
   background-color: #FFF;
   border: 2px solid #000;
-  border-color: ${props => props.optionColor ? props.optionColor : "#FFF"};
+  border-color: ${ props => props.optionColor ? props.optionColor : "#FFF" };
   border-radius:20px;
   margin:0 10px;
   padding: 5px 10px;
@@ -24,7 +24,7 @@ const Option = styled.button`
   transition: all 0.3s ease-out;
   &:hover{
     color: #FFF;
-    background-color:${props => props.optionColor ? props.optionColor : "#FFF"};
+    background-color:${ props => props.optionColor ? props.optionColor : "#FFF" };
     transform: scale(0.95);
   }
   
@@ -33,6 +33,7 @@ const Option = styled.button`
 function Showprojects()
 {
   const [projects, setProjects] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [{ query }, dispatch] = useDataLayerValues();
 
   const defaultOptionsRow1 = [
@@ -60,35 +61,51 @@ function Showprojects()
     "ML",
   ];
 
-  
+
   // "AR",
   // "VR"
   const [randomProject, setRandomProject] = useState('');
 
   const fetchProjects = async () =>
   {
+    setIsLoading(true);
+
     try
     {
       setRandomProject('');
 
+      console.log(query);
+
       if (query !== "")
       {
+        console.log("came here fine")
         const results = await server.get(`/getprojects?q=${ query }`);
+        setIsLoading(false);
         setProjects(results.data);
+      }
+      else
+      {
+        console.log("enter query");
+        toast.error("Please enter a query first.");
+        setIsLoading(false);  
       }
     } catch (error)
     {
-      console.log(error);
+      setIsLoading(false);
+      // console.log(error);
     }
 
   };
 
-  const setDefaultQuery = (e) => {
+  const setDefaultQuery = (e) =>
+  {
     e.preventDefault();
+
     dispatch({
       type: "SET_QUERY",
       query: e.target.innerText,
     });
+
     fetchProjects();
   }
 
@@ -99,29 +116,32 @@ function Showprojects()
 
   return (
     <div className='showProjects'>
+    <ToastContainer />
       <div className='mt'>
         <SearchBox fetchProjects={fetchProjects} />
         <div className="default_options">
-           {
-             defaultOptionsRow1.map((option,index) => {
-               return(
-                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option}  optionColor={getSkillColor(option)}>
-                   {option}
-                 </Option>
-               )
-             })
-           }
-        </div>
-        <div className="default_options">
-           {
-             defaultOptionsRow2.map((option,index) => {
-               return(
-                 <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option} optionColor={getSkillColor(option)}>
+          {
+            defaultOptionsRow1.map((option, index) =>
+            {
+              return (
+                <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option} optionColor={getSkillColor(option)}>
                   {option}
                 </Option>
-               )
-             })
-           }
+              )
+            })
+          }
+        </div>
+        <div className="default_options">
+          {
+            defaultOptionsRow2.map((option, index) =>
+            {
+              return (
+                <Option type="submit" onClick={setDefaultQuery} value={query} key={index} option={option} optionColor={getSkillColor(option)}>
+                  {option}
+                </Option>
+              )
+            })
+          }
         </div>
       </div>
 
@@ -154,6 +174,11 @@ function Showprojects()
           :
           <h2 className='query'> Entery query to search for projects. </h2>
       }
+
+      {isLoading ? <div className="loading_indicator">
+        <Bars stroke={"#6f6ee1"} fill="#6f6ee1" width="60" height="90" />
+        <p> Fetching {query} projects </p>
+      </div> : null}
 
 
 

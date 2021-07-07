@@ -14,6 +14,11 @@
   display: none;
 }
 
+.btn_loader {
+  display: flex;
+  align-items: center;
+}
+
 .email_verified_msg{
   margin-top: "1rem";
   display: "flex";

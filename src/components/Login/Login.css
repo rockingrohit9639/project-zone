@@ -84,6 +84,15 @@
   color:#5352ED;
 }
 
+.loading_indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #5352ED;
+  font-weight: bold;
+}
+
 .btns{
   margin-top:30px;
 }
