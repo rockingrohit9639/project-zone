@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
 const { sendEmail } = require("../utills/sendMail");
+const { TrendingUpRounded } = require("@material-ui/icons");
 
 const maxage = 3 * 24 * 60 * 60;
 const createwebToken = (id) => {
@@ -153,7 +154,6 @@ exports.AddNewProject = async (req, res) => {
   const { name, description, level, skills } = req.body;
 
   let username = "";
-  let email_ = "";
 
   try {
     const newProject = Project({
@@ -168,6 +168,12 @@ exports.AddNewProject = async (req, res) => {
       res.status(500).json({ error: "Could not add your project." });
     }
 
+    const email_list = await UserModel.find({
+      "email_acctivation.email_activated": true,
+    }).select("email");
+
+    const emails = email_list.map((item) => item.email);
+
     UserModel.findByIdAndUpdate(
       userid,
       { $push: { "profile.projects_added": name } },
@@ -178,29 +184,27 @@ exports.AddNewProject = async (req, res) => {
           res.status(404).json({ error: "NO user with such id" });
         } else {
           username = doc.firstname;
-          email_ = doc.email;
           // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/projectdetails/${resp._id}`;
 
-          /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
+          /* Above link will be used when client-side is fully deployed, if we are running client-side on local host
       then link below will be sent as email */
 
           const link = `${req.protocol}://${req.hostname}:3000/projectdetails/${resp._id}`;
 
           const content = `
-      
-      <h2>Dear ${username}, you have successfully added a new project with following details : </h2> 
+
+      <h2> New Project Added </h2>
+      <p> Hello user, we are happy to announce that a new project has been added recently by ${username} with following details : </p>
 
       <h4> Title : ${name} </h4>
       <h4> Description : ${description}</h4>
       <h4> Level : ${level}</h4>
       <h4> Skills : ${skills.join(", ")}</h4>
-      <h4 style="text-align:center"><a href=${link}>Check your project here.</a></h4>
+      <h4 style="text-align:center"><a href=${link}>Check new project here..</a></h4>
 
       Thanks You. ! Have a great day!`;
 
-          console.log(email_ + " " + username);
-
-          await sendEmail(email_, "Project Added Successfully", content);
+          await sendEmail(emails, "New Project on Project-zone", content);
         }
       }
     );
