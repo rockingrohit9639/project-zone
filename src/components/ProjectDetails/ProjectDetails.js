@@ -8,50 +8,66 @@ import { useDataLayerValues } from "./../../datalayer";
 import { AddComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
 import { Link as RouterLink, useParams } from "react-router-dom";
+import { BallTriangle } from "react-loading-icons";
 
-function ProjectDetails(props) {
+function ProjectDetails(props)
+{
   const [{ user, ProjectDetails, dashboard, isAuthenticated }, dispatch] =
     useDataLayerValues();
+  const [isLoading, setIsLoading] = useState(false);
+
   const [comment, setcomment] = useState("");
   const { projectid } = useParams();
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     window.scroll(0, 0);
     fetchProject(projectid);
   }, []);
 
-  const fetchProject = async (id) => {
+  const fetchProject = async (id) =>
+  {
+    setIsLoading(true);
+
     const body = {
       id: id,
     };
-    try {
-    const project = await GetSingleProject(body);
 
-    dispatch({
-      type: "SET_PROJECT_DETAILS",
-      ProjectDetails: {
-        id: project.data._id,
-        title: project.data.name,
-        descr: project.data.description,
-        level: project.data.level,
-        skills: project.data.skills,
-        rating: project.data.ratings,
-        comments: project.data.comments,
-      }
-    });
+    try
+    {
+      const project = await GetSingleProject(body);
 
-    
-    } catch (err) {
+      dispatch({
+        type: "SET_PROJECT_DETAILS",
+        ProjectDetails: {
+          id: project.data._id,
+          title: project.data.name,
+          descr: project.data.description,
+          level: project.data.level,
+          skills: project.data.skills,
+          rating: project.data.ratings,
+          comments: project.data.comments,
+        }
+      });
+
+
+    } catch (err)
+    {
       console.log(err);
     }
+
+    setIsLoading(false);
   };
 
-  const CommentBtnHandler = async () => {
-    if (!isAuthenticated) {
+  const CommentBtnHandler = async () =>
+  {
+    if (!isAuthenticated)
+    {
       return toast.error(`You have to login first`);
     }
 
-    if (comment.trim() === "") {
+    if (comment.trim() === "")
+    {
       return toast.error(`Type a valid comment`);
     }
 
@@ -62,7 +78,8 @@ function ProjectDetails(props) {
       data: comment,
     };
 
-    try {
+    try
+    {
       const comment_add = await AddComment(data);
       const comments_new = comment_add.data.data;
       const projectdata = {
@@ -76,11 +93,13 @@ function ProjectDetails(props) {
         ProjectDetails: projectdata,
       });
 
-      toast.success(`${comment_add.data.msg}`);
-    } catch (err) {
+      toast.success(`${ comment_add.data.msg }`);
+    } catch (err)
+    {
       console.log(err);
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
       }
     }
   };
@@ -90,12 +109,16 @@ function ProjectDetails(props) {
       <ToastContainer position="bottom-left" />
       <ParticlesBg type="coweb" bg={true} />
 
-      <ProjectDetailCard
-        title={props.title}
-        descr={props.descr}
-        skills={props.skills}
-        level={props.level}
-      />
+
+
+      {isLoading ? <div className="loading__details"> <BallTriangle color="#6f6ee1" stroke="#6f6ee1" /></div>
+        :
+        <ProjectDetailCard
+          title={props.title}
+          descr={props.descr}
+          skills={props.skills}
+          level={props.level}
+        />}
 
       <div className="comment_section">
         <div className="comment_user_data">
