@@ -395,7 +395,7 @@ exports.AddLike = async (req, res) => {
         if (error) {
           res.status(500).json({ error: "Not Successful" });
         } else {
-          res.status(200).json({ msg: "Thanks for liking our project ❤️" });
+          res.status(200).json({ msg: "Thanks for liking our project ❤️"});
         }
       }
     );
@@ -404,3 +404,45 @@ exports.AddLike = async (req, res) => {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
+
+exports.AddNewRating = async (req, res) => {
+
+  const { project_id, newrating } = req.body;
+  let avgrating;
+
+  try {
+    Project.findOneAndUpdate(
+      { _id: project_id },
+      { $push: { "allratings": newrating } },
+      { new: true, upsert: true },
+      function (error, doc) {
+        if (error) {
+          res.status(500).json({ error: "Not Successful" });
+        }
+        else{
+          const ratingsSum = (accumulator, currentValue) => accumulator + currentValue;
+          avgrating = doc.allratings.reduce(ratingsSum) / doc.allratings.length;
+          avgrating = Math.round(avgrating*2)/2;
+
+          Project.findOneAndUpdate(
+            { _id: project_id },
+            { rating: avgrating },
+            { new: true },
+            function (error, doc) {
+              if (error) {
+                res.status(500).json({ error: "Not Successful" });
+              } else {
+                res.status(200).json({ msg: "Thanks for rating our project ⭐", data: doc.rating });
+              }
+            }
+          );
+        }
+      }
+    );
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+};
+

@@ -19,24 +19,27 @@
 }
 
 
-.like-share i, .like-share span{
-  padding:1rem 0;
-  font-size:25px;
+.like-share span{
+  font-size:20px;
+  padding-bottom:10rem;
   transition: all 0.3s;
 }
 
-.like-share i:hover{
+.heart{
+  font-size:40px;
+  transition: all 0.3s;
   cursor:pointer;
-  padding:0.6rem 0;
-  color:red;
-  font-size:30px;
+  color:#CCC;
 }
 
-
-.liked-projectdetails{
+.heart:hover{
   color:red;
+  transform : scale(1.25);
 }
 
+.liked-heart{
+  color:red;
+}
 
 
 .share-icon {
@@ -65,15 +68,40 @@
 
 .skills_ {
   display: flex;
+  margin-right:auto;
 }
+
+.like_label_{
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top:0rem;
+  margin-right:0.8rem;
+}
+
+
+.rate_label_{
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top:0.3rem;
+  margin-right:0.8rem;
+}
+
 
 .card-footer_ {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction:column;
 }
 
 .rating_div {
-  margin-top: 2rem;
+  margin:0;
+  margin-left:auto;
+  margin-top:0.8rem;
+  display:flex;
+  flex-wrap:wrap;
 }
+
+

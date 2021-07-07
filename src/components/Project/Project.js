@@ -4,6 +4,7 @@ import share_logo from "./../../assets/share.svg";
 import cardimg from "./../../assets/cardtop.svg";
 import ShareProject from "../ShareProject/ShareProject";
 import RatingCard from "../RatingCard/RatingCard";
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
 import { AddLike } from "./../../axios/instance";
@@ -93,13 +94,12 @@ function Project({
           <p>{level}</p>
         </div>
 
-        <div className="likebox">
-          <i
-            className={!liked ? `far fa-heart` : `fas fa-heart`}
-            aria-hidden="true"
-            onClick={LikeBtnHandler}
-          ></i>{" "}
-          <span className={!liked ? `` : `liked-project`}>{likescount}</span>
+        <div className="rating_div">
+            <div className="like-share like-box">
+              <FavoriteIcon className={(!liked) ? 'heart' : 'liked-heart'} onClick={LikeBtnHandler}></FavoriteIcon>
+                {" "}
+               <span className={(!liked) ?  '' :'liked-heart'}>{likescount}</span>
+            </div>
         </div>
         <div className="skills">
           {skills &&

@@ -230,6 +230,7 @@ function Showprojects() {
             skills={randomProject.skills}
             level={randomProject.level}
             likes={randomProject.likes}
+            rating={randomProject.rating}
             comments={randomProject.comments}
             id={randomProject._id}
             style={{ backgroundColor: "#6f6ee1", color: "#FFF" }}

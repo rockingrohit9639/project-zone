@@ -23,10 +23,16 @@ const projectSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
-  ratings: {
+  rating: {
     type: Number,
     default: 0,
   },
+  allratings: [
+    {
+      type: Number,
+      default: 0,
+    }
+  ],
   comments: [
     {
       fname: {

@@ -78,7 +78,7 @@ function Home() {
                 desc={item.description}
                 skills={item.skills}
                 level={item.level}
-                rating={item.ratings}
+                rating={item.rating}
                 likes={item.likes}
                 comments={item.comments}
               />
