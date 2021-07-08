@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './RatingCard.css';
-import star_logo from './../../assets/star.svg';
+import Rating from '@material-ui/lab/Rating';
 import down_arrow_icon from './../../assets/down.svg';
 
 function RatingCard(props) {
@@ -11,28 +11,23 @@ function RatingCard(props) {
   return (
     <div className='ratings-card'>
       <h4 className='ratings-heading' onClick={ratingsButtonHandler}>
-        Ratings
+        Rating
         <img
           src={down_arrow_icon}
-          style={{ marginLeft: '2px', width: '10px', height: '10px' }}
+          style={{ marginLeft: '5px', width: '10px', height: '10px' }}
         />
       </h4>
       {ratingsopen ? (
         <>
           <hr className='hr'></hr>
           <div className='rate'>
-            {Array(props.rating)
-              .fill()
-              .map((_, i) => {
-                return (
-                  <img
-                    src={star_logo}
-                    key={i}
-                    className='star-img'
-                    alt='star_logo'
-                  />
-                );
-              })}
+              <Rating
+                name="read-only"
+                defaultValue={0}
+                value={props.rating}
+                precision={0.5}
+                readOnly
+              />
           </div>
         </>
       ) : null}
