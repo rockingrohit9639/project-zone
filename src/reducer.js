@@ -10,8 +10,8 @@ export const initialState = {
     bio: "",
     description: "",
     profile_pic: "",
-    project_stones: "",
-    projects_added: "",
+    projectones: 0,
+    projects_added: [],
     badges: [],
     social_links: {
       github: "",

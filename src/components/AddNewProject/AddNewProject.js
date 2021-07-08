@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 function AddNewProject() {
   const classes = useStyles();
   const history = useHistory()
-  const [{ ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
+  const [{ ProjectDetails, dashboard, isAuthenticated }, dispatch] = useDataLayerValues();
   useEffect(() => {
     !isAuthenticated && history.replace("/login");
   }, [isAuthenticated, history]);
@@ -143,8 +143,16 @@ function AddNewProject() {
             level: level,
             skills: skillInputs,
             rating: 0,
-          },
+          }
         });
+
+        dispatch({
+            type: "SET_USER_DASHBOARD_DATA",
+            dashboard: {
+              projects_added : [...dashboard.projects_added, title],
+              projectones: dashboard.projectones + 10
+            },
+        })
 
         toast.success(res.data.message);
       }

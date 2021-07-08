@@ -176,8 +176,10 @@ exports.AddNewProject = async (req, res) => {
 
     UserModel.findByIdAndUpdate(
       userid,
-      { $push: { "profile.projects_added": name } },
-      { new: true, upsert: true },
+      { $push: { "profile.projects_added": name },
+        $inc : { "profile.projectones" : 10},
+      },
+      { new: true },
       async function (err, doc) {
         if (err) {
           console.log(err);
@@ -270,7 +272,7 @@ exports.SendContactEmail = async (req, res) => {
       UserModel.findByIdAndUpdate(
         id,
         { $push: { messages_sent: message } },
-        { new: true, upsert: true },
+        { new: true },
         function (err, doc) {
           if (err) {
             console.log(err);
@@ -445,7 +447,7 @@ exports.AddNewRating = async (req, res) => {
     Project.findOneAndUpdate(
       { _id: project_id },
       { $push: { "allratings": newrating } },
-      { new: true, upsert: true },
+      { new: true},
       function (error, doc) {
         if (error) {
           res.status(500).json({ error: "Not Successful" });

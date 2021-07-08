@@ -77,7 +77,7 @@ function App()
         bio: user?.data?.profile?.bio && user.data.profile.bio,
         description: user?.data?.profile?.description && user.data.profile.description,
         profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
-        project_stones: user.data.profile.project_stone,
+        projectones: user.data.profile.projectones,
         projects_added: user.data.profile.projects_added,
         badges: user.data.profile.badges,
         social_links: user.data.profile.social_links,
