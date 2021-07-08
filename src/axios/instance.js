@@ -1,5 +1,5 @@
 import axios from "axios";
-const development = false;
+const development = true;
 
 const url = development ? "http://localhost:8000" : "https://project-zone-server.azurewebsites.net";
 

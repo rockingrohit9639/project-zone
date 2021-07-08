@@ -43,5 +43,5 @@ app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // start express server on port 3001 or process.env.PORT
 app.listen(PORT, () =>
-  console.log(`Server running on port http://localhost:${PORT}/`.green.bold)
+  console.log(`Server running on port http://localhost:${PORT}/`)
 );

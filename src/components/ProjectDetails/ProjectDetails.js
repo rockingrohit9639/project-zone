@@ -164,35 +164,6 @@ function ProjectDetails(props)
               <p className="comment_desc">{item.data}</p>
             </div>
           ))}
-          {/* <div className="user_comment">
-            <div className="comment_info">
-              <div className="comment_user">
-                <img src={userImg} alt="user_image" />
-                <h2>You</h2>
-              </div>
-              <p className="comment_timestamp">2days ago</p>
-            </div>
-
-            <p className="comment_desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec
-              pulvinar molestie urna, mollis mattis nibh cursus vel.
-            </p>
-          </div>
-
-          <div className="user_comment">
-            <div className="comment_info">
-              <div className="comment_user">
-                <img src={userImg} alt="user_image" />
-                <h2>Kanak</h2>
-              </div>
-              <p className="comment_timestamp">2days ago</p>
-            </div>
-
-            <p className="comment_desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec
-              pulvinar molestie urna, mollis mattis nibh cursus vel.
-            </p>
-          </div> */}
         </div>
       </div>
     </div>
