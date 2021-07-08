@@ -6,7 +6,7 @@
 | S.No. | Username           |  Level4  |  Level3  |  Level2  |  Level1  |  Level0  | Score |
 | ----  | -----------        | -------- | -------- | -------- | -------- | -------- |-------|
 | 1.    | naveen8801         |     7    |    9     |     2    |    1     |     2    | 635   |
-| 2.    | ShwetKhatri2001    |     5    |    8     |     6    |    -     |     -    | 555   |
+| 2.    | ShwetKhatri2001    |     5    |    8     |     7    |    -     |     -    | 570   |
 | 3.    | Veeresh-Rex        |     -    |    1     |     4    |    -     |     -    | 90    |
 | 4.    | RiyaGupta89        |     -    |    2     |     -    |    3     |     -    | 90    |
 | 5.    | mayankmohak        |     1    |    -     |     1    |    2     |     -    | 80    |
