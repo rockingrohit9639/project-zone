@@ -221,14 +221,14 @@ function Navbar({ themeToggler }) {
                     </Link>
                   ) : null}
                   {isAuthenticated ? (
-                  <Link to="/contact" onClick={handleClose}>
-                    <StyledMenuItem>
-                      <ListItemIcon>
-                        <i className="fa fa-id-badge"></i>
-                      </ListItemIcon>
-                      <ListItemText primary="Contact Us"></ListItemText>
-                    </StyledMenuItem>
-                  </Link>
+                    <Link to="/contact" onClick={handleClose}>
+                      <StyledMenuItem>
+                        <ListItemIcon>
+                          <i className="fa fa-id-badge"></i>
+                        </ListItemIcon>
+                        <ListItemText primary="Contact Us"></ListItemText>
+                      </StyledMenuItem>
+                    </Link>
                   ) : null}
                 </StyledMenu>
               </>
@@ -243,7 +243,11 @@ function Navbar({ themeToggler }) {
                 </div>
                 {isAuthenticated ? (
                   <Button className={classes.button}>
-                    <Link to="/profile" className={classes.text}>
+                    <Link
+                      style={{ marginBottom: "0.4rem" }}
+                      to="/profile"
+                      className={classes.text}
+                    >
                       <i className="fa fa-user-circle-o"></i> Welcome{" "}
                       {user.fname}
                     </Link>
@@ -273,13 +277,13 @@ function Navbar({ themeToggler }) {
                   </div>
                 ) : null}
                 {isAuthenticated ? (
-                <div>
-                  <Button className={classes.button}>
-                    <Link to="/contact" className={classes.text}>
-                      <i className="fa fa-id-badge"></i>Contact Us
-                    </Link>
-                  </Button>
-                </div>
+                  <div>
+                    <Button className={classes.button}>
+                      <Link to="/contact" className={classes.text}>
+                        <i className="fa fa-id-badge"></i>Contact Us
+                      </Link>
+                    </Button>
+                  </div>
                 ) : null}
                 {!isAuthenticated ? (
                   <Link to="/login" className="lobut">

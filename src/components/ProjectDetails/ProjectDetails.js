@@ -4,6 +4,7 @@ import "./ProjectDeatils.css";
 import ParticlesBg from "particles-bg";
 import userImg from "../../assets/user.png";
 import moment from "moment";
+import Rating from '@material-ui/lab/Rating';
 import { useDataLayerValues } from "./../../datalayer";
 import { AddComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
@@ -45,7 +46,8 @@ function ProjectDetails(props)
           descr: project.data.description,
           level: project.data.level,
           skills: project.data.skills,
-          rating: project.data.ratings,
+          rating: project.data.rating,
+          likes: project.data.likes,
           comments: project.data.comments,
         }
       });
@@ -112,13 +114,8 @@ function ProjectDetails(props)
 
 
       {isLoading ? <div className="loading__details"> <BallTriangle color="#6f6ee1" stroke="#6f6ee1" /></div>
-        :
-        <ProjectDetailCard
-          title={props.title}
-          descr={props.descr}
-          skills={props.skills}
-          level={props.level}
-        />}
+                 : <ProjectDetailCard/>
+      }
 
       <div className="comment_section">
         <div className="comment_user_data">

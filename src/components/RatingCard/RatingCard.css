@@ -12,6 +12,7 @@
 .ratings-heading {
   margin: 0;
   font-size: 16px;
+  cursor: pointer;
 }
 .hr {
   margin-top: 0.2rem;

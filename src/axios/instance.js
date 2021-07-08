@@ -4,7 +4,7 @@ const development = false;
 const url = development ? "http://localhost:8000" : "https://project-zone-server.azurewebsites.net";
 
 export const server = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: url,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -29,5 +29,6 @@ export const verifyemail = (data) => server.post(`${url}/verify-email`, data);
 export const GetHomeProjects = () => server.get(`${url}/projects-home`);
 export const AddComment = (data) => server.patch(`${url}/add-comment`, data);
 export const AddLike = (data) => server.patch(`${url}/add-like`, data);
+export const AddNewRating = (data) => server.patch(`${url}/add-new-rating`, data);
 export const GetSingleProject = (data) =>
   server.post(`${url}/project-by-id`, data);

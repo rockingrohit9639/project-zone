@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
 const { sendEmail } = require("../utills/sendMail");
+const { TrendingUpRounded } = require("@material-ui/icons");
 
 const maxage = 3 * 24 * 60 * 60;
 const createwebToken = (id) => {
@@ -69,7 +70,7 @@ exports.sendemail = async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET_FOREGTPASS,
         { expiresIn: "10m" }
       );
-      // const link_prod = `${req.protocol}://${req.hostname}/project-zone/forget-password/${token}`;
+      // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/project-zone/forget-password/${token}`;
 
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
@@ -152,6 +153,8 @@ exports.AddNewProject = async (req, res) => {
   const { userid } = req;
   const { name, description, level, skills } = req.body;
 
+  let username = "";
+
   try {
     const newProject = Project({
       name,
@@ -165,14 +168,43 @@ exports.AddNewProject = async (req, res) => {
       res.status(500).json({ error: "Could not add your project." });
     }
 
+    const email_list = await UserModel.find({
+      "email_acctivation.email_activated": true,
+    }).select("email");
+
+    const emails = email_list.map((item) => item.email);
+
     UserModel.findByIdAndUpdate(
       userid,
       { $push: { "profile.projects_added": name } },
       { new: true, upsert: true },
-      function (err, doc) {
+      async function (err, doc) {
         if (err) {
           console.log(err);
           res.status(404).json({ error: "NO user with such id" });
+        } else {
+          username = doc.firstname;
+          // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/projectdetails/${resp._id}`;
+
+          /* Above link will be used when client-side is fully deployed, if we are running client-side on local host
+      then link below will be sent as email */
+
+          const link = `${req.protocol}://${req.hostname}:3000/projectdetails/${resp._id}`;
+
+          const content = `
+
+      <h2> New Project Added </h2>
+      <p> Hello user, we are happy to announce that a new project has been added recently by ${username} with following details : </p>
+
+      <h4> Title : ${name} </h4>
+      <h4> Description : ${description}</h4>
+      <h4> Level : ${level}</h4>
+      <h4> Skills : ${skills.join(", ")}</h4>
+      <h4 style="text-align:center"><a href=${link}>Check new project here..</a></h4>
+
+      Thanks You. ! Have a great day!`;
+
+          await sendEmail(emails, "New Project on Project-zone", content);
         }
       }
     );
@@ -190,6 +222,11 @@ exports.SendContactEmail = async (req, res) => {
     const user = await UserModel.findOne({ email: email });
     if (user) {
       const id = user._id;
+
+      // const link = "https://60e5a4164df29368b0329a4b--project-zone.netlify.app";
+
+      /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
+      then link below will be sent as email */
 
       const link = `${req.protocol}://${req.hostname}:3000/`;
 
@@ -265,7 +302,8 @@ exports.VerifyEmailSend = async (req, res) => {
           expiresIn: "10m",
         }
       );
-      // const link_prod = `${req.protocol}://${req.hostname}/project-zone/verify-email/${token}`;
+
+      // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/project-zone/verify-email/${token}`;
 
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
@@ -378,7 +416,6 @@ exports.AddComment = async (req, res) => {
 };
 
 exports.AddLike = async (req, res) => {
-
   const { project_id, likes } = req.body;
   try {
     Project.findOneAndUpdate(
@@ -389,7 +426,7 @@ exports.AddLike = async (req, res) => {
         if (error) {
           res.status(500).json({ error: "Not Successful" });
         } else {
-          res.status(200).json({ msg: "Thanks for liking our project ❤️" });
+          res.status(200).json({ msg: "Thanks for liking our project ❤️"});
         }
       }
     );
@@ -398,3 +435,45 @@ exports.AddLike = async (req, res) => {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
+
+exports.AddNewRating = async (req, res) => {
+
+  const { project_id, newrating } = req.body;
+  let avgrating;
+
+  try {
+    Project.findOneAndUpdate(
+      { _id: project_id },
+      { $push: { "allratings": newrating } },
+      { new: true, upsert: true },
+      function (error, doc) {
+        if (error) {
+          res.status(500).json({ error: "Not Successful" });
+        }
+        else{
+          const ratingsSum = (accumulator, currentValue) => accumulator + currentValue;
+          avgrating = doc.allratings.reduce(ratingsSum) / doc.allratings.length;
+          avgrating = Math.round(avgrating*2)/2;
+
+          Project.findOneAndUpdate(
+            { _id: project_id },
+            { rating: avgrating },
+            { new: true },
+            function (error, doc) {
+              if (error) {
+                res.status(500).json({ error: "Not Successful" });
+              } else {
+                res.status(200).json({ msg: "Thanks for rating our project ⭐", data: doc.rating });
+              }
+            }
+          );
+        }
+      }
+    );
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+};
+
