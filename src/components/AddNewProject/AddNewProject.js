@@ -1,11 +1,11 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { ToastContainer, toast } from 'react-toastify';
-import addprojectimg from './../../assets/addprojectimg.png';
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { ToastContainer, toast } from "react-toastify";
+import addprojectimg from "./../../assets/addprojectimg.png";
 import { useDataLayerValues } from "../../datalayer";
 import { addproject } from "./../../axios/instance";
 import "react-toastify/dist/ReactToastify.css";
@@ -71,8 +71,9 @@ const useStyles = makeStyles((theme) => ({
 
 function AddNewProject() {
   const classes = useStyles();
-  const history = useHistory()
-  const [{ ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
+  const history = useHistory();
+  const [{ ProjectDetails, dashboard, isAuthenticated }, dispatch] =
+    useDataLayerValues();
   useEffect(() => {
     !isAuthenticated && history.replace("/login");
   }, [isAuthenticated, history]);
@@ -120,17 +121,18 @@ function AddNewProject() {
     } else if (!desc) {
       toast.error("Please enter description");
     } else {
-      addNewProject(title, level, skillInputs, desc);
+      addNewProject(title, level, skillInputs, desc, github);
       clearData();
     }
   };
 
-  const addNewProject = async (title, level, skillInputs, desc) => {
+  const addNewProject = async (title, level, skillInputs, desc, github) => {
     const body = {
       name: title,
       level: level,
       skills: skillInputs,
       description: desc,
+      github: github,
     };
 
     try {
@@ -147,10 +149,18 @@ function AddNewProject() {
           },
         });
 
+        dispatch({
+          type: "SET_USER_DASHBOARD_DATA",
+          dashboard: {
+            projects_added: [...dashboard.projects_added, title],
+            projectones: dashboard.projectones + 10,
+          },
+        });
+
         toast.success(res.data.message);
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
       if (err.response) {
         toast.error(`${err.response.data.error}`);
       }
@@ -249,6 +259,19 @@ function AddNewProject() {
                     fullWidth
                   />
                 )}
+              />
+            </div>
+            <div className="forminput">
+              <label htmlFor="title">
+                Github Link<span></span>
+              </label>
+              <input
+                type="github"
+                id="title"
+                placeholder="Github link (Optional)"
+                name="github"
+                value={github}
+                onChange={(e) => setGit(e.target.value)}
               />
             </div>
           </FormControl>

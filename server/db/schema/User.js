@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
         default: "",
       },
     },
-    project_stone: {
+    projectones: {
       type: Number,
       default: 0,
     },

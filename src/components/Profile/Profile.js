@@ -90,7 +90,7 @@ const Profile = () =>
           bio: fields.bio,
           description: fields.descr,
           profile_pic: fields.profileimg,
-          project_stones: dashboard.project_stones,
+          projectones: dashboard.projectones,
           projects_added: dashboard.projects_added,
           badges: dashboard.badges,
           social_links: {
@@ -250,7 +250,7 @@ const Profile = () =>
               </>
             ) : null}
           </div>
-          <h3>Projectones : {dashboard.project_stones}</h3>
+          <h3>Projectones : {dashboard.projectones}</h3>
           <button
             className="editbtn"
             onClick={() =>
@@ -303,7 +303,7 @@ const Profile = () =>
             <i>No Projects added by You</i>
           )}
           <h2>Badges</h2>
-          {dashboard.badges.length > 0 ? (
+          {(dashboard.badges && dashboard.badges.length > 0) ? (
             <div className="badges_list">
               {dashboard.badges.map((badge, i) =>
               {

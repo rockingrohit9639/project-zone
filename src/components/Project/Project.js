@@ -4,7 +4,8 @@ import share_logo from "./../../assets/share.svg";
 import cardimg from "./../../assets/cardtop.svg";
 import ShareProject from "../ShareProject/ShareProject";
 import RatingCard from "../RatingCard/RatingCard";
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { GitHub } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
 import { AddLike } from "./../../axios/instance";
@@ -21,6 +22,7 @@ function Project({
   likes,
   id,
   comments,
+  github,
 }) {
   const [shareopen, setshareopen] = useState(false);
   const [likescount, setLikesCount] = useState(likes);
@@ -95,11 +97,18 @@ function Project({
         </div>
 
         <div className="rating_div">
-            <div className="like-share like-box">
-              <FavoriteIcon className={(!liked) ? 'heart' : 'liked-heart'} onClick={LikeBtnHandler}></FavoriteIcon>
-                {" "}
-               <span className={(!liked) ?  '' :'liked-heart'}>{likescount}</span>
-            </div>
+          <div className="like-share like-box">
+            <FavoriteIcon
+              className={!liked ? "heart" : "liked-heart"}
+              onClick={LikeBtnHandler}
+            ></FavoriteIcon>{" "}
+            <span className={!liked ? "" : "liked-heart"}>{likescount}</span>
+          </div>
+          {github ? (
+            <a style={{ color: "black" }} href={github}>
+              <GitHub />{" "}
+            </a>
+          ) : null}
         </div>
         <div className="skills">
           {skills &&

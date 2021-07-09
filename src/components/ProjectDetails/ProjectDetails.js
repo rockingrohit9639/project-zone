@@ -4,15 +4,14 @@ import "./ProjectDeatils.css";
 import ParticlesBg from "particles-bg";
 import userImg from "../../assets/user.png";
 import moment from "moment";
-import Rating from '@material-ui/lab/Rating';
+import Rating from "@material-ui/lab/Rating";
 import { useDataLayerValues } from "./../../datalayer";
 import { AddComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { BallTriangle } from "react-loading-icons";
 
-function ProjectDetails(props)
-{
+function ProjectDetails(props) {
   const [{ user, ProjectDetails, dashboard, isAuthenticated }, dispatch] =
     useDataLayerValues();
   const [isLoading, setIsLoading] = useState(false);
@@ -20,22 +19,19 @@ function ProjectDetails(props)
   const [comment, setcomment] = useState("");
   const { projectid } = useParams();
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     window.scroll(0, 0);
     fetchProject(projectid);
   }, []);
 
-  const fetchProject = async (id) =>
-  {
+  const fetchProject = async (id) => {
     setIsLoading(true);
 
     const body = {
       id: id,
     };
 
-    try
-    {
+    try {
       const project = await GetSingleProject(body);
 
       dispatch({
@@ -49,27 +45,22 @@ function ProjectDetails(props)
           rating: project.data.rating,
           likes: project.data.likes,
           comments: project.data.comments,
-        }
+          github: project.data.github,
+        },
       });
-
-
-    } catch (err)
-    {
+    } catch (err) {
       console.log(err);
     }
 
     setIsLoading(false);
   };
 
-  const CommentBtnHandler = async () =>
-  {
-    if (!isAuthenticated)
-    {
+  const CommentBtnHandler = async () => {
+    if (!isAuthenticated) {
       return toast.error(`You have to login first`);
     }
 
-    if (comment?.trim() === "")
-    {
+    if (comment?.trim() === "") {
       return toast.error(`Type a valid comment`);
     }
 
@@ -80,8 +71,7 @@ function ProjectDetails(props)
       data: comment,
     };
 
-    try
-    {
+    try {
       const comment_add = await AddComment(data);
       const comments_new = comment_add.data.data;
       const projectdata = {
@@ -95,13 +85,11 @@ function ProjectDetails(props)
         ProjectDetails: projectdata,
       });
 
-      toast.success(`${ comment_add.data.msg }`);
-    } catch (err)
-    {
+      toast.success(`${comment_add.data.msg}`);
+    } catch (err) {
       console.log(err);
-      if (err.response)
-      {
-        toast.error(`${ err.response.data.error }`);
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
       }
     }
   };
@@ -111,11 +99,14 @@ function ProjectDetails(props)
       <ToastContainer position="bottom-left" />
       <ParticlesBg type="coweb" bg={true} />
 
-
-
-      {isLoading ? <div className="loading__details"> <BallTriangle color="#6f6ee1" stroke="#6f6ee1" /></div>
-                 : <ProjectDetailCard/>
-      }
+      {isLoading ? (
+        <div className="loading__details">
+          {" "}
+          <BallTriangle color="#6f6ee1" stroke="#6f6ee1" />
+        </div>
+      ) : (
+        <ProjectDetailCard />
+      )}
 
       <div className="comment_section">
         <div className="comment_user_data">
