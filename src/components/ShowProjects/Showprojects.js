@@ -148,32 +148,35 @@ function Showprojects() {
       <div className="mt">
         <SearchBox fetchProjects={fetchProjects} />
         <div className="filtre-div">
-          <label>
+          <label className="container">
+            Beginner Level
             <input
               defaultChecked={true}
               name="beginner"
               type="checkbox"
               onChange={checkboxHandler}
-            />{" "}
-            Beginner Level
+            />
+            <span className="checkmark"></span>
           </label>
-          <label>
+          <label className="container">
+            Intermediate Level
             <input
               defaultChecked={true}
               name="intermediate"
               type="checkbox"
               onChange={checkboxHandler}
-            />{" "}
-            Intermediate Level
+            />
+            <span className="checkmark"></span>
           </label>
-          <label>
+          <label className="container">
+            Advanced Level
             <input
               defaultChecked={true}
               name="advanced"
               type="checkbox"
               onChange={checkboxHandler}
-            />{" "}
-            Advance Level
+            />
+            <span className="checkmark"></span>
           </label>
         </div>
         <div className="default_options">
