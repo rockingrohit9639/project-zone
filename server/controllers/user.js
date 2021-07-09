@@ -420,6 +420,7 @@ exports.AddComment = async (req, res) => {
 };
 
 exports.AddLike = async (req, res) => {
+  const { userid } = req;
   const { project_id, likes } = req.body;
   try {
     Project.findOneAndUpdate(
@@ -429,11 +430,24 @@ exports.AddLike = async (req, res) => {
       function (error) {
         if (error) {
           res.status(500).json({ error: "Not Successful" });
-        } else {
-          res.status(200).json({ msg: "Thanks for liking our project ❤️" });
+        } 
+      }
+    );
+
+    UserModel.findByIdAndUpdate(
+      userid,
+      { $push: { "profile.projects_liked" : project_id } },
+      { new: true },
+      function (err, doc) {
+        if (err) {
+          return res.status(500).json({ error: "NO user with such id" });
+        }
+        else {
+          res.status(200).json({ msg: "Thanks for liking our project ❤️"});
         }
       }
     );
+
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
@@ -441,6 +455,8 @@ exports.AddLike = async (req, res) => {
 };
 
 exports.AddNewRating = async (req, res) => {
+
+  const { userid } = req;
   const { project_id, newrating } = req.body;
   let avgrating;
 
@@ -465,6 +481,17 @@ exports.AddNewRating = async (req, res) => {
             function (error, doc) {
               if (error) {
                 res.status(500).json({ error: "Not Successful" });
+              } 
+            }
+          );
+
+          UserModel.findByIdAndUpdate(
+            userid,
+            { $push: { "profile.projects_rated" : project_id } },
+            { new: true },
+            function (err, doc) {
+              if (err) {
+                return res.status(500).json({ error: "NO user with such id" });
               } else {
                 res
                   .status(200)
@@ -475,6 +502,7 @@ exports.AddNewRating = async (req, res) => {
               }
             }
           );
+      
         }
       }
     );

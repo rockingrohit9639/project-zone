@@ -26,6 +26,8 @@ const userSchema = new mongoose.Schema({
       type: String,
     },
     projects_added: [],
+    projects_liked: [],
+    projects_rated: [],
     badges: [
       {
         title: {

@@ -79,6 +79,8 @@ function App()
         profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
         projectones: user.data.profile.projectones,
         projects_added: user.data.profile.projects_added,
+        projects_liked: user.data.profile.projects_liked,
+        projects_rated: user.data.profile.projects_rated,
         badges: user.data.profile.badges,
         social_links: user.data.profile.social_links,
         created_at: user.data.created_at,
