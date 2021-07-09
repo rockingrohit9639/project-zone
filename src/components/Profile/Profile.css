@@ -87,7 +87,7 @@ input[type="file"] {
 
 .card_content h3,
 .content_right h3 {
-  color: #ccc;
+  color: #bbb;
 }
 
 .social_icons a {
@@ -192,7 +192,7 @@ input[type="file"] {
   margin: 3px 0;
 }
 
-.fa-circle {
+.fa-circle{
   color: #5352ed;
   font-size: 10px;
   margin-right: 10px;
@@ -219,15 +219,20 @@ input[type="file"] {
   padding: 3%;
 }
 
-.fa-medal {
-  font-size: 40px;
+.fa-heart, .fa-star, .fa-certificate {
+  font-size: 50px;
   color: #5352ed;
   margin-bottom: 10px;
+  text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+
 }
 
 .badge_container h2,
 .badge_container p {
-  margin: 5px 0;
+  margin: 3px 0;
+}
+.badge_container span{
+  color:#aaa;
 }
 
 .overlay {

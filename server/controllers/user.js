@@ -484,30 +484,59 @@ exports.AddNewRating = async (req, res) => {
               } 
             }
           );
-
-          UserModel.findByIdAndUpdate(
-            userid,
-            { $push: { "profile.projects_rated" : project_id } },
-            { new: true },
-            function (err, doc) {
-              if (err) {
-                return res.status(500).json({ error: "NO user with such id" });
-              } else {
-                res
-                  .status(200)
-                  .json({
-                    msg: "Thanks for rating our project ⭐",
-                    data: doc.rating,
-                  });
-              }
-            }
-          );
-      
         }
       }
+    );
+
+    UserModel.findByIdAndUpdate(
+        userid,
+        { $push: { "profile.projects_rated" : project_id } },
+        { new: true },
+        function (err, doc) {
+          if (err) {
+            return res.status(500).json({ error: "NO user with such id" });
+          } else {
+            res.status(200).json({
+                msg: "Thanks for rating our project ⭐",
+                data: doc.rating,
+              });
+          }
+        }
     );
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
+
+exports.AddBadge = async (req, res) => {
+
+  const { userid } = req;
+  let  badgedata  = req.body;
+  const earnedat = moment().format("MMMM Do YYYY, h:mm:ss a");
+  badgedata = {...badgedata,earnedat};
+  console.log(badgedata);
+
+  try{
+    UserModel.findByIdAndUpdate(
+      userid,
+      { $push: { "profile.badges" : badgedata } },
+      { new: true },
+      function (err, doc) {
+        if (err) {
+          return res.status(500).json({ error: "NO user with such id" });
+        } else {
+          res.status(200).json({ 
+            msg: "Congrats 🌟 You have earned a new badge 🌟 Check your profile 😃", 
+            data: doc.profile.badges
+          });
+        }
+      }
+    );
+
+  }catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+}
+

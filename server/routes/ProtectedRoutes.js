@@ -11,7 +11,8 @@ const {
   VerifyEmail,
   AddComment,
   AddLike,
-  AddNewRating
+  AddNewRating,
+  AddBadge
 } = require("./../controllers/user");
 
 // Routes
@@ -165,7 +166,7 @@ ProtectedRouter.patch("/add-comment", authenticate, AddComment);
 // Routes
 /**
  * @swagger
- * /add-like:
+ * /add-new-rating:
  *  patch:
  *    description: Add new rating to allratings and Update rating
  *    responses:
@@ -177,5 +178,21 @@ ProtectedRouter.patch("/add-comment", authenticate, AddComment);
  *        description: Not a valid token
  */
  ProtectedRouter.patch("/add-new-rating", authenticate, AddNewRating);
+
+ // Routes
+/**
+ * @swagger
+ * /add-badge:
+ *  patch:
+ *    description: Add new badge on user profile
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error/ Not a successfull response
+ *      '401':
+ *        description: Not a valid token
+ */
+ ProtectedRouter.patch("/add-badge", authenticate, AddBadge);
 
 module.exports = ProtectedRouter;

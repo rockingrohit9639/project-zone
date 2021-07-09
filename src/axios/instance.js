@@ -29,5 +29,6 @@ export const GetHomeProjects = () => server.get(`${url}/projects-home`);
 export const AddComment = (data) => server.patch(`${url}/add-comment`, data);
 export const AddLike = (data) => server.patch(`${url}/add-like`, data);
 export const AddNewRating = (data) => server.patch(`${url}/add-new-rating`, data);
+export const AddBadge = (data) => server.patch(`${url}/add-badge`, data);
 export const GetSingleProject = (data) =>
   server.post(`${url}/project-by-id`, data);

@@ -5,7 +5,7 @@ import share_logo from "./../../assets/share.svg";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Rating from "@material-ui/lab/Rating";
 import ShareProject from "../ShareProject/ShareProject";
-import { AddLike, AddNewRating } from "./../../axios/instance";
+import { AddLike, AddNewRating, AddBadge } from "./../../axios/instance";
 import { toast } from "react-toastify";
 import { GitHub } from "@material-ui/icons";
 
@@ -63,6 +63,34 @@ function ProjectDetailCard() {
 
           toast.success(`${res.data.msg}`);
         }
+
+        let badgedata = {};
+        switch(dashboard.projects_liked.length + 1)
+        {
+          case 10  : badgedata =  { title: 'Bronze in liking', badge_description: 'Liked 10+ projects'}; break;
+          case 50  : badgedata =  { title: 'Silver in liking', badge_description: 'Liked 50+ projects'}; break;
+          case 100  : badgedata =  { title: 'Gold in liking', badge_description: 'Liked 100+ projects'};  break;
+        }
+        
+        if(Object.keys(badgedata).length !== 0)
+        {  
+          const res = await AddBadge(badgedata);
+          if(!res.data.error)
+          {
+            const userdata = {
+              ...dashboard,
+              badges : [...dashboard.badges, res.data.data]
+            }
+
+            dispatch({
+              type: "SET_USER_DASHBOARD_DATA",
+              dashboard: userdata
+             })
+
+            toast.success(`${res.data.msg}`);
+          }
+        }
+
       } catch (err) {
         if (err.response) {
           toast.error(`${err.response.data.error}`);
@@ -113,6 +141,33 @@ function ProjectDetailCard() {
           });
 
           toast.success(`${res.data.msg}`);
+        }
+
+        let badgedata = {};
+        switch(dashboard.projects_rated.length + 1)
+        {
+          case 10  : badgedata =  { title: 'Bronze in rating', badge_description: 'Rated 10+ projects'}; break;
+          case 50  : badgedata =  { title: 'Silver in rating', badge_description: 'Rated 50+ projects'}; break;
+          case 100  : badgedata =  { title: 'Gold in rating', badge_description: 'Rated 100+ projects'};  break;
+        }
+        
+        if(Object.keys(badgedata).length !== 0)
+        {  
+          const res = await AddBadge(badgedata);
+          if(!res.data.error)
+          {
+            const userdata = {
+              ...dashboard,
+              badges : [...dashboard.badges, res.data.data]
+            }
+
+            dispatch({
+              type: "SET_USER_DASHBOARD_DATA",
+              dashboard: userdata
+            })
+
+            toast.success(`${res.data.msg}`);
+          }
         }
       } catch (err) {
         if (err.response) {
