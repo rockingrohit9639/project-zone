@@ -31,7 +31,7 @@ const projectSchema = mongoose.Schema({
     {
       type: Number,
       default: 0,
-    }
+    },
   ],
   comments: [
     {
@@ -49,6 +49,10 @@ const projectSchema = mongoose.Schema({
       },
     },
   ],
+  github: {
+    type: String,
+    default: "",
+  },
 });
 
 const Project = mongoose.model("projects-data", projectSchema);

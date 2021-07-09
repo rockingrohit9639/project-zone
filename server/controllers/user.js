@@ -151,7 +151,7 @@ exports.ResetPassword = async (req, res) => {
 
 exports.AddNewProject = async (req, res) => {
   const { userid } = req;
-  const { name, description, level, skills } = req.body;
+  const { name, description, level, skills, github } = req.body;
 
   let username = "";
 
@@ -161,6 +161,7 @@ exports.AddNewProject = async (req, res) => {
       description,
       level,
       skills,
+      github,
     });
 
     const resp = await newProject.save();
@@ -200,6 +201,7 @@ exports.AddNewProject = async (req, res) => {
       <h4> Description : ${description}</h4>
       <h4> Level : ${level}</h4>
       <h4> Skills : ${skills.join(", ")}</h4>
+      <h4> Github link : <a href=${github}> Github Link</a></h4>
       <h4 style="text-align:center"><a href=${link}>Check new project here..</a></h4>
 
       Thanks You. ! Have a great day!`;
@@ -426,7 +428,7 @@ exports.AddLike = async (req, res) => {
         if (error) {
           res.status(500).json({ error: "Not Successful" });
         } else {
-          res.status(200).json({ msg: "Thanks for liking our project ❤️"});
+          res.status(200).json({ msg: "Thanks for liking our project ❤️" });
         }
       }
     );
@@ -437,23 +439,22 @@ exports.AddLike = async (req, res) => {
 };
 
 exports.AddNewRating = async (req, res) => {
-
   const { project_id, newrating } = req.body;
   let avgrating;
 
   try {
     Project.findOneAndUpdate(
       { _id: project_id },
-      { $push: { "allratings": newrating } },
+      { $push: { allratings: newrating } },
       { new: true, upsert: true },
       function (error, doc) {
         if (error) {
           res.status(500).json({ error: "Not Successful" });
-        }
-        else{
-          const ratingsSum = (accumulator, currentValue) => accumulator + currentValue;
+        } else {
+          const ratingsSum = (accumulator, currentValue) =>
+            accumulator + currentValue;
           avgrating = doc.allratings.reduce(ratingsSum) / doc.allratings.length;
-          avgrating = Math.round(avgrating*2)/2;
+          avgrating = Math.round(avgrating * 2) / 2;
 
           Project.findOneAndUpdate(
             { _id: project_id },
@@ -463,17 +464,20 @@ exports.AddNewRating = async (req, res) => {
               if (error) {
                 res.status(500).json({ error: "Not Successful" });
               } else {
-                res.status(200).json({ msg: "Thanks for rating our project ⭐", data: doc.rating });
+                res
+                  .status(200)
+                  .json({
+                    msg: "Thanks for rating our project ⭐",
+                    data: doc.rating,
+                  });
               }
             }
           );
         }
       }
     );
-
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
-

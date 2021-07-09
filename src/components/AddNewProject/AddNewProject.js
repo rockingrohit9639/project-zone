@@ -80,6 +80,7 @@ function AddNewProject() {
   const [title, setTitle] = useState("");
   const [level, setLevel] = useState("");
   const [desc, setDesc] = useState("");
+  const [github, setGit] = useState("");
 
   const projectLevel = ["Beginner", "Intermediate", "Advanced"];
   const projectSkill = [
