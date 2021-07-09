@@ -12,11 +12,11 @@ import { getSkillColor } from "../../utils";
 
 function ProjectDetailCard()
 {
-  const [{ ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
+  const [{ ProjectDetails,dashboard, isAuthenticated }, dispatch] = useDataLayerValues();
   const [shareopen, setshareopen] = useState(false);
   const [likescount,setLikesCount] = useState(ProjectDetails.likes);
-  const [liked,setLiked] = useState(false);
-  const [rated,setRated] = useState(false);
+  const [liked,setLiked] = useState(dashboard.projects_liked.indexOf(ProjectDetails.id) !== -1);
+  const [rated,setRated] = useState(dashboard.projects_rated.indexOf(ProjectDetails.id) !== -1);
   const [ratinggiven, setRatingGiven] = useState(ProjectDetails.rating);
 
   const LikeBtnHandler = async () => {
@@ -40,10 +40,22 @@ function ProjectDetailCard()
             ...ProjectDetails,
             likes:likescount + 1,
           };
+
+          const userdata = {
+            ...dashboard,
+            projects_liked : [...dashboard.projects_liked, ProjectDetails.id]
+          }
+
           dispatch({
             type: "SET_PROJECT_DETAILS",
-            ProjectDetails: projectdata,
+            ProjectDetails: projectdata
           });
+
+          dispatch({
+            type: "SET_USER_DASHBOARD_DATA",
+            dashboard: userdata
+           })
+
           toast.success(`${res.data.msg}`);
         }
       } catch (err) {
@@ -83,10 +95,22 @@ function ProjectDetailCard()
             ...ProjectDetails,
             rating:res.data.data,
           };
+
+          const userdata = {
+            ...dashboard,
+            projects_rated : [...dashboard.projects_rated, ProjectDetails.id]
+          }
+
           dispatch({
             type: "SET_PROJECT_DETAILS",
             ProjectDetails: projectdata,
           });
+
+          dispatch({
+            type: "SET_USER_DASHBOARD_DATA",
+            dashboard: userdata
+           })
+
           toast.success(`${res.data.msg}`);
         }
       } catch (err) {
@@ -125,21 +149,22 @@ function ProjectDetailCard()
             ))}
         </div>
         <div className="rating_div">
-            <h4 className="like_label_">Give it a Like </h4>
+            <h4 className="like_label_">{ !liked ? 'Give it a Like': 'You have liked this project'}</h4>
             <div className="like-share">
-              <FavoriteIcon className={(!liked) ? 'heart' : 'liked-heart'} onClick={LikeBtnHandler}></FavoriteIcon>
+              <FavoriteIcon className={ !liked ? 'heart' : 'liked-heart'} onClick={LikeBtnHandler}></FavoriteIcon>
                 {" "}
-               <span className={(!liked) ?  '' :'liked-heart'}>{likescount}</span>
+               <span className={ !liked ?  '' :'liked-heart'}>{likescount}</span>
             </div>
         </div>
         <div className="rating_div">
-            <h4 className="rate_label_">Rate Project </h4>
+            <h4 className="rate_label_">{ !rated ? 'Rate Project': 'You have rated this project'}</h4>
             <Rating
               name="rating"
               size="large"
               precision={0.5}
               defaultValue={ratinggiven}
               value={ratinggiven}
+              readOnly={rated}
               onChange={newRatingHandler}
             />
         </div>

@@ -12,6 +12,8 @@ export const initialState = {
     profile_pic: "",
     projectones: 0,
     projects_added: [],
+    projects_liked: [],
+    projects_rated: [],
     badges: [],
     social_links: {
       github: "",

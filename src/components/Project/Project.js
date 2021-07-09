@@ -22,10 +22,12 @@ function Project({
   id,
   comments,
 }) {
+  
+  const [{ dashboard, ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
   const [shareopen, setshareopen] = useState(false);
   const [likescount, setLikesCount] = useState(likes);
-  const [liked, setLiked] = useState(false);
-  const [{ ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
+  const [liked, setLiked] = useState(dashboard.projects_liked.indexOf(id) !== -1);
+
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
   };
@@ -47,6 +49,17 @@ function Project({
 
         const res = await AddLike(data);
         if (!res.data.error) {
+
+          const userdata = {
+            ...dashboard,
+            projects_rated : [...dashboard.projects_rated, id]
+          }
+
+          dispatch({
+            type: "SET_USER_DASHBOARD_DATA",
+            dashboard: userdata
+           })
+
           toast.success(`${res.data.msg}`);
         }
       } catch (err) {
