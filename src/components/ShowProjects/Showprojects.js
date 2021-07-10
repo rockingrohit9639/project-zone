@@ -52,6 +52,9 @@ function Showprojects() {
     beginner: true,
     intermediate: true,
     advanced: true,
+    added: false,
+    liked: false,
+    rated: false
   });
   const classes = useStyles();
 
@@ -62,7 +65,7 @@ function Showprojects() {
 
   const [projects, setProjects] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [{ query }, dispatch] = useDataLayerValues();
+  const [{ dashboard, query }, dispatch] = useDataLayerValues();
 
   const defaultOptionsRow1 = [
     "JavaScript",
@@ -100,7 +103,6 @@ function Showprojects() {
       setRandomProject("");
 
       if (query !== "") {
-        console.log("came here fine");
         const results = await server.get(`/getprojects?q=${query}`);
         setIsLoading(false);
         setProjects(results.data);
@@ -133,21 +135,33 @@ function Showprojects() {
 
   const checkboxHandler = (e) => {
     const name = e.target.name;
-    if (name === "beginner") {
-      setfilter({ ...filter, beginner: !filter.beginner });
-    } else if (name === "intermediate") {
-      setfilter({ ...filter, intermediate: !filter.intermediate });
-    } else if (name === "advanced") {
-      setfilter({ ...filter, advanced: !filter.advanced });
+    
+    switch(name){
+      case "beginner": setfilter({ ...filter, beginner: !filter.beginner }); break;
+      case "intermediate": setfilter({ ...filter, intermediate: !filter.intermediate }); break;
+      case "advanced":  setfilter({ ...filter, advanced : !filter.advanced }); break;
+      case "liked": setfilter({ ...filter, liked: !filter.liked }); break;
+      case "rated": setfilter({ ...filter, rated: !filter.rated }); break;
+      case "added": setfilter({ ...filter, added: !filter.added }); break;
     }
   };
+
+  const filterByCheck = (project) => {
+
+    if(filter[`${project.level}`]) return project;
+    else if(filter["liked"] && dashboard.projects_liked.indexOf(project._id) !== -1) return project;
+    else if(filter["rated"] && dashboard.projects_rated.indexOf(project._id) !== -1) return project;
+    else if(filter["added"] && dashboard.projects_added.indexOf(project.name) !== -1) return project;
+    
+  }
+
 
   return (
     <div className="showProjects">
       <ToastContainer />
       <div className="mt">
         <SearchBox fetchProjects={fetchProjects} />
-        <div className="filtre-div">
+        <div className=" default_options filtre-div">
           <label className="container">
             Beginner Level
             <input
@@ -173,6 +187,36 @@ function Showprojects() {
             <input
               defaultChecked={true}
               name="advanced"
+              type="checkbox"
+              onChange={checkboxHandler}
+            />
+            <span className="checkmark"></span>
+          </label>
+          <label className="container">
+            Liked Projects
+            <input
+              defaultChecked={false}
+              name="liked"
+              type="checkbox"
+              onChange={checkboxHandler}
+            />
+            <span className="checkmark"></span>
+          </label>
+          <label className="container">
+            Rated Projects
+            <input
+              defaultChecked={false}
+              name="rated"
+              type="checkbox"
+              onChange={checkboxHandler}
+            />
+            <span className="checkmark"></span>
+          </label>
+          <label className="container">
+            Added Projects
+            <input
+              defaultChecked={false}
+              name="added"
               type="checkbox"
               onChange={checkboxHandler}
             />
@@ -257,7 +301,7 @@ function Showprojects() {
       <div className="projectsList">
         {projects &&
           projects
-            .filter((project) => filter[`${project.level}`])
+            .filter((project) => filterByCheck(project))
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((project, ind) => {
               return (
