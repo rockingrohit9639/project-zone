@@ -33,7 +33,10 @@ const userSchema = new mongoose.Schema({
         title: {
           type: String,
         },
-        badge_descrition: {
+        badge_description: {
+          type: String,
+        },
+        earnedat: {
           type: String,
         },
       },

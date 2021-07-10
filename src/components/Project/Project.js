@@ -8,7 +8,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import { GitHub } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
-import { AddLike } from "./../../axios/instance";
+import { AddLike, AddBadge } from "./../../axios/instance";
 import { getSkillColor } from "../../utils";
 import { toast } from "react-toastify";
 
@@ -44,26 +44,53 @@ function Project({
       setLikesCount(likescount + 1);
 
       try {
-        const data = {
-          project_id: id,
-          likes: likescount + 1,
-        };
+          const data = {
+            project_id: id,
+            likes: likescount + 1,
+          };
 
-        const res = await AddLike(data);
-        if (!res.data.error) {
+          const res = await AddLike(data);
+          if (!res.data.error) {
 
-          const userdata = {
-            ...dashboard,
-            projects_rated : [...dashboard.projects_rated, id]
+            const userdata = {
+              ...dashboard,
+              projects_rated : [...dashboard.projects_rated, id]
+            }
+
+            dispatch({
+              type: "SET_USER_DASHBOARD_DATA",
+              dashboard: userdata
+            })
+
+            toast.success(`${res.data.msg}`);
           }
 
-          dispatch({
-            type: "SET_USER_DASHBOARD_DATA",
-            dashboard: userdata
-           })
-
-          toast.success(`${res.data.msg}`);
-        }
+          let badgedata = {};
+          switch(dashboard.projects_liked.length + 1)
+          {
+            case 10  : badgedata =  { title: 'Bronze in liking', badge_description: 'Liked 10+ projects'}; break;
+            case 50  : badgedata =  { title: 'Silver in liking', badge_description: 'Liked 50+ projects'}; break;
+            case 100  : badgedata =  { title: 'Gold in liking', badge_description: 'Liked 100+ projects'};  break;
+          }
+          
+          if(Object.keys(badgedata).length !== 0)
+          {  
+            const res = await AddBadge(badgedata);
+            if(!res.data.error)
+            {
+              const userdata = {
+                ...dashboard,
+                badges : [...dashboard.badges, res.data.data]
+              }
+  
+              dispatch({
+                type: "SET_USER_DASHBOARD_DATA",
+                dashboard: userdata
+              })
+  
+              toast.success(`${res.data.msg}`);
+            }
+          }
       } catch (err) {
         if (err.response) {
           toast.error(`${err.response.data.error}`);

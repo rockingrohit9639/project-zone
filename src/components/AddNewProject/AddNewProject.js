@@ -7,7 +7,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { ToastContainer, toast } from "react-toastify";
 import addprojectimg from "./../../assets/addprojectimg.png";
 import { useDataLayerValues } from "../../datalayer";
-import { addproject } from "./../../axios/instance";
+import { addproject, AddBadge } from "./../../axios/instance";
 import "react-toastify/dist/ReactToastify.css";
 import "./AddNewProject.css";
 
@@ -150,15 +150,41 @@ function AddNewProject() {
         });
 
         dispatch({
-          type: "SET_USER_DASHBOARD_DATA",
-          dashboard: {
-            projects_added: [...dashboard.projects_added, title],
-            projectones: dashboard.projectones + 10,
-          },
-        });
-
+            type: "SET_USER_DASHBOARD_DATA",
+            dashboard: {
+              projects_added : [...dashboard.projects_added, title],
+              projectones: dashboard.projectones + 10
+            },
+        })
         toast.success(res.data.message);
-      }
+       }
+
+       let badgedata = {};
+       switch(dashboard.projects_added.length + 1)
+       {
+         case 3  : badgedata =  { title: 'Bronze in adding', badge_description: 'Added 10+ projects'}; break;
+         case 4  : badgedata =  { title: 'Silver in adding', badge_description: 'Added 50+ projects'}; break;
+         case 5  : badgedata =  { title: 'Gold in adding', badge_description: 'Added 100+ projects'};  break;
+       }
+       
+       if(Object.keys(badgedata).length !== 0)
+       {  
+         const res = await AddBadge(badgedata);
+         if(!res.data.error)
+         {
+           const userdata = {
+             ...dashboard,
+             badges : [...dashboard.badges, res.data.data]
+           }
+
+           dispatch({
+             type: "SET_USER_DASHBOARD_DATA",
+             dashboard: userdata
+           })
+
+           toast.success(`${res.data.msg}`);
+         }
+       }
     } catch (err) {
       console.log(err);
       if (err.response) {
