@@ -44,7 +44,8 @@ export default function SignUp()
   })
 
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisiblity = () =>
+  {
     setPasswordShown(!passwordShown);
   };
 
@@ -116,7 +117,7 @@ export default function SignUp()
     else
     {
       clearData();
-      setUserAuth(firstName , lastName , email , password);
+      setUserAuth(firstName, lastName, email, password);
     }
   };
 
@@ -130,7 +131,8 @@ export default function SignUp()
     });
   };
 
-const setUserAuth = async (firstName, lastName, email, password) => {
+  const setUserAuth = async (firstName, lastName, email, password) =>
+  {
     const userData = {
       ...user,
       fname: firstName,
@@ -144,11 +146,13 @@ const setUserAuth = async (firstName, lastName, email, password) => {
       email: email,
       password: password,
     };
-    try {
+    try
+    {
       const res = await signup(body);
-      if (!res.data.error) {
+      if (!res.data.error)
+      {
         localStorage.setItem('tokken', res.data.accesstoken);
-        
+
         setIsLoading(false);
         dispatch({
           type: 'SET_AUTH',
@@ -160,10 +164,12 @@ const setUserAuth = async (firstName, lastName, email, password) => {
         });
 
       }
-    } catch (err) {
-      if (err.response) {
+    } catch (err)
+    {
+      if (err.response)
+      {
         setIsLoading(false);
-        toast.error(`${err.response.data.error}`);
+        toast.error(`${ err.response.data.error }`);
       }
     }
   };

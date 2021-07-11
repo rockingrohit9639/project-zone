@@ -32,22 +32,25 @@ projectsRouter.get("/projects-home", HomePageProjects);
  *      '500':
  *        description: Internal server error
  */
-projectsRouter.get("/getprojects", async (req, res) => {
+projectsRouter.get("/getprojects", async (req, res) =>
+{
   const query = req.query.q;
 
-  try {
+  try
+  {
     const result = await Project.find({
       skills: { $regex: query, $options: "i" },
     });
-    // console.log(result);
 
-    if (result) {
+    if (result)
+    {
       return res.status(200).json(result);
-    } else {
+    } else
+    {
       return res.status(404).json({ message: "Projects Not found" });
     }
-  } catch (err) {
-    // console.log(err);
+  } catch (err)
+  {
     return res.staus(500).json({ message: "Internal server error" });
   }
 });

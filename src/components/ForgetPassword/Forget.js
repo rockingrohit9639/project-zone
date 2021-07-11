@@ -5,30 +5,39 @@ import { ToastContainer, toast } from "react-toastify";
 import { forgetpassword } from "../../axios/instance";
 import Forget from "../../assets/forget.png";
 
-export default function Forget_page() {
+export default function Forget_page()
+{
   const [email, setemail] = useState("");
-  const submitHandler = (e) => {
+  const submitHandler = (e) =>
+  {
     e.preventDefault();
-    if (email.trim() === "") {
+    if (email.trim() === "")
+    {
       toast.error("Type a valid email");
       return;
-    } else {
+    } else
+    {
       setemail("");
       sendemail(email);
     }
   };
-  const sendemail = async (email) => {
+  const sendemail = async (email) =>
+  {
     const data = {
       email: email,
     };
-    try {
+    try
+    {
       const res = await forgetpassword(data);
-      if (!res.data.error) {
-        toast.success(`${res.data.msg}`);
+      if (!res.data.error)
+      {
+        toast.success(`${ res.data.msg }`);
       }
-    } catch (err) {
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
+    } catch (err)
+    {
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
       }
     }
   };

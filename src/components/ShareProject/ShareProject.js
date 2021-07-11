@@ -1,28 +1,30 @@
 import React from "react";
 import "./ShareProject.css";
-import {
-  LinkedinShareButton,
-  RedditIcon,
-  RedditShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-  WhatsappIcon,
-  WhatsappShareButton,
-  LinkedinIcon,
-  FacebookShareButton,
-  FacebookIcon,
-} from "react-share";
+import
+  {
+    LinkedinShareButton,
+    RedditIcon,
+    RedditShareButton,
+    TwitterIcon,
+    TwitterShareButton,
+    WhatsappIcon,
+    WhatsappShareButton,
+    LinkedinIcon,
+    FacebookShareButton,
+    FacebookIcon,
+  } from "react-share";
 
-function ShareProject(props) {
-  const url = `https://project-zone.netlify.app/${props.id}`;
+function ShareProject(props)
+{
+  const url = `https://project-zone.netlify.app/${ props.id }`;
 
   const quote = `
 Hello everyone,
 I found an awesome project for you i.e 
-"${props.title}"
-${props.description}
+Title : ${ props.title }
+${ props.description }
 
-Have a look at it and enjoy coding.
+Have a look at it and if you like the project idea go ahead an make it reality.
 To know more about the project or to find other similar projects visit - 
 `;
 

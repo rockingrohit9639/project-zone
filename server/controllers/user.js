@@ -7,63 +7,74 @@ const { sendEmail } = require("../utills/sendMail");
 const { TrendingUpRounded } = require("@material-ui/icons");
 
 const maxage = 3 * 24 * 60 * 60;
-const createwebToken = (id) => {
+const createwebToken = (id) =>
+{
   return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: maxage,
   });
 };
 
-exports.profile = async (req, res) => {
+exports.profile = async (req, res) =>
+{
   const { userid } = req;
-  try {
+  try
+  {
     const user = await UserModel.findById(userid);
     return res.status(200).json(user);
-  } catch (err) {
-    // console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.UserDashboard = async (req, res) => {
+exports.UserDashboard = async (req, res) =>
+{
   const { userid } = req;
-  try {
+  try
+  {
     const user = await UserModel.findById(userid);
     return res.status(200).json(user.profile);
-  } catch (err) {
-    // console.log(err);
+  } catch (err)
+  {
     return res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.UpdateUserDashbaord = async (req, res) => {
+exports.UpdateUserDashbaord = async (req, res) =>
+{
   const { userid } = req;
   const { data } = req.body;
-  try {
+  try
+  {
     UserModel.findByIdAndUpdate(
       userid,
       data,
       { new: true },
-      function (err, doc) {
-        if (err) {
-          // console.log(err);
+      function (err, doc)
+      {
+        if (err)
+        {
           return res.status(500).json({ error: "NO user with such id" });
-        } else {
-          // console.log(doc);
+        } else
+        {
           return res.status(200).json(doc.profile);
         }
       }
     );
-  } catch (err) {
-    // console.log(err);
+  } catch (err)
+  {
     return res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.sendemail = async (req, res) => {
+exports.sendemail = async (req, res) =>
+{
   const { email } = req.body;
-  try {
+  try
+  {
     const user = await UserModel.findOne({ email: email });
-    if (user) {
+    if (user)
+    {
       const id = user._id;
       const token = jwt.sign(
         { id },
@@ -75,13 +86,13 @@ exports.sendemail = async (req, res) => {
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
 
-      const link = `${req.protocol}://${req.hostname}:3000/project-zone/forget-password/${token}`;
+      const link = `${ req.protocol }://${ req.hostname }:3000/project-zone/forget-password/${ token }`;
 
       const content = `<h2 style={{textAlign ="center"}}>Project-zone account Forget password link</h2>
       
-      Dear ${user.firstname}, please click on following link to reset your password
+      Dear ${ user.firstname }, please click on following link to reset your password
 
-      <p style={{textAlign ="center"}}><a href=${link}>${link}</a></p>
+      <p style={{textAlign ="center"}}><a href=${ link }>${ link }</a></p>
       
       Thank you`;
 
@@ -95,32 +106,38 @@ exports.sendemail = async (req, res) => {
         id,
         { password_reset_token: token },
         { new: true },
-        function (err, doc) {
-          if (err) {
-            // console.log(err);
+        function (err, doc)
+        {
+          if (err)
+          {
             return res.status(500).json({ error: "NO user with such id" });
           }
         }
       );
 
       return res.status(200).send({ msg: "Email sent successfully" });
-    } else {
+    } else
+    {
       return res.status(401).json({ error: "Email not registered" });
     }
-  } catch (err) {
-    // console.log(err);
+  } catch (err)
+  {
     return res.status(500).json({ error: "500 internal error" });
   }
 };
 
-exports.ResetPassword = async (req, res) => {
+exports.ResetPassword = async (req, res) =>
+{
   const { token, password } = req.body;
-  try {
+  try
+  {
     jwt.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET_FOREGTPASS,
-      async (err, user) => {
-        if (err) {
+      async (err, user) =>
+      {
+        if (err)
+        {
           return res.status(401).json({ error: "TOKEN EXPIERED" });
         }
         const { id } = user;
@@ -130,11 +147,13 @@ exports.ResetPassword = async (req, res) => {
           id,
           { password_reset_token: "", password: password_ },
           { new: true },
-          function (err, doc) {
-            if (err) {
-              // console.log(err);
+          function (err, doc)
+          {
+            if (err)
+            {
               return res.status(500).json({ error: "NO user with such id" });
-            } else {
+            } else
+            {
               return res
                 .status(200)
                 .json({ msg: "Password reset successfull" });
@@ -143,19 +162,21 @@ exports.ResetPassword = async (req, res) => {
         );
       }
     );
-  } catch (err) {
-    // console.log(err);
+  } catch (err)
+  {
     return res.status(500).json({ error: "500 internal error" });
   }
 };
 
-exports.AddNewProject = async (req, res) => {
+exports.AddNewProject = async (req, res) =>
+{
   const { userid } = req;
   const { name, description, level, skills, github } = req.body;
 
   let username = "";
 
-  try {
+  try
+  {
     const newProject = Project({
       name,
       description,
@@ -165,7 +186,8 @@ exports.AddNewProject = async (req, res) => {
     });
 
     const resp = await newProject.save();
-    if (!resp) {
+    if (!resp)
+    {
       res.status(500).json({ error: "Could not add your project." });
     }
 
@@ -177,54 +199,59 @@ exports.AddNewProject = async (req, res) => {
 
     UserModel.findByIdAndUpdate(
       userid,
-      { $push: { "profile.projects_added": name },
-        $inc : { "profile.projectones" : 10},
+      {
+        $push: { "profile.projects_added": name },
+        $inc: { "profile.projectones": 10 },
       },
       { new: true },
-      async function (err, doc) {
-        if (err) {
-          console.log(err);
+      async function (err, doc)
+      {
+        if (err)
+        {
           res.status(404).json({ error: "NO user with such id" });
-        } else {
+        } else
+        {
           username = doc.firstname;
-          // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/projectdetails/${resp._id}`;
+          const link = `http://project-zone.netlify.app/projectdetails/${ resp._id }`;
 
           /* Above link will be used when client-side is fully deployed, if we are running client-side on local host
-      then link below will be sent as email */
+          then link below will be sent as email */
 
-          const link = `${req.protocol}://${req.hostname}:3000/projectdetails/${resp._id}`;
+          // const link = `${req.protocol}://${req.hostname}:3000/projectdetails/${resp._id}`;
 
           const content = `
-
       <h2> New Project Added </h2>
-      <p> Hello user, we are happy to announce that a new project has been added recently by ${username} with following details : </p>
+      <p> Hello user, A new project has been added on Project Zone by ${ username }. The details of the projects are - </p>
 
-      <h4> Title : ${name} </h4>
-      <h4> Description : ${description}</h4>
-      <h4> Level : ${level}</h4>
-      <h4> Skills : ${skills.join(", ")}</h4>
-      <h4> Github link : <a href=${github}> Github Link</a></h4>
-      <h4 style="text-align:center"><a href=${link}>Check new project here..</a></h4>
+      <h3> Title : ${ name } </h3>
+      <h4> Description : ${ description }</h4>
+      <h4> Level : ${ level }</h4>
+      <h4> Skills : ${ skills.join(", ") }</h4>
+      <h4> Github link : <a href=${ github }> Github Link</a></h4>
+      <h4 style="text-align:center"><a href=${ link }> Visite Project </a></h4>
 
-      Thanks You. ! Have a great day!`;
+      Thanks You. Have a great day!!`;
 
-          await sendEmail(emails, "New Project on Project-zone", content);
+          await sendEmail(emails, "New Project on Project zone", content);
         }
       }
     );
 
     return res.status(200).json({ message: "Successully added your project." });
-  } catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "Could not add your project." });
   }
 };
-exports.SendContactEmail = async (req, res) => {
+exports.SendContactEmail = async (req, res) =>
+{
   const { fullname, email, message } = req.body;
 
-  try {
+  try
+  {
     const user = await UserModel.findOne({ email: email });
-    if (user) {
+    if (user)
+    {
       const id = user._id;
 
       // const link = "https://60e5a4164df29368b0329a4b--project-zone.netlify.app";
@@ -232,16 +259,16 @@ exports.SendContactEmail = async (req, res) => {
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
 
-      const link = `${req.protocol}://${req.hostname}:3000/`;
+      const link = `${ req.protocol }://${ req.hostname }:3000/`;
 
       const usercontent = `<h3 style="text-align:center">Thanks for contacting us !</h3>
       
-      <p>Dear ${user.firstname}, We have received your message/feedback successfully.</p> 
+      <p>Dear ${ user.firstname }, We have received your message/feedback successfully.</p> 
       <p>We appreciate you contacting us. </p>
       <p>Feel free to send us your suggestions anytime. We will definitely consider it. Have any query related to Project Zone, Do contact us. </p>
       <p> Found any bug in Project Zone. Please, notify us about it. </p>
       <hr/>
-      <h3 style="text-align:center"><a href=${link}>Visit project-zone again !</a></h3>
+      <h3 style="text-align:center"><a href=${ link }>Visit project-zone again !</a></h3>
       <hr/>
       
       Thanks You. ! Have a great day!`;
@@ -254,14 +281,14 @@ exports.SendContactEmail = async (req, res) => {
 
       const admincontent = `<h3 style="text-align:center"> Hey Rohit ! You have got a contact message from project-zone !</h3>
       
-      <p>${user.firstname} has contacted on project-zone. We have sent him a thank you mail. </p>
-      <p>These are the ${user.firstname}'s contact details.</p>
+      <p>${ user.firstname } has contacted on project-zone. We have sent him a thank you mail. </p>
+      <p>These are the ${ user.firstname }'s contact details.</p>
       <hr/>
-      <h3>Full Name: ${fullname}</h3>
+      <h3>Full Name: ${ fullname }</h3>
       <hr/>
-      <h3>Email: ${email}</h3>
+      <h3>Email: ${ email }</h3>
       <hr/>
-      <h3>Message : ${message}</h3>
+      <h3>Message : ${ message }</h3>
       <hr/>
       `;
 
@@ -275,29 +302,34 @@ exports.SendContactEmail = async (req, res) => {
         id,
         { $push: { messages_sent: message } },
         { new: true },
-        function (err, doc) {
-          if (err) {
-            console.log(err);
+        function (err, doc)
+        {
+          if (err)
+          {
             res.status(500).json({ error: "NO user with such id" });
           }
         }
       );
 
       res.status(200).send({ success: "Message saved, Email sent" });
-    } else {
+    } else
+    {
       return res.status(401).json({ error: "Email not registered" });
     }
-  } catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.VerifyEmailSend = async (req, res) => {
+exports.VerifyEmailSend = async (req, res) =>
+{
   const { userid } = req;
-  try {
+  try
+  {
     const user = await UserModel.findById(userid);
-    if (user) {
+    if (user)
+    {
       const email = user.email;
       const token = jwt.sign(
         { userid },
@@ -312,13 +344,13 @@ exports.VerifyEmailSend = async (req, res) => {
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
 
-      const link = `${req.protocol}://${req.hostname}:3000/project-zone/verify-email/${token}`;
+      const link = `${ req.protocol }://${ req.hostname }:3000/project-zone/verify-email/${ token }`;
 
       const content = `<h2 style={{textAlign ="center"}}>Project-zone account verification link</h2>
       
-      Dear ${user.firstname}, please click on following link to verify your account.
+      Dear ${ user.firstname }, please click on following link to verify your account.
 
-      <p style={{textAlign ="center"}}><a href=${link}>${link}</a></p>
+      <p style={{textAlign ="center"}}><a href=${ link }>${ link }</a></p>
       
       Thank you`;
 
@@ -333,31 +365,37 @@ exports.VerifyEmailSend = async (req, res) => {
           },
         },
         { new: true },
-        function (err, doc) {
-          if (err) {
-            console.log(err);
-            res.status(500).json({ error: "NO user with such id" });
+        function (err, doc)
+        {
+          if (err)
+          {
+            res.status(500).json({ error: "No user found." });
           }
         }
       );
       res.status(200).send({ msg: "Verification Email sent successfully" });
-    } else {
+    } else
+    {
       res.status(400).json({ error: "No User Found" });
     }
-  } catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.VerifyEmail = async (req, res) => {
+exports.VerifyEmail = async (req, res) =>
+{
   const { emailtoken } = req.body;
-  try {
+  try
+  {
     jwt.verify(
       emailtoken,
       process.env.ACCESS_TOKEN_VERIFY_EMAIL,
-      async (err, user) => {
-        if (err) {
+      async (err, user) =>
+      {
+        if (err)
+        {
           return res.status(401).json({ error: "TOKEN EXPIERED" });
         }
         const { userid } = user;
@@ -370,28 +408,32 @@ exports.VerifyEmail = async (req, res) => {
             },
           },
           { new: true },
-          function (err, doc) {
-            if (err) {
-              console.log(err);
+          function (err, doc)
+          {
+            if (err)
+            {
               res.status(500).json({ error: "NO user with such id" });
-            } else {
+            } else
+            {
               res.status(200).json({ msg: "Email Verified successfully" });
             }
           }
         );
       }
     );
-  } catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 internal Error" });
   }
 };
 
-exports.AddComment = async (req, res) => {
+exports.AddComment = async (req, res) =>
+{
   const { userid } = req;
   const { project_id, fname, userimg, data } = req.body;
   const createdat = moment().format("MMMM Do YYYY, h:mm:ss a");
-  try {
+  try
+  {
     Project.findOneAndUpdate(
       { _id: project_id },
       {
@@ -405,70 +447,85 @@ exports.AddComment = async (req, res) => {
         },
       },
       { new: true },
-      function (error, doc) {
-        if (error) {
+      function (error, doc)
+      {
+        if (error)
+        {
           res.status(500).json({ error: "Not Successful" });
-        } else {
+        } else
+        {
           res.status(200).json({ msg: "Comment added", data: doc.comments });
         }
       }
     );
-  } catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.AddLike = async (req, res) => {
+exports.AddLike = async (req, res) =>
+{
   const { userid } = req;
   const { project_id, likes } = req.body;
-  try {
+  try
+  {
     Project.findOneAndUpdate(
       { _id: project_id },
       { likes: likes },
       { new: true },
-      function (error) {
-        if (error) {
+      function (error)
+      {
+        if (error)
+        {
           res.status(500).json({ error: "Not Successful" });
-        } 
+        }
       }
     );
 
     UserModel.findByIdAndUpdate(
       userid,
-      { $push: { "profile.projects_liked" : project_id } },
+      { $push: { "profile.projects_liked": project_id } },
       { new: true },
-      function (err, doc) {
-        if (err) {
+      function (err, doc)
+      {
+        if (err)
+        {
           return res.status(500).json({ error: "NO user with such id" });
         }
-        else {
-          res.status(200).json({ msg: "Thanks for liking our project ❤️"});
+        else
+        {
+          res.status(200).json({ msg: "Thanks for liking our project ❤️" });
         }
       }
     );
 
-  } catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.AddNewRating = async (req, res) => {
+exports.AddNewRating = async (req, res) =>
+{
 
   const { userid } = req;
   const { project_id, newrating } = req.body;
   let avgrating;
 
-  try {
+  try
+  {
     Project.findOneAndUpdate(
       { _id: project_id },
       { $push: { "allratings": newrating } },
-      { new: true},
-      function (error, doc) {
-        if (error) {
+      { new: true },
+      function (error, doc)
+      {
+        if (error)
+        {
           res.status(500).json({ error: "Not Successful" });
-        } else {
+        } else
+        {
           const ratingsSum = (accumulator, currentValue) =>
             accumulator + currentValue;
           avgrating = doc.allratings.reduce(ratingsSum) / doc.allratings.length;
@@ -478,10 +535,12 @@ exports.AddNewRating = async (req, res) => {
             { _id: project_id },
             { rating: avgrating },
             { new: true },
-            function (error, doc) {
-              if (error) {
+            function (error, doc)
+            {
+              if (error)
+              {
                 res.status(500).json({ error: "Not Successful" });
-              } 
+              }
             }
           );
         }
@@ -489,53 +548,60 @@ exports.AddNewRating = async (req, res) => {
     );
 
     UserModel.findByIdAndUpdate(
-        userid,
-        { $push: { "profile.projects_rated" : project_id } },
-        { new: true },
-        function (err, doc) {
-          if (err) {
-            return res.status(500).json({ error: "NO user with such id" });
-          } else {
-            res.status(200).json({
-                msg: "Thanks for rating our project ⭐",
-                data: doc.rating,
-              });
-          }
+      userid,
+      { $push: { "profile.projects_rated": project_id } },
+      { new: true },
+      function (err, doc)
+      {
+        if (err)
+        {
+          return res.status(500).json({ error: "NO user with such id" });
+        } else
+        {
+          res.status(200).json({
+            msg: "Thanks for rating our project ⭐",
+            data: doc.rating,
+          });
         }
+      }
     );
-  } catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
 
-exports.AddBadge = async (req, res) => {
+exports.AddBadge = async (req, res) =>
+{
 
   const { userid } = req;
-  let  badgedata  = req.body;
+  let badgedata = req.body;
   const earnedat = moment().format("MMMM Do YYYY, h:mm:ss a");
-  badgedata = {...badgedata,earnedat};
-  console.log(badgedata);
+  badgedata = { ...badgedata, earnedat };
 
-  try{
+  try
+  {
     UserModel.findByIdAndUpdate(
       userid,
-      { $push: { "profile.badges" : badgedata } },
+      { $push: { "profile.badges": badgedata } },
       { new: true },
-      function (err, doc) {
-        if (err) {
+      function (err, doc)
+      {
+        if (err)
+        {
           return res.status(500).json({ error: "NO user with such id" });
-        } else {
-          res.status(200).json({ 
-            msg: "Congrats 🌟 You have earned a new badge 🌟 Check your profile 😃", 
+        } else
+        {
+          res.status(200).json({
+            msg: "Congrats 🌟 You have earned a new badge 🌟 Check your profile 😃",
             data: doc.profile.badges
           });
         }
       }
     );
 
-  }catch (err) {
-    console.log(err);
+  } catch (err)
+  {
     res.status(500).json({ error: "500 Internal Error" });
   }
 }

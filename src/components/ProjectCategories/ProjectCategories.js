@@ -73,7 +73,7 @@ function ProjectCategories() {
             <img className='img' src={javascript} alt='javascript' />
           </div>
           <div className='Webdev-card allcard'>
-            <button className='expbtn' value='web' onClick={handleOnclick}>
+            <button className='expbtn' value='mern' onClick={handleOnclick}>
               Explore
             </button>
             <div className='allcard-title'>

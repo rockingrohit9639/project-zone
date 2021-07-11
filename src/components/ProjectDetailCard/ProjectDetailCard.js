@@ -11,7 +11,8 @@ import { GitHub } from "@material-ui/icons";
 
 import { getSkillColor } from "../../utils";
 
-function ProjectDetailCard() {
+function ProjectDetailCard()
+{
   const [{ ProjectDetails, dashboard, isAuthenticated }, dispatch] =
     useDataLayerValues();
   const [shareopen, setshareopen] = useState(false);
@@ -24,23 +25,28 @@ function ProjectDetailCard() {
   );
   const [ratinggiven, setRatingGiven] = useState(ProjectDetails.rating);
 
-  const LikeBtnHandler = async () => {
-    if (!isAuthenticated) {
+  const LikeBtnHandler = async () =>
+  {
+    if (!isAuthenticated)
+    {
       return toast.error(`You have to login first`);
     }
 
-    if (!liked) {
+    if (!liked)
+    {
       setLiked(true);
       setLikesCount(likescount + 1);
 
-      try {
+      try
+      {
         const data = {
           project_id: ProjectDetails.id,
           likes: likescount + 1,
         };
 
         const res = await AddLike(data);
-        if (!res.data.error) {
+        if (!res.data.error)
+        {
           const projectdata = {
             ...ProjectDetails,
             likes: likescount + 1,
@@ -61,65 +67,73 @@ function ProjectDetailCard() {
             dashboard: userdata,
           });
 
-          toast.success(`${res.data.msg}`);
+          toast.success(`${ res.data.msg }`);
         }
 
         let badgedata = {};
-        switch(dashboard.projects_liked.length + 1)
+        switch (dashboard.projects_liked.length + 1)
         {
-          case 10  : badgedata =  { title: 'Bronze in liking', badge_description: 'Liked 10+ projects'}; break;
-          case 50  : badgedata =  { title: 'Silver in liking', badge_description: 'Liked 50+ projects'}; break;
-          case 100  : badgedata =  { title: 'Gold in liking', badge_description: 'Liked 100+ projects'};  break;
+          case 10: badgedata = { title: 'Bronze in liking', badge_description: 'Liked 10+ projects' }; break;
+          case 50: badgedata = { title: 'Silver in liking', badge_description: 'Liked 50+ projects' }; break;
+          case 100: badgedata = { title: 'Gold in liking', badge_description: 'Liked 100+ projects' }; break;
         }
-        
-        if(Object.keys(badgedata).length !== 0)
-        {  
+
+        if (Object.keys(badgedata).length !== 0)
+        {
           const res = await AddBadge(badgedata);
-          if(!res.data.error)
+          if (!res.data.error)
           {
             const userdata = {
               ...dashboard,
-              badges : [...dashboard.badges, res.data.data]
+              badges: [...dashboard.badges, res.data.data]
             }
 
             dispatch({
               type: "SET_USER_DASHBOARD_DATA",
               dashboard: userdata
-             })
+            })
 
-            toast.success(`${res.data.msg}`);
+            toast.success(`${ res.data.msg }`);
           }
         }
 
-      } catch (err) {
-        if (err.response) {
-          toast.error(`${err.response.data.error}`);
+      } catch (err)
+      {
+        if (err.response)
+        {
+          toast.error(`${ err.response.data.error }`);
         }
       }
     }
   };
 
-  const shareButtonHandler = () => {
+  const shareButtonHandler = () =>
+  {
     setshareopen(!shareopen);
   };
 
-  const newRatingHandler = async (event, ratingval) => {
-    if (!isAuthenticated) {
+  const newRatingHandler = async (event, ratingval) =>
+  {
+    if (!isAuthenticated)
+    {
       return toast.error(`You have to login first`);
     }
 
-    if (!rated) {
+    if (!rated)
+    {
       setRated(true);
       setRatingGiven(ratingval);
 
-      try {
+      try
+      {
         const data = {
           project_id: ProjectDetails.id,
           newrating: ratingval,
         };
 
         const res = await AddNewRating(data);
-        if (!res.data.error) {
+        if (!res.data.error)
+        {
           const projectdata = {
             ...ProjectDetails,
             rating: res.data.data,
@@ -140,25 +154,25 @@ function ProjectDetailCard() {
             dashboard: userdata,
           });
 
-          toast.success(`${res.data.msg}`);
+          toast.success(`${ res.data.msg }`);
         }
 
         let badgedata = {};
-        switch(dashboard.projects_rated.length + 1)
+        switch (dashboard.projects_rated.length + 1)
         {
-          case 10  : badgedata =  { title: 'Bronze in rating', badge_description: 'Rated 10+ projects'}; break;
-          case 50  : badgedata =  { title: 'Silver in rating', badge_description: 'Rated 50+ projects'}; break;
-          case 100  : badgedata =  { title: 'Gold in rating', badge_description: 'Rated 100+ projects'};  break;
+          case 10: badgedata = { title: 'Bronze in rating', badge_description: 'Rated 10+ projects' }; break;
+          case 50: badgedata = { title: 'Silver in rating', badge_description: 'Rated 50+ projects' }; break;
+          case 100: badgedata = { title: 'Gold in rating', badge_description: 'Rated 100+ projects' }; break;
         }
-        
-        if(Object.keys(badgedata).length !== 0)
-        {  
+
+        if (Object.keys(badgedata).length !== 0)
+        {
           const res = await AddBadge(badgedata);
-          if(!res.data.error)
+          if (!res.data.error)
           {
             const userdata = {
               ...dashboard,
-              badges : [...dashboard.badges, res.data.data]
+              badges: [...dashboard.badges, res.data.data]
             }
 
             dispatch({
@@ -166,12 +180,14 @@ function ProjectDetailCard() {
               dashboard: userdata
             })
 
-            toast.success(`${res.data.msg}`);
+            toast.success(`${ res.data.msg }`);
           }
         }
-      } catch (err) {
-        if (err.response) {
-          toast.error(`${err.response.data.error}`);
+      } catch (err)
+      {
+        if (err.response)
+        {
+          toast.error(`${ err.response.data.error }`);
         }
       }
     }

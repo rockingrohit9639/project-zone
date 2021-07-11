@@ -28,7 +28,7 @@ function Project({
   const [{ dashboard, ProjectDetails, isAuthenticated }, dispatch] = useDataLayerValues();
   const [shareopen, setshareopen] = useState(false);
   const [likescount, setLikesCount] = useState(likes);
-  const [liked, setLiked] = useState(dashboard.projects_liked.indexOf(id) !== -1);
+  const [liked, setLiked] = useState(dashboard.projects_liked?.indexOf(id) !== -1);
 
   const shareButtonHandler = () => {
     setshareopen(!shareopen);
@@ -94,7 +94,6 @@ function Project({
       } catch (err) {
         if (err.response) {
           toast.error(`${err.response.data.error}`);
-          console.log(err.response.data.error);
         }
       }
     }

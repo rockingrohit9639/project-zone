@@ -13,23 +13,24 @@ import { Bars } from "react-loading-icons";
 import { toast, ToastContainer } from "react-toastify";
 
 const Option = styled.button`
-  color: ${(props) => (props.optionColor ? props.optionColor : "#FFF")};
-  min-width: ${(props) =>
-    props.option ? `${props.option.split(" ").length * 90}px` : "100px"};
+  color: ${ (props) => (props.optionColor ? props.optionColor : "#FFF") };
+  min-width: ${ (props) =>
+    props.option ? `${ props.option.split(" ").length * 90 }px` : "100px" };
   font-family: "Poppins";
   background-color: #fff;
   border: 2px solid #000;
-  border-color: ${(props) => (props.optionColor ? props.optionColor : "#FFF")};
+  border-color: ${ (props) => (props.optionColor ? props.optionColor : "#FFF") };
   border-radius: 20px;
   margin: 0 10px;
   padding: 5px 10px;
   white-space: nowrap;
   cursor: pointer;
+  margin-top: 0.5rem;
   transition: all 0.3s ease-out;
   &:hover {
     color: #fff;
-    background-color: ${(props) =>
-      props.optionColor ? props.optionColor : "#FFF"};
+    background-color: ${ (props) =>
+    props.optionColor ? props.optionColor : "#FFF" };
     transform: scale(0.95);
   }
 `;
@@ -42,7 +43,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Showprojects() {
+function Showprojects()
+{
   const muitheme = useTheme();
   const isMobile = useMediaQuery(muitheme.breakpoints.down("sm"));
   const itemsPerPage = isMobile ? 6 : 12;
@@ -58,7 +60,8 @@ function Showprojects() {
   });
   const classes = useStyles();
 
-  const handlePageChange = (event, value) => {
+  const handlePageChange = (event, value) =>
+  {
     setPage(value);
     window.scroll(0, 420);
   };
@@ -96,28 +99,33 @@ function Showprojects() {
   // "VR"
   const [randomProject, setRandomProject] = useState("");
 
-  const fetchProjects = async () => {
+  const fetchProjects = async () =>
+  {
     setIsLoading(true);
 
-    try {
+    try
+    {
       setRandomProject("");
 
-      if (query !== "") {
-        const results = await server.get(`/getprojects?q=${query}`);
+      if (query !== "")
+      {
+        const results = await server.get(`/getprojects?q=${ query }`);
         setIsLoading(false);
         setProjects(results.data);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
-      } else {
-        console.log("enter query");
+      } else
+      {
         toast.error("Please enter a query first");
         setIsLoading(false);
       }
-    } catch (error) {
+    } catch (error)
+    {
       setIsLoading(false);
     }
   };
 
-  const setDefaultQuery = (e) => {
+  const setDefaultQuery = (e) =>
+  {
     e.preventDefault();
 
     dispatch({
@@ -125,34 +133,38 @@ function Showprojects() {
       query: e.target.innerText,
     });
 
-    fetchProjects();
+    // fetchProjects();
+    toast.success("Click on search button to search.")
   };
 
-  const handleRandomProject = () => {
+  const handleRandomProject = () =>
+  {
     setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
-    console.log(randomProject);
   };
 
-  const checkboxHandler = (e) => {
+  const checkboxHandler = (e) =>
+  {
     const name = e.target.name;
-    
-    switch(name){
+
+    switch (name)
+    {
       case "beginner": setfilter({ ...filter, beginner: !filter.beginner }); break;
       case "intermediate": setfilter({ ...filter, intermediate: !filter.intermediate }); break;
-      case "advanced":  setfilter({ ...filter, advanced : !filter.advanced }); break;
+      case "advanced": setfilter({ ...filter, advanced: !filter.advanced }); break;
       case "liked": setfilter({ ...filter, liked: !filter.liked }); break;
       case "rated": setfilter({ ...filter, rated: !filter.rated }); break;
       case "added": setfilter({ ...filter, added: !filter.added }); break;
     }
   };
 
-  const filterByCheck = (project) => {
+  const filterByCheck = (project) =>
+  {
 
-    if(filter[`${project.level}`]) return project;
-    else if(filter["liked"] && dashboard.projects_liked.indexOf(project._id) !== -1) return project;
-    else if(filter["rated"] && dashboard.projects_rated.indexOf(project._id) !== -1) return project;
-    else if(filter["added"] && dashboard.projects_added.indexOf(project.name) !== -1) return project;
-    
+    if (filter[`${ project.level }`]) return project;
+    else if (filter["liked"] && dashboard.projects_liked.indexOf(project._id) !== -1) return project;
+    else if (filter["rated"] && dashboard.projects_rated.indexOf(project._id) !== -1) return project;
+    else if (filter["added"] && dashboard.projects_added.indexOf(project.name) !== -1) return project;
+
   }
 
 
@@ -224,7 +236,8 @@ function Showprojects() {
           </label>
         </div>
         <div className="default_options">
-          {defaultOptionsRow1.map((option, index) => {
+          {defaultOptionsRow1.map((option, index) =>
+          {
             return (
               <Option
                 type="submit"
@@ -240,7 +253,8 @@ function Showprojects() {
           })}
         </div>
         <div className="default_options">
-          {defaultOptionsRow2.map((option, index) => {
+          {defaultOptionsRow2.map((option, index) =>
+          {
             return (
               <Option
                 type="submit"
@@ -303,7 +317,8 @@ function Showprojects() {
           projects
             .filter((project) => filterByCheck(project))
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-            .map((project, ind) => {
+            .map((project, ind) =>
+            {
               return (
                 <Project
                   key={ind}

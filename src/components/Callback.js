@@ -5,6 +5,7 @@ import { magic } from '../magic';
 import { actions } from '../reducer';
 import { toast } from 'react-toastify';
 import { googlelogin } from "../axios/instance";
+import { Oval } from "react-loading-icons";
 
 function Callback(props)
 {
@@ -14,10 +15,9 @@ function Callback(props)
     const finishSocialLogin = async () =>
     {
         const data = await magic.oauth.getRedirectResult();
-        
-        const magicData = await data.magic;
+
+        // const magicData = await data.magic;
         const oauthData = await data.oauth;
-        console.log(oauthData);
 
         const user = {
             fname: oauthData.userInfo.givenName,
@@ -28,7 +28,7 @@ function Callback(props)
 
         const dbuser = {
             firstname: oauthData.userInfo.givenName,
-            lastname : oauthData.userInfo.familyName,
+            lastname: oauthData.userInfo.familyName,
             email: oauthData.userInfo.email,
             profile: {
                 profile_pic: oauthData.userInfo.picture,
@@ -38,43 +38,49 @@ function Callback(props)
                 email_activated: oauthData.userInfo.emailVerified,
             },
         }
-        
-        try {
-            const res = await googlelogin(dbuser);
-            if (!res.data.error) {
-              localStorage.setItem('tokken', res.data.accesstoken);
-              dispatch({
-                type: 'SET_AUTH',
-                isAuthenticated: true,
-              });
-              dispatch({
-                type: 'SET_USER',
-                user: user,
-              });
 
-              history.push('/');
+        try
+        {
+            const res = await googlelogin(dbuser);
+            if (!res.data.error)
+            {
+                localStorage.setItem('tokken', res.data.accesstoken);
+                dispatch({
+                    type: 'SET_AUTH',
+                    isAuthenticated: true,
+                });
+                dispatch({
+                    type: 'SET_USER',
+                    user: user,
+                });
+
+                history.push('/');
             }
-          } catch (err) {
-            if (err.response) {
+        } catch (err)
+        {
+            if (err.response)
+            {
                 history.push('/login');
-                toast.error(`${err.response.data.error}`);
+                toast.error(`${ err.response.data.error }`);
             }
-          }
+        }
     }
 
-    useEffect(() => {
+    useEffect(() =>
+    {
         const provider = new URLSearchParams(props.location.search).get('provider');
-        
+
         if (provider)
-        {            
+        {
             finishSocialLogin();
         }
-        
+
     }, [props.location.search]);
 
     return (
-        <div>
-            <h1>This is callback</h1>
+        <div className="loading_indicator">
+            <Oval stroke={"#6f6ee1"} />
+            <p> Logging you in. </p>
         </div>
     )
 }

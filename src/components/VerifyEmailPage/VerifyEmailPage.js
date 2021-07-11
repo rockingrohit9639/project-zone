@@ -4,27 +4,32 @@ import { verifyemail } from "../../axios/instance";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
 
-function VerifyEmailPage() {
+function VerifyEmailPage()
+{
   const [{ isemailverified }, dispatch] = useDataLayerValues();
   const [result, setresult] = useState("");
   const { tokenemail } = useParams();
-  useEffect(() => {
+  useEffect(() =>
+  {
     fetchresult();
   }, []);
-  const fetchresult = async () => {
+  const fetchresult = async () =>
+  {
     const data = {
       emailtoken: tokenemail,
     };
-    try {
+    try
+    {
       const res = await verifyemail(data);
-      console.log("EMAIL" + res);
       setresult(res.data.error || res.data.msg);
       dispatch({
         type: "SET_EMAIL_VERIFIED",
         isemailverified: true,
       });
-    } catch (err) {
-      if (err.response) {
+    } catch (err)
+    {
+      if (err.response)
+      {
         setresult(err.response.data.error || err.response.data.msg);
       }
     }
