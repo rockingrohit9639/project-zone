@@ -26,12 +26,17 @@ const userSchema = new mongoose.Schema({
       type: String,
     },
     projects_added: [],
+    projects_liked: [],
+    projects_rated: [],
     badges: [
       {
         title: {
           type: String,
         },
-        badge_descrition: {
+        badge_description: {
+          type: String,
+        },
+        earnedat: {
           type: String,
         },
       },

@@ -1,22 +1,22 @@
 .project {
-  margin-right:1rem;
-  max-width:21rem;
-  height:auto;
+  margin-right: 1rem;
+  max-width: 21rem;
+  height: auto;
   position: relative;
   margin-top: 2rem;
-  align-items:flex-start;
+  align-items: flex-start;
   box-shadow: 0 3px 5px -5px rgba(50, 50, 50, 0.75);
-  background-color:#fff;
-  transition: transform .3s;
+  background-color: #fff;
+  transition: transform 0.3s;
 }
 
-.cardimg{
-  width:100%;
-  height:auto;
+.cardimg {
+  width: 100%;
+  height: auto;
 }
 
-.card-content{
-  padding:1rem;
+.card-content {
+  padding: 1rem;
 }
 
 .title-flexbox {
@@ -24,15 +24,15 @@
   justify-content: space-between;
 }
 
-.title{
-  width:90%;
-  min-height:50px;
-  margin:0;
+.title {
+  width: 90%;
+  min-height: 50px;
+  margin: 0;
 }
 
 .share-img {
-  width:25px;
-  height:25px;
+  width: 25px;
+  height: 25px;
 }
 
 .project:hover {
@@ -42,24 +42,24 @@
   box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
 }
 
-.descr{
-  margin:0;
-  width:100%;
-  margin:0.5rem 0;
-  position:relative;
+.descr {
+  margin: 0;
+  width: 100%;
+  margin: 0.5rem 0;
+  position: relative;
 }
 
 .description {
-  margin:0;
-  max-height:65px;
+  margin: 0;
+  max-height: 65px;
 }
 
 .read-more {
   text-align: right;
   margin: 0;
-  position:absolute;
+  position: absolute;
   bottom: -25px;
-  right:0;
+  right: 0;
   font-size: 14px;
   font-weight: 700;
 }
@@ -70,15 +70,15 @@
 
 .level {
   display: flex;
-  margin:0;
+  margin: 0;
 }
 
 .level label {
   font-weight: bold;
 }
 
-.like-box{
-  margin:10px 0;
+.like-box {
+  margin: 10px 0;
 }
 
 .skills {
@@ -97,8 +97,12 @@
   cursor: pointer;
 }
 
-
 .far-fa-heart {
   cursor: pointer;
 }
 
+.rating_div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

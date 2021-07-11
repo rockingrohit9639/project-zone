@@ -74,10 +74,20 @@ export const getSkillColor = (skill) =>
     case 'flutter':
       return '#07489C';
 
+    case 'bronze': 
+      return '#ff9933';
+
+    case 'silver': 
+      return '#d9d9d9';
+
+    case 'gold':
+      return '#ffd700';
+
     default:
       return 'skyblue';
   }
 };
+
 
 export const setAuthToken = (token) =>
 {

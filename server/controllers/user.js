@@ -151,7 +151,7 @@ exports.ResetPassword = async (req, res) => {
 
 exports.AddNewProject = async (req, res) => {
   const { userid } = req;
-  const { name, description, level, skills } = req.body;
+  const { name, description, level, skills, github } = req.body;
 
   let username = "";
 
@@ -161,6 +161,7 @@ exports.AddNewProject = async (req, res) => {
       description,
       level,
       skills,
+      github,
     });
 
     const resp = await newProject.save();
@@ -202,6 +203,7 @@ exports.AddNewProject = async (req, res) => {
       <h4> Description : ${description}</h4>
       <h4> Level : ${level}</h4>
       <h4> Skills : ${skills.join(", ")}</h4>
+      <h4> Github link : <a href=${github}> Github Link</a></h4>
       <h4 style="text-align:center"><a href=${link}>Check new project here..</a></h4>
 
       Thanks You. ! Have a great day!`;
@@ -418,6 +420,7 @@ exports.AddComment = async (req, res) => {
 };
 
 exports.AddLike = async (req, res) => {
+  const { userid } = req;
   const { project_id, likes } = req.body;
   try {
     Project.findOneAndUpdate(
@@ -427,11 +430,24 @@ exports.AddLike = async (req, res) => {
       function (error) {
         if (error) {
           res.status(500).json({ error: "Not Successful" });
-        } else {
+        } 
+      }
+    );
+
+    UserModel.findByIdAndUpdate(
+      userid,
+      { $push: { "profile.projects_liked" : project_id } },
+      { new: true },
+      function (err, doc) {
+        if (err) {
+          return res.status(500).json({ error: "NO user with such id" });
+        }
+        else {
           res.status(200).json({ msg: "Thanks for liking our project ❤️"});
         }
       }
     );
+
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
@@ -440,6 +456,7 @@ exports.AddLike = async (req, res) => {
 
 exports.AddNewRating = async (req, res) => {
 
+  const { userid } = req;
   const { project_id, newrating } = req.body;
   let avgrating;
 
@@ -451,11 +468,11 @@ exports.AddNewRating = async (req, res) => {
       function (error, doc) {
         if (error) {
           res.status(500).json({ error: "Not Successful" });
-        }
-        else{
-          const ratingsSum = (accumulator, currentValue) => accumulator + currentValue;
+        } else {
+          const ratingsSum = (accumulator, currentValue) =>
+            accumulator + currentValue;
           avgrating = doc.allratings.reduce(ratingsSum) / doc.allratings.length;
-          avgrating = Math.round(avgrating*2)/2;
+          avgrating = Math.round(avgrating * 2) / 2;
 
           Project.findOneAndUpdate(
             { _id: project_id },
@@ -464,18 +481,62 @@ exports.AddNewRating = async (req, res) => {
             function (error, doc) {
               if (error) {
                 res.status(500).json({ error: "Not Successful" });
-              } else {
-                res.status(200).json({ msg: "Thanks for rating our project ⭐", data: doc.rating });
-              }
+              } 
             }
           );
         }
       }
     );
 
+    UserModel.findByIdAndUpdate(
+        userid,
+        { $push: { "profile.projects_rated" : project_id } },
+        { new: true },
+        function (err, doc) {
+          if (err) {
+            return res.status(500).json({ error: "NO user with such id" });
+          } else {
+            res.status(200).json({
+                msg: "Thanks for rating our project ⭐",
+                data: doc.rating,
+              });
+          }
+        }
+    );
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
   }
 };
+
+exports.AddBadge = async (req, res) => {
+
+  const { userid } = req;
+  let  badgedata  = req.body;
+  const earnedat = moment().format("MMMM Do YYYY, h:mm:ss a");
+  badgedata = {...badgedata,earnedat};
+  console.log(badgedata);
+
+  try{
+    UserModel.findByIdAndUpdate(
+      userid,
+      { $push: { "profile.badges" : badgedata } },
+      { new: true },
+      function (err, doc) {
+        if (err) {
+          return res.status(500).json({ error: "NO user with such id" });
+        } else {
+          res.status(200).json({ 
+            msg: "Congrats 🌟 You have earned a new badge 🌟 Check your profile 😃", 
+            data: doc.profile.badges
+          });
+        }
+      }
+    );
+
+  }catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+}
 

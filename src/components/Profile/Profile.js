@@ -8,6 +8,7 @@ import { useDataLayerValues } from "../../datalayer";
 import { UpdateUserData, sendverifyemail } from "../../axios/instance";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { Puff } from "react-loading-icons";
+import { getSkillColor } from "../../utils";
 
 const Profile = () =>
 {
@@ -309,9 +310,15 @@ const Profile = () =>
               {
                 return (
                   <div className="badge_container" key={i}>
-                    <i className="fa fa-medal"></i>
+                    <i 
+                      className={badge.badge_description.split(' ').slice(0,1).includes('Liked') ? `fa fa-heart` 
+                                : badge.badge_description.split(' ').slice(0,1).includes('Rated') ? `fa fa-star`
+                                : `fa fa-certificate` }
+                      style={{color: getSkillColor(badge.title.split(' ').slice(0,1).join(' '))}}>
+                    </i>
                     <h2>{badge.title}</h2>
                     <p>{badge.badge_description}</p>
+                    <span>Earned on {badge.earnedat.split(' ').slice(0,2).join(' ')}</span>
                   </div>
                 );
               })}
