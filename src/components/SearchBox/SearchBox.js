@@ -3,16 +3,19 @@ import "./SearchBox.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { useDataLayerValues } from "../../datalayer";
 
-function SearchBox({ fetchProjects }) {
+function SearchBox({ fetchProjects })
+{
   const [{ query }, dispatch] = useDataLayerValues();
 
-  const setQuery = (e) => {
+  const setQuery = (e) =>
+  {
     dispatch({
       type: "SET_QUERY",
       query: e.target.value,
     });
   };
-  function handleSubmit(e) {
+  function handleSubmit(e)
+  {
     e.preventDefault();
     fetchProjects();
   }

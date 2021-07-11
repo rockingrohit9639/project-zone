@@ -47,5 +47,5 @@ authRouter.post('/signup', signUp);
  *      '500':
  *        description: Internal Error/ Email already registered
  */
-authRouter.post('/google-signin',googleSignIn);
+authRouter.post('/google-signin', googleSignIn);
 module.exports = authRouter;

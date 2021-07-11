@@ -18,10 +18,9 @@
   display: flex;
   margin: 10px 0;
   padding: 10px 0;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  overflow-y: hidden;
-  overflow-x: auto;
 }
 
 .filtre-div {
@@ -40,20 +39,6 @@
   margin-left: 1rem;
   margin-right: 1rem;
   font-size: 16px;
-}
-
-.default_options::-webkit-scrollbar {
-  height: 8px;
-}
-
-.default_options::-webkit-scrollbar-track {
-  background-color: #efefef;
-  border-radius: 10px;
-}
-
-.default_options::-webkit-scrollbar-thumb {
-  background: #cccccc;
-  border-radius: 10px;
 }
 
 .random_btn-box {

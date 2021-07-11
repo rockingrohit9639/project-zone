@@ -54,7 +54,6 @@ exports.HomePageProjects = async (req, res) => {
     };
     res.status(200).json(data);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: "500 Internal Error" });
   }
   Project.find({});

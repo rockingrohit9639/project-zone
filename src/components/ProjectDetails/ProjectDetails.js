@@ -11,7 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { BallTriangle } from "react-loading-icons";
 
-function ProjectDetails(props) {
+function ProjectDetails(props)
+{
   const [{ user, ProjectDetails, dashboard, isAuthenticated }, dispatch] =
     useDataLayerValues();
   const [isLoading, setIsLoading] = useState(false);
@@ -19,19 +20,22 @@ function ProjectDetails(props) {
   const [comment, setcomment] = useState("");
   const { projectid } = useParams();
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     window.scroll(0, 0);
     fetchProject(projectid);
   }, []);
 
-  const fetchProject = async (id) => {
+  const fetchProject = async (id) =>
+  {
     setIsLoading(true);
 
     const body = {
       id: id,
     };
 
-    try {
+    try
+    {
       const project = await GetSingleProject(body);
 
       dispatch({
@@ -48,19 +52,23 @@ function ProjectDetails(props) {
           github: project.data.github,
         },
       });
-    } catch (err) {
+    } catch (err)
+    {
       console.log(err);
     }
 
     setIsLoading(false);
   };
 
-  const CommentBtnHandler = async () => {
-    if (!isAuthenticated) {
+  const CommentBtnHandler = async () =>
+  {
+    if (!isAuthenticated)
+    {
       return toast.error(`You have to login first`);
     }
 
-    if (comment?.trim() === "") {
+    if (comment?.trim() === "")
+    {
       return toast.error(`Type a valid comment`);
     }
 
@@ -71,7 +79,8 @@ function ProjectDetails(props) {
       data: comment,
     };
 
-    try {
+    try
+    {
       const comment_add = await AddComment(data);
       const comments_new = comment_add.data.data;
       const projectdata = {
@@ -85,11 +94,12 @@ function ProjectDetails(props) {
         ProjectDetails: projectdata,
       });
 
-      toast.success(`${comment_add.data.msg}`);
-    } catch (err) {
-      console.log(err);
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
+      toast.success(`${ comment_add.data.msg }`);
+    } catch (err)
+    {
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
       }
     }
   };
@@ -155,35 +165,6 @@ function ProjectDetails(props) {
               <p className="comment_desc">{item.data}</p>
             </div>
           ))}
-          {/* <div className="user_comment">
-            <div className="comment_info">
-              <div className="comment_user">
-                <img src={userImg} alt="user_image" />
-                <h2>You</h2>
-              </div>
-              <p className="comment_timestamp">2days ago</p>
-            </div>
-
-            <p className="comment_desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec
-              pulvinar molestie urna, mollis mattis nibh cursus vel.
-            </p>
-          </div>
-
-          <div className="user_comment">
-            <div className="comment_info">
-              <div className="comment_user">
-                <img src={userImg} alt="user_image" />
-                <h2>Kanak</h2>
-              </div>
-              <p className="comment_timestamp">2days ago</p>
-            </div>
-
-            <p className="comment_desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec
-              pulvinar molestie urna, mollis mattis nibh cursus vel.
-            </p>
-          </div> */}
         </div>
       </div>
     </div>

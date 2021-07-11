@@ -161,7 +161,7 @@ ProtectedRouter.patch("/add-comment", authenticate, AddComment);
  *      '401':
  *        description: Not a valid token
  */
- ProtectedRouter.patch("/add-like", authenticate, AddLike);
+ProtectedRouter.patch("/add-like", authenticate, AddLike);
 
 // Routes
 /**
@@ -177,9 +177,9 @@ ProtectedRouter.patch("/add-comment", authenticate, AddComment);
  *      '401':
  *        description: Not a valid token
  */
- ProtectedRouter.patch("/add-new-rating", authenticate, AddNewRating);
+ProtectedRouter.patch("/add-new-rating", authenticate, AddNewRating);
 
- // Routes
+// Routes
 /**
  * @swagger
  * /add-badge:
@@ -193,6 +193,6 @@ ProtectedRouter.patch("/add-comment", authenticate, AddComment);
  *      '401':
  *        description: Not a valid token
  */
- ProtectedRouter.patch("/add-badge", authenticate, AddBadge);
+ProtectedRouter.patch("/add-badge", authenticate, AddBadge);
 
 module.exports = ProtectedRouter;

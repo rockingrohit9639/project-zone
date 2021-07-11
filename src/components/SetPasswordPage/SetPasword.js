@@ -4,55 +4,70 @@ import { ToastContainer, toast } from "react-toastify";
 import { SetNewPassword } from "../../axios/instance";
 import { Link as RouterLink, useParams } from "react-router-dom";
 
-function SetPasword() {
+function SetPasword()
+{
   const [done, setdone] = useState(false);
   const { token } = useParams();
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisiblity = () =>
+  {
     setPasswordShown(!passwordShown);
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event) =>
+  {
     event.preventDefault();
-    if (password.trim() === "") {
+    if (password.trim() === "")
+    {
       return toast.error("Please valid password ");
     }
-    if (password.length > 16 || password.length < 4) {
+    if (password.length > 16 || password.length < 4)
+    {
       return toast.error("password length must be between 4 to 16 characters");
     }
-    if (confirmpassword.trim() === "") {
+    if (confirmpassword.trim() === "")
+    {
       return toast.error("Please valid password ");
     }
-    if (confirmpassword.length > 16 || confirmpassword.length < 4) {
+    if (confirmpassword.length > 16 || confirmpassword.length < 4)
+    {
       return toast.error("password length must be between 4 to 16 characters");
     }
-    if (password !== confirmpassword) {
+    if (password !== confirmpassword)
+    {
       return toast.error("Password & Confirm password didn't match");
-    } else {
+    } else
+    {
       clearData();
       confirmPassword(password, confirmpassword);
     }
   };
-  const clearData = () => {
+  const clearData = () =>
+  {
     setpassword("");
     setconfirmpassword("");
   };
-  const confirmPassword = async (password, cpassword) => {
+  const confirmPassword = async (password, cpassword) =>
+  {
     const data = {
       token: token,
       password: password,
       confirm_password: cpassword,
     };
-    try {
+    try
+    {
       const res = await SetNewPassword(data);
-      if (!res.data.err) {
+      if (!res.data.err)
+      {
         setdone(!done);
-        toast.success(`${res.data.msg}`);
+        toast.success(`${ res.data.msg }`);
       }
-    } catch (err) {
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
+    } catch (err)
+    {
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
       }
     }
   };

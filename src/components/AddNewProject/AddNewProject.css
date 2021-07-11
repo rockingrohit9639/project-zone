@@ -1,139 +1,134 @@
-.addproject_wrapper{
-    min-height:100vh;
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.addproject_wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.quotesection{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    background-color:#EAF2FD;
-    width:50%;
-    min-height:100vh;
-  }
-
-.quotebox{
-    position:relative;
-    padding:3%;
-    width:60%;
-    border-radius:20px;
-    border:2px solid #5352ED;
+.quotesection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaf2fd;
+  width: 50%;
+  min-height: 100vh;
 }
 
-.fa-quote-left{
-    font-size:30px;
-    color:#5352ED;
+.quotebox {
+  position: relative;
+  padding: 3%;
+  width: 60%;
+  border-radius: 20px;
+  border: 2px solid #5352ed;
 }
 
-.quotebox h4{
-   margin:10px 0;
+.fa-quote-left {
+  font-size: 30px;
+  color: #5352ed;
 }
 
-.quotebox .dash{
-   color:#5352ED;
-   font-weight:bold;
-   margin:0 5px;
+.quotebox h4 {
+  margin: 10px 0;
 }
 
-.addprojectimg{
-    position:absolute;
-    width:95%;
-    top:50%;
-    left:33%;
+.quotebox .dash {
+  color: #5352ed;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.addprojectimg {
+  position: absolute;
+  width: 95%;
+  top: 50%;
+  left: 33%;
 }
 
 .addprojectform {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    margin: 0 auto;
-    padding:5%;
-    font-size: 16px;
-    line-height: 25px;
-    color: rgb(60, 60, 60);
-    width: 50%;
-    max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 5%;
+  font-size: 16px;
+  line-height: 25px;
+  color: rgb(60, 60, 60);
+  width: 50%;
+  max-height: 100vh;
 }
 
 .addprojectform h1 {
-  color:#5253ED;
+  color: #5253ed;
 }
 
 .skillsinput {
-    width: fit-content;
-    position: relative;
-    outline: none;
-    border: 1px solid #ccc;
+  width: fit-content;
+  position: relative;
+  outline: none;
+  border: 1px solid #ccc;
 }
 
-.skillsinput input{
-    border:none;
-    outline:none;
+.skillsinput input {
+  border: none;
+  outline: none;
 }
 
 .skillsinput label {
-    position: absolute;
-    left: 20px;
-    top: 0;
-    font-size: 0.7rem;
-}
-  
-.submitbtn{
-    border: 2px solid #5352ED;
-    background-color: #5352ED;
-    cursor: pointer;
-    color: #fff;
-    margin-right: 20px;
-    padding: 10px 20px;
-    width:fit-content;
-    box-shadow: -1px 3px 3px rgba(0, 0, 0, 0.4);
-    
+  position: absolute;
+  left: 20px;
+  top: 0;
+  font-size: 0.7rem;
 }
 
-.fa-upload{
-    margin-left:10px;
+.submitbtn {
+  border: 2px solid #5352ed;
+  background-color: #5352ed;
+  cursor: pointer;
+  color: #fff;
+  margin-right: 20px;
+  padding: 10px 20px;
+  width: fit-content;
+  box-shadow: -1px 3px 3px rgba(0, 0, 0, 0.4);
 }
 
-@media screen and (max-width: 960px){
-
-    .addproject_wrapper{
-        flex-direction:column;
-    }
-    .quotesection{
-        width:100%;
-        min-height:0;
-        height:40%;
-        padding:80px 0;
-    }
-    .quotebox{
-        width:70%;
-        padding:2%;
-    }
-    .addprojectimg{
-        width:65%;
-        top:60%;
-        left:50%;
-    }
-    .addprojectform{
-        width:100%;
-        padding:5% 19% ;
-        align-items:center;
-        justify-content: center;
-        margin-left:auto;
-    }
-    .addprojectform h1{
-        font-size:25px;
-    }
-    .forminput input{
-        min-width:60vw;
-        width:70%;
-    }
-    
+.fa-upload {
+  margin-left: 10px;
 }
 
-  
+@media screen and (max-width: 960px) {
+  .addproject_wrapper {
+    flex-direction: column;
+  }
+  .quotesection {
+    width: 100%;
+    min-height: 0;
+    height: 40%;
+    padding: 80px 0;
+  }
+  .quotebox {
+    width: 70%;
+    padding: 2%;
+  }
+  .addprojectimg {
+    width: 65%;
+    top: 60%;
+    left: 50%;
+  }
+  .addprojectform {
+    width: 100%;
+    padding: 5% 19%;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+  .addprojectform h1 {
+    font-size: 25px;
+  }
+  .forminput input {
+    min-width: 60vw;
+    width: 70%;
+  }
+}

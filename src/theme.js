@@ -1,5 +1,5 @@
 // Contains theme info (dark mode switch)
-import { createGlobalStyle } from "styled-components";
+// import { createGlobalStyle } from "styled-components";
 
 export const lightTheme = {
   body: "#fff",

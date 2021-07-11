@@ -196,7 +196,6 @@ const Profile = () =>
       }
     } catch (err)
     {
-      console.log(err);
       if (err.response)
       {
         toast.error(`${ err.response.data.error }`);

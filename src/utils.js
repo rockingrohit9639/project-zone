@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { server } from './axios/instance';
 
 export const getSkillColor = (skill) =>
@@ -6,16 +5,16 @@ export const getSkillColor = (skill) =>
   switch (skill.toLowerCase())
   {
     case 'mongodb':
-      return '#3FA037' ;
+      return '#3FA037';
 
     case 'mongo':
-      return '#3FA037' ;
+      return '#3FA037';
 
     case 'express':
-      return 'red' ;
+      return 'red';
 
     case 'express js':
-      return 'red' ;
+      return 'red';
 
     case 'react':
       return 'blue';
@@ -57,7 +56,7 @@ export const getSkillColor = (skill) =>
       return '#FB9820';
 
     case 'android':
-      return  '#3DDC84';
+      return '#3DDC84';
 
     case 'kotlin':
       return '#B75EA4';
@@ -74,10 +73,10 @@ export const getSkillColor = (skill) =>
     case 'flutter':
       return '#07489C';
 
-    case 'bronze': 
+    case 'bronze':
       return '#ff9933';
 
-    case 'silver': 
+    case 'silver':
       return '#d9d9d9';
 
     case 'gold':

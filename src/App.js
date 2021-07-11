@@ -12,14 +12,14 @@ import AddNewProject from "./components/AddNewProject/AddNewProject";
 import Profile from "./components/Profile/Profile";
 import ProjectDetails from "./components/ProjectDetails/ProjectDetails";
 import { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./theme.js";
 // import { GlobalStyles } from "./theme.js";
 // import { Switch as ToggleSwitch } from "antd";
 import ContactUs from "./components/ContactUs/contactus";
 import AboutUs from "./components/About/about";
 import TrendingProjects from "./components/TrendingProjects/TrendingProjects";
-import { profile, GetHomeProjects } from "./axios/instance";
+import { profile } from "./axios/instance";
 import { setAuthToken } from "./utils";
 import { useDataLayerValues } from "./datalayer";
 import ForgetPassword from "./components/ForgetPassword/Forget";
@@ -30,7 +30,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 function App()
 {
   const [
-    { user, isAuthenticated, dashboard, isemailverified, HomePageProjects },
+    { dashboard },
     dispatch,
   ] = useDataLayerValues();
 
@@ -55,15 +55,13 @@ function App()
     {
       loader.remove();
     }
-  }, [localStorage.getItem("tokken")]);
+  }, [localStorage.getItem("tokken"), dispatch]);
 
   const getUser = async () =>
   {
     try
     {
       const user = await profile();
-
-      console.log(user);
 
       const data = {
         ...user,
@@ -112,7 +110,7 @@ function App()
 
   //Logic for Theme toggler to get dark mode
   const [theme, settheme] = useState("light");
-  const styledApp = styled.div;
+  // const styledApp = styled.div;
 
   const themeToggler = () =>
   {
@@ -122,7 +120,7 @@ function App()
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       {/* <GlobalStyles /> */}
-      <styledApp className="App">
+      <div className="App">
         <Router>
           <Navbar themeToggler={themeToggler} />
           <Switch>
@@ -166,7 +164,7 @@ function App()
           </Switch>
           <Footer />
         </Router>
-      </styledApp>
+      </div>
     </ThemeProvider>
   );
 }

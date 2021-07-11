@@ -3,9 +3,11 @@ import './RatingCard.css';
 import Rating from '@material-ui/lab/Rating';
 import down_arrow_icon from './../../assets/down.svg';
 
-function RatingCard(props) {
+function RatingCard(props)
+{
   const [ratingsopen, setratingsopen] = useState(false);
-  const ratingsButtonHandler = () => {
+  const ratingsButtonHandler = () =>
+  {
     setratingsopen(!ratingsopen);
   };
   return (
@@ -21,13 +23,13 @@ function RatingCard(props) {
         <>
           <hr className='hr'></hr>
           <div className='rate'>
-              <Rating
-                name="read-only"
-                defaultValue={0}
-                value={props.rating}
-                precision={0.5}
-                readOnly
-              />
+            <Rating
+              name="read-only"
+              defaultValue={0}
+              value={props.rating}
+              precision={0.5}
+              readOnly
+            />
           </div>
         </>
       ) : null}
