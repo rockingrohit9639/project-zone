@@ -16,7 +16,6 @@ function ProjectDetails(props)
   const [{ user, ProjectDetails, dashboard, isAuthenticated }, dispatch] =
     useDataLayerValues();
   const [isLoading, setIsLoading] = useState(false);
-
   const [comment, setcomment] = useState("");
   const { projectid } = useParams();
 

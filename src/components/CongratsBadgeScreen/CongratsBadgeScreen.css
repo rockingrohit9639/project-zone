@@ -1,0 +1,61 @@
+.badge_overlay {
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:2;
+  }
+  
+  .badge_overlay_hidden {
+    display: none;
+  }
+  
+  .badgemodal {
+    position: fixed;
+    top: 20%;
+    height: 70vh;
+    width:550px;
+    margin:0 auto;
+    padding: 2% 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    z-index:3;
+  }
+  
+  .badgemodal_hidden {
+    display: none;
+  }
+  
+  .newfa{
+    font-size:60px;
+    animation: pulse 3s linear infinite;
+  }
+  
+  .profilelink, .profilelink:hover{
+    width: 60%;
+  }
+  
+  .badgemodal_closebar {
+    width: 10%;
+    font-size: 25px;
+    cursor: pointer;
+    position: absolute;
+    top: 3%;
+    right: 0;
+  }
+  
+  @media screen and (max-width: 960px) {
+  
+    .badgemodal {
+      width:80vw;
+      max-width:450px;
+      font-size:80%;
+    }
+}

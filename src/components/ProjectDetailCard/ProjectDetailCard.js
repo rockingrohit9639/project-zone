@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./ProjectDetailCard.css";
 import { useDataLayerValues } from "../../datalayer";
 import share_logo from "./../../assets/share.svg";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import Rating from "@material-ui/lab/Rating";
 import ShareProject from "../ShareProject/ShareProject";
+import CongratsBadgeScreen from "../CongratsBadgeScreen/CongratsBadgeScreen";
 import { AddLike, AddNewRating, AddBadge } from "./../../axios/instance";
 import { toast } from "react-toastify";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Rating from "@material-ui/lab/Rating";
 import { GitHub } from "@material-ui/icons";
-
 import { getSkillColor } from "../../utils";
 
 function ProjectDetailCard()
@@ -23,7 +23,12 @@ function ProjectDetailCard()
   const [rated, setRated] = useState(
     dashboard.projects_rated.indexOf(ProjectDetails.id) !== -1
   );
+  const [modalVisibility, setModalVisibility] = useState("false");
   const [ratinggiven, setRatingGiven] = useState(ProjectDetails.rating);
+  const [newbadge,setNewBadge] = useState({
+    title:"",
+    badge_description: ""
+  });
 
   const LikeBtnHandler = async () =>
   {
@@ -93,7 +98,10 @@ function ProjectDetailCard()
               dashboard: userdata
             })
 
-            toast.success(`${ res.data.msg }`);
+            setNewBadge(badgedata);
+            toggleModalVisibility();
+
+            toast.success(`${res.data.msg}`);
           }
         }
 
@@ -160,9 +168,9 @@ function ProjectDetailCard()
         let badgedata = {};
         switch (dashboard.projects_rated.length + 1)
         {
-          case 10: badgedata = { title: 'Bronze in rating', badge_description: 'Rated 10+ projects' }; break;
-          case 50: badgedata = { title: 'Silver in rating', badge_description: 'Rated 50+ projects' }; break;
-          case 100: badgedata = { title: 'Gold in rating', badge_description: 'Rated 100+ projects' }; break;
+          case 10  : badgedata =  { title: 'Bronze in rating', badge_description: 'Rated 10+ projects'}; break;
+          case 50  : badgedata =  { title: 'Silver in rating', badge_description: 'Rated 50+ projects'}; break;
+          case 100 : badgedata =  { title: 'Gold in rating', badge_description: 'Rated 100+ projects'};  break;
         }
 
         if (Object.keys(badgedata).length !== 0)
@@ -180,7 +188,10 @@ function ProjectDetailCard()
               dashboard: userdata
             })
 
-            toast.success(`${ res.data.msg }`);
+            setNewBadge(badgedata);
+            toggleModalVisibility();
+
+            toast.success(`${res.data.msg}`);
           }
         }
       } catch (err)
@@ -193,8 +204,14 @@ function ProjectDetailCard()
     }
   };
 
+  const toggleModalVisibility = () =>
+  {
+    setModalVisibility(!modalVisibility);
+  };
+
   return (
-    <div className="details_card">
+    <>
+     <div className="details_card">
       <div className="titleBox">
         <h1 className="title_">{ProjectDetails.title}</h1>
         <div className="like-share">
@@ -258,8 +275,14 @@ function ProjectDetailCard()
             </a>
           ) : null}
         </div>
+       </div>
       </div>
-    </div>
+      <CongratsBadgeScreen 
+        newbadge={newbadge} 
+        modalVisibility={modalVisibility} 
+        toggleModalVisibility={toggleModalVisibility} 
+      />
+     </>
   );
 }
 

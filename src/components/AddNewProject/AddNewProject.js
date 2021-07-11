@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import CongratsBadgeScreen from "../CongratsBadgeScreen/CongratsBadgeScreen";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -77,6 +78,11 @@ function AddNewProject() {
   useEffect(() => {
     !isAuthenticated && history.replace("/login");
   }, [isAuthenticated, history]);
+  const [modalVisibility, setModalVisibility] = useState("false");
+  const [newbadge,setNewBadge] = useState({
+    title:"",
+    badge_description: ""
+  });
   const [skillInputs, setSkillInputs] = useState([""]);
   const [title, setTitle] = useState("");
   const [level, setLevel] = useState("");
@@ -162,9 +168,9 @@ function AddNewProject() {
        let badgedata = {};
        switch(dashboard.projects_added.length + 1)
        {
-         case 3  : badgedata =  { title: 'Bronze in adding', badge_description: 'Added 10+ projects'}; break;
-         case 4  : badgedata =  { title: 'Silver in adding', badge_description: 'Added 50+ projects'}; break;
-         case 5  : badgedata =  { title: 'Gold in adding', badge_description: 'Added 100+ projects'};  break;
+         case 10  : badgedata =  { title: 'Bronze in adding', badge_description: 'Added 10+ projects'}; break;
+         case 50  : badgedata =  { title: 'Silver in adding', badge_description: 'Added 50+ projects'}; break;
+         case 100  : badgedata =  { title: 'Gold in adding', badge_description: 'Added 100+ projects'};  break;
        }
        
        if(Object.keys(badgedata).length !== 0)
@@ -181,6 +187,9 @@ function AddNewProject() {
              type: "SET_USER_DASHBOARD_DATA",
              dashboard: userdata
            })
+
+           setNewBadge(badgedata);
+           toggleModalVisibility();
 
            toast.success(`${res.data.msg}`);
          }
@@ -199,7 +208,13 @@ function AddNewProject() {
     setSkillInputs([""]);
   };
 
+  const toggleModalVisibility = () =>
+  {
+    setModalVisibility(!modalVisibility);
+  };
+
   return (
+    <>
     <div>
       <ToastContainer position="bottom-right" />
       <div className="addproject_wrapper">
@@ -317,8 +332,16 @@ function AddNewProject() {
             Submit<i className="fa fa-upload"></i>
           </button>
         </form>
+       </div>
       </div>
-    </div>
+      <div className="badgescreen">
+      <CongratsBadgeScreen 
+        newbadge={newbadge} 
+        modalVisibility={modalVisibility} 
+        toggleModalVisibility={toggleModalVisibility} 
+      />
+      </div>
+    </>
   );
 }
 
