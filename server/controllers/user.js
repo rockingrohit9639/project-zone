@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
 const { sendEmail } = require("../utills/sendMail");
-const { TrendingUpRounded } = require("@material-ui/icons");
 
 const maxage = 3 * 24 * 60 * 60;
 const createwebToken = (id) =>
@@ -81,12 +80,12 @@ exports.sendemail = async (req, res) =>
         process.env.ACCESS_TOKEN_SECRET_FOREGTPASS,
         { expiresIn: "10m" }
       );
-      // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/project-zone/forget-password/${token}`;
+      const link = `project-zone.tech/project-zone/forget-password/${token}`;
 
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
 
-      const link = `${ req.protocol }://${ req.hostname }:3000/project-zone/forget-password/${ token }`;
+      // const link = `${ req.protocol }://${ req.hostname }:3000/project-zone/forget-password/${ token }`;
 
       const content = `<h2 style={{textAlign ="center"}}>Project-zone account Forget password link</h2>
       
@@ -212,7 +211,7 @@ exports.AddNewProject = async (req, res) =>
         } else
         {
           username = doc.firstname;
-          const link = `http://project-zone.netlify.app/projectdetails/${ resp._id }`;
+          const link = `project-zone.tech/projectdetails/${ resp._id }`;
 
           /* Above link will be used when client-side is fully deployed, if we are running client-side on local host
           then link below will be sent as email */
@@ -254,12 +253,12 @@ exports.SendContactEmail = async (req, res) =>
     {
       const id = user._id;
 
-      // const link = "https://60e5a4164df29368b0329a4b--project-zone.netlify.app";
+      const link = "project-zone.tech";
 
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
 
-      const link = `${ req.protocol }://${ req.hostname }:3000/`;
+      // const link = `${ req.protocol }://${ req.hostname }:3000/`;
 
       const usercontent = `<h3 style="text-align:center">Thanks for contacting us !</h3>
       
@@ -268,7 +267,7 @@ exports.SendContactEmail = async (req, res) =>
       <p>Feel free to send us your suggestions anytime. We will definitely consider it. Have any query related to Project Zone, Do contact us. </p>
       <p> Found any bug in Project Zone. Please, notify us about it. </p>
       <hr/>
-      <h3 style="text-align:center"><a href=${ link }>Visit project-zone again !</a></h3>
+      <h3 style="text-align:center"><a href=${ link }>Visit Project Zone again !</a></h3>
       <hr/>
       
       Thanks You. ! Have a great day!`;
@@ -279,7 +278,7 @@ exports.SendContactEmail = async (req, res) =>
         usercontent
       );
 
-      const admincontent = `<h3 style="text-align:center"> Hey Rohit ! You have got a contact message from project-zone !</h3>
+      const admincontent = `<h3 style="text-align:center"> Hey Rohit ! You have got a contact message from Project Zone !</h3>
       
       <p>${ user.firstname } has contacted on project-zone. We have sent him a thank you mail. </p>
       <p>These are the ${ user.firstname }'s contact details.</p>
@@ -292,9 +291,11 @@ exports.SendContactEmail = async (req, res) =>
       <hr/>
       `;
 
+      const adminEmail = "admin@project-zone.tech";
+
       await sendEmail(
-        process.env.SENDGRID_VERIFIED_MAIL,
-        "Got Contact from project-zone",
+        adminEmail,
+        "Got Contact from Project Zone",
         admincontent
       );
 
@@ -339,12 +340,12 @@ exports.VerifyEmailSend = async (req, res) =>
         }
       );
 
-      // const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/project-zone/verify-email/${token}`;
+      const link = `https://60e5a4164df29368b0329a4b--project-zone.netlify.app/project-zone/verify-email/${token}`;
 
       /* Above link will be used when client-side is fully deployed, if we are running client-side on local host 
       then link below will be sent as email */
 
-      const link = `${ req.protocol }://${ req.hostname }:3000/project-zone/verify-email/${ token }`;
+      // const link = `${ req.protocol }://${ req.hostname }:3000/project-zone/verify-email/${ token }`;
 
       const content = `<h2 style={{textAlign ="center"}}>Project-zone account verification link</h2>
       
