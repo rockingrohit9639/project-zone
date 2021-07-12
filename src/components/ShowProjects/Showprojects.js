@@ -173,6 +173,14 @@ function Showprojects()
       <ToastContainer />
       <div className="mt">
         <SearchBox fetchProjects={fetchProjects} />
+
+        {isLoading ? (
+          <div className="loading_indicator">
+            <Bars stroke={"#6f6ee1"} fill="#6f6ee1" width="60" height="90" />
+            <p> Fetching {query} projects </p>
+          </div>
+        ) : null}
+
         <div className=" default_options filtre-div">
           <label className="container">
             Beginner Level
@@ -305,12 +313,7 @@ function Showprojects()
         <h2 className="query"> Enter query to search for projects. </h2>
       )}
 
-      {isLoading ? (
-        <div className="loading_indicator">
-          <Bars stroke={"#6f6ee1"} fill="#6f6ee1" width="60" height="90" />
-          <p> Fetching {query} projects </p>
-        </div>
-      ) : null}
+
 
       <div className="projectsList">
         {projects &&
