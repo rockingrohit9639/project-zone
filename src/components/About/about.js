@@ -49,7 +49,7 @@ const AboutUs = () =>
 
       <div className="container">
         <div className="title">
-          <h1>OUR CONTRIBUTORS</h1>
+          <h1>Meet the team behind Project Zone</h1>
         </div>
         <div className="contributors_list">
           {users?.map((user, idx) =>

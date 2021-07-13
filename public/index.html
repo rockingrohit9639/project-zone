@@ -3,15 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-    <link 
-     rel="stylesheet" 
-     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
-     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <meta property="og:title" content="Project Zone | Find Build Share" />
+    <meta property="og:image" content="https://i.imgur.com/slZxzFm.jpg" />
+
     <meta
-      name="description"
-      content="Find exactly what to build next using your tech stack."
+      property="og:description"
+      content="Find exactly what project you want to build next using your tech stack."
     />
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
@@ -27,56 +30,54 @@
 
     <title>Project Zone</title>
     <!-- This is style for preloaders adding it here coz it was not working in css file as it took time for it to load. -->
-    <style> 
+    <style>
       .loader,
-        .loader:after {
-          border-radius: 50%;
-          width: 10em;
-          height: 10em;
+      .loader:after {
+        border-radius: 50%;
+        width: 10em;
+        height: 10em;
+      }
+      .loader {
+        margin: 60px auto;
+        font-size: 10px;
+        position: relative;
+        text-indent: -9999em;
+        border-top: 1.1em solid rgba(78, 96, 188, 0.2);
+        border-right: 1.1em solid rgba(78, 96, 188, 0.2);
+        border-bottom: 1.1em solid rgba(78, 96, 188, 0.2);
+        border-left: 1.1em solid #4e60bc;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-animation: load8 1.1s infinite linear;
+        animation: load8 1.1s infinite linear;
+        margin-top: 20%;
+      }
+      @-webkit-keyframes load8 {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
         }
-        .loader {
-          margin: 60px auto;
-          font-size: 10px;
-          position: relative;
-          text-indent: -9999em;
-          border-top: 1.1em solid rgba(78,96,188, 0.2);
-          border-right: 1.1em solid rgba(78,96,188, 0.2);
-          border-bottom: 1.1em solid rgba(78,96,188, 0.2);
-          border-left: 1.1em solid #4e60bc;
-          -webkit-transform: translateZ(0);
-          -ms-transform: translateZ(0);
-          transform: translateZ(0);
-          -webkit-animation: load8 1.1s infinite linear;
-          animation: load8 1.1s infinite linear;
-          margin-top: 20%;
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
         }
-        @-webkit-keyframes load8 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
+      }
+      @keyframes load8 {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
         }
-        @keyframes load8 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
         }
-        </style>
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="pre-loader" class="loader">
-      Loading...
-    </div>
+    <div id="pre-loader" class="loader">Loading...</div>
     <div id="root"></div>
 
     <!-- top button start -->
