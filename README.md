@@ -37,6 +37,19 @@ Project Zone suggests a user about the projects they can create based on their s
 Project Zone has the categories of projects from beginner level to advanced level.
 <hr>
 
+# Features
+- Login/Signup
+- Email Verification
+- Find best projects
+- Find projects based on your skills
+- Filter projects as beginner, intermediate or advanced level
+- Get a auto recommended project
+- A logged in user can add his/her project, with github link too
+- Build your profile. Edit it as well
+- Get projectones on adding projects or making an enchanement on other projects
+- Earn badges 
+- If you find any bug or you have a suggestion then fill our the form and contact us.
+
 ## Frameworks & Tools 🧰
 
 - React
