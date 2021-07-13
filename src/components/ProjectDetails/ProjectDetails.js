@@ -51,9 +51,11 @@ function ProjectDetails(props)
           github: project.data.github,
         },
       });
-    } catch (err)
-    {
-      console.log(err);
+    } 
+    catch (err){
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
+      }
     }
 
     setIsLoading(false);

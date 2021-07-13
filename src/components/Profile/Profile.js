@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from "react";
 import profileavatar from "./../../assets/user.png";
-import { Link as RouterLink, useHistory } from "react-router-dom";
+import { Link as RouterLink, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { usePalette } from "react-palette";
-import "./Profile.css";
 import { useDataLayerValues } from "../../datalayer";
-import { UpdateUserData, sendverifyemail } from "../../axios/instance";
+import { GetUserProfile, UpdateUserData, sendverifyemail } from "../../axios/instance";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import { Puff } from "react-loading-icons";
+import { Puff, Oval } from "react-loading-icons";
 import { getSkillColor } from "../../utils";
+import "./Profile.css";
 
 const Profile = () =>
 {
   const [{ dashboard, user, isemailverified }, dispatch] = useDataLayerValues();
-  const [modalVisibility, setModalVisibility] = useState("false");
-  const [isLoading, setIsLoading] = useState(false);
+  const [ modalVisibility, setModalVisibility ] = useState("false");
+  const [ isLoading, setIsLoading ] = useState(true);
+  const { data } = usePalette(dashboard.profile_pic);
+  const { profileid } = useParams();
+
+  useEffect(() =>
+  {
+    window.scroll(0, 0);
+    fetchProfile(profileid);
+  }, []);
 
   const [fields, setFields] = useState({
-    fname: user.fname,
-    lname: user.lname,
+    fname: dashboard.fname ? dashboard.fname : "",
+    lname: dashboard.lname ? dashboard.lname : "",
     profileimg: dashboard.profile_pic ? dashboard.profile_pic : "",
     githublink: dashboard.social_links ? dashboard.social_links.github : "",
     linkedinlink: dashboard.social_links ? dashboard.social_links.linkdin : "",
@@ -26,8 +34,53 @@ const Profile = () =>
     bio: dashboard.bio ? dashboard.bio : "",
     descr: dashboard.description ? dashboard.description : "",
   });
-  const { fname, lname, githublink, linkedinlink, bio, descr, fblink } = fields;
-  const { data } = usePalette(dashboard.profile_pic);
+  const { fname, lname, githublink, linkedinlink, fblink, bio, descr } = fields;
+
+  const fetchProfile = async (id) =>
+  {
+    setIsLoading(true);
+
+    const body = {
+      id: id,
+    };
+
+    try
+    {
+      const user = await GetUserProfile(body);
+
+      const dashboard_data = {
+        ...dashboard,
+        id: user.data._id,
+        fname: user.data.firstname,
+        lname: user.data.lastname,
+        email: user.data.email,
+        bio: user?.data?.profile?.bio && user.data.profile.bio,
+        description: user?.data?.profile?.description && user.data.profile.description,
+        profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
+        projectones: user.data.profile.projectones,
+        projects_added: user.data.profile.projects_added,
+        projects_liked: user.data.profile.projects_liked,
+        projects_rated: user.data.profile.projects_rated,
+        badges: user.data.profile.badges,
+        social_links: user.data.profile.social_links,
+        created_at: user.data.created_at,
+      };
+      
+      dispatch({
+        type: "SET_USER_DASHBOARD_DATA",
+        dashboard: dashboard_data,
+      });
+      
+    } 
+    catch (err) {
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
+      }
+    }
+
+    setIsLoading(false);
+  };
+
 
   const toggleModalVisibility = () =>
   {
@@ -109,18 +162,6 @@ const Profile = () =>
     }
   };
 
-  const clearFields = () =>
-  {
-    setFields({
-      profileimg: "",
-      githublink: "",
-      linkedinlink: "",
-      fblink: "",
-      bio: "",
-      descr: "",
-    });
-  };
-
   const convertBase64 = (file) =>
   {
     return new Promise((resolve, reject) =>
@@ -147,7 +188,7 @@ const Profile = () =>
       fname: data.firstname,
       lname: data.lastname,
     };
-    const dashboarddata = {
+    const dashboard_data = {
       ...dashboard,
       bio: data.profile.bio,
       description: data.profile.description,
@@ -169,7 +210,7 @@ const Profile = () =>
       });
       dispatch({
         type: "SET_USER_DASHBOARD_DATA",
-        dashboard: dashboarddata,
+        dashboard: dashboard_data,
       });
 
       toggleModalVisibility();
@@ -204,6 +245,14 @@ const Profile = () =>
   };
 
   return (
+  <>
+    {isLoading ? 
+      <div className="loading_indicator profile_loading">
+        <Oval stroke={"#6f6ee1"} className="profile_oval"/>
+        <p> Fetching Profile Details </p>
+      </div> 
+    :
+    <>
     <div className="profile_wrapper">
       <div className="person_card">
         <div className="card_top" style={{ backgroundColor: data?.vibrant }}>
@@ -214,7 +263,7 @@ const Profile = () =>
           )}
         </div>
         <div className="card_content">
-          <h1>{user.fname + " " + user.lname}</h1>
+          <h1>{dashboard.fname + " " + dashboard.lname}</h1>
           <h3>{dashboard.bio === "" ? <i>No bio set</i> : dashboard.bio}</h3>
           <div className="social_icons">
             {dashboard.social_links ? (
@@ -251,32 +300,37 @@ const Profile = () =>
             ) : null}
           </div>
           <h3>Projectones : {dashboard.projectones}</h3>
-          <button
-            className="editbtn"
-            onClick={() =>
-            {
-              toggleModalVisibility();
-            }}
-          >
-            Edit Profile
-          </button>
-          <RouterLink to="/addnew" className="addnewlink">
-            <button className="addnewbtn">Add New Project</button>
-          </RouterLink>
-          {isemailverified ? (
-            <div className="email_verified_msg">
-              <strong>Email Verified</strong> <CheckCircleIcon />
-            </div>
-          ) : (
-            <button className="editbtn" onClick={emailVerifyBtn}>
-              Verify Email
+          {(dashboard.id === user.userid) ?
+          <>
+            <button
+              className="editbtn"
+              onClick={() =>
+              {
+                toggleModalVisibility();
+              }}
+            >
+              Edit Profile
             </button>
-          )}
+            <RouterLink to="/addnew" className="addnewlink">
+              <button className="addnewbtn">Add New Project</button>
+            </RouterLink>
+            {isemailverified ? (
+              <div className="email_verified_msg">
+                <strong>Email Verified</strong> <CheckCircleIcon />
+              </div>
+            ) : (
+              <button className="editbtn" onClick={emailVerifyBtn}>
+                Verify Email
+              </button>
+            )}
+          </>
+          : null
+          }
         </div>
       </div>
       <div className="content_right">
         <div className="email_descr">
-          <h3> {user.email} </h3>
+          <h3> {dashboard.email} </h3>
           <p>
             {dashboard.description === "" ? (
               <i>No Description Added</i>
@@ -300,7 +354,7 @@ const Profile = () =>
               })}
             </ul>
           ) : (
-            <i>No Projects added by You</i>
+            <i>No Projects added </i>
           )}
           <h2>Badges</h2>
           {(dashboard.badges && dashboard.badges.length > 0) ? (
@@ -323,10 +377,11 @@ const Profile = () =>
               })}
             </div>
           ) : (
-            <i>No Badges Won By You</i>
+            <i>No Badges Won </i>
           )}
         </div>
       </div>
+      {(dashboard.id === user.userid) ? <> 
       <div
         className={`overlay ${ modalVisibility && "overlay_hidden" }`}
         onClick={() => toggleModalVisibility()}
@@ -464,7 +519,12 @@ const Profile = () =>
           <i className="fa fa-times"></i>
         </div>
       </form>
+      </> : null
+      }
     </div>
+    </> 
+    }
+    </>
   );
 };
 

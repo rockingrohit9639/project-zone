@@ -65,6 +65,7 @@ function App()
 
       const data = {
         ...user,
+        userid: user.data._id,
         fname: user.data.firstname,
         lname: user.data.lastname,
         email: user.data.email,
@@ -72,6 +73,10 @@ function App()
 
       const dashboard_ = {
         ...dashboard,
+        id: user.data._id,
+        fname: user.data.firstname,
+        lname: user.data.lastname,
+        email: user.data.email,
         bio: user?.data?.profile?.bio && user.data.profile.bio,
         description: user?.data?.profile?.description && user.data.profile.description,
         profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
@@ -83,7 +88,7 @@ function App()
         social_links: user.data.profile.social_links,
         created_at: user.data.created_at,
       };
-      const email = user.data.email_acctivation.email_activated;
+      const isverifiedemail = user.data.email_acctivation.email_activated;
 
       dispatch({
         type: "SET_AUTH",
@@ -99,7 +104,7 @@ function App()
       });
       dispatch({
         type: "SET_EMAIL_VERIFIED",
-        isemailverified: email,
+        isemailverified: isverifiedemail,
       });
     } catch (err)
     {
@@ -138,7 +143,7 @@ function App()
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/callback" component={Callback} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile/:profileid" component={Profile} />
             <Route exact path="/forgetpassword" component={ForgetPassword} />
 
             {/* Add new project route */}

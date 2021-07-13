@@ -1,3 +1,4 @@
+const UserModel = require("./../db/schema/User");
 const Project = require("./../db/schema/projectSchema");
 
 exports.HomePageProjects = async (req, res) => {
@@ -61,7 +62,7 @@ exports.HomePageProjects = async (req, res) => {
 
 exports.GetProjectByID = async (req, res) => {
   const { id } = req.body;
-  
+
   try {
     const project = await Project.findById(id);
     return res.status(200).json(project);
@@ -69,3 +70,15 @@ exports.GetProjectByID = async (req, res) => {
     return res.status(500).json({ error: "500 Internal Error" });
   }
 };
+
+exports.GetUserByID = async (req, res) => {
+  const { id } = req.body;
+  
+  try {
+    const user = await UserModel.findById(id);
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json({ error: "500 Internal Error" });
+  }
+};
+
