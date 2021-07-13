@@ -201,6 +201,7 @@ input[type="file"] {
 .badges_list {
   display: flex;
   flex-wrap: wrap;
+  margin-left:-10px;
 }
 
 .badge_container {
@@ -215,7 +216,6 @@ input[type="file"] {
   border: 1px solid #ccc;
   border-radius: 10px;
   margin: 10px;
-  margin-left: 0;
   padding: 3%;
 }
 
@@ -242,6 +242,7 @@ input[type="file"] {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index:2;
 }
 
 .overlay_hidden {
@@ -259,6 +260,7 @@ input[type="file"] {
   background-color: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
+  z-index:2;
 }
 
 .editmodal_hidden {
