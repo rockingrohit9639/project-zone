@@ -28,16 +28,13 @@
 
 # Problem 😧
 
-When we participate in Hackathons, We always face one issue that is an ideas for project or inspiration. When we learn a new skill we face problems in implementing it in a project.
-
+When we participate in any hackathon, we always face an issue i.e what project should you create you always seek for some inspiration for projects. Or, when we learn a new tech skill like react, angular, node or anything, then we always go to google or youtube to find some project ideas.
 > #### So if you face the same problem we are here to help you! 🤩
 
 # Solution 😃
 
-Project-Zone web-app suggests the user about the projects they can create based on their skills. Like if we learn some new tech, We always search for beginner level projects in node, intermediate level projects in ReactJs, and so on. For this, We have to explore a lot on Google and YouTube to get the projects. So, if we have all these projects in one place it will be very much easier for a beginner to find project ideas!
-We have the categories from beginner to startup level project ideas and we also have an option to add new projects.
-Our app is in its initial stage, We will improve it a lot. 🔥
-
+Project Zone suggests a user about the projects they can create based on their skills. Project Zone has a collection of wide variety of projects for many different skill-sets. You can also add some projects of your choice on Project Zone.
+project Zone has the categories of projects from beginner level to advanced level.
 <hr>
 
 ## Frameworks & Tools 🧰
