@@ -43,9 +43,9 @@ Our app is in its initial stage, We will improve it a lot. 🔥
 ## Frameworks & Tools 🧰
 
 - React
-- Elasticsearch
-- Magic Lab
-- Material UI
+- NodeJs
+- ExpressJs
+- MongoDB
 
 # Setting up the project for running at localhost 💻
 
