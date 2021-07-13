@@ -34,7 +34,7 @@ When we participate in any hackathon, we always face an issue i.e what project s
 # Solution 😃
 
 Project Zone suggests a user about the projects they can create based on their skills. Project Zone has a collection of wide variety of projects for many different skill-sets. You can also add some projects of your choice on Project Zone.
-project Zone has the categories of projects from beginner level to advanced level.
+Project Zone has the categories of projects from beginner level to advanced level.
 <hr>
 
 ## Frameworks & Tools 🧰
