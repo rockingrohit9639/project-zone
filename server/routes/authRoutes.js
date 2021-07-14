@@ -58,6 +58,8 @@ authRouter.post('/google-signin', googleSignIn);
  *    responses:
  *      '200':
  *        description: Response Successful
+ *      '404':
+ *        description: No user found with this id
  *      '500':
  *        description: Internal server error
  */

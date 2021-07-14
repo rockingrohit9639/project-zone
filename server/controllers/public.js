@@ -65,7 +65,10 @@ exports.GetProjectByID = async (req, res) => {
 
   try {
     const project = await Project.findById(id);
-    return res.status(200).json(project);
+    if(project)
+      return res.status(200).json(project);
+    else 
+      return res.status(404).json({ error : "Project Not Found" });
   } catch (err) {
     return res.status(500).json({ error: "500 Internal Error" });
   }
@@ -76,7 +79,10 @@ exports.GetUserByID = async (req, res) => {
   
   try {
     const user = await UserModel.findById(id);
-    return res.status(200).json(user);
+    if(user)
+      return res.status(200).json(user)
+    else 
+      return res.status(404).json({ error : "User Not Found" });
   } catch (err) {
     return res.status(500).json({ error: "500 Internal Error" });
   }

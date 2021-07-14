@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import profileavatar from "./../../assets/user.png";
-import { Link as RouterLink, useParams } from "react-router-dom";
+import { Link as RouterLink, useParams, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { usePalette } from "react-palette";
 import { useDataLayerValues } from "../../datalayer";
@@ -16,6 +16,7 @@ const Profile = () =>
   const [ modalVisibility, setModalVisibility ] = useState("false");
   const [ isLoading, setIsLoading ] = useState(true);
   const { data } = usePalette(dashboard.profile_pic);
+  const history = useHistory();
   const { profileid } = useParams();
 
   useEffect(() =>
@@ -75,10 +76,12 @@ const Profile = () =>
     catch (err) {
       if (err.response) {
         toast.error(`${err.response.data.error}`);
+        history.push('/user-not-found');   
       }
     }
-
+  
     setIsLoading(false);
+    
   };
 
 
@@ -246,6 +249,7 @@ const Profile = () =>
 
   return (
   <>
+    <ToastContainer position="bottom-center" />
     {isLoading ? 
       <div className="loading_indicator profile_loading">
         <Oval stroke={"#6f6ee1"} className="profile_oval"/>
@@ -390,7 +394,6 @@ const Profile = () =>
         className={`editmodal ${ modalVisibility && "editmodal_hidden" }`}
         onSubmit={handleSubmit}
       >
-        <ToastContainer position="bottom-center" />
         <div className="editmodal_left ">
           <div className="img_container">
             {fields.profileimg === "" ? (
