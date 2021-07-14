@@ -96,6 +96,8 @@ projectsRouter.post("/reset-password", ResetPassword);
  *    responses:
  *      '200':
  *        description: Response Successful
+ *      '404':
+ *        description: No project found with this id
  *      '500':
  *        description: Internal server error
  */
