@@ -44,6 +44,10 @@ const projectSchema = mongoose.Schema({
       data: {
         type: String,
       },
+      upvotes: {
+        type: Number,
+        default: 0,
+      },
       createdat: {
         type: String,
       },

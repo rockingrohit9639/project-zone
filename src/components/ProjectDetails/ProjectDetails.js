@@ -6,9 +6,10 @@ import userImg from "../../assets/user.png";
 import moment from "moment";
 import Rating from "@material-ui/lab/Rating";
 import { useDataLayerValues } from "./../../datalayer";
-import { AddComment, GetSingleProject } from "./../../axios/instance";
+import { AddComment, UpvoteComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
 import { Link as RouterLink, useParams, useHistory } from "react-router-dom";
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { BallTriangle } from "react-loading-icons";
 
 function ProjectDetails(props)
@@ -107,6 +108,58 @@ function ProjectDetails(props)
     }
   };
 
+  const UpvoteHandler = async (comment_id, upvotes) => {
+
+    if (!isAuthenticated)
+    {
+      return toast.error(`You have to login first`);
+    }
+
+    try
+      {
+        const data = {
+          project_id: projectid,
+          comment_id : comment_id,
+          upvotes: upvotes + 1,
+        };
+
+        const res = await UpvoteComment(data);
+        if (!res.data.error)
+        {
+          const comments_upvoted = res.data.data;
+          const projectdata = {
+            ...ProjectDetails,
+            comments: comments_upvoted,
+          };
+
+          const userdata = {
+            ...dashboard,
+            comments_upvoted: [...dashboard.comments_upvoted, comment_id],
+          };
+
+          dispatch({
+            type: "SET_PROJECT_DETAILS",
+            ProjectDetails: projectdata,
+          });
+
+          dispatch({
+            type: "SET_USER_DASHBOARD_DATA",
+            dashboard: userdata,
+          });
+
+          toast.success(`${ res.data.msg }`);
+        }
+
+      } catch (err)
+      {
+        if (err.response)
+        {
+          toast.error(`${ err.response.data.error }`);
+        }
+      }
+
+  }
+
   return (
     <div className="project_details_container">
       <ToastContainer position="bottom-left" />
@@ -150,8 +203,8 @@ function ProjectDetails(props)
         </div>
 
         <div className="comment_content">
-          {ProjectDetails.comments.map((item) => (
-            <div className="user_comment">
+          {ProjectDetails.comments.map((comment) => (
+            <div className="user_comment" key={comment._id}>
               <div className="comment_info">
                 <div className="comment_user">
                   <img
@@ -160,12 +213,27 @@ function ProjectDetails(props)
                     }
                     alt="user_image"
                   />
-                  <h2>{item.fname}</h2>
+                  <h2>{comment.fname}</h2>
                 </div>
-                <p className="comment_timestamp">{item.createdat}</p>
+                <p className="comment_timestamp">{comment.createdat}</p>
               </div>
-
-              <p className="comment_desc">{item.data}</p>
+              <p className="comment_desc">{comment.data}</p>
+              <div>
+                { comment.upvotes && dashboard.comments_upvoted.indexOf(comment._id) !== -1 
+                  ? 
+                  <>
+                  <ThumbUpIcon className="thumb_upvote"></ThumbUpIcon> 
+                  <span className="upvotes upvotes_num">{comment.upvotes}</span>
+                  </>
+                  : 
+                  <>
+                  <ThumbUpIcon className="thumb"
+                    onClick={() => UpvoteHandler(comment._id, comment.upvotes)}>
+                  </ThumbUpIcon> 
+                  <span className="upvotes">{comment.upvotes ? comment.upvotes : " "}</span> 
+                  </>
+                }
+              </div>
             </div>
           ))}
         </div>

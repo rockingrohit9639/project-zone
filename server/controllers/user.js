@@ -572,6 +572,48 @@ exports.AddNewRating = async (req, res) =>
   }
 };
 
+exports.UpvoteComment = async (req, res) =>
+{
+  const { userid } = req;
+  const { project_id, comment_id, upvotes } = req.body;
+
+  try
+  {
+    UserModel.findByIdAndUpdate(
+      userid,
+      { $push: { "profile.comments_upvoted": comment_id } },
+      { new: true },
+      function (err, doc)
+      {
+        if (err)
+        {
+          return res.status(500).json({ error: "NO user with such id" });
+        }
+      }
+    );
+
+    Project.findOneAndUpdate(
+      { _id : project_id , "comments._id" : comment_id },
+      { "$set": { "comments.$.upvotes" : upvotes} },
+      { new: true },
+      function (error, doc)
+      {
+        if (error)
+        {
+          res.status(500).json({ error: "Not Successful" });
+        }
+        else
+        {
+          res.status(200).json({ msg: "Keep supporting our projects by upvoting like this 👍" , data: doc.comments });
+        }
+      }
+    );
+
+  } catch (err) {
+    res.status(500).json({ error: "500 Internal Error" });
+  }
+};
+
 exports.AddBadge = async (req, res) =>
 {
 

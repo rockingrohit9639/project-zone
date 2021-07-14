@@ -12,6 +12,7 @@ const {
   AddComment,
   AddLike,
   AddNewRating,
+  UpvoteComment,
   AddBadge
 } = require("./../controllers/user");
 
@@ -152,7 +153,7 @@ ProtectedRouter.patch("/add-comment", authenticate, AddComment);
  * @swagger
  * /add-like:
  *  patch:
- *    description: Increment like on a particular project.
+ *    description: Increment like on a particular project and add project to projects_liked for that user.
  *    responses:
  *      '200':
  *        description: Response Successful
@@ -168,7 +169,7 @@ ProtectedRouter.patch("/add-like", authenticate, AddLike);
  * @swagger
  * /add-new-rating:
  *  patch:
- *    description: Add new rating to allratings and Update rating
+ *    description: Add new rating to allratings and Update rating and add project to projects_rated for that user
  *    responses:
  *      '200':
  *        description: Response Successful
@@ -178,6 +179,23 @@ ProtectedRouter.patch("/add-like", authenticate, AddLike);
  *        description: Not a valid token
  */
 ProtectedRouter.patch("/add-new-rating", authenticate, AddNewRating);
+
+// Routes
+/**
+ * @swagger
+ * /upvote-comment: 
+ *  patch:
+ *    description: Add upvote to comment and add comment to upvoted_comments for that user
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '500':
+ *        description: Internal server error/ Not a successfull response
+ *      '401':
+ *        description: Not a valid token
+ */
+ ProtectedRouter.patch("/upvote-comment", authenticate, UpvoteComment);
+
 
 // Routes
 /**

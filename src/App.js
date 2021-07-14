@@ -84,6 +84,7 @@ function App()
         projects_added: user.data.profile.projects_added,
         projects_liked: user.data.profile.projects_liked,
         projects_rated: user.data.profile.projects_rated,
+        comments_upvoted: user.data.profile.comments_upvoted,
         badges: user.data.profile.badges,
         social_links: user.data.profile.social_links,
         created_at: user.data.created_at,
@@ -111,7 +112,6 @@ function App()
       console.log(err);
     }
   };
-
 
   //Logic for Theme toggler to get dark mode
   const [theme, settheme] = useState("light");

@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema({
     projects_added: [],
     projects_liked: [],
     projects_rated: [],
+    comments_upvoted:[],
     badges: [
       {
         title: {

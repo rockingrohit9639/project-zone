@@ -72,10 +72,10 @@
 }
 
 .comment_timestamp {
-  margin: 0;
+  margin-top: -10px;
   color: #ccc;
   margin-bottom: 0 !important;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 }
 
 .comment_header p {
@@ -149,3 +149,32 @@
 .comment_desc {
   font-family: "Poppins", sans-serif;
 }
+
+.thumb{
+  font-size:40px;
+  transition: all 0.3s;
+  cursor:pointer;
+  color:#AAA;
+  margin-right:8px;
+}
+
+.thumb:hover{
+  color:#6f6ee1;
+  transform : scale(1.25);
+}
+
+.thumb_upvote{
+  font-size:40px;
+  margin-right:8px;
+  color:#6f6ee1;
+}
+
+.upvotes{
+  font-size:20px;
+}
+
+.upvotes_num{
+  color:#6f6ee1;
+}
+
+
