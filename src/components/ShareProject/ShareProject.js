@@ -29,7 +29,7 @@ To know more about the project or to find other similar projects visit -
 `;
 
   return (
-    <div className="share-conatiner">
+    <div className="share-conatiner" style={props.style}>
       <div>
         <TwitterShareButton url={url} title={quote}>
           <TwitterIcon size={35} round />

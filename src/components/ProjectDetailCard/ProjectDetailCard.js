@@ -227,6 +227,7 @@ function ProjectDetailCard()
         <ShareProject
           title={ProjectDetails.title}
           description={ProjectDetails.descr}
+          style={{right : "10%", marginTop:"3rem"}}
         />
       ) : null}
       <h4 className="level_">{ProjectDetails.level} Level</h4>
