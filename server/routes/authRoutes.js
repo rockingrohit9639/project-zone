@@ -1,7 +1,7 @@
 const express = require('express');
 const authRouter = express.Router();
-const { signIn, signUp, googleSignIn, profile } = require('./../controllers/auth');
-const { authenticate } = require('./../middlewares/auth');
+const { signIn, signUp, googleSignIn } = require('./../controllers/auth');
+const { GetUserByID } = require('./../controllers/public');
 
 // Routes
 /**
@@ -48,4 +48,21 @@ authRouter.post('/signup', signUp);
  *        description: Internal Error/ Email already registered
  */
 authRouter.post('/google-signin', googleSignIn);
+
+// Routes
+/**
+ * @swagger
+ * /user-by-id:
+ *  post:
+ *    description: Get user details using user id
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '404':
+ *        description: No user found with this id
+ *      '500':
+ *        description: Internal server error
+ */
+authRouter.post('/user-by-id', GetUserByID);
+
 module.exports = authRouter;

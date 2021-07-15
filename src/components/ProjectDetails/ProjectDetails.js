@@ -8,7 +8,7 @@ import Rating from "@material-ui/lab/Rating";
 import { useDataLayerValues } from "./../../datalayer";
 import { AddComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
-import { Link as RouterLink, useParams } from "react-router-dom";
+import { Link as RouterLink, useParams, useHistory } from "react-router-dom";
 import { BallTriangle } from "react-loading-icons";
 
 function ProjectDetails(props)
@@ -17,6 +17,7 @@ function ProjectDetails(props)
     useDataLayerValues();
   const [isLoading, setIsLoading] = useState(false);
   const [comment, setcomment] = useState("");
+  const history = useHistory();
   const { projectid } = useParams();
 
   useEffect(() =>
@@ -51,9 +52,12 @@ function ProjectDetails(props)
           github: project.data.github,
         },
       });
-    } catch (err)
-    {
-      console.log(err);
+    } 
+    catch (err){
+      if (err.response) {
+        toast.error(`${err.response.data.error}`);
+        history.push('/project-not-found');   
+      }
     }
 
     setIsLoading(false);

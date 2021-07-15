@@ -1,5 +1,6 @@
 export const initialState = {
   user: {
+    userid: null,
     fname: "",
     lname: "",
     email: "",
@@ -7,6 +8,10 @@ export const initialState = {
     picture: "",
   },
   dashboard: {
+    id : null,
+    fname: "",
+    lname: "",
+    email: "",
     bio: "",
     description: "",
     profile_pic: "",
