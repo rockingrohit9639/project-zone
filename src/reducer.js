@@ -19,6 +19,7 @@ export const initialState = {
     projects_added: [],
     projects_liked: [],
     projects_rated: [],
+    comments_upvoted:[],
     badges: [],
     social_links: {
       github: "",
