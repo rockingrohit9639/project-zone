@@ -21,9 +21,11 @@ const userSchema = new mongoose.Schema({
   profile: {
     bio: {
       type: String,
+      default: "",
     },
     description: {
       type: String,
+      default: "",
     },
     projects_added: [],
     projects_liked: [],
@@ -33,9 +35,11 @@ const userSchema = new mongoose.Schema({
       {
         title: {
           type: String,
+          default: "",
         },
         badge_description: {
           type: String,
+          default: "",
         },
         earnedat: {
           type: String,

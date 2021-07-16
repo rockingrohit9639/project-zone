@@ -55,7 +55,7 @@ function App()
     {
       loader.remove();
     }
-  }, [localStorage.getItem("tokken"), dispatch]);
+  }, [localStorage.getItem("tokken")]);
 
   const getUser = async () =>
   {
@@ -70,25 +70,6 @@ function App()
         lname: user.data.lastname,
         email: user.data.email,
       };
-
-      const dashboard_ = {
-        ...dashboard,
-        id: user.data._id,
-        fname: user.data.firstname,
-        lname: user.data.lastname,
-        email: user.data.email,
-        bio: user?.data?.profile?.bio && user.data.profile.bio,
-        description: user?.data?.profile?.description && user.data.profile.description,
-        profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
-        projectones: user.data.profile.projectones,
-        projects_added: user.data.profile.projects_added,
-        projects_liked: user.data.profile.projects_liked,
-        projects_rated: user.data.profile.projects_rated,
-        comments_upvoted: user.data.profile.comments_upvoted,
-        badges: user.data.profile.badges,
-        social_links: user.data.profile.social_links,
-        created_at: user.data.created_at,
-      };
       const isverifiedemail = user.data.email_acctivation.email_activated;
 
       dispatch({
@@ -98,10 +79,6 @@ function App()
       dispatch({
         type: "SET_USER",
         user: data,
-      });
-      dispatch({
-        type: "SET_USER_DASHBOARD_DATA",
-        dashboard: dashboard_,
       });
       dispatch({
         type: "SET_EMAIL_VERIFIED",
