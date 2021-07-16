@@ -26,6 +26,7 @@ import ForgetPassword from "./components/ForgetPassword/Forget";
 import SetPasword from "./components/SetPasswordPage/SetPasword";
 import VerifyEmailPage from "./components/VerifyEmailPage/VerifyEmailPage";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
+import ScrollToTop from "./components/ScrollComponent/ScrollToTop";
 
 function App()
 {
@@ -127,6 +128,7 @@ function App()
       {/* <GlobalStyles /> */}
       <div className="App">
         <Router>
+          <ScrollToTop />
           <Navbar themeToggler={themeToggler} />
           <Switch>
             {/* Project realted routes */}
