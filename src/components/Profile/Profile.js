@@ -23,17 +23,17 @@ const Profile = () =>
   {
     window.scroll(0, 0);
     fetchProfile(profileid);
-  }, []);
+  }, [profileid]);
 
   const [fields, setFields] = useState({
-    fname: dashboard.fname ? dashboard.fname : "",
-    lname: dashboard.lname ? dashboard.lname : "",
-    profileimg: dashboard.profile_pic ? dashboard.profile_pic : "",
-    githublink: dashboard.social_links ? dashboard.social_links.github : "",
-    linkedinlink: dashboard.social_links ? dashboard.social_links.linkdin : "",
-    fblink: dashboard.social_links ? dashboard.social_links.facebook : "",
-    bio: dashboard.bio ? dashboard.bio : "",
-    descr: dashboard.description ? dashboard.description : "",
+    fname: "",
+    lname: "",
+    profileimg: "",
+    githublink:  "",
+    linkedinlink: "",
+    fblink: "",
+    bio: "",
+    descr: "",
   });
   const { fname, lname, githublink, linkedinlink, fblink, bio, descr } = fields;
 
@@ -55,8 +55,8 @@ const Profile = () =>
         fname: user.data.firstname,
         lname: user.data.lastname,
         email: user.data.email,
-        bio: user?.data?.profile?.bio && user.data.profile.bio,
-        description: user?.data?.profile?.description && user.data.profile.description,
+        bio: user.data.profile.bio,
+        description: user.data.profile.description,
         profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
         projectones: user.data.profile.projectones,
         projects_added: user.data.profile.projects_added,
@@ -71,7 +71,21 @@ const Profile = () =>
         type: "SET_USER_DASHBOARD_DATA",
         dashboard: dashboard_data,
       });
-      
+
+      if(profileid === user.data._id)
+        {
+          setFields({
+            fname: user.data.firstname,
+            lname: user.data.lastname,
+            profileimg: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
+            githublink: user.data.profile.social_links.github,
+            linkedinlink: user.data.profile.social_links.linkdin,
+            fblink: user.data.profile.social_links.facebook,
+            bio: user.data.profile.bio,
+            descr:  user.data.profile.description,
+          })
+        }
+       
     } 
     catch (err) {
       if (err.response) {
@@ -117,7 +131,6 @@ const Profile = () =>
 
   const handleSubmit = (e) =>
   {
-
     setIsLoading(true);
 
     e.preventDefault();
