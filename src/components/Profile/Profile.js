@@ -360,12 +360,14 @@ const Profile = () =>
           <h2>Projects Added</h2>
           {dashboard.projects_added.length > 0 ? (
             <ul className="projects_list">
-              {dashboard.projects_added.map((project, i) =>
+              {dashboard.projects_added.map((project , i) =>
               {
                 return (
                   <li key={i}>
-                    <i className="fa fa-circle"></i>
-                    {project}
+                    <RouterLink to={`/projectdetails/${project.project_id}`} className="link">
+                      <i className="fa fa-circle"></i>
+                      {project.name}
+                    </RouterLink>
                   </li>
                 );
               })}

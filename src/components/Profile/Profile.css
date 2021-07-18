@@ -197,6 +197,10 @@ input[type="file"] {
   margin: 3px 0;
 }
 
+.projects_list .link{
+  color: #5352ed;
+}
+
 .fa-circle{
   color: #5352ed;
   font-size: 10px;
