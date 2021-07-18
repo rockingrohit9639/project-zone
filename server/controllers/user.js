@@ -184,8 +184,8 @@ exports.AddNewProject = async (req, res) =>
       github,
     });
 
-    const resp = await newProject.save();
-    if (!resp)
+    const projectres = await newProject.save();
+    if (!projectres)
     {
       res.status(500).json({ error: "Could not add your project." });
     }
@@ -199,7 +199,7 @@ exports.AddNewProject = async (req, res) =>
     UserModel.findByIdAndUpdate(
       userid,
       {
-        $push: { "profile.projects_added": name },
+        $push: { "profile.projects_added": { project_id: projectres._id, name: name  } },
         $inc: { "profile.projectones": 10 },
       },
       { new: true },
@@ -211,7 +211,7 @@ exports.AddNewProject = async (req, res) =>
         } else
         {
           username = doc.firstname;
-          const link = `project-zone.tech/projectdetails/${ resp._id }`;
+          const link = `project-zone.tech/projectdetails/${ projectres._id }`;
 
           /* Above link will be used when client-side is fully deployed, if we are running client-side on local host
           then link below will be sent as email */

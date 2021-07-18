@@ -27,7 +27,17 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: "",
     },
-    projects_added: [],
+    projects_added: [
+      {
+        project_id:{
+          type: String
+        },
+        name:{
+          type: String,
+          default : "",
+        },
+      }
+    ],
     projects_liked: [],
     projects_rated: [],
     comments_upvoted:[],
