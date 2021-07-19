@@ -333,7 +333,7 @@ const Profile = () =>
             </RouterLink>
             {isemailverified ? (
               <div className="email_verified_msg">
-                <strong>Email Verified</strong> <CheckCircleIcon />
+                <strong>Email Verified  </strong> <CheckCircleIcon/>
               </div>
             ) : (
               <button className="editbtn" onClick={emailVerifyBtn}>

@@ -79,7 +79,6 @@ function ProjectDetails(props)
     const data = {
       project_id: ProjectDetails.id,
       fname: user.fname,
-      userimg: dashboard.profile_pic,
       data: comment,
     };
 
@@ -178,11 +177,6 @@ function ProjectDetails(props)
         <div className="comment_user_data">
           <h1> Add Your Suggestion </h1>
           <div className="comment_user">
-            <img
-              src={dashboard.profile_pic ? dashboard.profile_pic : userImg}
-              alt="user_image"
-            />
-
             <h2>{user.fname ? user.fname : "Guest"}</h2>
           </div>
 
@@ -207,13 +201,9 @@ function ProjectDetails(props)
             <div className="user_comment" key={comment._id}>
               <div className="comment_info">
                 <div className="comment_user">
-                  <img
-                    src={
-                      dashboard.profile_pic ? dashboard.profile_pic : userImg
-                    }
-                    alt="user_image"
-                  />
-                  <h2>{comment.fname}</h2>
+                  <RouterLink to={`/profile/${comment.commenter_id}`}>
+                    <h2>{comment.fname}</h2>
+                  </RouterLink>
                 </div>
                 <p className="comment_timestamp">{comment.createdat}</p>
               </div>

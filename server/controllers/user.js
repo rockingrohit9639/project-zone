@@ -431,7 +431,7 @@ exports.VerifyEmail = async (req, res) =>
 exports.AddComment = async (req, res) =>
 {
   const { userid } = req;
-  const { project_id, fname, userimg, data } = req.body;
+  const { project_id, fname, data } = req.body;
   const createdat = moment().format("MMMM Do YYYY, h:mm:ss a");
   try
   {
@@ -441,7 +441,7 @@ exports.AddComment = async (req, res) =>
         $push: {
           comments: {
             fname: fname,
-            userimg: userimg,
+            commenter_id: userid,
             data: data,
             createdat: createdat,
           },
