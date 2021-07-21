@@ -38,7 +38,7 @@ const projectSchema = mongoose.Schema({
       fname: {
         type: String,
       },
-      userimg: {
+      commenter_id: {
         type: String,
       },
       data: {
