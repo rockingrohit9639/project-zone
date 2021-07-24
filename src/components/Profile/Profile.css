@@ -69,7 +69,6 @@ input[type="file"] {
   height: auto;
   border-radius: 50%;
   transform: translateY(25px);
-  height: 240px;
   object-fit: cover;
 }
 
@@ -192,7 +191,7 @@ input[type="file"] {
   width: fit-content;
   border: 2px solid #5352ed;
   background-color: #5352ed;
-  padding: 5px 30px;
+  padding: 5px 20px;
   margin:5px;
   margin-top:0;
   cursor: pointer;
@@ -214,17 +213,17 @@ input[type="file"] {
 }
 
 .followmodal .projects_list{
-  display:flex;
-  flex-wrap:wrap;
   justify-content: flex-start;
   align-items: left;
   font-size:18px;
   width:100%;
   height:auto;
+  overflow: auto;
 }
 
 .follow_title{
   position: absolute;
+  left:10%;
   top:6%;
   font-size:20px;
 }
@@ -360,9 +359,10 @@ input[type="file"] {
   height: 200px;
 }
 
-.img_overlay {
+.img_container .img_overlay {
   width: 70%;
   height: 92%;
+  max-width: 400px;
   margin: 10px auto;
   position: absolute;
   top: 0;
@@ -455,8 +455,8 @@ input[type="file"] {
 
 .followmodal{
   position: fixed;
-  width: 35%;
-  height: 60%;
+  width: 25%;
+  height: 50%;
   padding: 2%;
   display: flex;
   flex-direction:column;
@@ -515,8 +515,8 @@ input[type="file"] {
     height:50%;
     top: 15%;
     margin:0;
-    padding:3%;
-    padding-top:10%; 
+    padding:5%;
+    padding-top:15%; 
     flex-direction: column;
   }
 
@@ -531,29 +531,19 @@ input[type="file"] {
     display: flex;
   }
 
-  .img_container img {
-    width: 50%;
-    height: auto;
-  }
-
-  .img_overlay {
-    width: 50%;
-    height: 90%;
-    left: 25%;
-  }
-
   .fa-edit {
     padding: 8px;
     font-size: 18px;
   }
 
   .social_info {
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
   }
 
   .social_info input {
     margin: 3px;
-    width: 50%;
+    width: 70%;
   }
   .forminput {
     margin: 3px;

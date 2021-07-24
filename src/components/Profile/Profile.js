@@ -84,7 +84,7 @@ const Profile = () =>
       let found = profileuser.data.profile.followers.find(obj => {
         return obj.follower_id === user.userid
       })
-      setFollow(!found);
+      setFollow(found);
 
       if(profileid === user.userid)
         {
@@ -284,7 +284,7 @@ const Profile = () =>
 
     const data = {
       following_id: profileid,
-      following_name: fname,
+      following_name: dashboard.fname,
       follower_name: user.fname,
     };
 
@@ -487,7 +487,7 @@ const Profile = () =>
       {(dashboard.id === user.userid) ? <> 
       <div
         className={`overlay ${ editmodalVisibility && "overlay_hidden" }`}
-        onClick={() => toggleEditModalVisibility()}
+        onClick={toggleEditModalVisibility}
       ></div>
       <form
         className={`editmodal ${ editmodalVisibility && "editmodal_hidden" }`}
@@ -616,7 +616,7 @@ const Profile = () =>
         </div>
         <div
           className="editmodal_closebar"
-          onClick={() => toggleEditModalVisibility()}
+          onClick={toggleEditModalVisibility}
         >
           <i className="fa fa-times"></i>
         </div>
@@ -626,7 +626,7 @@ const Profile = () =>
 
       <div
         className={`overlay ${ followmodalVisibility && "overlay_hidden" }`}
-        onClick={() => toggleFollowModalVisibility()}
+        onClick={toggleFollowModalVisibility}
       ></div>
       <div
         className={`followmodal ${ followmodalVisibility && "followmodal_hidden" }`}
@@ -639,7 +639,7 @@ const Profile = () =>
               {
                 return (
                   <li key={i}>
-                    <RouterLink to={`/profile/${person._id}`} className="link">
+                    <RouterLink to={`/profile/${person._id}`} onClick={toggleFollowModalVisibility} className="link">
                       <i className="fa fa-circle"></i>
                       {person.fname}
                     </RouterLink>
@@ -652,7 +652,7 @@ const Profile = () =>
           )}
          <div
           className="editmodal_closebar"
-          onClick={() => toggleFollowModalVisibility()}
+          onClick={toggleFollowModalVisibility}
         >
           <i className="fa fa-times"></i>
         </div>
