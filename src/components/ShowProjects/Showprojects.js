@@ -99,7 +99,7 @@ function Showprojects()
   // "VR"
   const [randomProject, setRandomProject] = useState("");
 
-  const fetchProjects = async () =>
+  const fetchProjects = async (queryoption = "") =>
   {
     setIsLoading(true);
 
@@ -107,15 +107,22 @@ function Showprojects()
     {
       setRandomProject("");
 
-      if (query !== "")
+      if (queryoption !== "")
+      {
+        const results = await server.get(`/getprojects?q=${ queryoption }`);
+        setIsLoading(false);
+        setProjects(results.data);
+        setTotalPages(Math.ceil(results.data.length / itemsPerPage));
+
+      } else if( query !== "")
       {
         const results = await server.get(`/getprojects?q=${ query }`);
         setIsLoading(false);
         setProjects(results.data);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
-      } else
-      {
-        toast.error("Please enter a query first");
+
+      } else {
+        toast.error("Please enter or select a query first");
         setIsLoading(false);
       }
     } catch (error)
@@ -133,8 +140,8 @@ function Showprojects()
       query: e.target.innerText,
     });
 
-    // fetchProjects();
-    toast.success("Click on search button to search.")
+    fetchProjects(e.target.innerText);
+    
   };
 
   const handleRandomProject = () =>
@@ -173,13 +180,6 @@ function Showprojects()
       <ToastContainer />
       <div className="mt">
         <SearchBox fetchProjects={fetchProjects} />
-
-        {isLoading ? (
-          <div className="loading_indicator">
-            <Bars stroke={"#6f6ee1"} fill="#6f6ee1" width="60" height="90" />
-            <p> Fetching {query} projects </p>
-          </div>
-        ) : null}
 
         <div className=" default_options filtre-div">
           <label className="container">
@@ -313,6 +313,12 @@ function Showprojects()
         <h2 className="query"> Enter query to search for projects. </h2>
       )}
 
+      {isLoading ? (
+          <div className="loading_indicator">
+            <Bars stroke={"#6f6ee1"} fill="#6f6ee1" width="60" height="90" />
+            <p> Fetching {query} projects </p>
+          </div>
+        ) : null}
 
 
       <div className="projectsList">
