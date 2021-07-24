@@ -41,6 +41,28 @@ const userSchema = new mongoose.Schema({
     projects_liked: [],
     projects_rated: [],
     comments_upvoted:[],
+    followers: [
+      {
+        _id:{
+          type: String
+        },
+        fname:{
+          type: String,
+          default : "",
+        },
+      }
+    ],
+    following:[
+      {
+        _id:{
+          type: String
+        },
+        fname:{
+          type: String,
+          default : "",
+        },
+      }
+    ],
     badges: [
       {
         title: {

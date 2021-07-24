@@ -1,5 +1,5 @@
 import axios from "axios";
-const development = false;
+const development = true;
 
 const url = development ? "http://localhost:8000" : "https://project-zone-server.azurewebsites.net";
 
@@ -33,4 +33,5 @@ export const AddLike = (data) => server.patch(`${url}/add-like`, data);
 export const AddNewRating = (data) => server.patch(`${url}/add-new-rating`, data);
 export const UpvoteComment = (data) => server.patch(`${url}/upvote-comment`, data);
 export const AddBadge = (data) => server.patch(`${url}/add-badge`, data);
+export const AddFollower = (data) => server.patch(`${url}/addfollower`,data);
 export const GetSingleProject = (data) => server.post(`${url}/project-by-id`, data);

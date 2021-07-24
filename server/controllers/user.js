@@ -649,3 +649,54 @@ exports.AddBadge = async (req, res) =>
   }
 }
 
+exports.AddFollower = async (req, res) =>
+{
+  const { userid } = req;
+  const { following_name, following_id, follower_name } = req.body;
+
+  try
+  {
+    UserModel.findByIdAndUpdate(
+      userid,
+      {
+        $push: { "profile.following": { _id: following_id, fname: following_name  } },
+      },
+      { new: true },
+      async function (err, doc)
+      {
+        if (err)
+        {
+          res.status(404).json({ error: "NO user with such id" });
+        } 
+      }
+    );
+
+    UserModel.findByIdAndUpdate(
+      following_id,
+      {
+        $push: { "profile.followers": { _id: userid, fname: follower_name  } },
+      },
+      { new: true },
+      async function (err, doc)
+      {
+        if (err)
+        {
+          res.status(404).json({ error: "NO user with such id" });
+        } else
+        {
+          res.status(200).json({
+            msg: 'You have started following ' + following_name,
+            data: doc.profile.followers 
+          });
+        }
+      }
+    );
+
+  } catch (err)
+  {
+    res.status(500).json({ error: `Could not follow ${following_name}, Try again` });
+  }
+};
+
+
+

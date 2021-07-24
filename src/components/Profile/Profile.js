@@ -4,7 +4,7 @@ import { Link as RouterLink, useParams, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { usePalette } from "react-palette";
 import { useDataLayerValues } from "../../datalayer";
-import { GetUserProfile, UpdateUserData, sendverifyemail } from "../../axios/instance";
+import { GetUserProfile, UpdateUserData, sendverifyemail, AddFollower } from "../../axios/instance";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { Puff, Oval } from "react-loading-icons";
 import { getSkillColor } from "../../utils";
@@ -12,9 +12,11 @@ import "./Profile.css";
 
 const Profile = () =>
 {
-  const [{ dashboard, user, isemailverified }, dispatch] = useDataLayerValues();
-  const [ modalVisibility, setModalVisibility ] = useState("false");
+  const [{ dashboard, user, isemailverified, isAuthenticated }, dispatch] = useDataLayerValues();
+  const [ editmodalVisibility, setEditModalVisibility ] = useState("false");
+  const [ followmodalVisibility, setFollowModalVisibility] = useState("false");
   const [ isLoading, setIsLoading ] = useState(true);
+  const [ follow, setFollow ] = useState(true);
   const { data } = usePalette(dashboard.profile_pic);
   const history = useHistory();
   const { profileid } = useParams();
@@ -37,6 +39,11 @@ const Profile = () =>
   });
   const { fname, lname, githublink, linkedinlink, fblink, bio, descr } = fields;
 
+  const [followdata, setFollowData] =useState({
+     title:"",
+     people: [],
+  });
+
   const fetchProfile = async (id) =>
   {
     setIsLoading(true);
@@ -47,24 +54,26 @@ const Profile = () =>
 
     try
     {
-      const user = await GetUserProfile(body);
+      const profileuser = await GetUserProfile(body);
 
       const dashboard_data = {
         ...dashboard,
-        id: user.data._id,
-        fname: user.data.firstname,
-        lname: user.data.lastname,
-        email: user.data.email,
-        bio: user.data.profile.bio,
-        description: user.data.profile.description,
-        profile_pic: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
-        projectones: user.data.profile.projectones,
-        projects_added: user.data.profile.projects_added,
-        projects_liked: user.data.profile.projects_liked,
-        projects_rated: user.data.profile.projects_rated,
-        badges: user.data.profile.badges,
-        social_links: user.data.profile.social_links,
-        created_at: user.data.created_at,
+        id: profileuser.data._id,
+        fname: profileuser.data.firstname,
+        lname: profileuser.data.lastname,
+        email: profileuser.data.email,
+        bio: profileuser.data.profile.bio,
+        description: profileuser.data.profile.description,
+        profile_pic: profileuser?.data?.profile?.profile_pic && profileuser.data.profile.profile_pic,
+        projectones: profileuser.data.profile.projectones,
+        projects_added: profileuser.data.profile.projects_added,
+        projects_liked: profileuser.data.profile.projects_liked,
+        projects_rated: profileuser.data.profile.projects_rated,
+        followers: profileuser.data.profile.followers,
+        following: profileuser.data.profile.following,
+        badges: profileuser.data.profile.badges,
+        social_links: profileuser.data.profile.social_links,
+        created_at: profileuser.data.created_at,
       };
       
       dispatch({
@@ -72,17 +81,22 @@ const Profile = () =>
         dashboard: dashboard_data,
       });
 
-      if(profileid === user.data._id)
+      let found = profileuser.data.profile.followers.find(obj => {
+        return obj.follower_id === user.userid
+      })
+      setFollow(!found);
+
+      if(profileid === user.userid)
         {
           setFields({
-            fname: user.data.firstname,
-            lname: user.data.lastname,
-            profileimg: user?.data?.profile?.profile_pic && user.data.profile.profile_pic,
-            githublink: user.data.profile.social_links.github,
-            linkedinlink: user.data.profile.social_links.linkdin,
-            fblink: user.data.profile.social_links.facebook,
-            bio: user.data.profile.bio,
-            descr:  user.data.profile.description,
+            fname: profileuser.data.firstname,
+            lname: profileuser.data.lastname,
+            profileimg: profileuser?.data?.profile?.profile_pic && profileuser.data.profile.profile_pic,
+            githublink: profileuser.data.profile.social_links.github,
+            linkedinlink: profileuser.data.profile.social_links.linkdin,
+            fblink: profileuser.data.profile.social_links.facebook,
+            bio: profileuser.data.profile.bio,
+            descr:  profileuser.data.profile.description,
           })
         }
        
@@ -99,9 +113,12 @@ const Profile = () =>
   };
 
 
-  const toggleModalVisibility = () =>
-  {
-    setModalVisibility(!modalVisibility);
+  const toggleEditModalVisibility = () => { 
+    setEditModalVisibility(!editmodalVisibility)
+   };
+
+  const toggleFollowModalVisibility = () => { 
+    setFollowModalVisibility(!followmodalVisibility)
   };
 
   const handleChange = (e) =>
@@ -116,9 +133,26 @@ const Profile = () =>
     });
   };
 
+
+  const setFollowersToModal = () => {
+    setFollowData({
+      title:"Followers",
+      people: dashboard.followers
+    })
+    toggleFollowModalVisibility();
+  }
+
+  const setFollowingToModal = () => {
+    setFollowData({
+      title:"Following",
+      people: dashboard.following
+    })
+    toggleFollowModalVisibility();
+  }
+
   const handlechnageInput = async (e) =>
   {
-    console.log(e.target.files);
+
     const basse64 = await convertBase64(e.target.files[0]);
     setFields((prevState) =>
     {
@@ -229,7 +263,7 @@ const Profile = () =>
         dashboard: dashboard_data,
       });
 
-      toggleModalVisibility();
+      toggleEditModalVisibility();
 
     } catch (err)
     {
@@ -240,6 +274,44 @@ const Profile = () =>
       }
     }
   };
+
+  const handleFollow = async () => {
+
+    if (!isAuthenticated)
+    {
+      return toast.error(`You have to login first`);
+    }
+
+    const data = {
+      following_id: profileid,
+      following_name: fname,
+      follower_name: user.fname,
+    };
+
+    try
+    {
+      const res = await AddFollower(data);
+      const followers_new = res.data.data;
+
+      const dashboard_data = {
+        ...dashboard,
+        followers: followers_new,
+      }
+
+      dispatch({
+        type: "SET_USER_DASHBOARD_DATA",
+        dashboard: dashboard_data,
+      });
+
+      toast.success(`${ res.data.msg }`);
+    } catch (err)
+    {
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
+      }
+    }
+  }
 
   const emailVerifyBtn = async () =>
   {
@@ -321,10 +393,7 @@ const Profile = () =>
           <>
             <button
               className="editbtn"
-              onClick={() =>
-              {
-                toggleModalVisibility();
-              }}
+              onClick={toggleEditModalVisibility}
             >
               Edit Profile
             </button>
@@ -347,6 +416,7 @@ const Profile = () =>
       </div>
       <div className="content_right">
         <div className="email_descr">
+          <div className="emaildesc_left">
           <h3> {dashboard.email} </h3>
           <p>
             {dashboard.description === "" ? (
@@ -355,6 +425,20 @@ const Profile = () =>
               dashboard.description
             )}
           </p>
+          </div>
+          <div className="follow_right">
+             {(dashboard.id !== user.userid) ?
+             <div className="followuser">
+                { follow ? <button className="followuserbtn" onClick={handleFollow}>Follow</button>
+                         : <button className="followuserbtn">Following</button>
+                }
+             </div>
+             : null }
+             <div className="followersing">
+               <button className="followbtns" onClick={setFollowersToModal}>{`Followers : ${dashboard.followers.length}`}</button>
+               <button className="followbtns" onClick={setFollowingToModal}>{`Following : ${dashboard.following.length}`}</button>
+             </div>
+          </div>
         </div>
         <div className="projects_badges">
           <h2>Projects Added</h2>
@@ -402,11 +486,11 @@ const Profile = () =>
       </div>
       {(dashboard.id === user.userid) ? <> 
       <div
-        className={`overlay ${ modalVisibility && "overlay_hidden" }`}
-        onClick={() => toggleModalVisibility()}
+        className={`overlay ${ editmodalVisibility && "overlay_hidden" }`}
+        onClick={() => toggleEditModalVisibility()}
       ></div>
       <form
-        className={`editmodal ${ modalVisibility && "editmodal_hidden" }`}
+        className={`editmodal ${ editmodalVisibility && "editmodal_hidden" }`}
         onSubmit={handleSubmit}
       >
         <div className="editmodal_left ">
@@ -532,13 +616,47 @@ const Profile = () =>
         </div>
         <div
           className="editmodal_closebar"
-          onClick={() => toggleModalVisibility()}
+          onClick={() => toggleEditModalVisibility()}
         >
           <i className="fa fa-times"></i>
         </div>
       </form>
       </> : null
       }
+
+      <div
+        className={`overlay ${ followmodalVisibility && "overlay_hidden" }`}
+        onClick={() => toggleFollowModalVisibility()}
+      ></div>
+      <div
+        className={`followmodal ${ followmodalVisibility && "followmodal_hidden" }`}
+      >
+           <h3 className="follow_title">{followdata.title}</h3>
+           <hr/>
+           {followdata.people  ? (
+            <ul className="projects_list">
+              {followdata.people.map((person , i) =>
+              {
+                return (
+                  <li key={i}>
+                    <RouterLink to={`/profile/${person._id}`} className="link">
+                      <i className="fa fa-circle"></i>
+                      {person.fname}
+                    </RouterLink>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <i>{`No ${followdata.title}`}</i>
+          )}
+         <div
+          className="editmodal_closebar"
+          onClick={() => toggleFollowModalVisibility()}
+        >
+          <i className="fa fa-times"></i>
+        </div>
+      </div>
     </div>
     </> 
     }

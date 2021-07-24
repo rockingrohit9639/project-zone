@@ -1,6 +1,6 @@
 .profile_loading{
   height: 100vh;
-  font-size:1.5vw;
+  font-size:calc(10px + 1vw);
 }
 
 .profile_wrapper {
@@ -174,6 +174,59 @@ input[type="file"] {
     0 6px 18px -10px rgba(0, 0, 0, 0.19);
   border-radius: 10px;
   top: 0;
+  display:flex;
+  justify-content: space-between;
+}
+
+.follow_right{
+  display:flex;
+  flex-direction:column;
+  justify-content: right;
+}
+
+.followuser{
+  margin-left:auto;
+}
+
+.followuserbtn{
+  width: fit-content;
+  border: 2px solid #5352ed;
+  background-color: #5352ed;
+  padding: 5px 30px;
+  margin:5px;
+  margin-top:0;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: -1px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.followbtns{
+  width: fit-content;
+  padding: 5px 10px;
+  margin:5px;
+  margin-bottom:0;
+  border: 2px solid #5352ed;
+  background-color: #fff;
+  color: #5352ed;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.followmodal .projects_list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: flex-start;
+  align-items: left;
+  font-size:18px;
+  width:100%;
+  height:auto;
+}
+
+.follow_title{
+  position: absolute;
+  top:6%;
+  font-size:20px;
 }
 
 .projects_badges {
@@ -313,7 +366,6 @@ input[type="file"] {
   margin: 10px auto;
   position: absolute;
   top: 0;
-  /* left: 24.1%; */
   font-size: 20px;
   text-align: center;
   background-color: rgba(83, 82, 237, 0.5);
@@ -394,11 +446,32 @@ input[type="file"] {
 
 .editmodal_closebar {
   width: 10%;
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
   position: absolute;
   top: 4%;
   right: 2%;
+}
+
+.followmodal{
+  position: fixed;
+  width: 35%;
+  height: 60%;
+  padding: 2%;
+  display: flex;
+  flex-direction:column;
+  padding-top:5%;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top:5%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  z-index:2;
+}
+
+.followmodal_hidden {
+  display : none;
 }
 
 @media screen and (max-width: 960px) {
@@ -434,6 +507,16 @@ input[type="file"] {
     height: auto;
     padding: 0.5%;
     top: 10%;
+    flex-direction: column;
+  }
+
+  .followmodal{
+    width:80%;
+    height:50%;
+    top: 15%;
+    margin:0;
+    padding:3%;
+    padding-top:10%; 
     flex-direction: column;
   }
 
@@ -478,6 +561,18 @@ input[type="file"] {
 
   .forminput input {
     max-width: 0;
+  }
+
+  .email_descr{
+    flex-direction:column;
+  }
+
+  .follow_right{
+    justify-content:left;
+  }
+
+  .followuser{
+    margin-left:0;
   }
 
   .edit_input,

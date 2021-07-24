@@ -13,7 +13,8 @@ const {
   AddLike,
   AddNewRating,
   UpvoteComment,
-  AddBadge
+  AddBadge,
+  AddFollower
 } = require("./../controllers/user");
 
 // Routes
@@ -79,6 +80,8 @@ ProtectedRouter.patch(
  *        description: Response Successful
  *      '400':
  *        description: Could not add your project.
+ *      '404': 
+ *        description: No user with this id  
  */
 ProtectedRouter.post("/addproject", authenticate, AddNewProject);
 
@@ -212,5 +215,21 @@ ProtectedRouter.patch("/add-new-rating", authenticate, AddNewRating);
  *        description: Not a valid token
  */
 ProtectedRouter.patch("/add-badge", authenticate, AddBadge);
+
+// Routes
+/**
+ * @swagger
+ * /addfollower:
+ *  post:
+ *    description: Add follower to profile user and add him as following  
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '400':
+ *        description: Could not add follower.
+ *      '404': 
+ *        description: No user with this id  
+ */
+ ProtectedRouter.patch("/addfollower", authenticate, AddFollower);
 
 module.exports = ProtectedRouter;
