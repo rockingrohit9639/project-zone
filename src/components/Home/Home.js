@@ -32,6 +32,8 @@ function Home()
         type: "SET_HOMEPAGE_PROJECTS",
         HomePageProjects: Homepageprojects.data,
       });
+
+      console.log(Homepageprojects);
     } catch (err)
     {
       console.log(err);

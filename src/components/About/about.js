@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import img from "./icon.png";
 import "./about.css";
+import { Helmet } from "react-helmet";
 
 const AboutUs = () =>
 {
@@ -23,6 +24,7 @@ const AboutUs = () =>
 
   return (
     <>
+    <Helmet title="Project Zone | About Us" />
       <div className="about_container">
         <div className="title">
           <h1>ABOUT US</h1>

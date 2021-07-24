@@ -34,7 +34,8 @@ projectsRouter.get("/projects-home", HomePageProjects);
  */
 projectsRouter.get("/getprojects", async (req, res) =>
 {
-  const query = req.query.q;
+  var query = req.query.q;
+  query = query.toLowerCase();
 
   try
   {
