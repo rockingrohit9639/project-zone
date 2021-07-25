@@ -82,7 +82,7 @@ const Profile = () =>
       });
 
       let found = profileuser.data.profile.followers.find(obj => {
-        return obj.follower_id === user.userid
+        return obj.person_id === user.userid
       })
       setFollow(found);
 
@@ -331,7 +331,6 @@ const Profile = () =>
       }
     }
   };
-
   return (
   <>
     <ToastContainer position="bottom-center" />
@@ -633,13 +632,13 @@ const Profile = () =>
       >
            <h3 className="follow_title">{followdata.title}</h3>
            <hr/>
-           {followdata.people  ? (
+           {followdata.people && followdata.people.length > 0 ? (
             <ul className="projects_list">
               {followdata.people.map((person , i) =>
               {
                 return (
                   <li key={i}>
-                    <RouterLink to={`/profile/${person._id}`} onClick={toggleFollowModalVisibility} className="link">
+                    <RouterLink to={`/profile/${person.person_id}`} onClick={toggleFollowModalVisibility} className="link">
                       <i className="fa fa-circle"></i>
                       {person.fname}
                     </RouterLink>
@@ -648,7 +647,7 @@ const Profile = () =>
               })}
             </ul>
           ) : (
-            <i>{`No ${followdata.title}`}</i>
+            <i>{`No ${followdata.title}`}</i> 
           )}
          <div
           className="editmodal_closebar"

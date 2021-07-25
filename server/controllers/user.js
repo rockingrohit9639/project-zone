@@ -659,7 +659,7 @@ exports.AddFollower = async (req, res) =>
     UserModel.findByIdAndUpdate(
       userid,
       {
-        $push: { "profile.following": { _id: following_id, fname: following_name  } },
+        $push: { "profile.following": { person_id: following_id, fname: following_name  } },
       },
       { new: true },
       async function (err, doc)
@@ -674,7 +674,7 @@ exports.AddFollower = async (req, res) =>
     UserModel.findByIdAndUpdate(
       following_id,
       {
-        $push: { "profile.followers": { _id: userid, fname: follower_name  } },
+        $push: { "profile.followers": { person_id: userid, fname: follower_name  } },
       },
       { new: true },
       async function (err, doc)

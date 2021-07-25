@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema({
     comments_upvoted:[],
     followers: [
       {
-        _id:{
+        person_id:{
           type: String
         },
         fname:{
@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
     ],
     following:[
       {
-        _id:{
+        person_id:{
           type: String
         },
         fname:{
