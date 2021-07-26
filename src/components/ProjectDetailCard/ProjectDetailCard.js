@@ -8,6 +8,7 @@ import { AddLike, AddNewRating, AddBadge } from "./../../axios/instance";
 import { toast } from "react-toastify";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Rating from "@material-ui/lab/Rating";
+import { Link as RouterLink } from "react-router-dom";
 import { GitHub } from "@material-ui/icons";
 import { getSkillColor } from "../../utils";
 
@@ -245,6 +246,20 @@ function ProjectDetailCard()
               </div>
             ))}
         </div>
+        <div className="adder_div">
+          <h4 className="like_label_">Added By </h4>
+          {ProjectDetails.adder_id ? 
+           <RouterLink to={`/profile/${ProjectDetails.adder_id}`}>
+              <h2>{ProjectDetails.adder_fname}</h2>
+           </RouterLink>
+           : <h2>{ProjectDetails.adder_fname}</h2>
+          }
+          {ProjectDetails.github ? (
+            <a style={{ color: "black" }} target="_blank" href={ProjectDetails.github}>
+              <GitHub />
+            </a>
+          ) : null}
+        </div>
         <div className="rating_div">
           <h4 className="like_label_">
             {!liked ? "Give it a Like" : "You have liked this project"}
@@ -270,11 +285,6 @@ function ProjectDetailCard()
             readOnly={rated}
             onChange={newRatingHandler}
           />
-          {ProjectDetails.github ? (
-            <a style={{ color: "black" }} href={ProjectDetails.github}>
-              <GitHub />
-            </a>
-          ) : null}
         </div>
        </div>
       </div>

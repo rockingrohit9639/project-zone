@@ -51,6 +51,8 @@ function ProjectDetails(props)
           likes: project.data.likes,
           comments: project.data.comments,
           github: project.data.github,
+          adder_id: project.data.adder_id, 
+          adder_fname: project.data.adder_fname
         },
       });
     } 
@@ -197,7 +199,7 @@ function ProjectDetails(props)
         </div>
 
         <div className="comment_content">
-          {ProjectDetails.comments.map((comment) => (
+          {ProjectDetails.comments && ProjectDetails.comments.map((comment) => (
             <div className="user_comment" key={comment._id}>
               <div className="comment_info">
                 <div className="comment_user">

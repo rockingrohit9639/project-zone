@@ -37,6 +37,8 @@ export const initialState = {
     level: null,
     skills: null,
     github: null,
+    adder_id:null,
+    adder_fname:"",
     rating: 0,
     likes: 0,
     comments: [],

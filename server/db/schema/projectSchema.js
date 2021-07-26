@@ -19,6 +19,14 @@ const projectSchema = mongoose.Schema({
       required: true,
     },
   ],
+  adder_id: {
+    type : String,
+    default: ''
+  },
+  adder_fname: {
+    type : String,
+    default: 'Project Zone',
+  },
   likes: {
     type: Number,
     default: 0,

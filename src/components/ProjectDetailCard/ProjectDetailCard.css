@@ -104,4 +104,21 @@
   flex-wrap:wrap;
 }
 
+.adder_div{
+  margin-top:0.8rem;
+  margin-right:auto;
+  display: flex;
+  flex-wrap : wrap;
+}
+
+.adder_div h2{
+  font-size:18px;
+  color: #6f6ee1;
+  margin:0;
+  margin-left:-5px;
+  margin-right:5px;
+  font-weight: bold;
+  font-family: "Poppins";
+}
+
 
