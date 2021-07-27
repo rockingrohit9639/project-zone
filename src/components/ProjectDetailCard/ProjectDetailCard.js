@@ -11,6 +11,7 @@ import Rating from "@material-ui/lab/Rating";
 import { Link as RouterLink } from "react-router-dom";
 import { GitHub } from "@material-ui/icons";
 import { getSkillColor } from "../../utils";
+import { Helmet } from "react-helmet";
 
 function ProjectDetailCard()
 {
@@ -212,6 +213,7 @@ function ProjectDetailCard()
 
   return (
     <>
+    <Helmet title={`Project Zone | ${ ProjectDetails.title ? ProjectDetails.title : "Fetching Project Details..." }`} />
      <div className="details_card">
       <div className="titleBox">
         <h1 className="title_">{ProjectDetails.title}</h1>

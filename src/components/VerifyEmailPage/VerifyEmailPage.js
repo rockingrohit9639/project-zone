@@ -3,6 +3,7 @@ import "./VerifyEmailPage.css";
 import { verifyemail } from "../../axios/instance";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { useDataLayerValues } from "../../datalayer";
+import { Helmet } from "react-helmet";
 
 function VerifyEmailPage()
 {
@@ -36,6 +37,7 @@ function VerifyEmailPage()
   };
   return (
     <div className="main">
+      <Helmet title="Project Zone | Verify Email" />
       <h1>{result}</h1>
     </div>
   );

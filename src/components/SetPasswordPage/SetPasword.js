@@ -3,6 +3,7 @@ import "./SetPassword.css";
 import { ToastContainer, toast } from "react-toastify";
 import { SetNewPassword } from "../../axios/instance";
 import { Link as RouterLink, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function SetPasword()
 {
@@ -73,6 +74,7 @@ function SetPasword()
   };
   return (
     <div className="main">
+    <Helmet title="Project Zone | Change Password" />
       <ToastContainer position="bottom-left" />
       <form className="passwordform" onSubmit={handleSubmit}>
         <div className="forminput">

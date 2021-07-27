@@ -11,6 +11,7 @@ import { useDataLayerValues } from "../../datalayer";
 import { addproject, AddBadge } from "./../../axios/instance";
 import "react-toastify/dist/ReactToastify.css";
 import "./AddNewProject.css";
+import { Helmet } from 'react-helmet';
 
 const useStyles = makeStyles((theme) => ({
   mt: {
@@ -217,6 +218,7 @@ function AddNewProject() {
 
   return (
     <>
+    <Helmet title="Project Zone | Add New Project" />
     <div>
       <ToastContainer position="bottom-right" />
       <div className="addproject_wrapper">

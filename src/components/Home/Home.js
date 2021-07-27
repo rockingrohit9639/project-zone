@@ -6,45 +6,18 @@ import avatar from "./../../assets/avatar.svg";
 import ProjectCategories from "../ProjectCategories/ProjectCategories";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
-import { useDataLayerValues } from "./../../datalayer";
 import { Oval } from "react-loading-icons";
-import { GetHomeProjects } from "../../axios/instance";
+import HomePageProjects from "../../projects-home";
+import { Helmet } from "react-helmet";
 
 function Home()
 {
-  const [{ HomePageProjects }, dispatch] = useDataLayerValues();
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() =>
-  {
-    HomePageProjectsData();
-  }, []);
-
-
-  const HomePageProjectsData = async () =>
-  {
-    setIsLoading(true);
-    try
-    {
-      const Homepageprojects = await GetHomeProjects();
-
-      dispatch({
-        type: "SET_HOMEPAGE_PROJECTS",
-        HomePageProjects: Homepageprojects.data,
-      });
-
-      console.log(Homepageprojects);
-    } catch (err)
-    {
-      console.log(err);
-    }
-
-    setIsLoading(false);
-  };
 
 
   return (
     <div className="home">
+    <Helmet title="Project Zone | Home" />
       <section className="landing" id="landing">
         <img className="dots_img" src={dots} alt="dots.img" />
         <div className="circles">

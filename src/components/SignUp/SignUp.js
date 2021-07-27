@@ -10,6 +10,7 @@ import "./SignUp.css";
 import signupavatar from './../../assets/signupavatar.svg';
 import { signup } from '../../axios/instance';
 import { Oval } from "react-loading-icons";
+import { Helmet } from "react-helmet"; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -176,6 +177,7 @@ export default function SignUp()
 
   return (
     <div className="signup">
+    <Helmet  title="Project Zone | SignUp"/>
       <div className="signupimage">
         <img src={signupavatar} alt="signupavatar" />
       </div>

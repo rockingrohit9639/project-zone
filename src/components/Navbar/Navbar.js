@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Menu,
-  MenuItem,
-  Typography,
-  useMediaQuery,
-  ListItemIcon,
-  ListItemText,
-  Button,
-} from "@material-ui/core";
+import
+  {
+    AppBar,
+    Toolbar,
+    Menu,
+    MenuItem,
+    Typography,
+    useMediaQuery,
+    ListItemIcon,
+    ListItemText,
+    Button,
+  } from "@material-ui/core";
 import logo from "../Footer/icon.png";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link, useHistory } from "react-router-dom";
@@ -102,14 +103,17 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-function Navbar({ themeToggler }) {
+function Navbar({ themeToggler })
+{
   const classes = useStyles();
   const [{ isAuthenticated, user }, dispatch] = useDataLayerValues();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => {
+  const handleClick = (event) =>
+  {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = () =>
+  {
     setAnchorEl(null);
   };
 
@@ -117,7 +121,8 @@ function Navbar({ themeToggler }) {
   // Login for Menu Handling
   const muitheme = useTheme();
   const isMobile = useMediaQuery(muitheme.breakpoints.down("sm"));
-  const logoutHandler = async () => {
+  const logoutHandler = async () =>
+  {
     localStorage.removeItem("tokken");
     const userData = {
       ...user,
@@ -173,13 +178,13 @@ function Navbar({ themeToggler }) {
                     </StyledMenuItem>
                   </Link>
                   {isAuthenticated ? (
-                    <Link to={`/profile/${user.userid}`} onClick={handleClose}>
+                    <Link to={`/profile/${ user.userid }`} onClick={handleClose}>
                       <StyledMenuItem>
                         <ListItemIcon>
                           <i className="fa fa-user-circle-o"></i>
                         </ListItemIcon>
                         <ListItemText
-                          primary={`Welcome ${user.fname}`}
+                          primary={`Welcome ${ user.fname }`}
                         ></ListItemText>
                       </StyledMenuItem>
                     </Link>
@@ -245,7 +250,7 @@ function Navbar({ themeToggler }) {
                   <Button className={classes.button}>
                     <Link
                       style={{ marginBottom: "0.4rem" }}
-                      to={`/profile/${user.userid}`}
+                      to={`/profile/${ user.userid }`}
                       className={classes.text}
                     >
                       <i className="fa fa-user-circle-o"></i> Welcome{" "}
@@ -298,12 +303,7 @@ function Navbar({ themeToggler }) {
                 )}
               </>
             )}
-            <div style={{ marginRight: "5px", marginTop: "5px" }}>
-              <ToggleSwitch
-                onClick={() => themeToggler()}
-                className="toggleBtn"
-              />
-            </div>
+
           </div>
         </Toolbar>
       </AppBar>
@@ -312,3 +312,10 @@ function Navbar({ themeToggler }) {
 }
 
 export default Navbar;
+
+{/* <div style={{ marginRight: "5px", marginTop: "5px" }}>
+  <ToggleSwitch
+    onClick={() => themeToggler()}
+    className="toggleBtn"
+  />
+</div> */}
