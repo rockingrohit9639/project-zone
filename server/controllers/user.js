@@ -170,7 +170,7 @@ exports.ResetPassword = async (req, res) =>
 exports.AddNewProject = async (req, res) =>
 {
   const { userid } = req;
-  const { name, description, level, skills, github } = req.body;
+  const { name, description, level, skills, github, adder_id, adder_fname } = req.body;
 
   let username = "";
 
@@ -182,6 +182,8 @@ exports.AddNewProject = async (req, res) =>
       level,
       skills,
       github,
+      adder_id,
+      adder_fname
     });
 
     const projectres = await newProject.save();

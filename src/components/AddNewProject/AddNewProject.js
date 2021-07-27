@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 function AddNewProject() {
   const classes = useStyles();
   const history = useHistory();
-  const [{ ProjectDetails, dashboard, isAuthenticated }, dispatch] =
+  const [{ ProjectDetails, user, dashboard, isAuthenticated }, dispatch] =
     useDataLayerValues();
   useEffect(() => {
     !isAuthenticated && history.replace("/login");
@@ -139,6 +139,8 @@ function AddNewProject() {
       skills: skillInputs,
       description: desc,
       github: github,
+      adder_id: user.userid,
+      adder_fname: user.fname
     };
 
     try {
