@@ -1,9 +1,11 @@
 .addproject_wrapper {
   min-height: 100vh;
   width: 100%;
+  height:auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #eaf2fd;
 }
 
 .quotesection {
@@ -56,8 +58,10 @@
   font-size: 16px;
   line-height: 25px;
   color: rgb(60, 60, 60);
+  background-color:#fff;
   width: 50%;
-  max-height: 100vh;
+  height:auto;
+  overflow:auto;
 }
 
 .addprojectform h1 {
@@ -81,6 +85,27 @@
   left: 20px;
   top: 0;
   font-size: 0.7rem;
+}
+
+.desclabel{
+  font-size:14px;
+}
+
+.desclabel span{
+  color:red;
+}
+
+.desctoolbar{
+  border: 1px solid #ccc;
+  width:30vw;
+}
+
+.desceditor{
+  border: 1px solid #ccc;
+  padding:0 2%;
+  margin-bottom:20px;
+  font-size:14px;
+  width:30vw;
 }
 
 .submitbtn {
@@ -135,6 +160,15 @@
     .forminput input{
         min-width:60vw;
         width:70%;
+    }
+    .desctoolbar{
+      width:60vw;
+    }
+    
+    .desceditor{
+      margin-bottom:20px;
+      font-size:14px;
+      width:60vw;
     }
     
 }

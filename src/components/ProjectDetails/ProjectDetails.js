@@ -9,6 +9,7 @@ import { useDataLayerValues } from "./../../datalayer";
 import { AddComment, UpvoteComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
 import { Link as RouterLink, useParams, useHistory } from "react-router-dom";
+import { Editor, EditorState, convertFromRaw } from "draft-js";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { BallTriangle } from "react-loading-icons";
 
@@ -20,6 +21,7 @@ function ProjectDetails(props)
   const [comment, setcomment] = useState("");
   const history = useHistory();
   const { projectid } = useParams();
+
 
   useEffect(() =>
   {
@@ -55,6 +57,7 @@ function ProjectDetails(props)
           adder_fname: project.data.adder_fname
         },
       });
+
     } 
     catch (err){
       if (err.response) {
@@ -65,6 +68,8 @@ function ProjectDetails(props)
 
     setIsLoading(false);
   };
+ 
+  console.log(ProjectDetails);
 
   const CommentBtnHandler = async () =>
   {
@@ -172,7 +177,7 @@ function ProjectDetails(props)
           <BallTriangle color="#6f6ee1" stroke="#6f6ee1" />
         </div>
       ) : (
-        <ProjectDetailCard />
+        <ProjectDetailCard/>
       )}
 
       <div className="comment_section">
@@ -195,7 +200,7 @@ function ProjectDetails(props)
         </div>
 
         <div className="comment_header">
-          <p> Comments : {ProjectDetails.comments.length}</p>
+          <p> Comments : {ProjectDetails.comments?.length}</p>
         </div>
 
         <div className="comment_content">

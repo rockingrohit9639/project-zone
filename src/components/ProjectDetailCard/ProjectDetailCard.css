@@ -12,6 +12,7 @@
   z-index: 1;
 }
 
+
 .titleBox {
   display: flex;
   align-items: center;
@@ -53,11 +54,6 @@
   font-weight: 800;
 }
 
-.desc_ {
-  margin-top: 0.5em;
-  font-size: 1rem;
-  font-weight: 400;
-}
 
 .level_ {
   font-size: 1rem;
@@ -119,6 +115,22 @@
   margin-right:5px;
   font-weight: bold;
   font-family: "Poppins";
+}
+
+.desc_card{
+  width: 80%;
+  padding: 2rem;
+  margin-top: 1rem;
+  border-radius: 0px;
+  box-shadow: 6px 7px 4px -6px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.062);
+  height: auto;
+  background-color: #FFF;
+  z-index: 1;
+}
+
+.desc_label{
+  margin-bottom:2rem;
 }
 
 
