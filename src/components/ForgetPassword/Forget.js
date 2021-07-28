@@ -4,6 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { forgetpassword } from "../../axios/instance";
 import Forget from "../../assets/forget.png";
+import { Helmet } from "react-helmet";
 
 export default function Forget_page()
 {
@@ -43,6 +44,7 @@ export default function Forget_page()
   };
   return (
     <div>
+    <Helmet title="Project Zone | Forget Password" />
       <ToastContainer position="bottom-left" />
       <div className="forget">
         <ToastContainer position="bottom-left" />

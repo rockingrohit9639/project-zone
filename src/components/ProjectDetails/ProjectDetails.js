@@ -53,16 +53,17 @@ function ProjectDetails(props)
           likes: project.data.likes,
           comments: project.data.comments,
           github: project.data.github,
-          adder_id: project.data.adder_id, 
+          adder_id: project.data.adder_id,
           adder_fname: project.data.adder_fname
         },
       });
-
-    } 
-    catch (err){
-      if (err.response) {
-        toast.error(`${err.response.data.error}`);
-        history.push('/project-not-found');   
+    }
+    catch (err)
+    {
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
+        history.push('/project-not-found');
       }
     }
 
@@ -114,7 +115,8 @@ function ProjectDetails(props)
     }
   };
 
-  const UpvoteHandler = async (comment_id, upvotes) => {
+  const UpvoteHandler = async (comment_id, upvotes) =>
+  {
 
     if (!isAuthenticated)
     {
@@ -122,52 +124,53 @@ function ProjectDetails(props)
     }
 
     try
+    {
+      const data = {
+        project_id: projectid,
+        comment_id: comment_id,
+        upvotes: upvotes + 1,
+      };
+
+      const res = await UpvoteComment(data);
+      if (!res.data.error)
       {
-        const data = {
-          project_id: projectid,
-          comment_id : comment_id,
-          upvotes: upvotes + 1,
+        const comments_upvoted = res.data.data;
+        const projectdata = {
+          ...ProjectDetails,
+          comments: comments_upvoted,
         };
 
-        const res = await UpvoteComment(data);
-        if (!res.data.error)
-        {
-          const comments_upvoted = res.data.data;
-          const projectdata = {
-            ...ProjectDetails,
-            comments: comments_upvoted,
-          };
+        const userdata = {
+          ...dashboard,
+          comments_upvoted: [...dashboard.comments_upvoted, comment_id],
+        };
 
-          const userdata = {
-            ...dashboard,
-            comments_upvoted: [...dashboard.comments_upvoted, comment_id],
-          };
+        dispatch({
+          type: "SET_PROJECT_DETAILS",
+          ProjectDetails: projectdata,
+        });
 
-          dispatch({
-            type: "SET_PROJECT_DETAILS",
-            ProjectDetails: projectdata,
-          });
+        dispatch({
+          type: "SET_USER_DASHBOARD_DATA",
+          dashboard: userdata,
+        });
 
-          dispatch({
-            type: "SET_USER_DASHBOARD_DATA",
-            dashboard: userdata,
-          });
-
-          toast.success(`${ res.data.msg }`);
-        }
-
-      } catch (err)
-      {
-        if (err.response)
-        {
-          toast.error(`${ err.response.data.error }`);
-        }
+        toast.success(`${ res.data.msg }`);
       }
+
+    } catch (err)
+    {
+      if (err.response)
+      {
+        toast.error(`${ err.response.data.error }`);
+      }
+    }
 
   }
 
   return (
     <div className="project_details_container">
+
       <ToastContainer position="bottom-left" />
       <ParticlesBg type="coweb" bg={true} />
 
@@ -208,7 +211,7 @@ function ProjectDetails(props)
             <div className="user_comment" key={comment._id}>
               <div className="comment_info">
                 <div className="comment_user">
-                  <RouterLink to={`/profile/${comment.commenter_id}`}>
+                  <RouterLink to={`/profile/${ comment.commenter_id }`}>
                     <h2>{comment.fname}</h2>
                   </RouterLink>
                 </div>
@@ -216,18 +219,18 @@ function ProjectDetails(props)
               </div>
               <p className="comment_desc">{comment.data}</p>
               <div>
-                { comment.upvotes && dashboard.comments_upvoted.indexOf(comment._id) !== -1 
-                  ? 
+                {comment.upvotes && dashboard.comments_upvoted.indexOf(comment._id) !== -1
+                  ?
                   <>
-                  <ThumbUpIcon className="thumb_upvote"></ThumbUpIcon> 
-                  <span className="upvotes upvotes_num">{comment.upvotes}</span>
+                    <ThumbUpIcon className="thumb_upvote"></ThumbUpIcon>
+                    <span className="upvotes upvotes_num">{comment.upvotes}</span>
                   </>
-                  : 
+                  :
                   <>
-                  <ThumbUpIcon className="thumb"
-                    onClick={() => UpvoteHandler(comment._id, comment.upvotes)}>
-                  </ThumbUpIcon> 
-                  <span className="upvotes">{comment.upvotes ? comment.upvotes : " "}</span> 
+                    <ThumbUpIcon className="thumb"
+                      onClick={() => UpvoteHandler(comment._id, comment.upvotes)}>
+                    </ThumbUpIcon>
+                    <span className="upvotes">{comment.upvotes ? comment.upvotes : " "}</span>
                   </>
                 }
               </div>

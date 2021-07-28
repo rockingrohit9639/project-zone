@@ -9,6 +9,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { Puff, Oval } from "react-loading-icons";
 import { getSkillColor } from "../../utils";
 import "./Profile.css";
+import { Helmet } from "react-helmet";
 
 const Profile = () =>
 {
@@ -111,7 +112,6 @@ const Profile = () =>
     setIsLoading(false);
     
   };
-
 
   const toggleEditModalVisibility = () => { 
     setEditModalVisibility(!editmodalVisibility)
@@ -333,6 +333,7 @@ const Profile = () =>
   };
   return (
   <>
+    <Helmet title={`Project Zone | ${ dashboard.fname ? dashboard.fname : "Profile" }`} />
     <ToastContainer position="bottom-center" />
     {isLoading ? 
       <div className="loading_indicator profile_loading">
@@ -638,7 +639,7 @@ const Profile = () =>
               {
                 return (
                   <li key={i}>
-                    <RouterLink to={`/profile/${person.person_id}`} onClick={toggleFollowModalVisibility} className="link">
+                    <RouterLink to={`/profile/${person._id}`} onClick={toggleFollowModalVisibility} className="link">
                       <i className="fa fa-circle"></i>
                       {person.fname}
                     </RouterLink>

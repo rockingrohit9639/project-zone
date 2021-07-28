@@ -3,10 +3,12 @@ import './TrendingProjects.css';
 import star from './../../assets/star.svg';
 import Project from '../Project/Project';
 import ParticlesBg from 'particles-bg';
+import { Helmet } from 'react-helmet';
 
 function TrendingProjects(props) {
     return (
         <div className = "conatainer">
+        <Helmet  title="Project Zone | Trendings"/>
             <img src = { star }
               className = "star-logo"
               alt = "star-logo" 

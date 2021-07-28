@@ -9,20 +9,6 @@ const { HomePageProjects, GetProjectByID } = require("./../controllers/public");
  * @swagger
  * /getprojects:
  *  get:
- *    description: Get a list of 5 each projects according to different categories
- *    responses:
- *      '200':
- *        description: Response Successful
- *      '500':
- *        description: Internal server error
- */
-projectsRouter.get("/projects-home", HomePageProjects);
-
-// Routes
-/**
- * @swagger
- * /getprojects:
- *  get:
  *    description: Get a list of projects on the basis of query
  *    responses:
  *      '200':

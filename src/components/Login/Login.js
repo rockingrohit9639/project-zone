@@ -9,6 +9,7 @@ import loginavatar from './../../assets/loginavatar.svg';
 import './Login.css';
 import { login } from './../../axios/instance';
 import { Oval } from "react-loading-icons";
+import { Helmet } from "react-helmet";
 
 const NewLogin = () =>
 {
@@ -145,6 +146,7 @@ const NewLogin = () =>
 
   return (
     <div className="login">
+    <Helmet title="Project Zone | Login" />
       <ToastContainer position="bottom-left" />
       <form className="loginform" onSubmit={handleSubmit}>
         <h1>Project Zone</h1>

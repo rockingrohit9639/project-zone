@@ -11,6 +11,7 @@ import { server } from "../../axios/instance";
 import { getSkillColor } from "../../utils";
 import { Bars } from "react-loading-icons";
 import { toast, ToastContainer } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Option = styled.button`
   color: ${ (props) => (props.optionColor ? props.optionColor : "#FFF") };
@@ -177,6 +178,7 @@ function Showprojects()
 
   return (
     <div className="showProjects">
+    <Helmet  title="Project Zone | Find Projects"/>
       <ToastContainer />
       <div className="mt">
         <SearchBox fetchProjects={fetchProjects} />

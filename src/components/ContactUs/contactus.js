@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { sendmessage } from './../../axios/instance';
 import ParticlesBg from 'particles-bg';
 import './contactus.css';
+import { Helmet } from "react-helmet";
 
 export default function ContactUs()
 {
@@ -86,6 +87,7 @@ export default function ContactUs()
 
   return (
     <section className="contact_section" >
+    <Helmet title="Project Zone | Contact Us" />
       <ParticlesBg type="coweb"
         bg={true}
       />
