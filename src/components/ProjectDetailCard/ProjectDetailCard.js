@@ -290,10 +290,8 @@ function ProjectDetailCard()
           />
         </div>
        </div>
-      </div>
-      <div className="desc_card">
-        <h4 className="like_label_  desc_label">Description</h4>
-        <div dangerouslySetInnerHTML={{__html : draftToHtml(ProjectDetails.descr) }}></div>
+       <h4 className="like_label_  desc_label">Description</h4>
+       <div className="desc_html" dangerouslySetInnerHTML={{__html : draftToHtml(ProjectDetails.descr) }}></div>
       </div>
       <CongratsBadgeScreen 
         newbadge={newbadge} 
