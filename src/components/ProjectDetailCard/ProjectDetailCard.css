@@ -12,6 +12,7 @@
   z-index: 1;
 }
 
+
 .titleBox {
   display: flex;
   align-items: center;
@@ -53,11 +54,6 @@
   font-weight: 800;
 }
 
-.desc_ {
-  margin-top: 0.5em;
-  font-size: 1rem;
-  font-weight: 400;
-}
 
 .level_ {
   font-size: 1rem;
@@ -119,6 +115,20 @@
   margin-right:5px;
   font-weight: bold;
   font-family: "Poppins";
+}
+
+.desc_label{
+  margin-bottom:1rem;
+}
+
+.desc_html{
+  width:100%;
+  height:auto;
+  overflow:hidden;
+}
+
+.desc_html img, .desc_html iframe{
+  height:auto!important;
 }
 
 

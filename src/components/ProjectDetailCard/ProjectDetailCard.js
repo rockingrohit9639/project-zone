@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProjectDetailCard.css";
 import { useDataLayerValues } from "../../datalayer";
 import share_logo from "./../../assets/share.svg";
@@ -8,6 +8,7 @@ import { AddLike, AddNewRating, AddBadge } from "./../../axios/instance";
 import { toast } from "react-toastify";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Rating from "@material-ui/lab/Rating";
+import draftToHtml from "draftjs-to-html";
 import { Link as RouterLink } from "react-router-dom";
 import { GitHub } from "@material-ui/icons";
 import { getSkillColor } from "../../utils";
@@ -31,6 +32,7 @@ function ProjectDetailCard()
     title:"",
     badge_description: ""
   });
+
 
   const LikeBtnHandler = async () =>
   {
@@ -234,7 +236,6 @@ function ProjectDetailCard()
         />
       ) : null}
       <h4 className="level_">{ProjectDetails.level} Level</h4>
-      <p className="desc_">{ProjectDetails.descr}</p>
       <div className="card-footer_">
         <div className="skills_">
           {ProjectDetails.skills &&
@@ -289,6 +290,8 @@ function ProjectDetailCard()
           />
         </div>
        </div>
+       <h4 className="like_label_  desc_label">Description</h4>
+       <div className="desc_html" dangerouslySetInnerHTML={{__html : draftToHtml(ProjectDetails.descr) }}></div>
       </div>
       <CongratsBadgeScreen 
         newbadge={newbadge} 

@@ -9,6 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 import addprojectimg from "./../../assets/addprojectimg.png";
 import { useDataLayerValues } from "../../datalayer";
 import { addproject, AddBadge } from "./../../axios/instance";
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./AddNewProject.css";
 import { Helmet } from 'react-helmet';
@@ -87,8 +90,12 @@ function AddNewProject() {
   const [skillInputs, setSkillInputs] = useState([""]);
   const [title, setTitle] = useState("");
   const [level, setLevel] = useState("");
-  const [desc, setDesc] = useState("");
   const [github, setGit] = useState("");
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
+  };
 
   const projectLevel = ["Beginner", "Intermediate", "Advanced"];
   const projectSkill = [
@@ -125,24 +132,27 @@ function AddNewProject() {
       toast.error("Please enter project's level");
     } else if (!skillInputs) {
       toast.error("Please enter skills for project");
-    } else if (!desc) {
+    } else if (!editorState) {
       toast.error("Please enter description");
     } else {
-      addNewProject(title, level, skillInputs, desc, github);
+      addNewProject(title, level, skillInputs, github);
       clearData();
     }
   };
 
-  const addNewProject = async (title, level, skillInputs, desc, github) => {
+
+  const addNewProject = async (title, level, skillInputs, github) => {
     const body = {
       name: title,
       level: level,
       skills: skillInputs,
-      description: desc,
+      description: convertToRaw(editorState.getCurrentContent()),
       github: github,
       adder_id: user.userid,
       adder_fname: user.fname
     };
+
+    console.log(convertToRaw(editorState.getCurrentContent()));
 
     try {
       const res = await addproject(body);
@@ -151,7 +161,6 @@ function AddNewProject() {
           type: "SET_PROJECT_DETAILS",
           ProjectDetails: {
             title: title,
-            descr: desc,
             level: level,
             skills: skillInputs,
             rating: 0,
@@ -207,14 +216,35 @@ function AddNewProject() {
   const clearData = () => {
     setTitle("");
     setLevel("");
-    setDesc("");
     setSkillInputs([""]);
+    setEditorState(EditorState.createEmpty());
   };
 
   const toggleModalVisibility = () =>
   {
     setModalVisibility(!modalVisibility);
   };
+
+  function uploadImageCallBack(file) {
+    return new Promise(
+      (resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://api.imgur.com/3/image');
+        xhr.setRequestHeader('Authorization', 'Client-ID 12c5937fb223f32');
+        const data = new FormData();
+        data.append('image', file);
+        xhr.send(data);
+        xhr.addEventListener('load', () => {
+          const response = JSON.parse(xhr.responseText);
+          resolve(response);
+        });
+        xhr.addEventListener('error', () => {
+          const error = JSON.parse(xhr.responseText);
+          reject(error);
+        });
+      }
+    );
+  }
 
   return (
     <>
@@ -319,17 +349,26 @@ function AddNewProject() {
               />
             </div>
           </FormControl>
-          <div className="forminput">
-            <label htmlFor="desc">
-              Description<span>*</span>
-            </label>
-            <textarea
-              id="desc"
-              placeholder="Write something about this project"
-              name="desc"
-              value={desc}
-              rows="5"
-              onChange={(e) => setDesc(e.target.value)}
+          <div >
+            <label className="desclabel">Description<span>*</span></label>
+            <Editor
+              toolbarClassName="desctoolbar"
+              editorClassName="desceditor"
+              editorState={editorState}
+              onEditorStateChange={onEditorStateChange}
+              toolbar={{ 
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+                image: { 
+                  uploadCallback: uploadImageCallBack, 
+                  previewImage: true, 
+                  alt: { present: true, mandatory: false } ,
+                  inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                }
+              }}
             />
           </div>
           <button type="submit" className="submitbtn">

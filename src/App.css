@@ -24,6 +24,7 @@
   font-weight: bold;
   transition: all 0.2s;
   box-shadow: 0 10px 25px rgb(175, 175, 236);
+  z-index:3;
 }
 #btn:hover {
   background-color: #040668;
@@ -31,6 +32,13 @@
 .pop {
   margin-top: -17px;
   font-size: 50px;
+}
+
+@media screen and (max-width: 960px) {
+  #btn{
+    right: 12px;
+    bottom: 5%;
+  }
 }
 
 /* CSS to accomodate dark mode toggle swithc with navabar */
