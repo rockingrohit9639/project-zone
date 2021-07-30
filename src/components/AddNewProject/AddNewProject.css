@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   background-color: #eaf2fd;
-  width: 50%;
+  width: 35%;
   min-height: 100vh;
 }
 
@@ -59,17 +59,25 @@
   line-height: 25px;
   color: rgb(60, 60, 60);
   background-color:#fff;
-  width: 50%;
-  height:auto;
+  width: 65%;
+  height: 100vh;
   overflow:auto;
 }
 
+
+.forminput {
+  width: 100%;
+}
+
+.forminput input {
+  width: 100%;
+}
 .addprojectform h1 {
   color: #5253ed;
 }
 
 .skillsinput {
-  width: fit-content;
+  width: 100%;
   position: relative;
   outline: none;
   border: 1px solid #ccc;
@@ -97,7 +105,7 @@
 
 .desctoolbar{
   border: 1px solid #ccc;
-  width:30vw;
+  width: 100%;
 }
 
 .desceditor{
@@ -105,7 +113,7 @@
   padding:0 2%;
   margin-bottom:20px;
   font-size:14px;
-  width:30vw;
+  width: 100%;
 }
 
 .submitbtn {
@@ -159,7 +167,7 @@
     }
     .forminput input{
         min-width:60vw;
-        width:70%;
+        width:100%;
     }
     .desctoolbar{
       width:60vw;

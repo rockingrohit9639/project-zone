@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   skillinput: {
     padding: "22px 10px 0px 20px",
-    width: "30vw",
+    width: "100%",
     color: "#5352ed",
     [theme.breakpoints.down("sm")]: {
       width: "60vw",

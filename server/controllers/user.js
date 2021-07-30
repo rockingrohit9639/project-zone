@@ -229,7 +229,7 @@ exports.AddNewProject = async (req, res) =>
       <h4> Level : ${ level }</h4>
       <h4> Skills : ${ skills.join(", ") }</h4>
       <h4> Github link : <a href=${ github }> Github Link</a></h4>
-      <h4 style="text-align:center"><a href=${ link }> Visite Project </a></h4>
+      <h4 style="text-align:center"><a href=${ link }> Visit Project </a></h4>
 
       Thanks You. Have a great day!!`;
 

@@ -8,19 +8,23 @@ function SearchBox({ fetchProjects })
   const [{ query }, dispatch] = useDataLayerValues();
   const [placeholder, setPlaceholder] = useState("e.g. reactjs (press space to focus)");
 
-  const handleSpaceKeyPress = useCallback( event => {  
+  const handleSpaceKeyPress = useCallback(event =>
+  {
 
     const { keyCode } = event;
-    if (keyCode === 32) {
+    if (keyCode === 32)
+    {
       document.getElementById('searchboxinput').focus();
       setPlaceholder("e.g. reactjs");
     }
   }, []);
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     window.addEventListener('keydown', handleSpaceKeyPress);
 
-    return () => {
+    return () =>
+    {
       window.removeEventListener('keydown', handleSpaceKeyPress);
     };
   })
@@ -41,6 +45,7 @@ function SearchBox({ fetchProjects })
   return (
     <div className="searchBox">
       <div className="input">
+        <SearchIcon onClick={fetchProjects} style={{ cursor: "pointer" }} />
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -50,7 +55,6 @@ function SearchBox({ fetchProjects })
             placeholder={placeholder}
           />
         </form>
-        <SearchIcon onClick={fetchProjects} style={{ cursor: "pointer" }} />
       </div>
     </div>
   );

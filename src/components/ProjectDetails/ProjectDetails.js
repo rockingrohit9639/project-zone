@@ -69,8 +69,6 @@ function ProjectDetails(props)
 
     setIsLoading(false);
   };
- 
-  console.log(ProjectDetails);
 
   const CommentBtnHandler = async () =>
   {
@@ -197,7 +195,7 @@ function ProjectDetails(props)
               onChange={(e) => setcomment(e.target.value)}
             ></textarea>
           </div>
-          <h4 class="comment_btn" onClick={CommentBtnHandler}>
+          <h4 className="comment_btn" onClick={CommentBtnHandler}>
             Comment
           </h4>
         </div>

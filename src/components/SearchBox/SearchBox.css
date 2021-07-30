@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 3%;
-
 }
 
 .input {
@@ -13,8 +12,7 @@
     background-color: #FFF;
     border: 1px solid black;
     padding: 0.1em 1.2em;
-    border-radius: 5px;
-    /* box-shadow: 0 13px 17px -16px rgb(0 0 0 / 40%); */
+    border-radius: 5rem;
 }
 
 .input input {
@@ -23,6 +21,6 @@
     width: 65vw;
     font-size: 1.2em;
     font-family: 'QuickSand';
-    padding: 0.6rem 0;
+    padding: 0.6rem 1rem;
     background: transparent;
 }

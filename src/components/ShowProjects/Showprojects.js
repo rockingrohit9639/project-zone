@@ -55,9 +55,7 @@ function Showprojects()
     beginner: true,
     intermediate: true,
     advanced: true,
-    added: false,
-    liked: false,
-    rated: false
+    added: false
   });
   const classes = useStyles();
 
@@ -103,6 +101,7 @@ function Showprojects()
   const fetchProjects = async (queryoption = "") =>
   {
     setIsLoading(true);
+    console.log(query, queryoption);
 
     try
     {
@@ -111,18 +110,19 @@ function Showprojects()
       if (queryoption !== "")
       {
         const results = await server.get(`/getprojects?q=${ queryoption }`);
-        setIsLoading(false);
         setProjects(results.data);
+        setIsLoading(false);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
 
-      } else if( query !== "")
+      } else if (query !== "")
       {
         const results = await server.get(`/getprojects?q=${ query }`);
-        setIsLoading(false);
         setProjects(results.data);
+        setIsLoading(false);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
 
-      } else {
+      } else
+      {
         toast.error("Please enter or select a query first");
         setIsLoading(false);
       }
@@ -142,7 +142,7 @@ function Showprojects()
     });
 
     fetchProjects(e.target.innerText);
-    
+
   };
 
   const handleRandomProject = () =>
@@ -159,8 +159,6 @@ function Showprojects()
       case "beginner": setfilter({ ...filter, beginner: !filter.beginner }); break;
       case "intermediate": setfilter({ ...filter, intermediate: !filter.intermediate }); break;
       case "advanced": setfilter({ ...filter, advanced: !filter.advanced }); break;
-      case "liked": setfilter({ ...filter, liked: !filter.liked }); break;
-      case "rated": setfilter({ ...filter, rated: !filter.rated }); break;
       case "added": setfilter({ ...filter, added: !filter.added }); break;
     }
   };
@@ -169,16 +167,13 @@ function Showprojects()
   {
 
     if (filter[`${ project.level }`]) return project;
-    else if (filter["liked"] && dashboard.projects_liked.indexOf(project._id) !== -1) return project;
-    else if (filter["rated"] && dashboard.projects_rated.indexOf(project._id) !== -1) return project;
     else if (filter["added"] && dashboard.projects_added.indexOf(project.name) !== -1) return project;
-
   }
 
 
   return (
     <div className="showProjects">
-    <Helmet  title="Project Zone | Find Projects"/>
+      <Helmet title="Project Zone | Find Projects" />
       <ToastContainer />
       <div className="mt">
         <SearchBox fetchProjects={fetchProjects} />
@@ -214,26 +209,8 @@ function Showprojects()
             />
             <span className="checkmark"></span>
           </label>
-          <label className="container">
-            Liked Projects
-            <input
-              defaultChecked={false}
-              name="liked"
-              type="checkbox"
-              onChange={checkboxHandler}
-            />
-            <span className="checkmark"></span>
-          </label>
-          <label className="container">
-            Rated Projects
-            <input
-              defaultChecked={false}
-              name="rated"
-              type="checkbox"
-              onChange={checkboxHandler}
-            />
-            <span className="checkmark"></span>
-          </label>
+
+
           <label className="container">
             Added Projects
             <input
@@ -316,11 +293,11 @@ function Showprojects()
       )}
 
       {isLoading ? (
-          <div className="loading_indicator">
-            <Bars stroke={"#6f6ee1"} fill="#6f6ee1" width="60" height="90" />
-            <p> Fetching {query} projects </p>
-          </div>
-        ) : null}
+        <div className="loading_indicator">
+          <Bars stroke={"#6f6ee1"} fill="#6f6ee1" width="60" height="90" />
+          <p> Fetching {query} projects </p>
+        </div>
+      ) : null}
 
 
       <div className="projectsList">
