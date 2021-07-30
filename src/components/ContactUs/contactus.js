@@ -4,12 +4,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import { sendmessage } from './../../axios/instance';
 import ParticlesBg from 'particles-bg';
 import './contactus.css';
+import { Oval } from "react-loading-icons";
 import { Helmet } from "react-helmet";
 
 export default function ContactUs()
 {
 
   const [{ user }] = useDataLayerValues();
+  const [isLoading, setIsLoading] = useState(false);
   const [fields, setFields] = useState({
     fullname: `${ user.fname } ${ user.lname }`,
     email: user.email,
@@ -33,23 +35,34 @@ export default function ContactUs()
   const handleSubmit = async (e) =>
   {
     e.preventDefault();
+    setIsLoading(true);
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
     if (!fullname)
     {
+      setIsLoading(false);
       toast.error("Please enter your Full Name");
     } else if (email.trim() === " ")
     {
+      setIsLoading(false);
       toast.error("Please enter your email");
     } else if (!emailTest.test(email))
     {
+      setIsLoading(false);
       toast.error('Please enter a valid email');
     } else if (!message)
     {
+      setIsLoading(false);
+      toast.error('Please write a message/feedback to connect with us');
+    }
+    else if (message === "")
+    {
+      setIsLoading(false);
       toast.error('Please write a message/feedback to connect with us');
     } else
     {
       sendMessage(fullname, email, message);
+      setIsLoading(false);
       clearFields();
     }
   };
@@ -87,7 +100,7 @@ export default function ContactUs()
 
   return (
     <section className="contact_section" >
-    <Helmet title="Project Zone | Contact Us" />
+      <Helmet title="Project Zone | Contact Us" />
       <ParticlesBg type="coweb"
         bg={true}
       />
@@ -130,6 +143,9 @@ export default function ContactUs()
               required />
           </div>
 
+          {isLoading ? <div className="loading_indicator">
+            <Oval stroke={"#6f6ee1"} />
+          </div> : null}
           <button type="submit" className="submitBtn"><span> Send </span></button>
         </form>
       </div>

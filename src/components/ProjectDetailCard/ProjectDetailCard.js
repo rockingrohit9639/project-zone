@@ -33,6 +33,7 @@ function ProjectDetailCard()
     badge_description: ""
   });
 
+  console.log(ProjectDetails);
 
   const LikeBtnHandler = async () =>
   {
