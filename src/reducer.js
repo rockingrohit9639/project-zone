@@ -33,7 +33,7 @@ export const initialState = {
   ProjectDetails: {
     id: null,
     title: null,
-    descr: {},
+    descr: null,
     level: null,
     skills: null,
     github: null,
