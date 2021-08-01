@@ -11,6 +11,7 @@ import { useDataLayerValues } from "../../datalayer";
 import { addproject, AddBadge } from "./../../axios/instance";
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./AddNewProject.css";
@@ -146,13 +147,11 @@ function AddNewProject() {
       name: title,
       level: level,
       skills: skillInputs,
-      description: convertToRaw(editorState.getCurrentContent()),
+      description: draftToHtml(convertToRaw(editorState.getCurrentContent())),
       github: github,
       adder_id: user.userid,
       adder_fname: user.fname
     };
-
-    console.log(convertToRaw(editorState.getCurrentContent()));
 
     try {
       const res = await addproject(body);
