@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import ProjectDetailCard from "../ProjectDetailCard/ProjectDetailCard";
 import "./ProjectDeatils.css";
 import ParticlesBg from "particles-bg";
-import userImg from "../../assets/user.png";
-import moment from "moment";
 import Rating from "@material-ui/lab/Rating";
 import { useDataLayerValues } from "./../../datalayer";
 import { AddComment, UpvoteComment, GetSingleProject } from "./../../axios/instance";
 import { ToastContainer, toast } from "react-toastify";
 import { Link as RouterLink, useParams, useHistory } from "react-router-dom";
-import { Editor, EditorState, convertFromRaw } from "draft-js";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { BallTriangle } from "react-loading-icons";
 
@@ -69,6 +66,8 @@ function ProjectDetails(props)
 
     setIsLoading(false);
   };
+  
+  console.log(ProjectDetails.descr);
 
   const CommentBtnHandler = async () =>
   {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBox from "../SearchBox/SearchBox";
 import "./ShowProjects.css";
 import { useDataLayerValues } from "../../datalayer";
@@ -57,6 +57,12 @@ function Showprojects()
     advanced: true,
     added: false
   });
+
+  const [projects, setProjects] = useState([]);
+  const [filteredprojects, setFilteredProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [{ dashboard, query }, dispatch] = useDataLayerValues();
+
   const classes = useStyles();
 
   const handlePageChange = (event, value) =>
@@ -64,10 +70,6 @@ function Showprojects()
     setPage(value);
     window.scroll(0, 420);
   };
-
-  const [projects, setProjects] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [{ dashboard, query }, dispatch] = useDataLayerValues();
 
   const defaultOptionsRow1 = [
     "JavaScript",
@@ -111,15 +113,17 @@ function Showprojects()
       {
         const results = await server.get(`/getprojects?q=${ queryoption }`);
         setProjects(results.data);
-        setIsLoading(false);
+        setFilteredProjects(results.data);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
+        setIsLoading(false);
 
       } else if (query !== "")
       {
         const results = await server.get(`/getprojects?q=${ query }`);
         setProjects(results.data);
-        setIsLoading(false);
+        setFilteredProjects(results.data);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
+        setIsLoading(false);
 
       } else
       {
@@ -142,12 +146,12 @@ function Showprojects()
     });
 
     fetchProjects(e.target.innerText);
-
+    
   };
 
   const handleRandomProject = () =>
   {
-    setRandomProject(projects[Math.floor(Math.random() * projects.length)]);
+    setRandomProject(filteredprojects[Math.floor(Math.random() * filteredprojects.length)]);
   };
 
   const checkboxHandler = (e) =>
@@ -161,6 +165,7 @@ function Showprojects()
       case "advanced": setfilter({ ...filter, advanced: !filter.advanced }); break;
       case "added": setfilter({ ...filter, added: !filter.added }); break;
     }
+    
   };
 
   const filterByCheck = (project) =>
@@ -168,8 +173,17 @@ function Showprojects()
 
     if (filter[`${ project.level }`]) return project;
     else if (filter["added"] && dashboard.projects_added.indexOf(project.name) !== -1) return project;
+
   }
 
+  useEffect(() => {
+
+    let filtered = projects.filter((project) => filterByCheck(project));
+    setFilteredProjects(filtered);
+    setTotalPages(Math.ceil(filtered.length / itemsPerPage));
+    setPage(1);
+
+  }, [projects,filter])
 
   return (
     <div className="showProjects">
@@ -209,8 +223,6 @@ function Showprojects()
             />
             <span className="checkmark"></span>
           </label>
-
-
           <label className="container">
             Added Projects
             <input
@@ -259,7 +271,7 @@ function Showprojects()
       </div>
 
       <div className="random_btn-box">
-        {projects ? (
+        {filteredprojects ? (
           <Option
             onClick={handleRandomProject}
             optionColor={"#6f6ee1"}
@@ -299,11 +311,9 @@ function Showprojects()
         </div>
       ) : null}
 
-
       <div className="projectsList">
-        {projects &&
-          projects
-            .filter((project) => filterByCheck(project))
+        {filteredprojects && filteredprojects.length > 0 &&
+            filteredprojects
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((project, ind) =>
             {
@@ -322,7 +332,7 @@ function Showprojects()
               );
             })}
       </div>
-      {projects && (
+      {filteredprojects && filteredprojects.length > 0 && (
         <Pagination
           count={totalPages}
           page={page}

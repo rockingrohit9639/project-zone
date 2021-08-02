@@ -225,7 +225,8 @@ exports.AddNewProject = async (req, res) =>
       <p> Hello user, A new project has been added on Project Zone by ${ username }. The details of the projects are - </p>
 
       <h3> Title : ${ name } </h3>
-      <h4> Description : ${ description }</h4>
+      <h4> Description : </h4>
+      ${ description }
       <h4> Level : ${ level }</h4>
       <h4> Skills : ${ skills.join(", ") }</h4>
       <h4> Github link : <a href=${ github }> Github Link</a></h4>
