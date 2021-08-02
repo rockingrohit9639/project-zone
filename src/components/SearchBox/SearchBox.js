@@ -1,12 +1,44 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./SearchBox.css";
 import SearchIcon from "@material-ui/icons/Search";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { makeStyles } from "@material-ui/core/styles";
 import { useDataLayerValues } from "../../datalayer";
+
+const useStyles = makeStyles((theme) => ({
+  input: {
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: "1rem",
+  },
+  option: {
+    color: "#000",
+    backgroundColor: "#FFF",
+    marginTop: 0,
+    padding:"5px 20px",
+    '&[data-focus="true"]': {
+      backgroundColor: "#5253ED",
+      color: "#FFF",
+    },
+  },
+}));
 
 function SearchBox({ fetchProjects })
 {
+  const classes = useStyles();
   const [{ query }, dispatch] = useDataLayerValues();
+  const [querySearch, setQuerySearch] = useState(query);
   const [placeholder, setPlaceholder] = useState("e.g. reactjs (press space to focus)");
+  const searchOptions = [ 
+    "reactjs",
+    "javascript",
+    "java",
+    "python",
+    "frontend",
+    "backend",
+    "fullstack",
+    "flutter"
+  ]
 
   const handleSpaceKeyPress = useCallback(event =>
   {
@@ -15,7 +47,9 @@ function SearchBox({ fetchProjects })
     if (keyCode === 32)
     {
       document.getElementById('searchboxinput').focus();
+      setQuerySearch("");
       setPlaceholder("e.g. reactjs");
+      
     }
   }, []);
 
@@ -29,17 +63,14 @@ function SearchBox({ fetchProjects })
     };
   })
 
-  const setQuery = (e) =>
-  {
-    dispatch({
-      type: "SET_QUERY",
-      query: e.target.value.trim(),
-    });
-  };
   function handleSubmit(e)
   {
     e.preventDefault();
-    fetchProjects();
+    dispatch({
+      type: "SET_QUERY",
+      query: querySearch,
+    });
+    fetchProjects(querySearch);
   }
 
   return (
@@ -47,13 +78,26 @@ function SearchBox({ fetchProjects })
       <div className="input">
         <SearchIcon onClick={fetchProjects} style={{ cursor: "pointer" }} />
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={query}
-            onChange={setQuery}
+          <Autocomplete
             id="searchboxinput"
-            placeholder={placeholder}
-          />
+            options={searchOptions}
+            value={querySearch}
+            onChange={(event, value) => setQuerySearch(value)}
+            freeSolo={true}
+            classes={{ option: classes.option }}
+            renderInput={(params) => (
+              <div ref={params.InputProps.ref}>
+                <input
+                  type="text"
+                  value={querySearch}
+                  onChange={(e) => setQuerySearch(e.target.value)}
+                  placeholder={placeholder}
+                  className={classes.input}
+                  {...params.inputProps}
+                />
+              </div>
+              )}
+            />
         </form>
       </div>
     </div>

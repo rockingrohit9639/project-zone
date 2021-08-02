@@ -26,7 +26,7 @@ projectsRouter.get("/getprojects", async (req, res) =>
   try
   {
     const result = await Project.find({
-      skills: { $regex: query, $options: "i" },
+      skills: {  "$in" : [query]  }
     });
 
     if (result)
