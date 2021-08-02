@@ -101,7 +101,7 @@ function AddNewProject() {
   const projectLevel = ["Beginner", "Intermediate", "Advanced"];
   const projectSkill = [
     "JavaScript",
-    "Node",
+    "NodeJs",
     "Python",
     "HTML",
     "CSS",
@@ -143,6 +143,12 @@ function AddNewProject() {
 
 
   const addNewProject = async (title, level, skillInputs, github) => {
+
+    if(skillInputs[0] === ""){
+      toast.error("Please enter a valid skill");
+      return;
+    }
+
     const body = {
       name: title,
       level: level,

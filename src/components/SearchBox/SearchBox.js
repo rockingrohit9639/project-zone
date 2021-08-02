@@ -37,8 +37,21 @@ function SearchBox({ fetchProjects })
     "frontend",
     "backend",
     "fullstack",
-    "flutter"
-  ]
+    "flutter",
+    "ar",
+    "vr",
+    "nodejs",
+    "html",
+    "css",
+    "opencv",
+    "c++",
+    "c",
+    "mern",
+    "ml",
+    "ai",
+    "machine learning",
+    "artificial intellegence"
+  ] 
 
   const handleSpaceKeyPress = useCallback(event =>
   {
