@@ -77,7 +77,7 @@ function Showprojects()
     "Python",
     "HTML",
     "CSS",
-    "React",
+    "ReactJS",
     "Java",
     "Express",
     "C++",
@@ -103,7 +103,6 @@ function Showprojects()
   const fetchProjects = async (queryoption = "") =>
   {
     setIsLoading(true);
-    console.log(query, queryoption);
 
     try
     {
@@ -271,7 +270,7 @@ function Showprojects()
       </div>
 
       <div className="random_btn-box">
-        {filteredprojects ? (
+        {query && filteredprojects ? (
           <Option
             onClick={handleRandomProject}
             optionColor={"#6f6ee1"}
