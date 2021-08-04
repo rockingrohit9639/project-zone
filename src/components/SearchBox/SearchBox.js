@@ -28,7 +28,7 @@ function SearchBox({ fetchProjects })
   const classes = useStyles();
   const [{ query }, dispatch] = useDataLayerValues();
   const [querySearch, setQuerySearch] = useState(query);
-  const [placeholder, setPlaceholder] = useState("e.g. reactjs (press space to focus)");
+  const [placeholder, setPlaceholder] = useState("e.g. reactjs (press space to focus then type and select)");
   const searchOptions = [ 
     "reactjs",
     "javascript",
@@ -55,14 +55,12 @@ function SearchBox({ fetchProjects })
 
   const handleSpaceKeyPress = useCallback(event =>
   {
-
     const { keyCode } = event;
     if (keyCode === 32)
     {
+      event.preventDefault();
       document.getElementById('searchboxinput').focus();
-      setQuerySearch("");
       setPlaceholder("e.g. reactjs");
-      
     }
   }, []);
 
@@ -93,17 +91,16 @@ function SearchBox({ fetchProjects })
         <form onSubmit={handleSubmit}>
           <Autocomplete
             id="searchboxinput"
+            noOptionsText={'try again and select option from dropdown'}
             options={searchOptions}
             value={querySearch}
             onChange={(event, value) => setQuerySearch(value)}
-            freeSolo={true}
+            freeSolo={false}
             classes={{ option: classes.option }}
             renderInput={(params) => (
               <div ref={params.InputProps.ref}>
                 <input
                   type="text"
-                  value={querySearch}
-                  onChange={(e) => setQuerySearch(e.target.value)}
                   placeholder={placeholder}
                   className={classes.input}
                   {...params.inputProps}
