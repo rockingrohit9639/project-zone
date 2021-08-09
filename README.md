@@ -28,15 +28,18 @@
 # Problem 😧
 
 When we participate in any hackathon, we always face an issue i.e what project should you create you always seek for some inspiration for projects. Or, when we learn a new tech skill like react, angular, node or anything, then we always go to google or youtube to find some project ideas.
+
 > #### So if you face the same problem we are here to help you! 🤩
 
 # Solution 😃
 
 Project Zone suggests a user about the projects they can create based on their skills. Project Zone has a collection of wide variety of projects for many different skill-sets. You can also add some projects of your choice on Project Zone.
 Project Zone has the categories of projects from beginner level to advanced level.
+
 <hr>
 
 # Features
+
 - Login/Signup
 - Email Verification
 - Find best projects
@@ -145,6 +148,7 @@ Then go to your Git terminal and clone it on your machine.
 - After installing all the dependencies go through the following commands to make a directory named config inside server directory & add a fille config.env in config directory.
   ```
   mkdir config
+  cd config
   touch config.env
   ```
 - Edit config.env as follow :-
