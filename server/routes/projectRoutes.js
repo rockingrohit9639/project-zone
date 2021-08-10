@@ -7,9 +7,9 @@ const { HomePageProjects, GetProjectByID } = require("./../controllers/public");
 // Routes
 /**
  * @swagger
- * /getprojects:
+ * /getprojectsbyskill:
  *  get:
- *    description: Get a list of projects on the basis of query
+ *    description: Get a list of projects by skill on the basis of query
  *    responses:
  *      '200':
  *        description: Response Successful
@@ -18,7 +18,7 @@ const { HomePageProjects, GetProjectByID } = require("./../controllers/public");
  *      '500':
  *        description: Internal server error
  */
-projectsRouter.get("/getprojects", async (req, res) =>
+projectsRouter.get("/getprojectsbyskill", async (req, res) =>
 {
   var query = req.query.q;
   query = query.toLowerCase();
@@ -41,6 +41,43 @@ projectsRouter.get("/getprojects", async (req, res) =>
     return res.staus(500).json({ message: "Internal server error" });
   }
 });
+
+/**
+ * @swagger
+ * /getprojectsbyname:
+ *  get:
+ *    description: Get a list of projects by name on the basis of query 
+ *    responses:
+ *      '200':
+ *        description: Response Successful
+ *      '404':
+ *        description: Not found.
+ *      '500':
+ *        description: Internal server error
+ */
+ projectsRouter.get("/getprojectsbyname", async (req, res) =>
+ {
+   var query = req.query.q;
+   query = query.toLowerCase();
+ 
+   try
+   {
+     const result = await Project.find({
+      name : {$regex : query, $options: "i"} 
+     });
+ 
+     if (result)
+     {
+       return res.status(200).json(result);
+     } else
+     {
+       return res.status(404).json({ message: "Projects Not found" });
+     }
+   } catch (err)
+   {
+     return res.staus(500).json({ message: "Internal server error" });
+   }
+ });
 
 // Routes
 /**

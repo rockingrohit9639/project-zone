@@ -100,9 +100,10 @@ function Showprojects()
   // "VR"
   const [randomProject, setRandomProject] = useState("");
 
-  const fetchProjects = async (queryoption = "") =>
+  const fetchProjects = async (queryoption = "",querytype = "Skill") =>
   {
     setIsLoading(true);
+    const type = querytype.toLowerCase();
 
     try
     {
@@ -110,7 +111,7 @@ function Showprojects()
 
       if (queryoption !== "")
       {
-        const results = await server.get(`/getprojects?q=${ queryoption }`);
+        const results = await server.get(`/getprojectsby${type}?q=${ queryoption }`);
         setProjects(results.data);
         setFilteredProjects(results.data);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
@@ -118,7 +119,7 @@ function Showprojects()
 
       } else if (query !== "")
       {
-        const results = await server.get(`/getprojects?q=${ query }`);
+        const results = await server.get(`/getprojectsby${type}?q=${ query }`);
         setProjects(results.data);
         setFilteredProjects(results.data);
         setTotalPages(Math.ceil(results.data.length / itemsPerPage));
