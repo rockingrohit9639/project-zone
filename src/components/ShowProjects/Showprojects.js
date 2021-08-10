@@ -73,7 +73,6 @@ function Showprojects()
 
   const defaultOptionsRow1 = [
     "JavaScript",
-    "Node",
     "Python",
     "HTML",
     "CSS",
@@ -100,7 +99,7 @@ function Showprojects()
   // "VR"
   const [randomProject, setRandomProject] = useState("");
 
-  const fetchProjects = async (queryoption = "",querytype = "Skill") =>
+  const fetchProjects = async (queryoption = "", querytype = "Skill") =>
   {
     setIsLoading(true);
     const type = querytype.toLowerCase();
@@ -312,7 +311,8 @@ function Showprojects()
       ) : null}
 
       <div className="projectsList">
-        {filteredprojects && filteredprojects.length > 0 &&
+        {
+          filteredprojects && filteredprojects.length > 0 ?
             filteredprojects
             .slice((page - 1) * itemsPerPage, page * itemsPerPage)
             .map((project, ind) =>
@@ -330,7 +330,15 @@ function Showprojects()
                   comments={project.comments}
                 />
               );
-            })}
+            }) 
+            :
+            <div style={{ textAlign: "center" }}>
+              <h3>Oopps !! No projects found.</h3>
+              <p>Login to add your projects on Project Zone</p>
+            </div>
+          }
+
+
       </div>
       {filteredprojects && filteredprojects.length > 0 && (
         <Pagination

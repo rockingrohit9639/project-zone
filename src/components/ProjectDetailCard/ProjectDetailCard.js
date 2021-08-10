@@ -237,6 +237,10 @@ function ProjectDetailCard()
         />
       ) : null}
       <h4 className="level_">{ProjectDetails.level} Level</h4>
+
+       <div className="desc_html" dangerouslySetInnerHTML={{__html : ProjectDetails.descr }}></div>
+
+
       <div className="card-footer_">
         <div className="skills_">
           {ProjectDetails.skills &&
@@ -291,8 +295,6 @@ function ProjectDetailCard()
           />
         </div>
        </div>
-       <h4 className="like_label_  desc_label">Description</h4>
-       <div className="desc_html" dangerouslySetInnerHTML={{__html : ProjectDetails.descr }}></div>
       </div>
       <CongratsBadgeScreen 
         newbadge={newbadge} 

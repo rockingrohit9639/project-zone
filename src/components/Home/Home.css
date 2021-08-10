@@ -12,6 +12,7 @@
   background-position: center;
   margin-top: 20px;
   position: relative;
+  min-height: 100vh;
 }
 
 .dots_img {

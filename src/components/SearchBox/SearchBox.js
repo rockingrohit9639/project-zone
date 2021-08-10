@@ -42,7 +42,6 @@ function SearchBox({ fetchProjects })
     "flutter",
     "ar",
     "vr",
-    "nodejs",
     "html",
     "css",
     "opencv",
@@ -54,6 +53,8 @@ function SearchBox({ fetchProjects })
     "machine learning",
     "artificial intellegence"
   ] 
+  
+  // "nodejs",
 
   const handleTypesSeen = (event) => {
     setTypesSeen(!typesSeen);
