@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./SearchBox.css";
 import SearchIcon from "@material-ui/icons/Search";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { makeStyles } from "@material-ui/core/styles";
 import { useDataLayerValues } from "../../datalayer";
 
@@ -9,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
   input: {
     textAlign: "center",
     fontWeight: "bold",
-    marginBottom: "1rem",
   },
   option: {
     color: "#000",
@@ -26,9 +26,11 @@ const useStyles = makeStyles((theme) => ({
 function SearchBox({ fetchProjects })
 {
   const classes = useStyles();
+  const [querytype, setQueryType] = useState("Skill");
+  const [typesSeen ,setTypesSeen ] = useState(false);
   const [{ query }, dispatch] = useDataLayerValues();
   const [querySearch, setQuerySearch] = useState(query);
-  const [placeholder, setPlaceholder] = useState("e.g. reactjs (press space to focus then type and select)");
+  const [placeholder, setPlaceholder] = useState("e.g. reactjs (press space to focus)");
   const searchOptions = [ 
     "reactjs",
     "javascript",
@@ -52,6 +54,15 @@ function SearchBox({ fetchProjects })
     "machine learning",
     "artificial intellegence"
   ] 
+
+  const handleTypesSeen = (event) => {
+    setTypesSeen(!typesSeen);
+  }
+
+  const handleSelect = (event) => {
+    setQueryType(event.target.innerText);
+    setTypesSeen(!typesSeen);
+  }
 
   const handleSpaceKeyPress = useCallback(event =>
   {
@@ -81,21 +92,21 @@ function SearchBox({ fetchProjects })
       type: "SET_QUERY",
       query: querySearch,
     });
-    fetchProjects(querySearch);
+    fetchProjects(querySearch, querytype);
   }
 
   return (
     <div className="searchBox">
       <div className="input">
         <SearchIcon onClick={fetchProjects} style={{ cursor: "pointer" }} />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="search_form">
           <Autocomplete
             id="searchboxinput"
             noOptionsText={'try again and select option from dropdown'}
-            options={searchOptions}
+            options={querytype === 'Skill' ? searchOptions : []}
             value={querySearch}
             onChange={(event, value) => setQuerySearch(value)}
-            freeSolo={false}
+            freeSolo={querytype === 'Name'}
             classes={{ option: classes.option }}
             renderInput={(params) => (
               <div ref={params.InputProps.ref}>
@@ -103,11 +114,25 @@ function SearchBox({ fetchProjects })
                   type="text"
                   placeholder={placeholder}
                   className={classes.input}
+                  value={querySearch}
+                  onChange={(e) => setQuerySearch(e.target.value)}
                   {...params.inputProps}
                 />
               </div>
               )}
             />
+            <div className="types_dropdown">
+              <div className="currtype">
+                Search By <p onClick={handleTypesSeen}>{querytype}<ArrowDropDownIcon className="typearrow"/></p>
+              </div> 
+              {
+                typesSeen && 
+                <div className="types_overlay">
+                  <div className="qtype" value="Skill" onClick={handleSelect}>Skill</div>
+                  <div className="qtype" value="Name" onClick={handleSelect}>Name</div>
+                </div>
+              }
+            </div>
         </form>
       </div>
     </div>

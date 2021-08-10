@@ -11,16 +11,121 @@
     align-items: center;
     background-color: #FFF;
     border: 1px solid black;
-    padding: 0.1em 1.2em;
+    padding: 0 1.4em;
+    padding-right:0;
+    height: fit-content;
     border-radius: 5rem;
 }
 
-.input input {
+.search_form {
+    display:flex;
+    justify-content: space-between;
+    width: 65vw;
+    position: relative;
+}
+
+.search_form input {
     outline: none;
     border: none;
-    width: 65vw;
+    width:45vw;
     font-size: 1.2em;
     font-family: 'QuickSand';
-    padding: 0.6rem 1rem;
+    padding: 0.4rem 1.4rem;
     background: transparent;
 }
+
+.search_form .types_dropdown{
+    position:absolute;
+    left:74%;
+    display:flex;
+    flex-direction:column;
+    outline: none;
+    border: none;
+    min-width:15vw;
+    text-align: right;
+    margin-left:auto;
+    font-size: 1.2em;
+    font-family: 'QuickSand';
+    padding: 0.5rem;
+    background: transparent;
+}
+
+.currtype{
+    display:flex;
+    height:33px;
+    align-self: center;
+}
+.currtype p{
+    color: #5253ED;
+    font-weight:bold;
+    margin-left:10px;
+    cursor : pointer;
+    transform: translateY(-5px)
+}
+
+.typearrow{
+    transform: translateY(5px)
+}
+
+.types_overlay{
+    padding:0;
+    background-color:#fff;
+    color:#5253ED;
+    position: relative;
+    z-index:3;
+    width:10vw;
+    right:-10%;
+    top:0;
+    -webkit-box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
+    box-shadow: 0 3px 5px -3px rgba(50, 50, 50, 0.75);
+}
+
+.qtype{
+    padding:0.2rem 0.4rem;
+    text-align: left;
+    width:100%;
+    cursor:pointer;
+}
+
+.typearrow{
+    cursor: pointer;
+}
+
+.qtype:hover{
+    background-color:#5253ED;
+    color:#fff;
+}
+
+@media screen and (max-width: 960px) {
+    .input{
+        padding:0 0.5rem;
+    }
+    .search_form {
+        width:80vw;
+    }
+    .search_form input {
+        width:45vw;
+        font-size:0.9em;
+    }
+    .search_form .types_dropdown{
+       left:55%;
+       min-width:33vw;
+       font-size:0.9em;
+       align-items:right;
+    }
+    .types_overlay{
+        width:100px;
+    }
+    .currtype{
+        height:25px;
+        width:33vw;
+    }
+    .currtype p{
+        transform: translateY(-8px);
+        margin:0 5px;
+    }
+}
+
+
+
