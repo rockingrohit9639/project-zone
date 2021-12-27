@@ -1,7 +1,7 @@
 import axios from "axios";
-const development = true;
+const development = false;
 
-const url = development ? "http://localhost:8000" : "https://project-zone-server.azurewebsites.net";
+const url = development ? "http://localhost:8000" : "http://3.89.10.126:5000/";
 
 export const server = axios.create({
   baseURL: url,
