@@ -78,10 +78,10 @@ function Showprojects() {
     "ReactJS",
     "Java",
     "Express",
-    "C++",
   ];
 
   // nextjs
+  // "C++",
   // C
   const defaultOptionsRow2 = [
     "FullStack",
