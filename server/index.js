@@ -25,8 +25,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 dotenv.config({ path: "config/config.env" });
-// const PORT = process.env.PORT || 3001;
-const PORT = 8001;
+const PORT = process.env.PORT || 8001;
 
 const app = express(); // create express app
 // app.use(morgan("tiny"));

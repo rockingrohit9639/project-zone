@@ -3,7 +3,7 @@ const development = true;
 
 //https://project-zone-server.azurewebsites.net/
 //http://3.89.10.126:5000/
-const url = development ? "http://localhost:8001" : "https://project-zone-server.azurewebsites.net";
+const url = development ? "http://localhost:8000" : "https://project-zone-server.azurewebsites.net";
 
 export const server = axios.create({
   baseURL: url,
