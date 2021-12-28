@@ -33,7 +33,7 @@ function ProjectDetailCard()
     badge_description: ""
   });
 
-  console.log(ProjectDetails);
+  // console.log(ProjectDetails);
 
   const LikeBtnHandler = async () =>
   {
@@ -232,7 +232,8 @@ function ProjectDetailCard()
       {shareopen ? (
         <ShareProject
           title={ProjectDetails.title}
-          description={ProjectDetails.descr}
+          description={""}
+          id={ProjectDetails.id}
           style={{right : "10%", marginTop:"3rem"}}
         />
       ) : null}

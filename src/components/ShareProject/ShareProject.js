@@ -16,7 +16,7 @@ import
 
 function ShareProject(props)
 {
-  const url = `https://project-zone.netlify.app/${ props.id }`;
+  const url = `https://project-zone.tech/${ props.id }`;
 
   const quote = `
 Hello everyone,

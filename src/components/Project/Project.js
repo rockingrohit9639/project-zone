@@ -138,7 +138,7 @@ function Project({
           {desc.trim() == "" ? null : (
             <div
               className="description"
-              dangerouslySetInnerHTML={{ __html: desc.slice(0, 200) + "..." }}
+              dangerouslySetInnerHTML={{ __html: desc.slice(0, 100) + "..." }}
             ></div>
           )}
 
