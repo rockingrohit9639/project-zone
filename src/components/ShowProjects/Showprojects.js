@@ -12,6 +12,7 @@ import { getSkillColor } from "../../utils";
 import { Bars } from "react-loading-icons";
 import { toast, ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const Option = styled.button`
   color: ${(props) => (props.optionColor ? props.optionColor : "#FFF")};
@@ -56,11 +57,11 @@ function Showprojects() {
     advanced: true,
     added: false,
   });
-
   const [projects, setProjects] = useState([]);
   const [filteredprojects, setFilteredProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [{ dashboard, query }, dispatch] = useDataLayerValues();
+  const [{ dashboard, query, isAuthenticated }, dispatch] =
+    useDataLayerValues();
 
   const classes = useStyles();
   const [dataCheck, setDatacheck] = useState("init");
@@ -336,7 +337,11 @@ function Showprojects() {
         ) : dataCheck === "no data" ? (
           <div style={{ textAlign: "center" }}>
             <h3>Oopps !! No projects found.</h3>
-            <p>Login to add your projects on Project Zone</p>
+            {isAuthenticated ? (
+              <Link to="/addnew">Add new project</Link>
+            ) : (
+              <p>Login to add your projects on Project Zone</p>
+            )}
           </div>
         ) : null}
       </div>

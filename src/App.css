@@ -83,4 +83,8 @@
   color: #fff;
 }
 
-
+.loading_indicator {
+  width: 100%;
+  height: 70vh;
+  text-align: center;
+}

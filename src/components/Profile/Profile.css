@@ -46,7 +46,8 @@ input[type="file"] {
 }
 
 .person_card {
-  max-width: 300px;
+  width: clamp(200px, 20vw, 300px);
+  /* max-width: 300px; */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -131,7 +132,7 @@ input[type="file"] {
   background-color: #fff;
   color: #5352ed;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .addnewlink,
@@ -148,7 +149,7 @@ input[type="file"] {
   padding: 10px 20px;
   cursor: pointer;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   box-shadow: -1px 3px 3px rgba(0, 0, 0, 0.4);
 }
 

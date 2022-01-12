@@ -1,9 +1,11 @@
 import axios from "axios";
-const development = true;
+const development = false;
 
 //https://project-zone-server.azurewebsites.net/
 //http://3.89.10.126:5000/
-const url = development ? "http://localhost:8000" : "https://project-zone-server.azurewebsites.net";
+const url = development
+  ? "http://localhost:8000"
+  : "https://project-zone-server.vercel.app";
 
 export const server = axios.create({
   baseURL: url,
@@ -31,8 +33,11 @@ export const sendverifyemail = () => server.get(`${url}/send-verify-email`);
 export const verifyemail = (data) => server.post(`${url}/verify-email`, data);
 export const AddComment = (data) => server.patch(`${url}/add-comment`, data);
 export const AddLike = (data) => server.patch(`${url}/add-like`, data);
-export const AddNewRating = (data) => server.patch(`${url}/add-new-rating`, data);
-export const UpvoteComment = (data) => server.patch(`${url}/upvote-comment`, data);
+export const AddNewRating = (data) =>
+  server.patch(`${url}/add-new-rating`, data);
+export const UpvoteComment = (data) =>
+  server.patch(`${url}/upvote-comment`, data);
 export const AddBadge = (data) => server.patch(`${url}/add-badge`, data);
-export const AddFollower = (data) => server.patch(`${url}/addfollower`,data);
-export const GetSingleProject = (data) => server.post(`${url}/project-by-id`, data);
+export const AddFollower = (data) => server.patch(`${url}/addfollower`, data);
+export const GetSingleProject = (data) =>
+  server.post(`${url}/project-by-id`, data);
