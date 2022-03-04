@@ -51,7 +51,10 @@ function SearchBox({ fetchProjects })
     "ml",
     "ai",
     "machine learning",
-    "artificial intellegence"
+    "php",
+    "django",
+    "arduino",
+    "iot"
   ] 
   
   // "nodejs",

@@ -172,6 +172,7 @@ function Showprojects() {
       case "added":
         setfilter({ ...filter, added: !filter.added });
         break;
+      default: return;
     }
   };
 
